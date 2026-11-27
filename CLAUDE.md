@@ -71,7 +71,19 @@ equipo: un cambio en ella se propone por PR, como cualquier otro. Lo de cada uno
 - La partición se hace antes de mirar los datos, y con embargo temporal si la
   variable objetivo depende del tiempo.
 - Commits: mensaje en español, un cambio lógico por commit.
-<PENDIENTE: las convenciones propias del proyecto que se aparten de lo estandar, cada una con su fecha y su motivo (nacido 2026-11-27)>
+- **La herramienta no se presenta como pronóstico ni como evaluación oficial de riesgo**
+  (2026-11-27, límite escrito del reto). Ningún texto, tampoco el del asistente, habla de
+  alertas, predicciones o niveles de riesgo: se habla de preparación y de preguntas para
+  conversar. El brief está en `docs/PLAN.md`.
+- **Lo que se versiona de terceros lleva una licencia compatible con la regla 6 del
+  hackathon** (2026-11-27): CC0, CC BY o dominio público, citado en el README. No se versionan
+  extractos de OpenStreetMap (ODbL) ni datos con cláusula no comercial, como Meteostat.
+- **Ni planos ni distribución interior de escuelas concretas** (2026-11-27, por la seguridad
+  de quienes las ocupan y por los derechos de autor): la maqueta muestra volúmenes.
+- **Google Earth Engine solo extrae** (2026-11-27): los recortes se exportan al repositorio con
+  su fecha y su licencia, y el análisis corre desde ellos sin cuenta de Earth Engine, para que
+  el jurado pueda reproducirlo.
+- **ERA5 se descarga del Climate Data Store** (2026-11-27), que es la fuente que nombra el reto.
 
 ## Gotchas
 
@@ -84,4 +96,11 @@ equipo: un cambio en ella se propone por PR, como cualquier otro. Lo de cada uno
 - **`data/` está en `.gitignore` entero.** Un dato intermedio guardado ahí
   desaparece del control de versiones sin avisar. La excepción prevista es
   `!data/**/.gitkeep`.
-<PENDIENTE: las trampas reales del proyecto. Si al cabo del tiempo no hay ninguna, se dice que no hay y por que (nacido 2026-11-27)>
+- **El sitio del MINED (`mined.gob.sv`) no deja descargar a programas**: responde con una
+  verificación de Cloudflare a `curl` y al lector web de los agentes. Sus documentos se bajan
+  desde un navegador. El Manual de Diseño Mi Nueva Escuela, además, no trae sus anexos: sus
+  páginas 37 a 47 son portadas con un enlace a una carpeta externa del Ministerio.
+- **La X roja de `main por PR` en el commit inicial no es una alerta.** El primer push creó la
+  rama, GitHub no tenía un commit anterior con el que comparar y el job no pudo consultar qué
+  commits llegaron. `higiene` salió en verde en el mismo push. Los push siguientes sí tienen un
+  commit anterior, y la primera fusión de un PR comprobará que el aviso sale en verde.
