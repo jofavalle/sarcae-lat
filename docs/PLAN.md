@@ -216,7 +216,7 @@ API de Gemini de AI Studio.
 |---|---|---|
 | 1 | Escuela ancla en El Salvador | las direcciones visuales |
 | 2 | Escuelas de Colombia y Venezuela | el contrato de datos |
-| 3 | Stack del front, en una ADR. Recomendación: HTML, CSS y JavaScript sin framework, con MapLibre GL JS para el mapa y la maqueta; alternativa, Svelte | la construcción |
+| 3 | Stack del front: HTML, CSS y JavaScript sin framework, con MapLibre GL JS para el mapa y la maqueta, y mapa base sin OpenStreetMap (`docs/decisiones/ADR-001-front.md`, PR #7) | cerrada |
 | 4 | Si ERA5-Land cuenta como "datos de ERA5": se pregunta en el canal del reto | el contrato de datos |
 | 5 | Pesos de los criterios y presencia del retador en el jurado: se pregunta en el canal del reto | la construcción |
 | 6 | Proveedor del LLM | la integración |

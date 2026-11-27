@@ -7,39 +7,45 @@ acumula.
 
 ## Estado actual
 
-**2026-11-27, 14:20 (hora de El Salvador).** El repositorio nació el 27 para el reto 10 de
+**2026-11-27, 16:40 (hora de El Salvador).** El repositorio nació el 27 para el reto 10 de
 CoAfina 2026. Es público y protege `main`: cada PR necesita una aprobación y el check `higiene`
 en verde. jofavalle, aalexanderrz, cesarp03 y bm20004 tienen permiso de escritura.
 
-En `main`, desde los PR #1 y #2, que revisó y fusionó cesarp03:
-- el brief del proyecto, `docs/PLAN.md`, con diez decisiones abiertas en su sección 12;
-- las convenciones y trampas propias del `CLAUDE.md`;
-- la ficha de referencia del Manual de Diseño Mi Nueva Escuela,
-  `docs/refs/manual-mi-nueva-escuela.md`.
+En `main`:
+- el brief, `docs/PLAN.md`, y la ficha del Manual de Diseño Mi Nueva Escuela (PR #1 y #2);
+- la ADR-001 del front (orden #5, PR #7): HTML, CSS y JavaScript sin framework, MapLibre GL JS
+  para el mapa y la maqueta, y mapa base sin OpenStreetMap;
+- las licencias de las fuentes, comprobadas y citadas en el README, y el modelo de elevación
+  elegido, NASADEM (orden #6, PR #8);
+- la descarga de ERA5 por punto, `src/era5.py` (orden #4, PR #14). Probada con el aeropuerto
+  de Ilopango, la serie de 1940 a 2025 tardó 122 s y pasó todos los controles.
 
-Todavía no hay código ni datos. El aviso `main por PR` salió en verde en las dos fusiones: la X
-del commit inicial fue solo la del primer push.
+Las decisiones que el plan dejaba abiertas son ahora issues con la etiqueta `decision`, de la
+#15 a la #23. Todavía no hay datos versionados ni front.
 
 ## Siguiente paso
 
-1. **Cerrar las decisiones abiertas del brief** (sección 12 de `docs/PLAN.md`). Las primeras son
-   la escuela ancla en El Salvador, que no se nombra en el repositorio hasta confirmarla, las
-   escuelas de Colombia y Venezuela, y el stack del front, que se decide en una ADR en
-   `docs/decisiones/`.
-2. **Preguntar en el canal del reto**, nunca por privado: si ERA5-Land cuenta como "datos de
-   ERA5", si los criterios tienen pesos y si el retador estará en el jurado.
-3. **Cuentas de datos:** quien descargue necesita una cuenta del Climate Data Store con la
-   licencia de ERA5 aceptada, y un proyecto de Google Earth Engine registrado como no comercial.
-   Las claves van en `.env` o en `~/.cdsapirc`, nunca en el repositorio.
-4. **El contrato de datos** (el esquema de los JSON que lee el front) **y las dos direcciones
-   visuales**, con datos reales de la escuela ancla. De ahí salen las órdenes de construcción,
-   una por pantalla o flujo.
-5. **Cada integrante comprueba su clon:** activa los ganchos con
-   `git config core.hooksPath .githooks`, abre `claude` en la raíz, mira con `/memory` que carga
-   este `CLAUDE.md` y con `/tomar-orden` que las skills están, y ejecuta
-   `python3 .github/higiene.py`, que tiene que pasar en su máquina.
-6. **El último marcador pendiente del `CLAUDE.md`**, el comando de ejecución, se resuelve
-   cuando exista ese comando.
+1. **La escuela ancla, #15**, hoy por la noche. El contrato de datos, la dirección visual y la
+   ficha esperan por ella. No se nombra en el repositorio hasta confirmarla.
+2. **Las preguntas al canal del reto, #17**, en el canal público y no por privado.
+3. **Con la escuela ancla**: cerrar #21 (dónde se versionan los recortes) y #22 (indicadores),
+   bajar su serie con `python -m src.era5`, y escribir el contrato de datos. De ahí salen las
+   órdenes de construcción, una por pantalla o flujo. Las referencias visuales de #20 se
+   pueden aportar ya.
+4. **Lo que no viaja por git**, en cada máquina que descargue datos:
+   - el `.venv`: `python3 -m venv .venv && .venv/bin/pip install -r requirements.txt`;
+   - una cuenta del Climate Data Store con la "CC-BY licence" aceptada en la pestaña
+     "Download" de un dataset de ERA5 (es la misma para los dos que usa `src/era5.py`);
+   - `~/.cdsapirc`, con `url: https://cds.climate.copernicus.eu/api` y `key:` seguido del
+     token del perfil, que no lleva dos puntos. Se escribe con un editor y permisos 600: ni con
+     `echo`, que lo deja en el historial, ni pegado en el chat de un asistente.
+5. **Con Codex o Devin**, la capa vale igual: leen `AGENTS.md` y las skills de
+   `.agents/skills/`. Codex no puede negar lecturas desde el proyecto, así que a ningún asistente
+   se le pide abrir `~/.cdsapirc` ni `.env`. Devin en la nube no tiene esas credenciales ni las
+   necesita: las pruebas no usan la red. Cada PR declara la herramienta y el modelo que usó.
+6. **Cada integrante comprueba su clon** (`CONTRIBUTING.md`, "Comprobación del primer día").
+7. **El último marcador pendiente del `CLAUDE.md`**, el comando de ejecución, se resuelve
+   cuando exista el comando que genera la ficha.
 
 **Hitos** (hora de El Salvador): primer envío del formulario el sábado 28 a las 20:00, código
 congelado el domingo 29 a las 8:00 y entrega a las 11:00.
@@ -61,3 +67,12 @@ congelado el domingo 29 a las 8:00 y entrega a las 11:00.
 - **2026-11-27. Ni modelo ni atribución en la capa.** El `.claude/settings.json` del proyecto se
   impone al de cada uno: un modelo fijado ahí obligaría a todas las cuentas, así que cada uno lo
   elige con `/model`. La atribución va vacía y el uso de IA se declara en cada PR.
+- **2026-11-27. Decisiones y órdenes, separadas.** Lo que falta decidir del plan va en issues
+  con la etiqueta `decision`, y se cierra con un comentario que diga lo decidido. La
+  implementación va en órdenes, con la etiqueta `orden`. La sección 12 del brief se pone al día
+  en el PR de la bitácora.
+- **2026-11-27. ERA5 por punto** (orden #4). La serie sale de
+  `reanalysis-era5-single-levels-timeseries`, de 1940-01-01 a 2025-12-31: años completos, sin
+  los meses preliminares de ERA5T. Se guarda tal como llega (UTC, K y m) en
+  `data/raw/era5/<nombre>/`, con un `registro.json` de rutas relativas. La altura de la celda
+  sale del geopotencial de `reanalysis-era5-single-levels`.
