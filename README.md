@@ -19,9 +19,11 @@ Cada licencia se leyó en el sitio de quien produce el dato.
 | CHIRPS v2.0 y v3.0 | Climate Hazards Center, UCSB | v2.0: dominio público; v3.0: CC BY 4.0 | https://www.chc.ucsb.edu/data/chirps y https://www.chc.ucsb.edu/data/chirps3 | 2026-11-27 | Lluvia, para comparar con ERA5 |
 | Manual de Diseño Mi Nueva Escuela (2022) | MINEDUCYT, El Salvador | sin licencia declarada: solo se usan sus medidas y criterios, citando la página, y no se copian sus figuras | https://www.mined.gob.sv/licitacion/2023/46-2023-SDO/anexo2/MANUAL%20DE%20DISE%C3%91O-MI%20NUEVA%20ESCUELA.pdf | 2026-11-27 | Medidas de aulas y criterios de ventilación, sombra y aguas lluvias (`docs/refs/manual-mi-nueva-escuela.md`) |
 
-No se usa el Copernicus DEM GLO-30: su "ESA - User licence" (emitida el 21/02/2025) no es CC0,
-CC BY ni dominio público. Solo permite publicar con fines no comerciales y redistribuir a quien
-haya aceptado sus términos (cláusulas 3.5.1.6 y 3.5.1.11). Página y licencia:
+No se usa el Copernicus DEM GLO-30. La licencia de su instancia pública, COP-DEM-GLO-30-F
+("Full, Free & Open", p. 22 del PDF), permite reproducir, distribuir y adaptar gratis (art. 4 y
+5), pero es una licencia propia y no CC0, CC BY ni dominio público. Su art. 6 exige un aviso que
+termina en "all rights reserved" y una cláusula de exención de responsabilidad, y obliga a los
+usuarios posteriores. Página y licencia:
 https://dataspace.copernicus.eu/explore-data/data-collections/copernicus-contributing-missions/collections-description/COP-DEM
 y https://dataspace.copernicus.eu/sites/default/files/media/files/2025-06/copernicus_contributing_mission_data_access_v2_cop_dem_licenses.pdf,
 consultadas el 2026-11-27.

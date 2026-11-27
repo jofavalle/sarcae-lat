@@ -78,7 +78,7 @@ Riesgos: calor y agua. Los incendios quedan fuera.
 |---|---|---|---|---|
 | ERA5, niveles de superficie (Copernicus, Climate Data Store) | Clima de la zona desde 1940: temperatura, humedad y lluvia | 0,25° (unos 28 km), horario | CC BY 4.0, también la serie por punto | Obligatorio por el reto. El CDS publica además una serie horaria por punto desde 1940; falta medir cuánto tarda su descarga |
 | ERA5-Land | Refinamiento del anterior | 0,1° | CC BY 4.0 | (abierto) si cuenta como "datos de ERA5" (sección 12). Empieza en 1950, no en 1940 |
-| Modelo de elevación: Copernicus DEM GLO-30 o NASADEM | Corrección por altura y flujo del agua | 30 m | NASADEM: CC0, por la política de datos de NASA. Copernicus DEM: "ESA - User licence" propia, con aviso obligatorio que termina en "all rights reserved", publicación solo no comercial y redistribución solo a quien acepte sus términos; no es compatible | Cerrada: NASADEM (sección 12, decisión 8) |
+| Modelo de elevación: Copernicus DEM GLO-30 o NASADEM | Corrección por altura y flujo del agua | 30 m | NASADEM: CC0, por la política de datos de NASA. Copernicus DEM: su instancia pública, GLO-30-F, tiene una licencia propia ("Full, Free & Open") que permite reproducir, distribuir y adaptar gratis (art. 4 y 5), pero su art. 6 exige un aviso que termina en "all rights reserved" y una cláusula de exención de responsabilidad, y obliga a los usuarios posteriores; no es compatible | Cerrada: NASADEM (sección 12, decisión 8) |
 | Landsat 8 y 9, temperatura de superficie | Dónde se calienta más la superficie | banda térmica de 100 m, servida a 30 m | dominio público, sin restricciones de uso, según el USGS | |
 | ESA WorldCover | Cobertura del suelo: vegetación, construcción, agua | 10 m | CC BY 4.0 | |
 | Google Open Buildings v3 | Contornos de los edificios | | CC BY 4.0 u ODbL, a elección; se usa con CC BY 4.0 | Comprobadas la licencia y la cobertura: El Salvador, Colombia y Venezuela están en la lista de países del sitio |
@@ -87,8 +87,9 @@ Riesgos: calor y agua. Los incendios quedan fuera.
 | Estaciones meteorológicas | Validación de ERA5 | puntual | según la fuente | (abierto) cuáles |
 | Manual de Diseño Mi Nueva Escuela (MINEDUCYT, 2022) | Medidas de referencia de aulas y tipologías, y criterios de ventilación, sombra y aguas lluvias | | sin licencia declarada | Solo se usan sus medidas y criterios, citando el manual; no se copian sus figuras |
 
-Todas las licencias del cuadro se consultaron el 27 de noviembre de 2026 en el sitio de quien
-produce el dato. Los enlaces están en el README, sección "Fuentes y licencias".
+Las licencias del cuadro se consultaron el 27 de noviembre de 2026 en el sitio de quien produce
+el dato, salvo la de las estaciones meteorológicas, que aún no se han elegido (decisión 7). Los
+enlaces están en el README, sección "Fuentes y licencias".
 
 **Volumen y frecuencia.** Los datos se descargan una sola vez, con la fecha y la versión
 registradas, y los recortes de las tres zonas pesan poco. La demo no consulta servicios en
@@ -220,6 +221,6 @@ API de Gemini de AI Studio.
 | 5 | Pesos de los criterios y presencia del retador en el jurado: se pregunta en el canal del reto | la construcción |
 | 6 | Proveedor del LLM | la integración |
 | 7 | Estaciones para la validación | el contrato de datos |
-| 8 | Modelo de elevación: NASADEM. Es el único de los dos con licencia compatible (CC0, por la política de datos de NASA), y sus recortes se versionan (sección 4). El Copernicus DEM es más reciente (2011 a 2015, frente a febrero de 2000), pero su "ESA - User licence" no es CC0, CC BY ni dominio público: solo deja redistribuir los datos a quien haya aceptado sus términos | cerrada |
+| 8 | Modelo de elevación: NASADEM. Es el único de los dos con licencia compatible (CC0, por la política de datos de NASA), y sus recortes se versionan (sección 4). El Copernicus DEM es más reciente (2011 a 2015, frente a febrero de 2000), pero la licencia de su instancia pública, GLO-30-F, es propia y no CC0, CC BY ni dominio público: aunque permite distribuir (art. 4), su art. 6 exige un aviso que termina en "all rights reserved" y una cláusula de exención de responsabilidad, y obliga a los usuarios posteriores | cerrada |
 | 9 | Referencias visuales | las direcciones visuales |
 | 10 | Criterios equivalentes al manual salvadoreño para Colombia y Venezuela | la ficha |
