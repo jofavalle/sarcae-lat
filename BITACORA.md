@@ -16,10 +16,9 @@ En `main`:
 - la ADR-001 del front (orden #5, PR #7): HTML, CSS y JavaScript sin framework, MapLibre GL JS
   para el mapa y la maqueta, y mapa base sin OpenStreetMap;
 - las licencias de las fuentes, comprobadas y citadas en el README, y el modelo de elevación
-  elegido, NASADEM (orden #6, PR #8).
-
-En revisión: la descarga de ERA5 por punto (orden #4, PR #14). Probada con el aeropuerto de
-Ilopango, la serie de 1940 a 2025 tardó 122 s y pasó todos los controles.
+  elegido, NASADEM (orden #6, PR #8);
+- la descarga de ERA5 por punto, `src/era5.py` (orden #4, PR #14). Probada con el aeropuerto
+  de Ilopango, la serie de 1940 a 2025 tardó 122 s y pasó todos los controles.
 
 Las decisiones que el plan dejaba abiertas son ahora issues con la etiqueta `decision`, de la
 #15 a la #23. Todavía no hay datos versionados ni front.
@@ -29,24 +28,23 @@ Las decisiones que el plan dejaba abiertas son ahora issues con la etiqueta `dec
 1. **La escuela ancla, #15**, hoy por la noche. El contrato de datos, la dirección visual y la
    ficha esperan por ella. No se nombra en el repositorio hasta confirmarla.
 2. **Las preguntas al canal del reto, #17**, en el canal público y no por privado.
-3. **Revisar el PR #14**, alguien distinto de su autor.
-4. **Con la escuela ancla**: cerrar #21 (dónde se versionan los recortes) y #22 (indicadores),
+3. **Con la escuela ancla**: cerrar #21 (dónde se versionan los recortes) y #22 (indicadores),
    bajar su serie con `python -m src.era5`, y escribir el contrato de datos. De ahí salen las
    órdenes de construcción, una por pantalla o flujo. Las referencias visuales de #20 se
    pueden aportar ya.
-5. **Lo que no viaja por git**, en cada máquina que descargue datos:
+4. **Lo que no viaja por git**, en cada máquina que descargue datos:
    - el `.venv`: `python3 -m venv .venv && .venv/bin/pip install -r requirements.txt`;
    - una cuenta del Climate Data Store con la "CC-BY licence" aceptada en la pestaña
      "Download" de un dataset de ERA5 (es la misma para los dos que usa `src/era5.py`);
    - `~/.cdsapirc`, con `url: https://cds.climate.copernicus.eu/api` y `key:` seguido del
      token del perfil, que no lleva dos puntos. Se escribe con un editor y permisos 600: ni con
      `echo`, que lo deja en el historial, ni pegado en el chat de un asistente.
-6. **Con Codex o Devin**, la capa vale igual: leen `AGENTS.md` y las skills de
+5. **Con Codex o Devin**, la capa vale igual: leen `AGENTS.md` y las skills de
    `.agents/skills/`. Codex no puede negar lecturas desde el proyecto, así que a ningún asistente
    se le pide abrir `~/.cdsapirc` ni `.env`. Devin en la nube no tiene esas credenciales ni las
    necesita: las pruebas no usan la red. Cada PR declara la herramienta y el modelo que usó.
-7. **Cada integrante comprueba su clon** (`CONTRIBUTING.md`, "Comprobación del primer día").
-8. **El último marcador pendiente del `CLAUDE.md`**, el comando de ejecución, se resuelve
+6. **Cada integrante comprueba su clon** (`CONTRIBUTING.md`, "Comprobación del primer día").
+7. **El último marcador pendiente del `CLAUDE.md`**, el comando de ejecución, se resuelve
    cuando exista el comando que genera la ficha.
 
 **Hitos** (hora de El Salvador): primer envío del formulario el sábado 28 a las 20:00, código
