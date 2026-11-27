@@ -1,7 +1,7 @@
 # ADR-001: el front de SARCAE-LAT
 
 - **Fecha:** 2026-11-27
-- **Estado:** propuesta. Pasa a "aceptada" cuando se fusiona.
+- **Estado:** aceptada (PR #7, fusionado el 2026-11-27).
 
 ## Contexto
 
