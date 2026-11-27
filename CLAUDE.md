@@ -103,4 +103,4 @@ equipo: un cambio en ella se propone por PR, como cualquier otro. Lo de cada uno
 - **La X roja de `main por PR` en el commit inicial no es una alerta.** El primer push creó la
   rama, GitHub no tenía un commit anterior con el que comparar y el job no pudo consultar qué
   commits llegaron. `higiene` salió en verde en el mismo push. Los push siguientes sí tienen un
-  commit anterior, y la primera fusión de un PR comprobará que el aviso sale en verde.
+  commit anterior: en las fusiones de los PR #1 y #2 el aviso salió en verde.
