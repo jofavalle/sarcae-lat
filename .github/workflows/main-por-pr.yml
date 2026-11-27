@@ -1,0 +1,93 @@
+# Aviso, no barrera: en un repositorio privado del plan gratuito, GitHub no protege ramas.
+# Si algo entra en main sin un PR fusionado, o con un push forzado, este workflow se pone en
+# rojo y abre una issue, para que lo vea todo el equipo y no solo quien empujó. Lo que entró
+# se corrige con un PR nuevo (git revert), nunca reescribiendo main.
+#
+# Tres desenlaces: "en orden" (verde); alerta (rojo y una issue); y "no se pudo confirmar"
+# (rojo y sin issue), porque una consulta a la API que falla no dice nada del push.
+# Las pruebas del paso están en tests/prueba_workflow_main.py.
+name: main por PR
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+  pull-requests: read
+  issues: write
+
+jobs:
+  main-por-pr:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Lo que entró en main viene de un PR
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+          SHA: ${{ github.sha }}
+          ANTES: ${{ github.event.before }}
+          FORZADO: ${{ github.event.forced }}
+          QUIEN: ${{ github.actor }}
+          SERVIDOR: ${{ github.server_url }}
+        run: |
+          motivo=""
+          sin_pr=""
+          if [ "$FORZADO" = "true" ]; then
+            motivo="push forzado a main"
+          else
+            # Todos los commits que trajo el push, no solo la punta: un commit directo puede
+            # quedar debajo de una fusión legítima en el mismo push.
+            if ! lista=$(gh api "repos/$REPO/compare/$ANTES...$SHA" --jq '.commits[].sha'); then
+              echo "::error::no se pudo consultar la API de GitHub: no se sabe qué commits trajo el push"
+              exit 1
+            fi
+            for c in $(printf '%s\n%s\n' "$lista" "$SHA" | sort -u); do
+              # GitHub puede tardar unos segundos en asociar una fusión con su PR, así que se
+              # reintenta, y manda el último intento: un cero seguido de errores no confirma nada.
+              estado=""
+              for intento in 1 2 3 4; do
+                if r=$(gh api "repos/$REPO/commits/$c/pulls" \
+                    --jq '[.[] | select(.merged_at != null and .base.ref == "main")] | length'); then
+                  if [ "$r" -gt 0 ]; then
+                    estado="en-pr"
+                    break
+                  fi
+                  estado="sin-pr"
+                else
+                  estado="sin-respuesta"
+                fi
+                [ "$intento" = 4 ] || sleep 15
+              done
+              case "$estado" in
+                en-pr) ;;
+                sin-pr) sin_pr="$sin_pr $c" ;;
+                *)
+                  echo "::error::no se pudo confirmar si $c viene de un PR: la API no respondió"
+                  exit 1
+                  ;;
+              esac
+            done
+            [ -z "$sin_pr" ] || motivo="commit en main sin PR fusionado"
+          fi
+          if [ -z "$motivo" ]; then
+            echo "en orden: lo que trajo el push hasta $SHA viene de PR fusionados"
+            exit 0
+          fi
+          {
+            echo "El workflow \"main por PR\" detectó un $motivo."
+            echo
+            echo "- Punta del push: $SERVIDOR/$REPO/commit/$SHA"
+            for c in $sin_pr; do
+              echo "- Sin PR fusionado: $SERVIDOR/$REPO/commit/$c"
+            done
+            echo "- Lo empujó: $QUIEN"
+            echo
+            echo "Qué hacer: no reescribir main. Si lo que entró no debía entrar, se deshace"
+            echo "con un PR que lo revierta (git revert), revisado por otra persona. Si era"
+            echo "correcto, basta con explicarlo aquí y cerrar la issue."
+          } > cuerpo.md
+          gh issue create --repo "$REPO" --title "Alerta: $motivo" --body-file cuerpo.md
+          echo "::error::$motivo ($SHA, por $QUIEN)"
+          exit 1

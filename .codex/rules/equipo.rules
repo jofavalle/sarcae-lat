@@ -1,0 +1,33 @@
+# Red de Codex para este repositorio. Se carga solo si se confía en el proyecto.
+# Las denegaciones repiten las de .claude/settings.json, que es la fuente: la higiene
+# falla si alguna falta aquí. Cuando casan varias reglas, gana la más restrictiva.
+
+# Lo que no hace la herramienta: lo ejecuta una persona.
+prefix_rule(pattern = ["git", "add", "-A"], decision = "forbidden", justification = "Los archivos se añaden por nombre, después de leer el diff.")
+prefix_rule(pattern = ["git", "add", "--all"], decision = "forbidden", justification = "Los archivos se añaden por nombre, después de leer el diff.")
+prefix_rule(pattern = ["git", "add", "."], decision = "forbidden", justification = "Los archivos se añaden por nombre, después de leer el diff.")
+prefix_rule(pattern = ["git", "add", "./"], decision = "forbidden", justification = "Los archivos se añaden por nombre, después de leer el diff.")
+prefix_rule(pattern = ["git", "add", "--", "."], decision = "forbidden", justification = "Los archivos se añaden por nombre, después de leer el diff.")
+prefix_rule(pattern = ["git", "add", ":/"], decision = "forbidden", justification = "Los archivos se añaden por nombre, después de leer el diff.")
+prefix_rule(pattern = ["git", "add", "-u"], decision = "forbidden", justification = "Los archivos se añaden por nombre, después de leer el diff.")
+prefix_rule(pattern = ["rm", "-r"], decision = "forbidden", justification = "Los borrados los ejecuta una persona.")
+prefix_rule(pattern = ["rm", "-R"], decision = "forbidden", justification = "Los borrados los ejecuta una persona.")
+prefix_rule(pattern = ["rm", "-rf"], decision = "forbidden", justification = "Los borrados los ejecuta una persona.")
+prefix_rule(pattern = ["rm", "-Rf"], decision = "forbidden", justification = "Los borrados los ejecuta una persona.")
+prefix_rule(pattern = ["rm", "-fr"], decision = "forbidden", justification = "Los borrados los ejecuta una persona.")
+prefix_rule(pattern = ["rm", "-fR"], decision = "forbidden", justification = "Los borrados los ejecuta una persona.")
+prefix_rule(pattern = ["rm", "--recursive"], decision = "forbidden", justification = "Los borrados los ejecuta una persona.")
+prefix_rule(pattern = ["git", "reset", "--hard"], decision = "forbidden", justification = "Los borrados los ejecuta una persona.")
+prefix_rule(pattern = ["git", "clean"], decision = "forbidden", justification = "Los borrados los ejecuta una persona.")
+prefix_rule(pattern = ["git", "branch", "-D"], decision = "forbidden", justification = "Los borrados los ejecuta una persona.")
+prefix_rule(pattern = ["git", "push", "--force"], decision = "forbidden", justification = "El push forzado lo ejecuta una persona.")
+prefix_rule(pattern = ["git", "push", "-f"], decision = "forbidden", justification = "El push forzado lo ejecuta una persona.")
+prefix_rule(pattern = ["git", "push", "--force-with-lease"], decision = "forbidden", justification = "El push forzado lo ejecuta una persona.")
+prefix_rule(pattern = ["git", "push", "--no-verify"], decision = "forbidden", justification = "Saltarse los ganchos lo decide una persona.")
+prefix_rule(pattern = ["git", "commit", "--no-verify"], decision = "forbidden", justification = "Saltarse los ganchos lo decide una persona.")
+prefix_rule(pattern = ["git", "commit", "-n"], decision = "forbidden", justification = "Saltarse los ganchos lo decide una persona.")
+
+# Lo que pide aprobación siempre, después de enseñar el diff y la evidencia.
+prefix_rule(pattern = ["git", "commit"], decision = "prompt", justification = "Ningún commit sin que la persona haya leído el diff.")
+prefix_rule(pattern = ["git", "push"], decision = "prompt", justification = "El push sale del equipo: lo aprueba la persona.")
+prefix_rule(pattern = ["gh", "pr", "merge"], decision = "prompt", justification = "Un PR lo fusiona quien lo revisa, no su autor.")

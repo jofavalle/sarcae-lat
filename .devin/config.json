@@ -1,0 +1,38 @@
+{
+  "permissions": {
+    "deny": [
+      "Exec(git add -A)",
+      "Exec(git add --all)",
+      "Exec(git add .)",
+      "Exec(git add ./)",
+      "Exec(git add -- .)",
+      "Exec(git add :/)",
+      "Exec(git add -u)",
+      "Exec(rm -r)",
+      "Exec(rm -R)",
+      "Exec(rm -rf)",
+      "Exec(rm -Rf)",
+      "Exec(rm -fr)",
+      "Exec(rm -fR)",
+      "Exec(rm --recursive)",
+      "Exec(git reset --hard)",
+      "Exec(git clean)",
+      "Exec(git branch -D)",
+      "Exec(git push --force)",
+      "Exec(git push -f)",
+      "Exec(git push --force-with-lease)",
+      "Exec(git push --no-verify)",
+      "Exec(git commit --no-verify)",
+      "Exec(git commit -n)",
+      "Read(**/.env)",
+      "Read(**/.env.*)",
+      "Read(.env)",
+      "Read(.env.*)"
+    ],
+    "ask": [
+      "Exec(git commit)",
+      "Exec(git push)",
+      "Exec(gh pr merge)"
+    ]
+  }
+}

@@ -1,0 +1,3 @@
+# Saltos de línea LF en todas las máquinas, también en Windows: sin esto, Git para Windows
+# convierte a CRLF al clonar, y cada archivo tocado desde allí sale entero en el diff.
+* text=auto eol=lf

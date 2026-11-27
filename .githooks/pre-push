@@ -1,0 +1,35 @@
+#!/bin/sh
+# Gancho del equipo: rechaza el push a main, el push forzado y el borrado de una rama
+# remota. Vale para cualquier herramienta y para las personas, porque lo ejecuta git.
+# Se activa una vez por clon:  git config core.hooksPath .githooks
+#
+# Si de verdad hace falta alguna de esas tres cosas, la ejecuta una persona, a mano y
+# sabiendo lo que hace (git push --no-verify); ninguna herramienta debe saltarse el gancho.
+#
+# git pasa por la entrada una línea por referencia:
+#   <ref local> <sha local> <ref remota> <sha remota>
+# Un SHA hecho solo de ceros significa que la referencia no existe en ese lado.
+
+es_cero() {
+    case "$1" in
+        *[!0]*) return 1 ;;
+        *) return 0 ;;
+    esac
+}
+
+fallos=0
+while read -r ref_local sha_local ref_remota sha_remota; do
+    if [ "$ref_remota" = "refs/heads/main" ]; then
+        echo "pre-push: a main no se empuja; todo entra por PR (gh pr create)." >&2
+        fallos=1
+    elif es_cero "$sha_local"; then
+        echo "pre-push: borrar la rama remota $ref_remota lo hace una persona desde GitHub." >&2
+        fallos=1
+    elif ! es_cero "$sha_remota" &&
+         ! git merge-base --is-ancestor "$sha_remota" "$sha_local" 2>/dev/null; then
+        echo "pre-push: push forzado a $ref_remota; reescribiría trabajo ya publicado." >&2
+        echo "  Si la rama remota tiene commits que no tienes: git pull y vuelve a empujar." >&2
+        fallos=1
+    fi
+done
+exit $fallos

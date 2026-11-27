@@ -1,0 +1,25 @@
+# La higiene del repositorio en cada push y en cada PR: así corre aunque nadie se acuerde
+# de ejecutarla. Lo que comprueba está en la cabecera de .github/higiene.py.
+name: higiene
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  higiene:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v7
+      - name: python3 .github/higiene.py
+        run: python3 .github/higiene.py
+      # Los ganchos de .githooks/, contra un remoto desnudo en un directorio temporal.
+      - name: python3 tests/prueba_ganchos.py
+        run: python3 tests/prueba_ganchos.py
+      # El paso del workflow "main por PR", con gh sustituido por una función local.
+      - name: python3 tests/prueba_workflow_main.py
+        run: python3 tests/prueba_workflow_main.py

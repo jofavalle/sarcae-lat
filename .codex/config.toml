@@ -1,0 +1,11 @@
+# Lo que Codex carga de este proyecto, y solo si se confía en él al abrirlo: sin confianza
+# no lee nada de .codex/, ni esto ni las reglas de .codex/rules/.
+#
+# Con el sandbox workspace-write, Codex edita dentro del repositorio y nada más; .git y
+# .codex quedan de solo lectura, así que un commit o un cambio en sus propias reglas pide
+# aprobación, y sin red un push o una orden de gh también.
+approval_policy = "on-request"
+sandbox_mode = "workspace-write"
+
+[sandbox_workspace_write]
+network_access = false
