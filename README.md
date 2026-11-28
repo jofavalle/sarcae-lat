@@ -30,7 +30,8 @@ Cada licencia se leyó en el sitio de quien produce el dato.
 | Google Open Buildings v3 | Google Research | CC BY 4.0 u ODbL, a elección; se usa con CC BY 4.0 | https://sites.research.google/gr/open-buildings/ | 2026-11-27 | Contornos de los edificios |
 | Google Open Buildings 2.5D Temporal | Google Research | CC BY 4.0 u ODbL, a elección; se usa con CC BY 4.0 | https://sites.research.google/gr/open-buildings/temporal/ | 2026-11-27 | Alturas de los edificios, 2016 a 2023 |
 | CHIRPS v3.0 | Climate Hazards Center, UCSB | [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) | https://www.chc.ucsb.edu/data/chirps3 | 2026-11-27 | Lluvia terrestre a 0,05°, de 60° S a 60° N, en todas las longitudes y desde 1981 hasta fechas recientes, para comparar con ERA5 |
-| GHCNh v1, El Dorado (Bogotá, Colombia, `COI0000SKBO`) y La Chinita (Maracaibo, Venezuela, `VEI0000SVMC`) | NOAA NCEI | CC0 según la ficha del conjunto. Permiso para redistribuir ambas series sin restricciones pendiente de confirmar (Resolución 40 de la OMM) | [Ficha de NCEI](https://www.ncei.noaa.gov/access/metadata/landing-page/bin/iso?id=gov.noaa.ncdc%3AC01688) · [Lista de estaciones](https://www.ncei.noaa.gov/oa/global-historical-climatology-network/hourly/doc/ghcnh-station-list.txt) | 2026-11-27 | Contraste de ERA5 contra estaciones de las réplicas |
+| GHCNh v1, El Dorado (Bogotá, Colombia, `COI0000SKBO`) y La Chinita (Maracaibo, Venezuela, `VEI0000SVMC`) | NOAA NCEI | CC0 según la ficha del conjunto, pero el inventario sub-diario v3.0.0 de C3S y NCEI marca las dos estaciones como `non_commercial`: las series no se versionan y solo se publica la métrica (#46) | [Ficha de NCEI](https://www.ncei.noaa.gov/access/metadata/landing-page/bin/iso?id=gov.noaa.ncdc%3AC01688) · [Lista de estaciones](https://www.ncei.noaa.gov/oa/global-historical-climatology-network/hourly/doc/ghcnh-station-list.txt) | 2026-11-27 | Contraste de ERA5 contra estaciones de las réplicas |
+| Observaciones in situ de superficie terrestre v3.0.0 (`insitu-observations-surface-land`), Santa Ana/El Palmar (El Salvador, `ESI0000MSSA`) | C3S y NOAA NCEI; los datos de la estación son reportes de aeropuerto de la OACI (fuente 223) | CC BY 4.0 el conjunto, con su política de datos v3.0. El inventario sub-diario v3.0.0 marca la estación como `non_commercial`: la serie no se versiona y solo se publica la métrica (#39) | https://cds.climate.copernicus.eu/datasets/insitu-observations-surface-land | 2026-11-27 | Contraste horario de ERA5 en la escuela ancla, en el horario escolar |
 | Manual de Diseño Mi Nueva Escuela (2022) | MINEDUCYT, El Salvador | sin licencia declarada: solo se usan sus medidas y criterios, citando la página, y no se copian sus figuras | https://www.mined.gob.sv/licitacion/2023/46-2023-SDO/anexo2/MANUAL%20DE%20DISE%C3%91O-MI%20NUEVA%20ESCUELA.pdf | 2026-11-27 | Medidas de aulas y criterios de ventilación, sombra y aguas lluvias (`docs/refs/manual-mi-nueva-escuela.md`) |
 
 No se usa el Copernicus DEM GLO-30. La licencia de su instancia pública, COP-DEM-GLO-30-F
@@ -92,11 +93,24 @@ capa. En los recortes con CC BY 4.0 se indica también la licencia y qué se mod
 Para sus observaciones horarias internacionales históricas, NCEI advierte «These data and
 products may have conditions placed on their international commercial use.» NCEI remite a la
 Resolución 40 de la OMM, sustituida en 2021 por la Resolución 1. La ficha CC0 de GHCNh declara
-la renuncia de NOAA a sus posibles derechos. Las páginas públicas consultadas no precisan si
-esa declaración cubre la redistribución de las series de El Dorado y La Chinita, por lo que
-su versionado queda pendiente de confirmación. [Aviso histórico de NCEI](https://www.ncei.noaa.gov/nespls/olstore.prodspecific?prodnum=4851) ·
+la renuncia de NOAA a sus posibles derechos. El inventario de estaciones sub-diarias v3.0.0
+de C3S y NCEI, consultado el 2026-11-27, marca El Dorado y La Chinita como `non_commercial`.
+Por eso sus series no se versionan: se bajan a `data/raw/`, y en el repositorio entran el
+script que las baja y la métrica (#46). [Aviso histórico de NCEI](https://www.ncei.noaa.gov/nespls/olstore.prodspecific?prodnum=4851) ·
 [Ficha de GHCNh](https://www.ncei.noaa.gov/access/metadata/landing-page/bin/iso?id=gov.noaa.ncdc%3AC01688) ·
 [Política de la OMM](https://wmo.int/wmo-unified-data-policy).
+
+- **Observaciones in situ de superficie terrestre (C3S y NCEI), v3.0.0**. Como en ERA5, «Contains
+  modified Copernicus Climate Change Service information [Year]», con la exención de
+  responsabilidad de C3S y la entrada del CDS, https://doi.org/10.24381/cds.cf5f3bac. Para la
+  estación Santa Ana/El Palmar, la fuente 223 pide «International Civil Aviation Organisation
+  USAF : National Climatic Data Center/NESDIS/NOAA/U.S. Department of Commerce. 1982.AWS TD13
+  Global Surface Observations, daily 1901-1973. Research Data Archive at the National Center
+  for Atmospheric Research, Computational and Information Systems Laboratory.
+  https://rda.ucar.edu/datasets/ds467.0/. Accesseddd mmm yyyy.», con la fecha de acceso.
+  [Archivo de fuentes v3.0.0](https://confluence.ecmwf.int/download/attachments/656869601/sources_v3.0.0.psv?version=1&modificationDate=1776783749760&api=v2) ·
+  [Inventario sub-diario v3.0.0](https://confluence.ecmwf.int/download/attachments/656869601/Sub_daily_inventory_v3.0.0.psv?version=1&modificationDate=1776783749830&api=v2) ·
+  [Política de datos v3.0](https://object-store.os-api.cci2.ecmwf.int:443/cci2-prod-catalogue/licences/global-land-observations-data-policy/global-land-observations-data-policyv3_cf677c7ab8cdb21b137de1946b62f7fdd4c65c950d1ca19e82383da7a404ea3e.pdf).
 
 ### Código de terceros
 

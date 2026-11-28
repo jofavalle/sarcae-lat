@@ -94,14 +94,14 @@ declarada, fuera de la primera entrega (#16).
 | Google Open Buildings v3 | Contornos de los edificios | | CC BY 4.0 u ODbL, a elección; se usa con CC BY 4.0 | Comprobadas la licencia y la cobertura: El Salvador, Colombia y Venezuela están en la lista de países del sitio |
 | Google Open Buildings 2.5D Temporal | Alturas de los edificios, 2016 a 2023 | error medio de 1,5 m | CC BY 4.0 u ODbL, a elección | Comprobadas la licencia y la cobertura de los tres países |
 | CHIRPS | Lluvia, para comparar con ERA5 | 0,05° | CC BY 4.0, según el Climate Hazards Center | Elegida la v3.0. Cubre tierra entre 60° S y 60° N en todas las longitudes, desde 1981 hasta fechas recientes |
-| Estaciones meteorológicas | Validación de ERA5 | puntual, horaria | NOAA GHCNh (El Dorado y La Chinita): ficha del conjunto CC0. Pendiente confirmar que ambas series admiten redistribución sin restricciones (Resolución 40 de la OMM). MARN: por comprobar | Elegidas para las réplicas (#19): El Dorado, a 8,1 km del colegio de Bogotá, y La Chinita, a 16,5 km de la escuela de Maracaibo, las dos de NOAA GHCNh. (abierto) la de la escuela ancla: la candidata es Nueva Concepción, del MARN, a 17,5 km y a 320 m de altitud, pendiente del acceso a su serie diaria y de sus condiciones de reutilización |
+| Estaciones meteorológicas | Validación de ERA5 | puntual, horaria | NOAA GHCNh (El Dorado y La Chinita): ficha del conjunto CC0, pero las dos estaciones figuran como `non_commercial` en el inventario sub-diario v3.0.0 de C3S y NCEI. Observaciones in situ del CDS (Santa Ana/El Palmar): CC BY 4.0 el conjunto, `non_commercial` la estación en el mismo inventario. MARN: sin licencia declarada | Elegidas para las réplicas (#19): El Dorado, a 8,1 km del colegio de Bogotá, y La Chinita, a 16,5 km de la escuela de Maracaibo, las dos de NOAA GHCNh. Para la ancla, Santa Ana/El Palmar, a 20,5 km y a 660 m, con datos de 06:00 a 18:00 (#39). En las tres sedes la serie no se versiona y solo se publica la métrica (#46 y #39) |
 | Manual de Diseño Mi Nueva Escuela (MINEDUCYT, 2022) | Medidas de referencia de aulas y tipologías, y criterios de ventilación, sombra y aguas lluvias | | sin licencia declarada | Solo se usan sus medidas y criterios, citando el manual; no se copian sus figuras |
 
 Las licencias del cuadro se consultaron el 27 de noviembre de 2026 en el sitio de quien produce
-el dato. La #9 documenta las condiciones de NOAA GHCNh en el README. Ante la falta de
-confirmación para El Dorado y La Chinita, el equipo decide en la #46 si valida solo donde se
-confirme una fuente compatible o si calcula la métrica sin versionar las series, si sus
-condiciones permiten ese uso. La licencia del MARN sigue por comprobar.
+el dato. La #9 documenta las condiciones de NOAA GHCNh en el README. La #46 decidió calcular
+la métrica sin versionar las series de El Dorado y La Chinita, y la #39 aplicó lo mismo a la
+ancla: Nueva Concepción, del MARN, no se usa porque su serie no se consigue a tiempo y no
+declara licencia, y en su lugar se contrasta Santa Ana/El Palmar hora a hora.
 Los enlaces están en el README, sección "Fuentes y licencias".
 
 **Volumen y frecuencia.** Los datos se descargan una sola vez, con la fecha y la versión
@@ -165,6 +165,10 @@ el jurado pueda reproducirlo.
      mañana, tarde y noche. Es un criterio preliminar.
    - Donde falten meses, como en La Chinita, se informa sobre los días disponibles y se muestra
      la cobertura de cada mes.
+   - En la ancla, ERA5 se contrasta con Santa Ana/El Palmar hora a hora, de 07:00 a 17:00 hora
+     local de 2024 y 2025, que es la ventana del indicador de calor (orden #54). La estación
+     solo tiene datos de día, así que en la ancla no se validan las máximas ni las mínimas
+     diarias.
    - Ilopango y Santa Ana no tienen ningún día que cumpla el criterio en 2024 ni en 2025: sirven
      para contrastar horas coincidentes, no máximas ni mínimas diarias.
 
@@ -226,6 +230,9 @@ el código; CC BY 4.0 para la documentación, el material y los modelos propios.
 - Los criterios del Manual de Diseño Mi Nueva Escuela son salvadoreños. En Colombia y Venezuela
   se usan los mismos indicadores como referencia de comparación, y su ficha lo declara (#16).
 - Las estaciones validan ERA5 donde están, no en la escuela.
+- En la 88118, la estación del MARN más cercana no se usó porque no declara licencia. La que se
+  usa, Santa Ana/El Palmar, está a 20,5 km y unos 350 m más alta que la escuela, y solo tiene
+  datos de día: valida la temperatura en el horario escolar, no las máximas ni las mínimas.
 - La maqueta muestra volúmenes: contornos, alturas, techos, patio y drenaje. Nunca la
   distribución interior, las puertas ni los accesos de una escuela concreta, por la seguridad
   de quienes la ocupan. Las rutas de evacuación que se comparan son hipotéticas y van sobre una
@@ -315,8 +322,8 @@ clave de API en el código.
 | 3 | Stack del front: HTML, CSS y JavaScript sin framework, con MapLibre GL JS para el mapa y la maqueta, y mapa base sin OpenStreetMap (`docs/decisiones/ADR-001-front.md`, PR #7) | #5 | cerrada |
 | 4 | ERA5-Land cuenta: el canal del reto dice que se use lo que dé una buena demo, desde 1950 si basta. La serie anual desde 1940 de la #22 solo la da ERA5, así que ERA5 sigue de base mientras el equipo no decida otra cosa, y ERA5-Land queda como capa opcional (sección 4) | #17 | cerrada |
 | 5 | Pesos de los criterios: distintos, con no más de un 5 o un 10 % de diferencia entre el de más peso y el de menos; deciden la usabilidad y la creatividad (sección 1). Lo del jurado no se preguntó | #17 | cerrada |
-| 6 | Proveedor del LLM: Cloudflare Workers AI con Mistral Small 3.1; Gemini descartado por la edad del público (sección 8) | #18 | elegido; (abierto) su confirmación, con la prueba desde Pages Functions, la batería de la #12 y la ADR |
-| 7 | Estaciones para la validación: El Dorado y La Chinita, de NOAA GHCNh, para las réplicas; Nueva Concepción, del MARN, como candidata para la ancla (secciones 4 y 5) | #19 | elegidas para las réplicas; (abierto) cómo se validan, porque la #9 no pudo confirmar que sus series se puedan redistribuir (Resolución 40 de la OMM), en la #46; y la estación de la ancla, que busca la #39 |
+| 6 | Proveedor del LLM: Cloudflare Workers AI con Mistral Small 3.1; Gemini descartado por la edad del público (sección 8) | #18 | probado (orden #38, ADR-002): 16 de 24 respuestas conformes en la batería de la #12; (abierto) la decisión del proveedor para el público escolar |
+| 7 | Estaciones para la validación: El Dorado y La Chinita, de NOAA GHCNh, para las réplicas; Santa Ana/El Palmar, de las observaciones in situ del CDS, para la ancla, hora a hora en el horario escolar (secciones 4 y 5) | #19, #46 y #39 | cerrada: las series no se versionan y solo se publica la métrica (#46, opción a). Nueva Concepción, del MARN, se descartó por no declarar licencia (#39) |
 | 8 | Modelo de elevación: NASADEM. Es el único de los dos con licencia compatible (CC0, por la política de datos de NASA), y sus recortes se versionan (sección 4). El Copernicus DEM es más reciente (2011 a 2015, frente a febrero de 2000), pero la licencia de su instancia pública, GLO-30-F, es propia y no CC0, CC BY ni dominio público: aunque permite distribuir (art. 4), su art. 6 exige un aviso que termina en "all rights reserved" y una cláusula de exención de responsabilidad, y obliga a los usuarios posteriores | #6 | cerrada |
 | 9 | Dirección visual: A · Noche, elegida y congelada en la issue #20 entre dos direcciones del prototipo del PR #35. Azul noche con halo, paneles de cristal, IBM Plex Sans y Mono, y un acento cálido (`#ffa45c`) solo para acciones y selección. Sus tokens son el bloque `noche` y la escala común de `web/direcciones/tokens.css`, y pasan al PR de la fundación del front. No se reestiliza sin una decisión escrita | #20 | cerrada |
 | 10 | Criterios en Colombia y Venezuela: los mismos indicadores que en El Salvador, como referencia de comparación declarada en la ficha, con las preguntas adaptadas a cada sede (opción a) | #16 | cerrada |
