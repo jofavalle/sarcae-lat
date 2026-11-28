@@ -1,9 +1,8 @@
 {
   "contrato": 1,
-  "datos_ficticios": "Serie real de ERA5; z_celda ficticia (313.8 m) hasta que llegue el geopotencial de la celda (petición f2658a4d-f2d9-4c54-afde-3ef8230a26e3). Decisión del equipo del 2026-11-28 (#61): se sustituye por la descarga completa.",
   "generado": {
-    "utc": "2026-11-28T18:27:29+00:00",
-    "commit": "ecf2b39fd63b7e85b1d3e58039dba540eaaba149",
+    "utc": "2026-11-28T19:29:44+00:00",
+    "commit": "d543fab7a3e8286824675116b7d449cae72118f6",
     "comando": "python -m src.recorrido --escuela sv-88118"
   },
   "fuentes": [
@@ -93,9 +92,9 @@
         "capa": "relieve"
       },
       "texto": {
-        "estudiante": "En la zona de tu escuela, de lunes a viernes entre las 07:00 y las 17:00, hubo unas 1858,4 horas al año por encima de 27 °C entre 1996 y 2025. Entre 1961 y 1990 eran unas 1685,5. Es la temperatura del aire de la zona, no la de tu aula.",
-        "docente": "Las horas de clase al año sobre 27 °C, de lunes a viernes de 07:00 a 17:00, son 1685,5 en 1961–1990 y 1858,4 en 1996–2025, con el aire de ERA5 corregido por altura. 27 °C es el límite alto del confort del Manual Mi Nueva Escuela: un criterio de diseño de edificios, no un umbral de salud.",
-        "direccion": "Las horas de clase al año por encima de 27 °C, de lunes a viernes de 07:00 a 17:00, fueron 1685,5 en 1961–1990 y 1858,4 en 1996–2025, en la zona. 27 °C es el límite alto del confort que usa el Manual Mi Nueva Escuela para diseñar aulas, no un umbral de salud."
+        "estudiante": "En la zona de tu escuela, de lunes a viernes entre las 07:00 y las 17:00, hubo unas 2026,4 horas al año por encima de 27 °C entre 1996 y 2025. Entre 1961 y 1990 eran unas 1912,3. Es la temperatura del aire de la zona, no la de tu aula.",
+        "docente": "Las horas de clase al año sobre 27 °C, de lunes a viernes de 07:00 a 17:00, son 1912,3 en 1961–1990 y 2026,4 en 1996–2025, con el aire de ERA5 corregido por altura. 27 °C es el límite alto del confort del Manual Mi Nueva Escuela: un criterio de diseño de edificios, no un umbral de salud.",
+        "direccion": "Las horas de clase al año por encima de 27 °C, de lunes a viernes de 07:00 a 17:00, fueron 1912,3 en 1961–1990 y 2026,4 en 1996–2025, en la zona. 27 °C es el límite alto del confort que usa el Manual Mi Nueva Escuela para diseñar aulas, no un umbral de salud."
       },
       "pregunta": {
         "estudiante": "¿En qué momento del día hace más calor en tu aula, y qué haces para estar mejor?",
