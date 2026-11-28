@@ -47,6 +47,10 @@ consultadas el 2026-11-27.
 Textos consultados el 2026-11-27. El control de atribución del mapa muestra el crédito de cada
 capa. En los recortes con CC BY 4.0 se indica también la licencia y qué se modificó.
 
+- **Mistral Small 3.1 24B Instruct 2503**. Modelo de Mistral AI bajo Apache 2.0, usado en la
+  prueba del asistente en Workers AI, con una ficha ficticia. [Ficha del modelo](https://huggingface.co/mistralai/Mistral-Small-3.1-24B-Instruct-2503)
+  · [ADR-002](docs/decisiones/ADR-002-proveedor-asistente.md).
+
 - **ERA5 y ERA5-Land (C3S)**. Para datos publicados tal cual, «Generated using Copernicus Climate
   Change Service information [Year]». Para datos adaptados, «Contains modified Copernicus Climate
   Change Service information [Year]». [Textos de C3S](https://cds.climate.copernicus.eu/licences/licence-to-use-copernicus-products).
