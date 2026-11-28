@@ -40,14 +40,14 @@ satélite, no el aire que respiras. Compara zonas del entorno, pero no separa el
 una misma escuela.
 
 **Docentes.** La temperatura de superficie de Landsat mide el calor que desprenden techos, calles y
-suelos, solo a la hora en que pasa el satélite, y no la del aire. Viene en cuadros de 100 m, y cada
-cuadro mezcla techos, patios, calles y vegetación. Por eso el mapa compara zonas del entorno y no
-separa el techo del patio de una misma escuela.
+suelos, solo a la hora en que pasa el satélite. No es la del aire. Se toma en cuadros de 100 m, y
+cada cuadro mezcla techos, patios, calles y vegetación. Por eso el mapa compara zonas del entorno y
+no separa el techo del patio de una misma escuela.
 
 **Dirección.** El mapa de calor compara qué zonas del entorno se calientan más. La medida es de
-techos y suelos, no del aire, y corresponde a la hora en que pasa el satélite. Cada cuadro del mapa
-mide 100 m de lado, así que no separa el techo del patio de una misma escuela. Ayuda a decidir
-dónde mirar primero, pero no dice la temperatura dentro de las aulas.
+techos y suelos, no del aire, y corresponde a la hora en que pasa el satélite. El dato se toma en
+cuadros de 100 m, así que no separa el techo del patio de una misma escuela. Ayuda a
+decidir dónde mirar primero, pero no dice la temperatura dentro de las aulas.
 
 ## Las alturas de los edificios son estimaciones
 
