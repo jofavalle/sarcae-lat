@@ -25,11 +25,11 @@ Límite, en la misma ficha:
 > pronóstico ni evaluación oficial de riesgo.
 
 Criterios de evaluación, según la presentación del reto. Esa presentación es un borrador que
-la organización preparó a partir de la propuesta del retador, sin pesos. En el canal público
-del reto, el 27 de noviembre, respondieron que los criterios sí tienen porcentajes distintos,
-pero que entre el de más peso y el de menos no hay más de un 5 o un 10 % de diferencia, y que
-"usabilidad y Creatividad es lo define ganadores" (#17). No se preguntó si el retador forma
-parte del jurado: al equipo le pareció impertinente.
+la organización preparó a partir de la propuesta del retador, y no publica los pesos. En el
+canal público del reto, el 27 de noviembre, respondieron que los criterios sí tienen
+porcentajes distintos, pero que entre el de más peso y el de menos no hay más de un 5 o un 10 %
+de diferencia, y que "usabilidad y Creatividad es lo define ganadores" (#17). No se preguntó si
+el retador forma parte del jurado: al equipo le pareció impertinente.
 
 | Criterio | Qué se valora |
 |---|---|
@@ -87,7 +87,7 @@ declarada, fuera de la primera entrega (#16).
 | Dato | Para qué | Resolución | Licencia | Estado |
 |---|---|---|---|---|
 | ERA5, niveles de superficie (Copernicus, Climate Data Store) | Clima de la zona desde 1940: temperatura, humedad y lluvia | 0,25° (unos 28 km), horario | CC BY 4.0, también la serie por punto | Obligatorio por el reto. El CDS publica además una serie horaria por punto desde 1940; falta medir cuánto tarda su descarga |
-| ERA5-Land | Refinamiento del anterior | 0,1° | CC BY 4.0 | Admitido: en el canal del reto respondieron que se use lo que permita una buena demo, desde 1950 si basta (#17). Se sigue con ERA5 como base, porque la serie anual de la #22 empieza en 1940 y la descarga por punto ya funciona, y ERA5-Land queda como capa opcional. Pasar a ERA5-Land como base sería una decisión aparte |
+| ERA5-Land | Refinamiento del anterior | 0,1° | CC BY 4.0 | Admitido: en el canal del reto respondieron que se use lo que permita una buena demo, desde 1950 si basta (#17). La serie anual desde 1940 que pide la #22 solo la da ERA5, así que ERA5 sigue de base mientras el equipo no decida otra cosa, y ERA5-Land queda como capa opcional; su celda de 0,1° afinaría, por ejemplo, el relieve de Bogotá |
 | Modelo de elevación: Copernicus DEM GLO-30 o NASADEM | Corrección por altura y flujo del agua | 30 m | NASADEM: CC0, por la política de datos de NASA. Copernicus DEM: su instancia pública, GLO-30-F, tiene una licencia propia ("Full, Free & Open") que permite reproducir, distribuir y adaptar gratis (art. 4 y 5), pero su art. 6 exige un aviso que termina en "all rights reserved" y una cláusula de exención de responsabilidad, y obliga a los usuarios posteriores; no es compatible | Cerrada: NASADEM (sección 12, decisión 8) |
 | Landsat 8 y 9, temperatura de superficie | Dónde se calienta más la superficie | banda térmica de 100 m, servida a 30 m | dominio público, sin restricciones de uso, según el USGS | |
 | ESA WorldCover | Cobertura del suelo: vegetación, construcción, agua | 10 m | CC BY 4.0 | |
@@ -308,11 +308,11 @@ clave de API en el código.
 |---|---|---|---|
 | 1 | Escuela ancla: Centro Escolar Católico San Pablo Apóstol, código MINED 88118 (sección 3) | #15 | cerrada |
 | 2 | Escuelas réplica: Colegio Nacional Nicolás Esguerra, en Bogotá, y Unidad Educativa Nacional Rafael María Baralt, en Maracaibo (sección 3). Riesgos de la primera entrega: calor y agua; incendios de vegetación como ampliación declarada | #16 | cerrada |
-| 3 | Stack del front: HTML, CSS y JavaScript sin framework, con MapLibre GL JS para el mapa y la maqueta, y mapa base sin OpenStreetMap (`docs/decisiones/ADR-001-front.md`, PR #7) | | cerrada |
-| 4 | ERA5-Land cuenta: el canal del reto dice que se use lo que dé una buena demo. ERA5 sigue de base y ERA5-Land queda como capa opcional (sección 4) | #17 | cerrada |
+| 3 | Stack del front: HTML, CSS y JavaScript sin framework, con MapLibre GL JS para el mapa y la maqueta, y mapa base sin OpenStreetMap (`docs/decisiones/ADR-001-front.md`, PR #7) | #5 | cerrada |
+| 4 | ERA5-Land cuenta: el canal del reto dice que se use lo que dé una buena demo, desde 1950 si basta. La serie anual desde 1940 de la #22 solo la da ERA5, así que ERA5 sigue de base mientras el equipo no decida otra cosa, y ERA5-Land queda como capa opcional (sección 4) | #17 | cerrada |
 | 5 | Pesos de los criterios: distintos, con no más de un 5 o un 10 % de diferencia entre el de más peso y el de menos; deciden la usabilidad y la creatividad (sección 1). Lo del jurado no se preguntó | #17 | cerrada |
 | 6 | Proveedor del LLM: Cloudflare Workers AI con Mistral Small 3.1; Gemini descartado por la edad del público (sección 8) | #18 | elegido; (abierto) su confirmación, con la prueba desde Pages Functions, la batería de la #12 y la ADR |
-| 7 | Estaciones para la validación: El Dorado y La Chinita, de NOAA GHCNh, para las réplicas; Nueva Concepción, del MARN, como candidata para la ancla (secciones 4 y 5) | #19 | cerrada para las réplicas; (abierto) la de la ancla, hasta tener su serie diaria con condiciones de uso compatibles |
+| 7 | Estaciones para la validación: El Dorado y La Chinita, de NOAA GHCNh, para las réplicas; Nueva Concepción, del MARN, como candidata para la ancla (secciones 4 y 5) | #19 | elegidas para las réplicas; (abierto) la licencia de sus datos, que comprueba la #9 (Resolución 40 de la OMM), y la estación de la ancla, que busca la #39 |
 | 8 | Modelo de elevación: NASADEM. Es el único de los dos con licencia compatible (CC0, por la política de datos de NASA), y sus recortes se versionan (sección 4). El Copernicus DEM es más reciente (2011 a 2015, frente a febrero de 2000), pero la licencia de su instancia pública, GLO-30-F, es propia y no CC0, CC BY ni dominio público: aunque permite distribuir (art. 4), su art. 6 exige un aviso que termina en "all rights reserved" y una cláusula de exención de responsabilidad, y obliga a los usuarios posteriores | #6 | cerrada |
 | 9 | Dirección visual: A · Noche, elegida y congelada en la issue #20 entre dos direcciones del prototipo del PR #35. Azul noche con halo, paneles de cristal, IBM Plex Sans y Mono, y un acento cálido (`#ffa45c`) solo para acciones y selección. Sus tokens son el bloque `noche` y la escala común de `web/direcciones/tokens.css`, y pasan al PR de la fundación del front. No se reestiliza sin una decisión escrita | #20 | cerrada |
 | 10 | Criterios en Colombia y Venezuela: los mismos indicadores que en El Salvador, como referencia de comparación declarada en la ficha, con las preguntas adaptadas a cada sede (opción a) | #16 | cerrada |

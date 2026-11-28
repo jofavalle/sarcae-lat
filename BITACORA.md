@@ -28,8 +28,9 @@ Las decisiones de las issues #15 a #23 están integradas en `docs/PLAN.md`, y su
 tabla vigente. Las escuelas son la 88118 en El Salvador (ancla), el Nicolás Esguerra en Bogotá y
 el Rafael María Baralt en Maracaibo. El canal del reto respondió a la #17: ERA5-Land se admite,
 y los criterios pesan casi lo mismo, con la usabilidad y la creatividad como lo que decide.
-Quedan dos flecos abiertos: la prueba del proveedor del LLM (#18) y la estación de la escuela
-ancla (#19).
+Quedan tres flecos abiertos: la prueba del proveedor del LLM (#18, orden #38); la licencia de
+los datos de las estaciones de las réplicas y la estación de la escuela ancla (#19, órdenes #9 y
+#39); y los tokens de A · Noche en el PR de la fundación del front, que cierra la #20.
 Todavía no hay datos versionados ni front: el prototipo de las direcciones visuales está en el
 PR #35, sin fusionar.
 
