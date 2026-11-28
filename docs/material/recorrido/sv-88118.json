@@ -1,0 +1,136 @@
+{
+  "escuela": "sv-88118",
+  "licencia": "CC-BY-4.0",
+  "nota": "Material propio de SARCAE-LAT (CC BY 4.0). Las cifras de los datos van con un marcador {{archivo.ruta}}, que src/recorrido.py resuelve contra escuela.json, clima.json y validacion.json; a mano solo van las del método: 27 °C, 07:00, 17:00 y los periodos 1961–1990 y 1996–2025 (#22). Se regenera con: python -m src.recorrido --escuela sv-88118",
+  "registros": {
+    "estudiante": {
+      "nombre": "Estudiante",
+      "titulo": "Mira cómo se calienta tu escuela y por dónde corre el agua.",
+      "entrada": "Siete paradas: mueve la hora, recorre la maqueta y piensa en las preguntas con tu grupo."
+    },
+    "docente": {
+      "nombre": "Docente",
+      "titulo": "El calor y el agua en la escuela, para preparar la clase y la conversación.",
+      "entrada": "Siete paradas con una pregunta cada una, para trabajar en el aula."
+    },
+    "direccion": {
+      "nombre": "Dirección",
+      "titulo": "Qué revisar o preparar en la escuela ante el calor y la lluvia, con el clima de la zona.",
+      "entrada": "Siete puntos para revisar y conversar con la comunidad."
+    }
+  },
+  "paradas": [
+    {
+      "id": "zona",
+      "titulo": "Dónde está la escuela",
+      "maqueta": {"volumen": "patio", "capa": "sombra", "hora": 10},
+      "mapa": {"vista": "2d", "capa": "relieve"},
+      "texto": {
+        "estudiante": "Tu escuela está en {{escuela.municipio}}, {{escuela.division}}, a unos {{escuela.altitud.valor}} m sobre el nivel del mar. Los datos del clima vienen de ERA5, que divide el mapa en cuadros grandes, de muchos kilómetros de lado. Cuentan cómo es el clima de toda la zona, no el de tu patio ni el de tu aula. La temperatura se ajusta a la altura de tu escuela.",
+        "docente": "La escuela está en {{escuela.municipio}} ({{escuela.division}}), a {{escuela.altitud.valor}} m según el modelo de elevación NASADEM. Las cifras del clima salen de la celda de ERA5 que la contiene, de muchos kilómetros de lado: describen la zona, no la escuela. La temperatura del aire se corrige por la diferencia de altura entre la escuela y la celda.",
+        "direccion": "La escuela está en {{escuela.municipio}} ({{escuela.division}}), a {{escuela.altitud.valor}} m. Las cifras de calor y lluvia salen de una celda de ERA5 de muchos kilómetros de lado, corregidas por la altura de la escuela, y no describen su edificio. Para decidir qué revisar conviene sumarlas a lo que observan quienes usan la escuela cada día."
+      },
+      "pregunta": {
+        "estudiante": "¿En qué se parece el clima que sientes en tu escuela al de los lugares de alrededor, y en qué es distinto?",
+        "docente": "¿Qué parte de lo que se siente en el aula explica el clima de la zona, y qué parte el edificio y su entorno?",
+        "direccion": "¿Qué observaciones de quienes usan la escuela cada día ayudarían a completar lo que cuentan los datos de la zona?"
+      }
+    },
+    {
+      "id": "calor",
+      "titulo": "El calor en horario de clase",
+      "maqueta": {"volumen": "pabellon-a", "capa": "calor", "hora": 13},
+      "mapa": {"vista": "2d", "capa": "relieve"},
+      "texto": {
+        "estudiante": "En la zona de tu escuela, de lunes a viernes entre las 07:00 y las 17:00, hubo unas {{clima.calor.horas_1996_2025}} horas al año por encima de 27 °C entre 1996 y 2025. Entre 1961 y 1990 eran unas {{clima.calor.horas_1961_1990}}. Es la temperatura del aire de la zona, no la de tu aula.",
+        "docente": "Las horas de clase al año sobre 27 °C, de lunes a viernes de 07:00 a 17:00, son {{clima.calor.horas_1961_1990}} en 1961–1990 y {{clima.calor.horas_1996_2025}} en 1996–2025, con el aire de ERA5 corregido por altura. 27 °C es el límite alto del confort del Manual Mi Nueva Escuela: un criterio de diseño de edificios, no un umbral de salud.",
+        "direccion": "Las horas de clase al año por encima de 27 °C, de lunes a viernes de 07:00 a 17:00, fueron {{clima.calor.horas_1961_1990}} en 1961–1990 y {{clima.calor.horas_1996_2025}} en 1996–2025, en la zona. 27 °C es el límite alto del confort que usa el Manual Mi Nueva Escuela para diseñar aulas, no un umbral de salud."
+      },
+      "pregunta": {
+        "estudiante": "¿En qué momento del día hace más calor en tu aula, y qué haces para estar mejor?",
+        "docente": "¿Qué actividades conviene mover a las primeras horas del día en los meses de más calor?",
+        "direccion": "¿Qué aulas se usan en las horas de más calor, y qué ventilación y sombra tienen?"
+      }
+    },
+    {
+      "id": "aleros",
+      "titulo": "La sombra del patio y los aleros",
+      "maqueta": {"volumen": "pabellon-b", "capa": "sombra", "hora": 15},
+      "mapa": {"vista": "3d", "capa": "cobertura"},
+      "texto": {
+        "estudiante": "El borde del techo que sobresale se llama alero, y da sombra a paredes y ventanas. Tu escuela, a {{escuela.altitud.valor}} m, está en la zona «{{escuela.zona_diseno}}» de un manual de escuelas de El Salvador, que va de {{escuela.zona_diseno_franja.desde}} a {{escuela.zona_diseno_franja.hasta}} m. Mueve la hora y mira qué ventanas y qué partes del patio quedan al sol por la tarde.",
+        "docente": "A {{escuela.altitud.valor}} m, la escuela cae en la zona {{escuela.zona_diseno}} del Manual Mi Nueva Escuela, de {{escuela.zona_diseno_franja.desde}} a {{escuela.zona_diseno_franja.hasta}} m. El manual no da una medida de alero para esta franja, así que la ficha no da una. Con la hora en la tarde se ve qué fachadas y qué partes del patio quedan al sol, sobre volúmenes genéricos.",
+        "direccion": "A {{escuela.altitud.valor}} m, la escuela cae en la franja que el Manual Mi Nueva Escuela usa para simular el clima {{escuela.zona_diseno}}, de {{escuela.zona_diseno_franja.desde}} a {{escuela.zona_diseno_franja.hasta}} m. La longitud del alero queda sin especificar: falta una referencia aplicable a la sede y a cada fachada. La maqueta ilustra la sombra del patio y de las fachadas con volúmenes genéricos."
+      },
+      "pregunta": {
+        "estudiante": "¿Qué ventanas de tu aula reciben sol directo por la tarde, y qué les da sombra?",
+        "docente": "¿Cómo podría el grupo observar, a lo largo de una tarde, qué ventanas y qué partes del patio quedan al sol y cuáles a la sombra?",
+        "direccion": "¿Qué ventanas reciben sol directo por la tarde y qué sombra les dan los aleros o parteluces?"
+      }
+    },
+    {
+      "id": "superficie",
+      "titulo": "La superficie caliente vista desde el satélite",
+      "maqueta": {"volumen": "techo-patio", "capa": "calor", "hora": 10},
+      "mapa": {"vista": "2d", "capa": "calor"},
+      "texto": {
+        "estudiante": "El mapa de calor muestra lo calientes que están techos, calles y suelos cuando pasa el satélite Landsat, a media mañana. No es el aire que respiras: al sol, un techo o un suelo sin sombra puede estar mucho más caliente que el aire. Sirve para comparar zonas del entorno, no el techo y el patio de tu escuela por separado.",
+        "docente": "La temperatura de superficie de Landsat mide el calor que desprenden techos, calles y suelos a la hora en que pasa el satélite, a media mañana. No es la temperatura del aire, que es la de ERA5. Cada cuadro del mapa mezcla techos, patios, calles y vegetación: compara zonas del entorno y no separa el techo del patio de una misma escuela.",
+        "direccion": "El mapa de calor compara qué zonas del entorno se calientan más. Mide techos y suelos, no el aire, a la hora en que pasa el satélite, a media mañana. Cada cuadro mezcla techos, patios y calles, así que no separa el techo del patio de la escuela: ayuda a decidir dónde mirar primero, pero no dice la temperatura de las aulas."
+      },
+      "pregunta": {
+        "estudiante": "¿Qué zonas alrededor de tu escuela salen más calientes en el mapa, y qué tienen encima: techo, cemento, tierra o árboles?",
+        "docente": "¿Qué diferencias hay entre las zonas con árboles y las de techo o cemento, y cómo podría el grupo comprobarlas con un termómetro a la sombra?",
+        "direccion": "¿Qué zonas exteriores de la escuela y de su entorno conviene mirar primero, por estar al sol y sin vegetación?"
+      }
+    },
+    {
+      "id": "lluvia",
+      "titulo": "La lluvia intensa",
+      "maqueta": {"volumen": "techo-patio", "capa": "agua", "hora": 15},
+      "mapa": {"vista": "2d", "capa": "agua"},
+      "texto": {
+        "estudiante": "En la zona, un día de lluvia muy fuerte es uno con más de {{clima.lluvia.p99.valor}} milímetros. Entre 1961 y 1990 pasaba unos {{clima.lluvia.dias_1961_1990}} días al año, y entre 1996 y 2025, unos {{clima.lluvia.dias_1996_2025}}. El día más lluvioso de 1996 a 2025 fue el {{clima.episodios.lista.0.fecha|fecha}}: cayeron {{clima.episodios.lista.0.lluvia_total}} milímetros.",
+        "docente": "El umbral de lluvia intensa separa los días más lluviosos de 1961–1990 en la celda: {{clima.lluvia.p99.valor}} mm en un día. Se superó {{clima.lluvia.dias_1961_1990}} días al año en 1961–1990 y {{clima.lluvia.dias_1996_2025}} en 1996–2025. El día más lluvioso de 1996–2025, el {{clima.episodios.lista.0.fecha|fecha}}, sumó {{clima.episodios.lista.0.lluvia_total}} mm; el escenario de lluvia lo reparte hora por hora.",
+        "direccion": "Los días con más de {{clima.lluvia.p99.valor}} mm de lluvia fueron {{clima.lluvia.dias_1961_1990}} al año en 1961–1990 y {{clima.lluvia.dias_1996_2025}} en 1996–2025, en la zona. El más lluvioso de 1996–2025, el {{clima.episodios.lista.0.fecha|fecha}}, sumó {{clima.episodios.lista.0.lluvia_total}} mm. El Manual Mi Nueva Escuela propone un sistema de aguas lluvias con captación, almacenaje y distribución."
+      },
+      "pregunta": {
+        "estudiante": "¿Qué pasa en tu escuela el día que más llueve: por dónde caminas, dónde juegas y qué se moja?",
+        "docente": "¿Qué cambia en la jornada escolar un día de lluvia intensa, y qué podría prepararse antes?",
+        "direccion": "¿Quién revisa las canaletas y los desagües antes de la época de lluvias, y cada cuánto?"
+      }
+    },
+    {
+      "id": "agua",
+      "titulo": "Por dónde tiende a correr el agua",
+      "maqueta": {"volumen": "patio", "capa": "agua", "hora": 15},
+      "mapa": {"vista": "2d", "capa": "agua"},
+      "texto": {
+        "estudiante": "Cuando llueve fuerte, el agua baja por los techos y el terreno, y tiende a correr hacia las partes más bajas. Las líneas del mapa muestran por dónde tiende a correr y dónde tiende a juntarse. No dicen cuánta agua pasa ni qué tan honda queda.",
+        "docente": "Las líneas siguen la pendiente del relieve de NASADEM: muestran por dónde tiende a correr el agua y dónde tiende a juntarse. No simulan caudal ni profundidad, y no ven canaletas, cunetas ni muros, que cambian el camino del agua en el terreno.",
+        "direccion": "La capa muestra por dónde tiende a correr el agua según el relieve y dónde tiende a juntarse. No calcula caudal ni profundidad, ni ve canaletas, cunetas o muros: sirve para decidir qué zonas exteriores revisar en el terreno después de una lluvia fuerte."
+      },
+      "pregunta": {
+        "estudiante": "¿Por dónde corre el agua en tu patio cuando llueve fuerte, y dónde se queda?",
+        "docente": "¿Qué pasillos o zonas exteriores se mojan o se encharcan en la época de lluvias, y coinciden con las líneas del mapa?",
+        "direccion": "¿Coinciden los lugares donde el agua tiende a juntarse en el mapa con los que se encharcan en la escuela, y qué conviene revisar ahí?"
+      }
+    },
+    {
+      "id": "preparar",
+      "titulo": "Qué revisar o preparar",
+      "maqueta": {"volumen": "techo-patio", "capa": "sombra", "hora": 10},
+      "mapa": {"vista": "3d", "capa": "relieve"},
+      "texto": {
+        "estudiante": "Estas preguntas no son un examen de tu escuela. Sirven para conversar con tu grupo sobre qué revisar o preparar ante el calor y la lluvia fuerte, con lo que ya sabes de tu escuela y lo que viste en el mapa y en la maqueta.",
+        "docente": "Las preguntas para conversar no califican a la escuela: son un punto de partida para trabajar en clase qué revisar o preparar ante el calor y la lluvia intensa. Se pueden cruzar con lo que el grupo observa: dónde da el sol, dónde se encharca y qué aulas se calientan más.",
+        "direccion": "Las preguntas no califican a la escuela ni sustituyen a protección civil, que decide evacuaciones y medidas ante una emergencia. Sirven para ordenar qué revisar o preparar ante el calor y la lluvia intensa, y de qué conversar con la comunidad, junto con el protocolo vigente del centro."
+      },
+      "pregunta": {
+        "estudiante": "¿Qué cambiarías primero en tu escuela para estar mejor en los días de calor o de lluvia fuerte, y por qué?",
+        "docente": "¿Qué propondría el grupo revisar primero, y con quién de la comunidad conviene conversarlo?",
+        "direccion": "¿Qué conviene revisar o preparar antes de la próxima época de lluvias y de los meses de más calor, y con quién de la comunidad conversarlo?"
+      }
+    }
+  ]
+}
