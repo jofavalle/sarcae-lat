@@ -83,6 +83,12 @@ equipo: un cambio en ella se propone por PR, como cualquier otro. Lo de cada uno
 - **Google Earth Engine solo extrae** (2026-11-27): los recortes se exportan al repositorio con
   su fecha y su licencia, y el análisis corre desde ellos sin cuenta de Earth Engine, para que
   el jurado pueda reproducirlo.
+- **Los recortes se versionan en `recortes/<escuela>/<fuente>/`** (2026-11-27, #21), fuera
+  de `data/`. Cada carpeta lleva un `manifiesto.json` con la fuente y su versión, la licencia
+  con su enlace, la fecha de descarga y el SHA-256 de cada archivo. Se admiten CSV, Parquet,
+  GeoTIFF y JSON, y ningún archivo pasa de 50 MB, que es donde GitHub empieza a avisar. Solo
+  entra lo que tenga licencia compatible. `data/raw/` sigue inmutable y sin versionar: el
+  recorte es una copia derivada, no el original.
 - **ERA5 se descarga del Climate Data Store** (2026-11-27), que es la fuente que nombra el reto.
 
 ## Gotchas
@@ -94,7 +100,8 @@ equipo: un cambio en ella se propone por PR, como cualquier otro. Lo de cada uno
   una máquina los comandos pasan por otra herramienta, puede que no se apliquen: lo de "Lo que no
   se hace" vale igual.
 - **`data/` está en `.gitignore` entero.** Un dato intermedio guardado ahí
-  desaparece del control de versiones sin avisar. La excepción prevista es
+  desaparece del control de versiones sin avisar. Lo que se tiene que versionar va en
+  `recortes/`, donde `.gitignore` sí admite CSV y Parquet. La excepción prevista es
   `!data/**/.gitkeep`.
 - **El sitio del MINED (`mined.gob.sv`) no deja descargar a programas**: responde con una
   verificación de Cloudflare a `curl` y al lector web de los agentes. Sus documentos se bajan
