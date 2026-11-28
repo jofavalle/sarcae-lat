@@ -7,9 +7,14 @@ cuenta cuántas teselas salen y cuánto pesan.
 
 Uso, desde la raíz del repositorio:
 
+    python -m src.relieve --descargar
     python -m src.relieve --zip data/raw/nasadem/NASADEM_HGT_n13w090.zip \\
         --lat 13.70 --lon -89.12 --lado-km 4 --zoom 10-14 \\
         --salida data/processed/relieve/prueba-ilopango
+    python -m src.relieve --comprobar data/processed/relieve/prueba-ilopango
+
+La descarga pide una cuenta gratuita de NASA Earthdata, con las credenciales en `~/.netrc`
+y nunca en el repositorio. `data/raw/` es inmutable: si el zip ya existe, no se toca.
 """
 
 import argparse
@@ -17,9 +22,11 @@ import hashlib
 import json
 import math
 import re
+import shutil
 import struct
 import subprocess
 import sys
+import tempfile
 import zipfile
 import zlib
 from datetime import datetime, timezone
@@ -28,7 +35,11 @@ from pathlib import Path
 import numpy as np
 
 ROOT = Path(__file__).resolve().parents[1]
+RAW = ROOT / "data" / "raw" / "nasadem"
 
+GRANULE = "NASADEM_HGT_n13w090"
+GRANULE_URL = ("https://data.lpdaac.earthdatacloud.nasa.gov/lp-prod-protected/"
+               f"NASADEM_HGT.001/{GRANULE}/{GRANULE}.zip")
 LICENSE = "CC0-1.0"
 
 # El .hgt: 3601 × 3601 enteros de 16 bits big-endian, un segundo de arco de paso, filas de
@@ -42,6 +53,10 @@ TILE = 256
 EARTH_RADIUS_KM = 6371.0088  # radio medio, para pasar el lado del recorte a grados
 MERCATOR_MAX_LAT = 85.0511287798
 MANIFEST = "relieve.json"
+
+# Controles de --comprobar.
+POINT_TOLERANCE_M = 5.0
+POINT_RANGE_M = (550.0, 700.0)
 
 
 # Lectura del granulo
@@ -96,6 +111,13 @@ def read_hgt(path: Path) -> Grid:
     south, west = cell_corner(member.filename)
     values = np.frombuffer(data, dtype=">i2").reshape(HGT_SIDE, HGT_SIDE)
     return Grid(values, top=south + 1.0, left=float(west), step=HGT_STEP)
+
+
+def read_hgt_pixel(path: Path, row: int, col: int) -> int:
+    """Un píxel del .hgt leído directamente, sin numpy ni proyección: para el control."""
+    with zipfile.ZipFile(path) as archive:
+        data = archive.read(hgt_member(archive))
+    return struct.unpack_from(">h", data, (row * HGT_SIDE + col) * 2)[0]
 
 
 # El recorte
@@ -326,6 +348,53 @@ def _kb(size: int) -> str:
     return f"{size / 1000:.1f} KB"
 
 
+# Descarga
+
+def download() -> Path:
+    """Descarga el granulo con curl y escribe su `registro.json` al lado.
+
+    Se descarga a una carpeta temporal y se mueve al final: si algo falla a mitad, el
+    destino no llega a existir.
+    """
+    final = RAW / f"{GRANULE}.zip"
+    record_path = RAW / "registro.json"
+    for path in (final, record_path):
+        if path.exists():
+            sys.exit(f"{_relative(path)} ya existe, y data/raw es inmutable: no se toca.")
+    RAW.mkdir(parents=True, exist_ok=True)
+    started_utc = datetime.now(timezone.utc).isoformat(timespec="seconds")
+    with tempfile.TemporaryDirectory(prefix="nasadem-") as work:
+        work = Path(work)
+        landing = work / final.name
+        cookies = work / "cookies"
+        result = subprocess.run(["curl", "-n", "-L", "-f", "-c", str(cookies), "-b", str(cookies),
+                                 "-o", str(landing), GRANULE_URL])
+        if result.returncode != 0 or not zipfile.is_zipfile(landing):
+            sys.exit("la descarga no trajo un zip: revisa la cuenta de Earthdata en ~/.netrc "
+                     "y que la aplicación LP DAAC esté autorizada en ella.")
+        with zipfile.ZipFile(landing) as archive:
+            member = hgt_member(archive)
+        record = {
+            "url": GRANULE_URL,
+            "granulo": GRANULE,
+            "descargado_utc": started_utc,
+            "commit": _commit(),
+            "licencia": LICENSE,
+            "licencia_url": "https://www.earthdata.nasa.gov/engage/open-data-services-software-policies/data-use-guidance",
+            "archivo": _relative(final),
+            "bytes": landing.stat().st_size,
+            "sha256": _sha256(landing),
+            "hgt": {"nombre": member.filename, "bytes": member.file_size},
+        }
+        shutil.move(str(landing), final)
+    with open(record_path, "w", encoding="utf-8") as handle:
+        json.dump(record, handle, ensure_ascii=False, indent=2)
+        handle.write("\n")
+    print(f"guardado en {_relative(final)} ({_kb(record['bytes'])}), "
+          f"con {_relative(record_path)}")
+    return final
+
+
 # Generación de las teselas
 
 def parse_zooms(text: str) -> list:
@@ -407,8 +476,73 @@ def generate(zip_path: Path, lat: float, lon: float, side_km: float, zooms: list
     return 0
 
 
+# Comprobación
+
+def check(directory: Path) -> int:
+    """Decodifica las teselas, imprime su resumen y corre los controles. Devuelve 0 o 1."""
+    directory = Path(directory)
+    with open(directory / MANIFEST, encoding="utf-8") as handle:
+        manifest = json.load(handle)
+    lat, lon = manifest["punto"]["lat"], manifest["punto"]["lon"]
+    bounds = manifest["recorte"]
+    zip_path = ROOT / manifest["fuente"]["zip"]
+    results = []
+
+    on_disk = sorted(p.relative_to(directory).as_posix() for p in directory.rglob("*.png"))
+    expected = sorted(manifest["teselas"])
+    results.append(("las teselas en disco son las del manifiesto", on_disk == expected,
+                    f"{len(on_disk)} en disco, {len(expected)} en el manifiesto"))
+
+    by_zoom, total_bytes, low, high = {}, 0, math.inf, -math.inf
+    for name in on_disk:
+        zoom, x, y = (int(part) for part in name[:-4].split("/"))
+        by_zoom[zoom] = by_zoom.get(zoom, 0) + 1
+        total_bytes += (directory / name).stat().st_size
+        height = terrarium_decode(read_png(directory / name))
+        lon_c, lat_c = pixel_centers(zoom, x, y)
+        mask = ((lat_c >= bounds["sur"]) & (lat_c <= bounds["norte"])
+                & (lon_c >= bounds["oeste"]) & (lon_c <= bounds["este"]))
+        if mask.any():
+            low, high = min(low, height[mask].min()), max(high, height[mask].max())
+
+    top_zoom = max(by_zoom)
+    x, y = tile_of(lon, lat, top_zoom)
+    px, py = lonlat_to_tile(lon, lat, top_zoom)
+    decoded = terrarium_decode(read_png(directory / str(top_zoom) / str(x) / f"{y}.png"))
+    point_tile = float(decoded[int((py - y) * TILE), int((px - x) * TILE)])
+
+    south, west = cell_corner(Path(zip_path).name)
+    row = int(round((south + 1.0 - lat) * 3600.0))
+    col = int(round((lon - west) * 3600.0))
+    point_hgt = read_hgt_pixel(zip_path, row, col)
+    results.append((f"el punto en zoom {top_zoom} coincide con el .hgt",
+                    abs(point_tile - point_hgt) < POINT_TOLERANCE_M,
+                    f"tesela {point_tile:.1f} m, píxel ({row}, {col}) del .hgt {point_hgt} m, "
+                    f"tolerancia {POINT_TOLERANCE_M:.0f} m"))
+    results.append(("el punto está a la altura esperada",
+                    POINT_RANGE_M[0] <= point_tile <= POINT_RANGE_M[1],
+                    f"{point_tile:.1f} m, entre {POINT_RANGE_M[0]:.0f} y {POINT_RANGE_M[1]:.0f} m"))
+
+    print(f"teselas: {directory.as_posix()}")
+    for zoom in sorted(by_zoom):
+        print(f"zoom {zoom}: {by_zoom[zoom]} teselas")
+    print(f"total: {len(on_disk)} archivos, {_kb(total_bytes)}")
+    print(f"elevación decodificada dentro del recorte: {low:.1f} a {high:.1f} m")
+    print(f"elevación en el punto (zoom {top_zoom}): {point_tile:.1f} m")
+    for name, ok, detail in results:
+        print(f"[{'OK' if ok else 'FALLA'}] {name}: {detail}")
+    failed = [name for name, ok, _ in results if not ok]
+    print("comprobación en orden" if not failed else
+          f"comprobación con {len(failed)} fallos: {', '.join(failed)}")
+    return 0 if not failed else 1
+
+
 def main(argv=None) -> int:
     parser = argparse.ArgumentParser(description=__doc__.split("\n\n")[0])
+    parser.add_argument("--descargar", action="store_true",
+                        help=f"descarga {GRANULE} a data/raw/nasadem/")
+    parser.add_argument("--comprobar", type=Path, metavar="CARPETA",
+                        help="comprueba unas teselas ya generadas")
     parser.add_argument("--zip", type=Path, help="el zip del granulo de NASADEM")
     parser.add_argument("--lat", type=float)
     parser.add_argument("--lon", type=float)
@@ -417,8 +551,13 @@ def main(argv=None) -> int:
     parser.add_argument("--salida", type=Path)
     args = parser.parse_args(argv)
 
+    if args.descargar:
+        download()
+        return 0
+    if args.comprobar is not None:
+        return check(args.comprobar)
     if args.zip is None or args.lat is None or args.lon is None or args.salida is None:
-        parser.error("hacen falta --zip, --lat, --lon y --salida")
+        parser.error("para generar hacen falta --zip, --lat, --lon y --salida")
     return generate(args.zip, args.lat, args.lon, args.lado_km, args.zoom, args.salida)
 
 

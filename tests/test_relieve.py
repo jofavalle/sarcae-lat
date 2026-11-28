@@ -138,6 +138,7 @@ def test_el_hgt_se_lee_big_endian_y_de_norte_a_sur(tmp_path):
     assert (grid.top, grid.left, grid.bottom, grid.right) == (14.0, -90.0, 13.0, -89.0)
     assert relieve.bilinear(grid, np.array([14.0]), np.array([-90.0]))[0][0] == 1000
     assert relieve.bilinear(grid, np.array([13.0]), np.array([-89.0]))[0][0] == 258
+    assert relieve.read_hgt_pixel(path, 3600, 3600) == 258
 
 
 def test_un_hgt_de_otro_tamano_no_se_lee(tmp_path):
