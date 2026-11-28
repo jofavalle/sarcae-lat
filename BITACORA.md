@@ -156,3 +156,7 @@ congelado el domingo 29 a las 8:00 y entrega a las 11:00.
   `metrics.json` del experimento, con la cita de la estación. En la ancla, Santa Ana/El Palmar
   se contrasta hora a hora de 07:00 a 17:00 hora local, porque solo tiene datos de día; las
   máximas y mínimas diarias se validan solo en las réplicas.
+- **2026-11-28. Datos ficticios mientras falta ERA5** (#61). La serie está pedida al CDS y
+  todavía no se puede descargar. Las órdenes siguen con una serie ficticia de
+  `src/era5_ficticio.py`, marcada con `datos_ficticios` y fuera de `recortes/`, y se sustituye
+  por la real cuando llegue. La regla operativa está en `CLAUDE.md`.
