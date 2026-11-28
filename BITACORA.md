@@ -7,7 +7,7 @@ acumula.
 
 ## Estado actual
 
-**2026-11-28, 07:10 (hora de El Salvador).** El repositorio nació el 27 para el reto 10 de
+**2026-11-28, 11:17 (hora de El Salvador).** El repositorio nació el 27 para el reto 10 de
 CoAfina 2026. Es público y protege `main`: cada PR necesita una aprobación y el check `higiene`
 en verde. jofavalle, aalexanderrz, cesarp03 y bm20004 tienen permiso de escritura.
 
@@ -46,8 +46,16 @@ versiona y solo se publica la métrica, porque el inventario de C3S y NCEI marca
 como `non_commercial`. En la ancla, Nueva Concepción, del MARN, no se usa por no declarar
 licencia, y ERA5 se contrasta con Santa Ana/El Palmar hora a hora en el horario escolar. La
 pregunta de la #39 al retador sobre esa licencia sigue sin respuesta. Del asistente queda por
-decidir si producción responde con el LLM o solo con respuestas de reserva (#72). Todavía no
-hay datos versionados.
+decidir si producción responde con el LLM o solo con respuestas de reserva (#72).
+
+Desde la mañana del 28 entraron en `main` los primeros datos versionados:
+- la validación de las réplicas (#56, PR #85, cerrada) y la de la ancla (#54, PR #86, con
+  `Refs #54`: el código y una métrica provisional, porque `z_celda` es ficticia);
+- los manifiestos de los recortes (#59, PR #87), el contrato de datos (#58, PR #88) y las
+  coordenadas de las tres escuelas en `web/datos/escuelas.json` (#57, PR #89);
+- el relieve de las tres escuelas (#60, PR #90) y las capas de Landsat, WorldCover y Open
+  Buildings (#62, PR #93);
+- los indicadores de la 88118, con la serie de ERA5 ficticia (#61, PR #91, `Refs #61`).
 
 El plan está entero en órdenes (`gh issue list --label orden`): la #54 y la #56, de la
 validación, y 25 más de la #57 a la #82, con la decisión #72 entre ellas. Cada una de las 25
@@ -62,6 +70,13 @@ qué necesita en `main` antes de empezar y, si las hay, qué órdenes esperan po
    retira. Los rangos de `src/era5_checks.py` son de El Salvador: en las réplicas, un fallo solo
    en temperatura o en lluvia se anota en el PR y no detiene la orden (comentario en la #56),
    hasta que la #69 traiga los rangos por sede.
+
+   **La #54 sigue abierta, a cargo de cesarp03.** Solo espera el geopotencial de Santa Ana
+   (petición `9ea2bc4a-4cba-44c6-938e-2901a967af25`, en la cola del CDS). Cuando llegue, el PR
+   que la cierra sale de la misma rama, `cesarp03/orden-54`, con los pasos de su comentario del
+   28: la corrida con la carpeta real, los controles de la orden y `Closes #54`. Hasta entonces,
+   las cifras de la ancla **con corrección por altura** son provisionales y no se citan como
+   definitivas, tampoco en el formulario; las cifras sin corrección ya son definitivas.
 2. **El contrato de datos y la construcción.** El contrato es la orden #58, y de él salen las
    de construcción, una por pantalla o flujo, ya escritas. La ruta crítica es #57 → #60 → #61 →
    #67 → #68 para la demo de la ancla, y #58 → #64 → #66 para el sitio. Al final van #80 → #81 →
@@ -69,6 +84,12 @@ qué necesita en `main` antes de empezar y, si las hay, qué órdenes esperan po
    nada pueden empezar la #57, la #58, la #59, la etapa 1 de la #64 y el guion de la #81. Las
    tres primeras desbloquean casi todo lo demás: con la cola limitada a tres PR, conviene
    revisarlas en cuanto lleguen.
+
+   **Bogotá no tiene capa de calor** (PR #93). Solo 2 escenas de Landsat pasan el filtro de
+   nubes, y sus 441 cuadros van `sin_dato`. La orden #96 (P2) vuelve a extraerla con un umbral
+   de `CLOUD_COVER` más alto solo en Bogotá; si no entra antes de congelar el código, se
+   presenta sin esa capa y se declara como límite. La #66 tiene anotado en un comentario cómo
+   tratar una escuela con todos los cuadros sin dato.
 
    **La #61 va con datos ficticios provisionales** (PR #91 y #94, `Refs #61`, decisión del
    equipo en la issue). La serie completa de ERA5 de la 88118 está pedida al CDS, pero todavía
@@ -151,6 +172,14 @@ congelado el domingo 29 a las 8:00 y entrega a las 11:00.
   2025 en las tres sedes. El recorte a las 06:00 UTC lo hace el contrato de datos. Se guarda tal
   como llega (UTC, K y m) en `data/raw/era5/<nombre>/`, con un `registro.json` de rutas
   relativas. La altura de la celda sale del geopotencial de `reanalysis-era5-single-levels`.
+- **2026-11-28. Una orden que espera un dato externo entra por partes** (#54, PR #86). Si el
+  código está listo y solo falta un dato, entra en `main` con `Refs #N` y el valor provisional
+  marcado `datos_ficticios`, para no frenar a las órdenes que dependen de ella. El PR que cierra
+  la orden sale de la misma rama cuando llega el dato.
+- **2026-11-28. Las capas de Earth Engine se aceptan con dos límites** (PR #93, revisión de
+  cesarp03). Bogotá queda `sin_dato` en `calor.geojson` hasta la #96. Y el control del 2 % del
+  área de un edificio se hace con el contorno del recorte, no con el de `edificios.geojson`:
+  el redondeo a 6 decimales del contrato mueve hasta un 5 % el área de las huellas pequeñas.
 - **2026-11-28. La validación publica la métrica, no la serie** (#46 y #39). Las series de las
   estaciones se bajan a `data/raw/`, y en el repositorio entran el script que las baja y el
   `metrics.json` del experimento, con la cita de la estación. En la ancla, Santa Ana/El Palmar
