@@ -154,6 +154,16 @@
         <div class="pie-mando">
           <p class="leyenda" id="leyenda"></p>
           <ul class="clases-calor" id="clases-calor" aria-label="Temperatura de superficie, cuadros de 100 m" hidden></ul>
+          <details class="tabla-calor" id="tabla-calor" hidden>
+            <summary>Ver el valor de cada cuadro</summary>
+            <div class="desplazable">
+              <table class="tabla tabla-cuadros">
+                <caption>Temperatura de superficie de ejemplo en cada cuadro de 100 m del mapa 2D, en °C. El norte va arriba, como en el mapa, y la distancia se cuenta desde la escuela.</caption>
+                <thead id="cuadros-cabeza"></thead>
+                <tbody id="cuadros-calor"></tbody>
+              </table>
+            </div>
+          </details>
         </div>
       </div>
     </section>

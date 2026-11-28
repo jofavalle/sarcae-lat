@@ -87,8 +87,11 @@ Hace falta un servidor porque la página lee dos JSON, y `file://` no lo permite
   - lo que flota sobre la escena (brújula, ayuda del mapa y botones) usa un cristal con
     opacidad 0,9: su texto queda en 4,7 a 1 o más sobre el color más claro o más oscuro que
     pueda tener debajo (un muro, el cuadro de calor más intenso).
-- **Nada depende solo del color:** el calor lleva su valor escrito, y el agua, flechas y
-  rótulos. Las clases del mapa 2D se leen en la leyenda HTML.
+- **Nada depende solo del color:**
+  - en la maqueta, el cuadro de calor lleva su valor escrito;
+  - en el mapa 2D, la leyenda HTML da las clases, y una tabla desplegable bajo los mandos da el
+    valor de cada uno de los 35 cuadros, con el de la escuela marcado con texto;
+  - el agua lleva flechas y rótulos.
 - **Controles nativos** (`<input type="radio">`, `<input type="range">`, `<select>`,
   `<button>`), manejables con teclado. La hora anuncia su momento ("10:00, el recreo").
 - **Texto de la maqueta:** tiene un `<desc>` que se actualiza con la hora, la sombra del patio,

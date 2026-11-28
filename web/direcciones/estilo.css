@@ -269,10 +269,20 @@ fieldset.celda .segmentado { clear: both; justify-self: start; }
   padding: 4px var(--e-2); font-size: var(--t-pequeno); cursor: pointer;
 }
 .barra select option { background: var(--superficie-solida); color: var(--texto); }
-.pie-mando { display: flex; flex-wrap: wrap; justify-content: space-between; gap: var(--e-2) var(--e-6); }
+.pie-mando { display: flex; flex-wrap: wrap; justify-content: space-between; gap: var(--e-2) var(--e-6); min-width: 0; }
 .leyenda { font-size: var(--t-nota); color: var(--texto-2); max-width: 90ch; }
 .clases-calor { display: flex; flex-wrap: wrap; gap: var(--e-1) var(--e-4); font-size: var(--t-nota); color: var(--texto-2); }
 .clases-calor li { display: flex; align-items: center; gap: var(--e-1); }
+.tabla-calor { flex-basis: 100%; min-width: 0; font-size: var(--t-nota); }
+.tabla-calor summary { cursor: pointer; color: var(--texto-2); width: max-content; }
+.tabla-calor summary:hover { color: var(--texto); }
+.desplazable { overflow-x: auto; margin-top: var(--e-2); }
+.tabla.tabla-cuadros { width: auto; font-size: var(--t-nota); }
+.tabla-cuadros caption { caption-side: top; text-align: left; color: var(--texto-2); padding-bottom: var(--e-2); max-width: 70ch; }
+.tabla-cuadros th, .tabla-cuadros td { padding: var(--e-1) var(--e-3); white-space: nowrap; }
+.tabla-cuadros th[scope="row"] { text-align: left; }
+.tabla-cuadros th[scope="col"] { text-align: right; }
+.tabla-cuadros .cuadro-escuela { color: var(--accion); outline: 1px dashed var(--accion); outline-offset: -3px; }
 .muestra { width: 14px; height: 10px; border-radius: 2px; border: 1px solid var(--borde-fuerte); }
 
 /* MapLibre, en el tono de la página */
@@ -360,8 +370,8 @@ fieldset.celda .segmentado { clear: both; justify-self: start; }
   .linea-tiempo > .rotulo { padding-top: 0; }
   .franja { font-size: 0; }
   .seccion { padding-inline: var(--e-5); }
-  .tabla thead { display: none; }
-  .tabla tr { display: grid; padding: var(--e-2) 0; border-bottom: 1px solid var(--borde); }
-  .tabla td { border: 0; padding: 2px 0; }
-  .tabla .num { text-align: left; }
+  .tabla:not(.tabla-cuadros) thead { display: none; }
+  .tabla:not(.tabla-cuadros) tr { display: grid; padding: var(--e-2) 0; border-bottom: 1px solid var(--borde); }
+  .tabla:not(.tabla-cuadros) td { border: 0; padding: 2px 0; }
+  .tabla:not(.tabla-cuadros) .num { text-align: left; }
 }

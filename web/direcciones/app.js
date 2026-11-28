@@ -106,7 +106,7 @@ function pintar() {
   $("sol-valor").textContent = conSol ? `${Math.round(sol.elevacion)}°, hacia ${rumbo(sol.azimut)}` : "Bajo el horizonte";
   $("patio-valor").textContent = patio === null ? "—" : `${patio} %`;
   $("leyenda").textContent = leyenda();
-  $("clases-calor").hidden = !(estado.vista === "2d" && estado.capa === "calor");
+  $("clases-calor").hidden = $("tabla-calor").hidden = !(estado.vista === "2d" && estado.capa === "calor");
 
   const desc = [`Esquema de una escuela tipo a las ${hora} del ${fecha}.`];
   if (patio !== null) desc.push(`El ${patio} % del patio queda a la sombra.`);
@@ -156,6 +156,42 @@ function irAParada(i) {
   document.querySelector(`input[name="capa"][value="${p.capa}"]`).checked = true;
   pintarTextos();
   pintar();
+}
+
+// Los cuadros de calor del mapa 2D también en una tabla, para que no dependan solo del color.
+// Filas de norte a sur y columnas de oeste a este, como se ven en el mapa.
+function construirTablaCalor() {
+  const E = esquema.entorno_calor;
+  const centro = (o, i) => o + i * E.lado_m + E.lado_m / 2;
+  const nombre = (d, mas, menos) => (d === 0 ? "escuela" : `${Math.abs(d)} m al ${d > 0 ? mas : menos}`);
+  const cabeza = document.createElement("tr");
+  cabeza.innerHTML = '<td></td>';
+  E.valores[0].forEach((_, j) => {
+    const th = document.createElement("th");
+    th.scope = "col";
+    th.textContent = nombre(centro(E.x0, j), "este", "oeste");
+    cabeza.append(th);
+  });
+  $("cuadros-cabeza").replaceChildren(cabeza);
+  const filas = E.valores.map((fila, i) => {
+    const tr = document.createElement("tr");
+    const th = document.createElement("th");
+    th.scope = "row";
+    th.textContent = nombre(centro(E.y0, i), "norte", "sur");
+    tr.append(th);
+    fila.forEach((t, j) => {
+      const td = document.createElement("td");
+      td.className = "num";
+      td.textContent = `${t}`;
+      if (centro(E.x0, j) === 0 && centro(E.y0, i) === 0) {
+        td.classList.add("cuadro-escuela");
+        td.textContent = `${t} (escuela)`;
+      }
+      tr.append(td);
+    });
+    return tr;
+  });
+  $("cuadros-calor").replaceChildren(...filas.reverse());
 }
 
 // La leyenda de clases del mapa 2D: muestra de color y texto, en HTML.
@@ -211,6 +247,7 @@ async function cambiarVista(vista) {
 }
 
 function construir() {
+  construirTablaCalor();
   $("maqueta").setAttribute("viewBox", encuadre(esquema));
   $("escuela-nombre").textContent = `${ficha.escuela.nombre}, ${ficha.escuela.pais}`;
 
