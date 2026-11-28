@@ -11,14 +11,21 @@ de febrero de un año bisiesto copia el 28 si el año fuente no lo tiene. El 1 d
 copia el de la fuente que lo traiga, o el de 2025 desplazado. El geopotencial es una altura
 fija en las nueve celdas, como el de `data/processed/era5-ficticio/santa-ana-el-palmar/`.
 
+Con `--serie-real`, la serie no se fabrica: se copia tal cual una descarga real de `src.era5`
+que todavía espera su geopotencial, y solo `z_celda` es ficticia. El punto de rejilla sale de
+la propia serie.
+
 Uso, desde la raíz del repositorio:
 
     python -m src.era5_ficticio --escuela sv-88118 --lat 14.0 --lon -89.25 --z-celda 500 \\
         --fuente data/raw/era5/<carpeta>/serie.zip --fuente <otra>/serie.zip
+    python -m src.era5_ficticio --escuela sv-88118 --z-celda 313.8 \\
+        --serie-real data/raw/era5/.parcial-<carpeta>/serie.zip --peticion <ID>
 """
 
 import argparse
 import json
+import shutil
 import sys
 from datetime import datetime, timezone
 from pathlib import Path
@@ -26,7 +33,8 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 
-from src.era5 import LEVELS_DATASET, SERIES_DATASET, _commit, _relative, _sha256, read_series
+from src.era5 import (LEVELS_DATASET, SERIES_DATASET, _commit, _relative, _sha256, grid_point,
+                      read_series)
 from src.era5_checks import G0, expected_hours
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -115,16 +123,84 @@ def escribir_geopotencial(ruta: Path, lat: float, lon: float, z: float) -> None:
         ds.createVariable("z", "f8", ("latitude", "longitude"))[:] = np.full((3, 3), z * G0)
 
 
+def _ruta(path: Path) -> str:
+    """Ruta relativa a la raíz si está dentro del repositorio; si no (en las pruebas), tal cual."""
+    try:
+        return _relative(path)
+    except ValueError:
+        return Path(path).as_posix()
+
+
+def copiar_real(fuente: Path, destino: Path, z_celda: float, peticion: str) -> dict:
+    """Copia una serie real de ERA5 con un geopotencial ficticio, y devuelve su registro.
+
+    La serie se copia byte a byte: lo único ficticio es `z_celda`. El registro tiene la forma
+    que lee `src.era5_recorte`, con `ficticio: true` y su nota.
+    """
+    fuente, destino = Path(fuente), Path(destino)
+    lat, lon = grid_point(read_series(fuente))
+    if np.isnan(lat):
+        raise ValueError("la serie no trae su punto de rejilla")
+    destino.mkdir(parents=True, exist_ok=True)
+    serie = destino / ("serie" + "".join(fuente.suffixes))
+    shutil.copyfile(fuente, serie)
+    geo = destino / "geopotencial.nc"
+    escribir_geopotencial(geo, lat, lon, z_celda)
+    nota = (f"Serie real de ERA5; z_celda ficticia ({z_celda:g} m) hasta que llegue el "
+            f"geopotencial de la celda ({peticion}). Decisión del equipo del 2026-11-28 (#61): "
+            "se sustituye por la descarga completa.")
+    return {
+        "ficticio": True,
+        "nota_ficticio": nota,
+        "creado_utc": datetime.now(timezone.utc).isoformat(timespec="seconds"),
+        "commit": _commit(),
+        "licencia": "CC-BY-4.0",
+        "periodo": {"inicio": "1940-01-01", "fin": "2026-01-01"},
+        "punto_rejilla": {"lat": lat, "lon": lon},
+        "fuentes": [{"ruta": _ruta(fuente), "sha256": _sha256(fuente)}],
+        "archivos": [
+            {"ruta": _ruta(serie), "dataset": SERIES_DATASET, "sha256": _sha256(serie),
+             "origen": "copia de la descarga real"},
+            {"ruta": _ruta(geo), "dataset": LEVELS_DATASET, "sha256": _sha256(geo),
+             "origen": f"ficticio: z = {z_celda:g} m · G0 en las 9 celdas"},
+        ],
+    }
+
+
 def main(argv=None) -> int:
     parser = argparse.ArgumentParser(description=__doc__.split("\n\n")[0])
     parser.add_argument("--escuela", required=True)
-    parser.add_argument("--lat", type=float, required=True, help="punto de rejilla")
-    parser.add_argument("--lon", type=float, required=True, help="punto de rejilla")
+    parser.add_argument("--lat", type=float, help="punto de rejilla (con --fuente)")
+    parser.add_argument("--lon", type=float, help="punto de rejilla (con --fuente)")
     parser.add_argument("--z-celda", type=float, required=True, help="altura ficticia, en m")
-    parser.add_argument("--fuente", type=Path, action="append", required=True,
+    origen = parser.add_mutually_exclusive_group(required=True)
+    origen.add_argument("--fuente", type=Path, action="append",
                         help="serie real de ERA5 (CSV o zip de src.era5); se repite")
+    origen.add_argument("--serie-real", type=Path, metavar="RUTA",
+                        help="descarga real de src.era5 que se copia tal cual")
+    parser.add_argument("--peticion", default="petición en la cola del CDS",
+                        help="con --serie-real: qué petición traerá el geopotencial")
+    parser.add_argument("--punto-pedido", type=float, nargs=2, metavar=("LAT", "LON"),
+                        help="con --serie-real: el punto que se pidió al CDS")
     parser.add_argument("--semilla", type=int, default=SEMILLA)
     args = parser.parse_args(argv)
+
+    if args.serie_real:
+        destino = DESTINO / args.escuela
+        registro = copiar_real(args.serie_real, destino, args.z_celda, args.peticion)
+        if args.punto_pedido:
+            registro["punto_pedido"] = {"lat": args.punto_pedido[0],
+                                        "lon": args.punto_pedido[1]}
+        else:
+            registro["punto_pedido"] = dict(registro["punto_rejilla"])
+        with open(destino / "registro.json", "w", encoding="utf-8") as f:
+            json.dump(registro, f, ensure_ascii=False, indent=2)
+            f.write("\n")
+        print(f"AVISO, DATOS FICTICIOS: {registro['nota_ficticio']}")
+        print(f"serie copiada en {registro['archivos'][0]['ruta']}")
+        return 0
+    if args.lat is None or args.lon is None:
+        parser.error("--fuente necesita --lat y --lon")
 
     # data/processed es derivado: con la misma semilla y las mismas fuentes sale lo mismo.
     destino = DESTINO / args.escuela

@@ -1,0 +1,46 @@
+{
+  "contrato": 1,
+  "datos_ficticios": "Serie real de ERA5; z_celda ficticia (2555.8 m) hasta que llegue el geopotencial de la celda (la pide la orden #102). Decisión del equipo del 2026-11-28 (#61): se sustituye por la descarga completa.",
+  "generado": {
+    "utc": "2026-11-28T18:07:59+00:00",
+    "commit": "84b80997bd9aea14a8a98617cc0d429ea3a736b6",
+    "comando": "python -m src.indicadores --escuela co-nicolas-esguerra --recorte data/processed/era5-ficticio/recortes/co-nicolas-esguerra/era5"
+  },
+  "fuentes": [
+    {
+      "nombre": "NASADEM_HGT",
+      "version": "001",
+      "licencia": "CC0-1.0",
+      "url": "https://www.earthdata.nasa.gov/data/catalog/lpcloud-nasadem-hgt-001"
+    },
+    {
+      "nombre": "ERA5, niveles de superficie: geopotencial de la celda (ECMWF, para el C3S)",
+      "version": "reanalysis-era5-single-levels",
+      "licencia": "CC-BY-4.0",
+      "url": "https://cds.climate.copernicus.eu/datasets/reanalysis-era5-single-levels"
+    }
+  ],
+  "slug": "co-nicolas-esguerra",
+  "nombre": "Colegio Nacional Nicolás Esguerra",
+  "municipio": "Bogotá",
+  "division": "Bogotá, D.C.",
+  "pais": "Colombia",
+  "iso_pais": "CO",
+  "codigo": "111001010910",
+  "lat": 4.63279,
+  "lon": -74.122,
+  "huso_horas": -5,
+  "altitud": {
+    "valor": 2555.8,
+    "unidad": "m",
+    "fuente": "NASADEM"
+  },
+  "zona_diseno": null,
+  "celda_era5": {
+    "lat": 4.75,
+    "lon": -74.0,
+    "resolucion": 0.25,
+    "unidad": "grados"
+  },
+  "criterios": "referencia de comparación"
+}
