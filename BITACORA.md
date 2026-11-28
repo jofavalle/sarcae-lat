@@ -7,7 +7,7 @@ acumula.
 
 ## Estado actual
 
-**2026-11-28, 00:45 (hora de El Salvador).** El repositorio nació el 27 para el reto 10 de
+**2026-11-28, 07:10 (hora de El Salvador).** El repositorio nació el 27 para el reto 10 de
 CoAfina 2026. Es público y protege `main`: cada PR necesita una aprobación y el check `higiene`
 en verde. jofavalle, aalexanderrz, cesarp03 y bm20004 tienen permiso de escritura.
 
@@ -45,23 +45,35 @@ La validación quedó decidida (#46 y #39): en las tres sedes la serie de la est
 versiona y solo se publica la métrica, porque el inventario de C3S y NCEI marca las estaciones
 como `non_commercial`. En la ancla, Nueva Concepción, del MARN, no se usa por no declarar
 licencia, y ERA5 se contrasta con Santa Ana/El Palmar hora a hora en el horario escolar. La
-pregunta de la #39 al retador sobre esa licencia sigue sin respuesta. Sigue abierta la decisión
-del proveedor del asistente para el público escolar (ADR-002). Todavía no hay datos
-versionados: antes hace falta el contrato de datos.
+pregunta de la #39 al retador sobre esa licencia sigue sin respuesta. Del asistente queda por
+decidir si producción responde con el LLM o solo con respuestas de reserva (#72). Todavía no
+hay datos versionados.
+
+El plan está entero en órdenes (`gh issue list --label orden`): la #54 y la #56, de la
+validación, y 25 más de la #57 a la #82, con la decisión #72 entre ellas. Cada una de las 25
+dice su prioridad (P1, imprescindible para la entrega; P2, completa el plan; P3, si da tiempo),
+qué necesita en `main` antes de empezar y, si las hay, qué órdenes esperan por ella.
 
 ## Siguiente paso
 
-1. **La validación**: la orden #54 contrasta ERA5 con Santa Ana/El Palmar en la ancla, y su
-   función de emparejado y métricas la reusa la orden de las réplicas, que falta escribir con
-   lo decidido en la #46. Si el retador responde en la #39 que esos datos no se pueden usar, la
-   métrica de Santa Ana se retira.
-2. **El contrato de datos de la 88118**, con los indicadores de la #22. Antes de bajar la serie
-   de las tres escuelas, una descarga de prueba contra el CDS con `src/era5.py` de `main`, que
-   la revisión de la #37 no hizo: del 2025-01-01 al 2026-01-01 en una carpeta nueva, con 8784
-   filas y todos los controles en verde. Del contrato salen las órdenes de construcción, una
-   por pantalla o flujo.
-3. **El asistente**: decidir el proveedor para el público escolar con la ADR-002, que dejó la
-   prueba técnica completada con 16 de 24 respuestas conformes.
+1. **La validación**: la orden #54 contrasta ERA5 con Santa Ana/El Palmar en la ancla, y la #56,
+   con El Dorado y La Chinita en las réplicas. La #71 lleva la métrica a la ficha. Si el
+   retador responde en la #39 que esos datos no se pueden usar, la métrica de Santa Ana se
+   retira. Los rangos de `src/era5_checks.py` son de El Salvador: en las réplicas, un fallo solo
+   en temperatura o en lluvia se anota en el PR y no detiene la orden (comentario en la #56),
+   hasta que la #69 traiga los rangos por sede.
+2. **El contrato de datos y la construcción.** El contrato es la orden #58, y de él salen las
+   de construcción, una por pantalla o flujo, ya escritas. La ruta crítica es #57 → #60 → #61 →
+   #67 → #68 para la demo de la ancla, y #58 → #64 → #66 para el sitio. Al final van #80 → #81 →
+   el envío final de la #82, y la #80 espera además a la #62, la #63 y la #69. Sin esperar a
+   nada pueden empezar la #57, la #58, la #59, la etapa 1 de la #64 y el guion de la #81. Las
+   tres primeras desbloquean casi todo lo demás: con la cola limitada a tres PR, conviene
+   revisarlas en cuanto lleguen. La descarga de prueba contra el CDS con `src/era5.py` de
+   `main`, que la revisión de la #37 no hizo, es el primer paso de la #61: del 2025-01-01 al
+   2026-01-01 en una carpeta nueva, con 8784 filas y todos los controles en verde.
+3. **El asistente**: la #72 decide, antes del domingo 29 a las 04:00, si producción responde
+   con el LLM o solo con respuestas de reserva, que es la propuesta. La orden #73 deja la
+   reserva funcionando en cualquier caso, y su parte de producción espera a la #72.
 4. **Lo que no viaja por git**, en cada máquina que descargue datos:
    - el `.venv`: `python3 -m venv .venv && .venv/bin/pip install -r requirements.txt`;
    - una cuenta del Climate Data Store con la "CC-BY licence" aceptada en la pestaña
@@ -69,14 +81,25 @@ versionados: antes hace falta el contrato de datos.
      la orden #54, las licencias que pida `insitu-observations-surface-land`;
    - `~/.cdsapirc`, con `url: https://cds.climate.copernicus.eu/api` y `key:` seguido del
      token del perfil, que no lleva dos puntos. Se escribe con un editor y permisos 600: ni con
-     `echo`, que lo deja en el historial, ni pegado en el chat de un asistente.
+     `echo`, que lo deja en el historial, ni pegado en el chat de un asistente;
+   - para la #60, una cuenta gratuita de NASA Earthdata, con las credenciales en `~/.netrc`,
+     escrito con los mismos cuidados;
+   - para la #62, una cuenta de Google Earth Engine con un proyecto de Cloud registrado para uso
+     no comercial. Ni la cuenta ni el proyecto se nombran en el repositorio.
 5. **Con Codex o Devin**, la capa vale igual: leen `AGENTS.md` y las skills de
    `.agents/skills/`. Codex no puede negar lecturas desde el proyecto, así que a ningún asistente
-   se le pide abrir `~/.cdsapirc` ni `.env`. Devin en la nube no tiene esas credenciales ni las
-   necesita: las pruebas no usan la red. Cada PR declara la herramienta y el modelo que usó.
+   se le pide abrir `~/.cdsapirc`, `~/.netrc` ni `.env`. Devin en la nube no tiene esas
+   credenciales ni las necesita: las pruebas no usan la red. Cada PR declara la herramienta y el
+   modelo que usó.
 6. **Cada integrante comprueba su clon** (`CONTRIBUTING.md`, "Comprobación del primer día").
-7. **El último marcador pendiente del `CLAUDE.md`**, el comando de ejecución, se resuelve
-   cuando exista el comando que genera la ficha.
+7. **El último marcador pendiente del `CLAUDE.md`**, el comando de ejecución, lo resuelve la
+   orden #80 con `python -m src.generar --todas --comprobar`.
+8. **Lo que hace una persona y no una orden**:
+   - buscar ya un docente para la sesión de 20 minutos de la #76, antes de congelar el código;
+   - activar GitHub Pages con la fuente "GitHub Actions", que solo puede hacer quien administra
+     el repositorio, para la #78;
+   - el enlace del formulario, que da quien coordina, para la #82. El primer envío va con lo que
+     esté publicado a las 20:00.
 
 **Hitos** (hora de El Salvador): primer envío del formulario el sábado 28 a las 20:00, código
 congelado el domingo 29 a las 8:00 y entrega a las 11:00.

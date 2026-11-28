@@ -261,11 +261,11 @@ clave de API en el código.
   su uso en aplicaciones dirigidas a menores de 18 años o que probablemente usen menores.
 - **Coste:** con 2.000 tokens de entrada y 250 de salida por consulta, la cuota gratuita
   publicada daría unas 130 consultas al día, si está disponible entera. Es una estimación.
-- **Lo que falta para confirmarlo:** una llamada desde Pages Functions con una ficha de prueba,
-  y la batería de preguntas de la #12 (`docs/asistente/preguntas-prueba.md`), que comprueba que
-  responde en español, se ciñe a la ficha y maneja las preguntas fuera de alcance. El resultado
-  es la evidencia de una ADR corta en `docs/decisiones/`, con la licencia y las condiciones de
-  uso comprobadas.
+- **La prueba** (orden #38, ADR-002): una Function de Pages llamó al modelo con una ficha de
+  prueba, y 16 de las 24 preguntas de la batería de la #12 (`docs/asistente/preguntas-prueba.md`)
+  cumplieron todos sus criterios (`docs/asistente/resultados-20261128.md`). Queda por decidir si
+  producción responde con el LLM o solo con respuestas de reserva, en la #72. La orden #73
+  repite la batería con la ficha real.
 
 ### 9. Marca, tono y referencias visuales
 
@@ -322,7 +322,7 @@ clave de API en el código.
 | 3 | Stack del front: HTML, CSS y JavaScript sin framework, con MapLibre GL JS para el mapa y la maqueta, y mapa base sin OpenStreetMap (`docs/decisiones/ADR-001-front.md`, PR #7) | #5 | cerrada |
 | 4 | ERA5-Land cuenta: el canal del reto dice que se use lo que dé una buena demo, desde 1950 si basta. La serie anual desde 1940 de la #22 solo la da ERA5, así que ERA5 sigue de base mientras el equipo no decida otra cosa, y ERA5-Land queda como capa opcional (sección 4) | #17 | cerrada |
 | 5 | Pesos de los criterios: distintos, con no más de un 5 o un 10 % de diferencia entre el de más peso y el de menos; deciden la usabilidad y la creatividad (sección 1). Lo del jurado no se preguntó | #17 | cerrada |
-| 6 | Proveedor del LLM: Cloudflare Workers AI con Mistral Small 3.1; Gemini descartado por la edad del público (sección 8) | #18 | probado (orden #38, ADR-002): 16 de 24 respuestas conformes en la batería de la #12; (abierto) la decisión del proveedor para el público escolar |
+| 6 | Proveedor del LLM: Cloudflare Workers AI con Mistral Small 3.1; Gemini descartado por la edad del público (sección 8) | #18 y #72 | probado (orden #38, ADR-002): 16 de 24 respuestas conformes en la batería de la #12; (abierto) si producción responde con el LLM o solo con respuestas de reserva, en la #72, antes del domingo 29 a las 04:00. La orden #73 deja las respuestas de reserva funcionando en cualquier caso |
 | 7 | Estaciones para la validación: El Dorado y La Chinita, de NOAA GHCNh, para las réplicas; Santa Ana/El Palmar, de las observaciones in situ del CDS, para la ancla, hora a hora en el horario escolar (secciones 4 y 5) | #19, #46 y #39 | cerrada: las series no se versionan y solo se publica la métrica (#46, opción a). Nueva Concepción, del MARN, se descartó por no declarar licencia (#39) |
 | 8 | Modelo de elevación: NASADEM. Es el único de los dos con licencia compatible (CC0, por la política de datos de NASA), y sus recortes se versionan (sección 4). El Copernicus DEM es más reciente (2011 a 2015, frente a febrero de 2000), pero la licencia de su instancia pública, GLO-30-F, es propia y no CC0, CC BY ni dominio público: aunque permite distribuir (art. 4), su art. 6 exige un aviso que termina en "all rights reserved" y una cláusula de exención de responsabilidad, y obliga a los usuarios posteriores | #6 | cerrada |
 | 9 | Dirección visual: A · Noche, elegida y congelada en la issue #20 entre dos direcciones del prototipo del PR #35. Azul noche con halo, paneles de cristal, IBM Plex Sans y Mono, y un acento cálido (`#ffa45c`) solo para acciones y selección. Sus tokens son el bloque `noche` y la escala común de `web/direcciones/tokens.css`, y pasan al PR de la fundación del front. No se reestiliza sin una decisión escrita | #20 | cerrada |
