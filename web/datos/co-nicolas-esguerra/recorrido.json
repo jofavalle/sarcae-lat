@@ -1,0 +1,215 @@
+{
+  "contrato": 1,
+  "generado": {
+    "utc": "2026-11-28T18:41:16+00:00",
+    "commit": "2e23691c7af56858d0a6782318397426d689ec44",
+    "comando": "python -m src.recorrido --escuela co-nicolas-esguerra"
+  },
+  "fuentes": [
+    {
+      "nombre": "docs/material/recorrido/co-nicolas-esguerra.json",
+      "version": "sha256:7476e5aa0c91e776cdcbfb396656c75122dcdfd3d659b34435bfad0d80ddb155",
+      "licencia": "CC-BY-4.0",
+      "url": "https://github.com/jofavalle/sarcae-lat/blob/main/docs/material/recorrido/co-nicolas-esguerra.json"
+    },
+    {
+      "nombre": "NASADEM_HGT",
+      "version": "001",
+      "licencia": "CC0-1.0",
+      "url": "https://www.earthdata.nasa.gov/data/catalog/lpcloud-nasadem-hgt-001"
+    },
+    {
+      "nombre": "ERA5, niveles de superficie: geopotencial de la celda (ECMWF, para el C3S)",
+      "version": "reanalysis-era5-single-levels",
+      "licencia": "CC-BY-4.0",
+      "url": "https://cds.climate.copernicus.eu/datasets/reanalysis-era5-single-levels"
+    },
+    {
+      "nombre": "ERA5, serie horaria por punto (ECMWF, para el C3S)",
+      "version": "reanalysis-era5-single-levels-timeseries",
+      "licencia": "CC-BY-4.0",
+      "url": "https://cds.climate.copernicus.eu/datasets/reanalysis-era5-single-levels-timeseries"
+    }
+  ],
+  "escuela": "co-nicolas-esguerra",
+  "registros": {
+    "estudiante": {
+      "nombre": "Estudiante",
+      "titulo": "Mira por dónde corre el agua en tu escuela y dónde da el sol.",
+      "entrada": "Siete paradas: mueve la hora, recorre la maqueta y piensa en las preguntas con tu grupo."
+    },
+    "docente": {
+      "nombre": "Docente",
+      "titulo": "La lluvia, el agua y el sol en la escuela, para preparar la clase y la conversación.",
+      "entrada": "Siete paradas con una pregunta cada una, para trabajar en el aula."
+    },
+    "direccion": {
+      "nombre": "Dirección",
+      "titulo": "Qué revisar o preparar en la escuela ante la lluvia y el sol, con el clima de la zona.",
+      "entrada": "Siete puntos para revisar y conversar con la comunidad."
+    }
+  },
+  "paradas": [
+    {
+      "id": "zona",
+      "titulo": "Dónde está la escuela",
+      "maqueta": {
+        "volumen": "patio",
+        "capa": "sombra",
+        "hora": 10
+      },
+      "mapa": {
+        "vista": "2d",
+        "capa": "relieve"
+      },
+      "texto": {
+        "estudiante": "Tu escuela está en Bogotá, a unos 2555,8 m sobre el nivel del mar. Aquí sirve para comparar: se miran las mismas cifras que en la escuela principal del proyecto, que está en El Salvador. Los datos del clima vienen de ERA5, que divide el mapa en cuadros de muchos kilómetros de lado. Cuentan cómo es el clima de toda la zona, no el de tu patio ni el de tu aula.",
+        "docente": "El Colegio Nacional Nicolás Esguerra está en Bogotá (Colombia), a 2555,8 m según NASADEM. Es una referencia de comparación: se calculan los mismos indicadores que en la escuela ancla, en El Salvador. Las cifras del clima salen de la celda de ERA5 que la contiene, de muchos kilómetros de lado: describen la zona, no la escuela. La temperatura se corrige por la altura de la escuela.",
+        "direccion": "La escuela está en Bogotá (Colombia), a 2555,8 m. Se presenta como referencia de comparación, con los mismos indicadores que la escuela ancla, en El Salvador. Las cifras salen de una celda de ERA5 de muchos kilómetros de lado, corregidas por altura: describen la zona, no el edificio. Los criterios para revisar son generales, no los de una norma colombiana."
+      },
+      "pregunta": {
+        "estudiante": "¿En qué se parece el clima que sientes en tu escuela al de los lugares de alrededor, y en qué es distinto?",
+        "docente": "¿Qué parte de lo que se siente en el aula explica el clima de la zona, y qué parte el edificio y su entorno?",
+        "direccion": "¿Qué observaciones de quienes usan la escuela cada día ayudarían a completar lo que cuentan los datos de la zona?"
+      }
+    },
+    {
+      "id": "calor",
+      "titulo": "El calor y el frío en horario de clase",
+      "maqueta": {
+        "volumen": "pabellon-a",
+        "capa": "calor",
+        "hora": 13
+      },
+      "mapa": {
+        "vista": "2d",
+        "capa": "relieve"
+      },
+      "texto": {
+        "estudiante": "En la zona de tu escuela, de lunes a viernes entre las 07:00 y las 17:00, hubo 0,0 horas al año por encima de 27 °C entre 1996 y 2025, y 0,0 entre 1961 y 1990: ninguna o casi ninguna. El aire de la zona es fresco. Por eso este recorrido mira sobre todo la lluvia, el agua y la sombra.",
+        "docente": "Las horas de clase al año sobre 27 °C, de lunes a viernes de 07:00 a 17:00, son 0,0 en 1961–1990 y 0,0 en 1996–2025, con el aire de ERA5 corregido por altura. 27 °C viene de un manual de escuelas de El Salvador y aquí solo sirve para comparar: no es una norma colombiana ni un umbral de salud. En esta zona pesan más la lluvia, el agua y el sol directo.",
+        "direccion": "Las horas de clase al año por encima de 27 °C fueron 0,0 en 1961–1990 y 0,0 en 1996–2025, en la zona. 27 °C es el límite de confort de un manual de diseño de escuelas de El Salvador, usado aquí como referencia de comparación y no como norma de Colombia. Con un aire fresco, lo que conviene revisar se inclina hacia la lluvia, el agua y la sombra."
+      },
+      "pregunta": {
+        "estudiante": "¿Cómo está tu aula en las mañanas frías y al mediodía con sol, y qué haces para estar mejor?",
+        "docente": "¿Cómo se ventila el aula en las mañanas frías o de lluvia sin que el grupo pase frío?",
+        "direccion": "¿Qué aulas se quedan frías o húmedas, y cómo se ventilan en los días de lluvia?"
+      }
+    },
+    {
+      "id": "sombra",
+      "titulo": "El sol del mediodía y la sombra del patio",
+      "maqueta": {
+        "volumen": "pabellon-b",
+        "capa": "sombra",
+        "hora": 12
+      },
+      "mapa": {
+        "vista": "3d",
+        "capa": "cobertura"
+      },
+      "texto": {
+        "estudiante": "Aunque el aire esté fresco, el sol del mediodía calienta el patio y las paredes. El borde del techo que sobresale se llama alero, y da sombra a paredes y ventanas. Mueve la hora y mira qué partes del patio quedan al sol a la hora del recreo y cuáles a la sombra.",
+        "docente": "La maqueta muestra, según la hora, la sombra de volúmenes genéricos. Cerca del ecuador el sol del mediodía va alto, y el aire fresco no le quita fuerza al sol directo. La ficha no da una medida de alero: el manual que se usa en la escuela ancla es de El Salvador, no una norma de Colombia, y no se ha verificado una referencia local que lo sustituya.",
+        "direccion": "La maqueta ilustra la sombra del patio y de las fachadas con volúmenes genéricos. La ficha no da una longitud de alero: el Manual Mi Nueva Escuela es un ejemplo de otro país, El Salvador, y no se ha verificado una referencia colombiana. Ayuda a decidir qué zonas del patio y qué ventanas con sol directo necesitan sombra primero."
+      },
+      "pregunta": {
+        "estudiante": "¿Dónde te pones en el recreo cuando el sol pega fuerte, y dónde cuando llueve?",
+        "docente": "¿Cómo podría el grupo observar, a lo largo de un día, qué partes del patio y qué ventanas quedan al sol y cuáles a la sombra?",
+        "direccion": "¿Qué zonas del patio y qué ventanas reciben sol directo al mediodía, y qué sombra o cubierta tienen?"
+      }
+    },
+    {
+      "id": "superficie",
+      "titulo": "La superficie caliente vista desde el satélite",
+      "maqueta": {
+        "volumen": "techo-patio",
+        "capa": "calor",
+        "hora": 10
+      },
+      "mapa": {
+        "vista": "2d",
+        "capa": "calor"
+      },
+      "texto": {
+        "estudiante": "El mapa de calor muestra lo calientes que están techos, calles y suelos cuando pasa el satélite Landsat, a media mañana. No es el aire que respiras: aunque el aire esté fresco, un techo o un patio de cemento al sol puede estar mucho más caliente. Sirve para comparar zonas del entorno, no el techo y el patio de tu escuela por separado.",
+        "docente": "La temperatura de superficie de Landsat mide el calor que desprenden techos, calles y suelos a la hora en que pasa el satélite, a media mañana. No es la temperatura del aire, que es la de ERA5, y en una zona de aire fresco puede ser mucho mayor. Cada cuadro mezcla techos, patios, calles y vegetación: compara zonas del entorno y no separa el techo del patio de una misma escuela.",
+        "direccion": "El mapa de calor compara qué zonas del entorno se calientan más al sol. Mide techos y suelos, no el aire, a la hora en que pasa el satélite, a media mañana. Cada cuadro mezcla techos, patios y calles, así que no separa el techo del patio de la escuela: ayuda a decidir dónde mirar primero, pero no dice la temperatura de las aulas."
+      },
+      "pregunta": {
+        "estudiante": "¿Qué zonas alrededor de tu escuela salen más calientes en el mapa, y qué tienen encima: techo, cemento, tierra o árboles?",
+        "docente": "¿Qué diferencias hay entre las zonas con árboles y las de techo o cemento, y cómo podría el grupo comprobarlas con un termómetro a la sombra?",
+        "direccion": "¿Qué zonas exteriores de la escuela y de su entorno conviene mirar primero, por estar al sol y sin vegetación?"
+      }
+    },
+    {
+      "id": "lluvia",
+      "titulo": "La lluvia intensa",
+      "maqueta": {
+        "volumen": "techo-patio",
+        "capa": "agua",
+        "hora": 15
+      },
+      "mapa": {
+        "vista": "2d",
+        "capa": "agua"
+      },
+      "texto": {
+        "estudiante": "En la zona, un día de lluvia muy fuerte es uno con más de 20,8 milímetros. Entre 1961 y 1990 pasaba unos 3,7 días al año, y entre 1996 y 2025, unos 4,0. El día más lluvioso de 1996 a 2025 fue el 1 de marzo de 2017: cayeron 90,1 milímetros.",
+        "docente": "El umbral de lluvia intensa separa los días más lluviosos de 1961–1990 en la celda: 20,8 mm en un día. Se superó 3,7 días al año en 1961–1990 y 4,0 en 1996–2025. El día más lluvioso de 1996–2025, el 1 de marzo de 2017, sumó 90,1 mm; el escenario de lluvia lo reparte hora por hora.",
+        "direccion": "Los días con más de 20,8 mm de lluvia fueron 3,7 al año en 1961–1990 y 4,0 en 1996–2025, en la zona. El más lluvioso de 1996–2025, el 1 de marzo de 2017, sumó 90,1 mm. En esta escuela, la lluvia y el agua son lo primero que conviene revisar: canaletas, bajantes y desagües."
+      },
+      "pregunta": {
+        "estudiante": "¿Qué pasa en tu escuela el día que más llueve: por dónde caminas, dónde juegas y qué se moja?",
+        "docente": "¿Qué cambia en la jornada escolar un día de lluvia intensa, y qué podría prepararse antes?",
+        "direccion": "¿Quién revisa las canaletas, las bajantes y los desagües antes de las temporadas de lluvia, y cada cuánto?"
+      }
+    },
+    {
+      "id": "agua",
+      "titulo": "Por dónde tiende a correr el agua",
+      "maqueta": {
+        "volumen": "patio",
+        "capa": "agua",
+        "hora": 15
+      },
+      "mapa": {
+        "vista": "2d",
+        "capa": "agua"
+      },
+      "texto": {
+        "estudiante": "Cuando llueve fuerte, el agua baja por los techos y el terreno, y tiende a correr hacia las partes más bajas. Las líneas del mapa muestran por dónde tiende a correr y dónde tiende a juntarse. No dicen cuánta agua pasa ni qué tan honda queda.",
+        "docente": "Las líneas siguen la pendiente del relieve de NASADEM: muestran por dónde tiende a correr el agua y dónde tiende a juntarse. No simulan caudal ni profundidad, y no ven canaletas, sumideros, andenes ni muros, que en la ciudad cambian el camino del agua.",
+        "direccion": "La capa muestra por dónde tiende a correr el agua según el relieve y dónde tiende a juntarse. No calcula caudal ni profundidad, ni ve canaletas, sumideros o muros: sirve para decidir qué zonas exteriores revisar en el terreno después de una lluvia fuerte."
+      },
+      "pregunta": {
+        "estudiante": "¿Por dónde corre el agua en tu patio cuando llueve fuerte, y dónde se queda?",
+        "docente": "¿Qué pasillos o zonas exteriores se mojan o se encharcan en las temporadas de lluvia, y coinciden con las líneas del mapa?",
+        "direccion": "¿Coinciden los lugares donde el agua tiende a juntarse en el mapa con los que se encharcan en la escuela, y qué conviene revisar ahí?"
+      }
+    },
+    {
+      "id": "preparar",
+      "titulo": "Qué revisar o preparar",
+      "maqueta": {
+        "volumen": "techo-patio",
+        "capa": "sombra",
+        "hora": 10
+      },
+      "mapa": {
+        "vista": "3d",
+        "capa": "relieve"
+      },
+      "texto": {
+        "estudiante": "Estas preguntas no son un examen de tu escuela. Sirven para conversar con tu grupo sobre qué revisar o preparar ante la lluvia fuerte y el sol, con lo que ya sabes de tu escuela y lo que viste en el mapa y en la maqueta.",
+        "docente": "Las preguntas para conversar no califican a la escuela ni la ordenan frente a las otras del proyecto: son un punto de partida para trabajar en clase qué revisar o preparar ante la lluvia intensa y el sol. Se pueden cruzar con lo que el grupo observa: dónde se encharca, dónde da el sol y qué aulas se quedan frías o húmedas.",
+        "direccion": "Las preguntas no califican a la escuela ni sustituyen a las autoridades de emergencias, que deciden evacuaciones y medidas ante una emergencia. Sirven para ordenar qué revisar o preparar ante la lluvia intensa y el sol, y de qué conversar con la comunidad, junto con el protocolo vigente del colegio. Se apoyan en criterios generales, no en una norma colombiana."
+      },
+      "pregunta": {
+        "estudiante": "¿Qué cambiarías primero en tu escuela para estar mejor en los días de lluvia fuerte o de mucho sol, y por qué?",
+        "docente": "¿Qué propondría el grupo revisar primero, y con quién de la comunidad conviene conversarlo?",
+        "direccion": "¿Qué conviene revisar o preparar antes de las próximas temporadas de lluvia, y con quién de la comunidad conversarlo?"
+      }
+    }
+  ]
+}
