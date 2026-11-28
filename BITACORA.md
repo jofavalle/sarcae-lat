@@ -7,7 +7,7 @@ acumula.
 
 ## Estado actual
 
-**2026-11-27, 20:20 (hora de El Salvador).** El repositorio nació el 27 para el reto 10 de
+**2026-11-27, 22:50 (hora de El Salvador).** El repositorio nació el 27 para el reto 10 de
 CoAfina 2026. Es público y protege `main`: cada PR necesita una aprobación y el check `higiene`
 en verde. jofavalle, aalexanderrz, cesarp03 y bm20004 tienen permiso de escritura.
 
@@ -18,8 +18,14 @@ En `main`:
 - las licencias de las fuentes, comprobadas y citadas en el README, y el modelo de elevación
   elegido, NASADEM (orden #6, PR #8);
 - la descarga de ERA5 por punto, `src/era5.py` (orden #4, PR #14). Probada con el aeropuerto
-  de Ilopango, la serie de 1940 a 2025 tardó 122 s y pasó todos los controles;
-- MapLibre GL JS 6.20.0 en `web/vendor/`, con su presupuesto de carga (orden #10, PR #29);
+  de Ilopango, la serie de 1940 a 2025 tardó 122 s y pasó todos los controles. Desde la orden
+  #37 (PR #42) llega hasta el 2026-01-01, y la lluvia anual se suma solo en años completos;
+- MapLibre GL JS 6.20.0 en `web/vendor/`, con su presupuesto de carga (orden #10, PR #29). La
+  ADR-001 aclara que su tabla de tamaños es de GNU gzip (orden #33, PR #43);
+- la fundación del front (orden #40, PR #41): `web/index.html`, el CSS base y los tokens de
+  A · Noche en `web/estilo/`;
+- CHIRPS fijado en la v3.0, y en el README las atribuciones de las fuentes y el código de
+  terceros (orden #9, PR #44);
 - las preguntas de prueba del asistente (orden #12, PR #25), y los límites en tres registros
   con el glosario (orden #13, PR #26);
 - los recortes en `recortes/<escuela>/<fuente>/`, con su manifiesto (decisión #21, PR #34).
@@ -28,28 +34,23 @@ Las decisiones de las issues #15 a #23 están integradas en `docs/PLAN.md`, y su
 tabla vigente. Las escuelas son la 88118 en El Salvador (ancla), el Nicolás Esguerra en Bogotá y
 el Rafael María Baralt en Maracaibo. El canal del reto respondió a la #17: ERA5-Land se admite,
 y los criterios pesan casi lo mismo, con la usabilidad y la creatividad como lo que decide.
-Quedan tres flecos abiertos: la prueba del proveedor del LLM (#18, orden #38); la licencia de
-los datos de las estaciones de las réplicas y la estación de la escuela ancla (#19, órdenes #9 y
-#39); y los tokens de A · Noche en el PR de la fundación del front, que cierra la #20.
-Todavía no hay datos versionados ni front: el prototipo de las direcciones visuales está en el
-PR #35, sin fusionar.
+Quedan abiertos la prueba del proveedor del LLM (orden #38), la estación de la escuela ancla
+(orden #39) y la decisión #46. La #46 decide cómo validar ERA5 en las réplicas, porque la #9
+no pudo confirmar que las series de GHCNh de El Dorado y La Chinita se puedan redistribuir.
+Todavía no hay datos versionados: antes hace falta el contrato de datos.
 
 ## Siguiente paso
 
-1. **Revisar y fusionar el PR #35**, el prototipo con la dirección A · Noche. Su cambio en la
-   fila 9 de la sección 12 del plan coincide con el de este PR: quien fusione el segundo deja
-   la versión de la tabla completa.
-2. **El contrato de datos de la 88118**, con los indicadores de la #22. Antes, una orden que
-   lleve el fin de la serie de `src/era5.py` del 2025-12-31 al 2026-01-01 a las 06:00 UTC, para
-   completar el último día local en las tres sedes, y ajuste `tests/test_era5.py`. Después, bajar
-   la serie de las tres escuelas. Del contrato salen las órdenes de construcción, una por
-   pantalla o flujo.
-3. **El asistente (#18)**: una orden que pruebe Workers AI con Mistral Small 3.1 desde Pages
-   Functions con una ficha de prueba, pase la batería de la #12 y escriba la ADR-002.
-4. **La estación de la ancla (#19)**: pedir al MARN la serie diaria de Nueva Concepción y sus
-   condiciones de uso. La orden #9 se reescribe antes de tomarla: las estaciones ya están
-   elegidas, y lo que le queda es comprobar la licencia de NOAA GHCNh para datos de otros
-   países (Resolución 40 de la OMM), CHIRPS y las atribuciones del README.
+1. **Revisar el PR #45**, las teselas de relieve de NASADEM (orden #11).
+2. **El contrato de datos de la 88118**, con los indicadores de la #22. Antes de bajar la serie
+   de las tres escuelas, una descarga de prueba contra el CDS con `src/era5.py` de `main`, que
+   la revisión de la #37 no hizo: del 2025-01-01 al 2026-01-01 en una carpeta nueva, con 8784
+   filas y todos los controles en verde. Del contrato salen las órdenes de construcción, una
+   por pantalla o flujo.
+3. **El asistente**: la orden #38 prueba Workers AI con Mistral Small 3.1 desde Pages Functions
+   con una ficha de prueba, pasa la batería de la #12 y escribe la ADR-002.
+4. **La validación**: la orden #39 pide al MARN la serie diaria de Nueva Concepción y sus
+   condiciones de uso, y la decisión #46 dice cómo se valida en las réplicas.
 5. **Lo que no viaja por git**, en cada máquina que descargue datos:
    - el `.venv`: `python3 -m venv .venv && .venv/bin/pip install -r requirements.txt`;
    - una cuenta del Climate Data Store con la "CC-BY licence" aceptada en la pestaña
@@ -94,8 +95,8 @@ congelado el domingo 29 a las 8:00 y entrega a las 11:00.
   implementación va en órdenes, con la etiqueta `orden`. La sección 12 del brief se pone al día
   en el PR de la bitácora.
 - **2026-11-27. ERA5 por punto** (orden #4). La serie sale de
-  `reanalysis-era5-single-levels-timeseries`, de 1940-01-01 a 2025-12-31: años completos, sin
-  los meses preliminares de ERA5T. La #22 alarga el fin hasta el 2026-01-01 a las 06:00 UTC,
-  para completar el último día local; el cambio en `src/era5.py` espera su orden. Se guarda tal
+  `reanalysis-era5-single-levels-timeseries`, de 1940-01-01 a 2026-01-01 (orden #37): años
+  completos, sin los meses preliminares de ERA5T, y el día que completa el último día local de
+  2025 en las tres sedes. El recorte a las 06:00 UTC lo hace el contrato de datos. Se guarda tal
   como llega (UTC, K y m) en `data/raw/era5/<nombre>/`, con un `registro.json` de rutas
   relativas. La altura de la celda sale del geopotencial de `reanalysis-era5-single-levels`.

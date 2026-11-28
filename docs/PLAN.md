@@ -99,7 +99,7 @@ declarada, fuera de la primera entrega (#16).
 
 Las licencias del cuadro se consultaron el 27 de noviembre de 2026 en el sitio de quien produce
 el dato. La #9 documenta las condiciones de NOAA GHCNh en el README. Ante la falta de
-confirmación para El Dorado y La Chinita, el equipo decide en la #19 si valida solo donde se
+confirmación para El Dorado y La Chinita, el equipo decide en la #46 si valida solo donde se
 confirme una fuente compatible o si calcula la métrica sin versionar las series, si sus
 condiciones permiten ese uso. La licencia del MARN sigue por comprobar.
 Los enlaces están en el README, sección "Fuentes y licencias".
@@ -314,7 +314,7 @@ clave de API en el código.
 | 4 | ERA5-Land cuenta: el canal del reto dice que se use lo que dé una buena demo, desde 1950 si basta. La serie anual desde 1940 de la #22 solo la da ERA5, así que ERA5 sigue de base mientras el equipo no decida otra cosa, y ERA5-Land queda como capa opcional (sección 4) | #17 | cerrada |
 | 5 | Pesos de los criterios: distintos, con no más de un 5 o un 10 % de diferencia entre el de más peso y el de menos; deciden la usabilidad y la creatividad (sección 1). Lo del jurado no se preguntó | #17 | cerrada |
 | 6 | Proveedor del LLM: Cloudflare Workers AI con Mistral Small 3.1; Gemini descartado por la edad del público (sección 8) | #18 | elegido; (abierto) su confirmación, con la prueba desde Pages Functions, la batería de la #12 y la ADR |
-| 7 | Estaciones para la validación: El Dorado y La Chinita, de NOAA GHCNh, para las réplicas; Nueva Concepción, del MARN, como candidata para la ancla (secciones 4 y 5) | #19 | elegidas para las réplicas; (abierto) la licencia de sus datos, que comprueba la #9 (Resolución 40 de la OMM), y la estación de la ancla, que busca la #39 |
+| 7 | Estaciones para la validación: El Dorado y La Chinita, de NOAA GHCNh, para las réplicas; Nueva Concepción, del MARN, como candidata para la ancla (secciones 4 y 5) | #19 | elegidas para las réplicas; (abierto) cómo se validan, porque la #9 no pudo confirmar que sus series se puedan redistribuir (Resolución 40 de la OMM), en la #46; y la estación de la ancla, que busca la #39 |
 | 8 | Modelo de elevación: NASADEM. Es el único de los dos con licencia compatible (CC0, por la política de datos de NASA), y sus recortes se versionan (sección 4). El Copernicus DEM es más reciente (2011 a 2015, frente a febrero de 2000), pero la licencia de su instancia pública, GLO-30-F, es propia y no CC0, CC BY ni dominio público: aunque permite distribuir (art. 4), su art. 6 exige un aviso que termina en "all rights reserved" y una cláusula de exención de responsabilidad, y obliga a los usuarios posteriores | #6 | cerrada |
 | 9 | Dirección visual: A · Noche, elegida y congelada en la issue #20 entre dos direcciones del prototipo del PR #35. Azul noche con halo, paneles de cristal, IBM Plex Sans y Mono, y un acento cálido (`#ffa45c`) solo para acciones y selección. Sus tokens son el bloque `noche` y la escala común de `web/direcciones/tokens.css`, y pasan al PR de la fundación del front. No se reestiliza sin una decisión escrita | #20 | cerrada |
 | 10 | Criterios en Colombia y Venezuela: los mismos indicadores que en El Salvador, como referencia de comparación declarada en la ficha, con las preguntas adaptadas a cada sede (opción a) | #16 | cerrada |
