@@ -407,6 +407,11 @@ def parse_zooms(text: str) -> list:
 
 def generate(zip_path: Path, lat: float, lon: float, side_km: float, zooms: list,
              out: Path) -> int:
+    # El manifiesto guarda la ruta del zip relativa a la raíz, y --comprobar la lee desde
+    # ahí: se comprueba antes de escribir nada, para no dejar teselas sin manifiesto.
+    if not zip_path.resolve().is_relative_to(ROOT):
+        sys.exit(f"{zip_path} está fuera del repositorio: el manifiesto guarda su ruta "
+                 "relativa a la raíz. Muévelo a data/raw/nasadem/.")
     if out.exists() and any(out.iterdir()):
         sys.exit(f"{out} ya tiene archivos: elige otra --salida o vacíala a mano, para no "
                  "mezclar teselas de dos ejecuciones.")

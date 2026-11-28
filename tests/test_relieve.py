@@ -147,6 +147,15 @@ def test_un_hgt_de_otro_tamano_no_se_lee(tmp_path):
         relieve.read_hgt(path)
 
 
+def test_un_zip_fuera_del_repositorio_no_deja_salida(tmp_path):
+    """tmp_path está fuera de la raíz del clon: generate sale antes de escribir nada."""
+    path = fake_zip(tmp_path, b"")
+    out = tmp_path / "salida"
+    with pytest.raises(SystemExit, match="fuera del repositorio"):
+        relieve.generate(path, 13.70, -89.12, 4.0, [14], out)
+    assert not out.exists()
+
+
 def test_los_vacios_se_cuentan():
     values = np.full((361, 361), 500, dtype="int16")
     values[100:103, 200] = relieve.VOID
