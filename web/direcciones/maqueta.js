@@ -133,13 +133,6 @@ function tono(claro, oscuro, f) {
   return `color-mix(in oklab, var(${claro}) ${Math.round(f * 100)}%, var(${oscuro}))`;
 }
 
-function claseCalor(t) {
-  if (t >= 60) return "muy-caliente";
-  if (t >= 50) return "caliente";
-  if (t >= 40) return "templado";
-  return "fresco";
-}
-
 function caja(g, x0, y0, x1, y1, z0, z1, sol, cls, rellenoSup) {
   // Caras visibles desde el suroeste: sur, oeste y la de arriba.
   el("polygon", {
@@ -157,21 +150,17 @@ function caja(g, x0, y0, x1, y1, z0, z1, sol, cls, rellenoSup) {
   }
 }
 
-function losa(g, x0, y0, x1, y1, z, material, sol, capa, t, id) {
+function losa(g, x0, y0, x1, y1, z, material, sol, id) {
   const z1 = z + GROSOR_TECHO;
   const lado = tono(material === "losa" ? "--techo" : "--techo-lamina", "--techo-lado", 0.35 + 0.4 * luz([0, -1, 0], sol));
   el("polygon", { points: puntos([[x0, y0, z], [x1, y0, z], [x1, y0, z1], [x0, y0, z1]]), style: `fill:${lado}` }, g);
   el("polygon", { points: puntos([[x0, y0, z], [x0, y1, z], [x0, y1, z1], [x0, y0, z1]]), style: `fill:${lado}` }, g);
-  const arriba = el("polygon", {
+  el("polygon", {
     points: puntos(rect(x0, y0, x1, y1, z1)),
     style: `fill:${tono(material === "losa" ? "--techo" : "--techo-lamina", "--techo-lado", 0.45 + 0.55 * luz([0, 0, 1], sol))}`,
     class: "techo",
     "data-id": id,
   }, g);
-  if (capa === "calor") {
-    arriba.classList.add("calor", claseCalor(t));
-    if (t >= 60) el("polygon", { points: puntos(rect(x0, y0, x1, y1, z1)), class: "trama" }, g);
-  }
 }
 
 // Dibuja la escena entera en el <svg> dado.
@@ -183,8 +172,6 @@ export function dibujar(svg, esquema, estado) {
   const esp = T.espesor;
 
   const defs = el("defs", {}, svg);
-  const trama = el("pattern", { id: "trama-calor", width: 1.6, height: 1.6, patternUnits: "userSpaceOnUse", patternTransform: "rotate(35)" }, defs);
-  el("line", { x1: 0, y1: 0, x2: 0, y2: 1.6, class: "trama-linea" }, trama);
   const flecha = el("marker", { id: "flecha-agua", viewBox: "0 0 10 10", refX: 6, refY: 5, markerWidth: 5, markerHeight: 5, orient: "auto-start-reverse" }, defs);
   el("path", { d: "M0,0 L10,5 L0,10 z", class: "flecha" }, flecha);
   const recorte = el("clipPath", { id: "recorte-terreno" }, defs);
@@ -198,13 +185,18 @@ export function dibujar(svg, esquema, estado) {
 
   // Superficies del suelo.
   for (const s of esquema.superficies) {
-    const pol = el("polygon", { points: puntos(rect(s.x0, s.y0, s.x1, s.y1, 0)), style: `fill:var(--${s.rol})`, "data-id": s.id }, base);
-    if (capa === "calor") pol.classList.add("calor", claseCalor(s.t_superficie));
+    el("polygon", { points: puntos(rect(s.x0, s.y0, s.x1, s.y1, 0)), style: `fill:var(--${s.rol})`, "data-id": s.id }, base);
     if (s.rol === "cancha") {
       const cx = (s.x0 + s.x1) / 2;
       el("polygon", { points: puntos(rect(s.x0 + 1, s.y0 + 1, s.x1 - 1, s.y1 - 1, 0)), class: "cancha-linea" }, base);
       el("polyline", { points: puntos([[cx, s.y0 + 1, 0], [cx, s.y1 - 1, 0]]), class: "cancha-linea" }, base);
     }
+  }
+
+  // Calor: Landsat mide en cuadros de 100 m y la escuela entera cabe en uno, así que la
+  // maqueta no reparte temperaturas por techo: tiñe todo el terreno con un solo valor.
+  if (capa === "calor") {
+    el("polygon", { points: puntos(rect(T.x0, T.y0, T.x1, T.y1, 0)), class: "cuadro-calor" }, base);
   }
 
   // Sombras, recortadas al terreno.
@@ -242,43 +234,40 @@ export function dibujar(svg, esquema, estado) {
     if (tipo === "volumen") {
       caja(g, o.x0, o.y0, o.x1, o.y1, 0, o.altura, sol, "muro");
       const a = o.alero;
-      losa(g, o.x0 - a, o.y0 - a, o.x1 + a, o.y1 + a, o.altura, o.techo === "losa" ? "losa" : "lamina", sol, capa, o.t_superficie, o.id);
+      losa(g, o.x0 - a, o.y0 - a, o.x1 + a, o.y1 + a, o.altura, o.techo === "losa" ? "losa" : "lamina", sol, o.id);
     } else if (tipo === "cubierta") {
       for (const [x, y] of [[o.x0, o.y0], [o.x1, o.y0], [o.x0, o.y1], [o.x1, o.y1]]) {
         caja(g, x - 0.15, y - 0.15, x + 0.15, y + 0.15, 0, o.altura, sol, "columna", "var(--muro-oscuro)");
       }
-      losa(g, o.x0, o.y0, o.x1, o.y1, o.altura, "lamina", sol, capa, o.t_superficie, o.id);
+      losa(g, o.x0, o.y0, o.x1, o.y1, o.altura, "lamina", sol, o.id);
     } else {
       const [tx, ty] = p(o.x, o.y, 0);
       const [cx, cy] = p(o.x, o.y, o.altura - o.radio * 0.6);
       el("line", { x1: tx, y1: ty, x2: cx, y2: cy, class: "tronco" }, g);
-      const copa = el("circle", { cx: cx.toFixed(2), cy: cy.toFixed(2), r: o.radio, class: "copa" }, g);
-      if (capa === "calor") copa.classList.add("calor", claseCalor(o.t_superficie));
+      el("circle", { cx: cx.toFixed(2), cy: cy.toFixed(2), r: o.radio, class: "copa" }, g);
     }
   }
 
-  // Rótulos: el volumen seleccionado y, en la capa de calor, las temperaturas.
+  // Rótulos: el volumen seleccionado, y los de la capa de agua o de calor.
   const gr = el("g", { class: "rotulos" }, svg);
   const rotular = (x, y, z, texto, cls) => {
     const [px, py] = p(x, y, z);
-    const g = el("g", { class: `rotulo ${cls}`, transform: `translate(${px.toFixed(2)} ${py.toFixed(2)})` }, gr);
+    const g = el("g", { class: `rotulo-svg ${cls}`, transform: `translate(${px.toFixed(2)} ${py.toFixed(2)})` }, gr);
     const ancho = texto.length * 1.02 + 2.4;
-    el("rect", { x: -ancho / 2, y: -2.1, width: ancho, height: 3.2, rx: 0.5 }, g);
+    el("rect", { x: -ancho / 2, y: -2.1, width: ancho, height: 3.2, rx: 0.2 }, g);
     const t = el("text", { x: 0, y: 0.4, "text-anchor": "middle" }, g);
     t.textContent = texto;
   };
   const todos = [...esquema.volumenes, ...esquema.cubiertas];
   if (capa === "calor") {
-    for (const v of todos) rotular((v.x0 + v.x1) / 2, (v.y0 + v.y1) / 2, v.altura + 1.2, `${v.t_superficie} °C`, "dato");
-    for (const s of esquema.superficies) rotular((s.x0 + s.x1) / 2 + (s.id === "patio" ? -8 : 0), (s.y0 + s.y1) / 2 + (s.id === "patio" ? -4 : 0), 0.6, `${s.t_superficie} °C`, "dato");
-    const t = esquema.arboles[1];
-    rotular(t.x, t.y, t.altura + 1.2, `${t.t_superficie} °C`, "dato");
+    const c = esquema.calor_landsat;
+    rotular(T.x1 - 13, T.y0 + 1.5, 0.6, `Cuadro de Landsat de ${c.lado_m} m: ${c.t_superficie} °C`, "dato");
   } else if (capa === "agua") {
     rotular(...esquema.agua.punto_bajo, 1.5, "punto bajo", "dato");
     rotular(-13, -11, 1.2, "canaleta", "dato");
   }
   const sel = todos.find((v) => v.id === seleccion);
-  if (sel) rotular((sel.x0 + sel.x1) / 2, (sel.y0 + sel.y1) / 2, sel.altura + (capa === "calor" ? 5 : 2.6), sel.nombre, "nombre");
+  if (sel) rotular((sel.x0 + sel.x1) / 2, (sel.y0 + sel.y1) / 2, sel.altura + 2.6, sel.nombre, "nombre");
 
   svg.classList.toggle("sin-sol", sol.elevacion <= 0);
 }

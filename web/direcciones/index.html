@@ -6,7 +6,7 @@
   <title>SARCAE-LAT · Direcciones visuales (decisión #20)</title>
   <meta name="description" content="Prototipo de las dos direcciones visuales de SARCAE-LAT, con una maqueta esquemática y cifras de ejemplo.">
   <link rel="preload" href="../fonts/ibm-plex-sans-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="preload" href="../fonts/ibm-plex-mono-latin-500-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../fonts/ibm-plex-sans-latin-600-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="tokens.css">
   <link rel="stylesheet" href="estilo.css">
   <script type="module" src="app.js"></script>
@@ -15,19 +15,18 @@
   <a class="saltar" href="#principal">Saltar al contenido</a>
 
   <div class="franja-prototipo" role="region" aria-label="Prototipo">
-    <p><span class="mono">Prototipo · decisión #20</span> Cifras de ejemplo y maqueta esquemática: no son de la escuela ancla.</p>
-    <fieldset class="segmentado segmentado-pequeno" id="selector-direccion">
+    <p><strong>Prototipo de la decisión #20.</strong> Las cifras son de ejemplo y la maqueta es un esquema: no son de la escuela ancla.</p>
+    <fieldset class="segmentado" id="selector-direccion">
       <legend class="visualmente-oculto">Dirección visual</legend>
-      <label><input type="radio" name="direccion" value="noche" checked><span>A · Noche</span></label>
-      <label><input type="radio" name="direccion" value="dia"><span>B · Día</span></label>
+      <label><input type="radio" name="direccion" value="noche" checked><span>A: Noche</span></label>
+      <label><input type="radio" name="direccion" value="dia"><span>B: Día</span></label>
     </fieldset>
   </div>
 
   <header class="cabecera">
-    <a class="marca" href="#principal" aria-label="SARCAE-LAT, inicio">
-      <span class="marca-signo" aria-hidden="true">SL</span>
+    <a class="marca" href="#principal">
       <span class="marca-nombre">SARCAE-LAT</span>
-      <span class="marca-lema">calor y agua en la escuela</span>
+      <span class="marca-lema">Calor y agua en la escuela</span>
     </a>
     <nav aria-label="Secciones">
       <ul>
@@ -48,56 +47,88 @@
           <title id="maqueta-titulo">Maqueta esquemática de la escuela</title>
           <desc id="maqueta-desc"></desc>
         </svg>
-        <div class="mapa3d" id="mapa3d" hidden></div>
+        <div class="mapa" id="mapa" hidden></div>
+        <figure class="brujula" id="brujula" aria-hidden="true">
+          <svg viewBox="-50 -50 100 100">
+            <circle class="cielo" r="40"></circle>
+            <circle class="anillo" r="20"></circle>
+            <g id="brujula-rosa">
+              <line class="eje" x1="0" y1="-40" x2="0" y2="40"></line>
+              <line class="eje" x1="-40" y1="0" x2="40" y2="0"></line>
+              <text class="rumbo norte" x="0" y="-43">N</text>
+              <text class="rumbo" x="0" y="49">S</text>
+              <text class="rumbo" x="45" y="3.5">E</text>
+              <text class="rumbo" x="-45" y="3.5">O</text>
+              <circle class="sol" id="brujula-sol" r="6"></circle>
+            </g>
+          </svg>
+          <figcaption>Sol en el cielo</figcaption>
+        </figure>
+        <div class="controles-mapa" id="controles-mapa" hidden>
+          <p class="pista-uso" id="pista-uso"></p>
+          <div class="botones-mapa">
+            <button type="button" class="boton boton-cristal" id="girar-izq" aria-label="Girar a la izquierda">↺ Girar</button>
+            <button type="button" class="boton boton-cristal" id="girar-der" aria-label="Girar a la derecha">Girar ↻</button>
+            <button type="button" class="boton boton-cristal" id="encuadrar">Vista inicial</button>
+          </div>
+        </div>
       </div>
 
       <div class="capa-info">
-        <div class="fila-eyebrow">
-          <p class="eyebrow" id="escuela-nombre">Escuela ancla · El Salvador</p>
-          <fieldset class="segmentado" id="selector-registro">
-            <legend class="visualmente-oculto">Para quién</legend>
+        <p class="contexto"><span class="punto" aria-hidden="true"></span><span id="escuela-nombre">Escuela ancla, El Salvador</span></p>
+        <h1 id="titulo"></h1>
+        <fieldset class="con-leyenda" id="selector-registro">
+          <legend class="rotulo">Para quién es el texto</legend>
+          <div class="segmentado">
             <label><input type="radio" name="registro" value="estudiante"><span>Estudiante</span></label>
             <label><input type="radio" name="registro" value="docente" checked><span>Docente</span></label>
             <label><input type="radio" name="registro" value="direccion"><span>Dirección</span></label>
-          </fieldset>
+          </div>
+        </fieldset>
+        <div class="lectura-hora">
+          <p class="rotulo">Hora en la maqueta</p>
+          <p class="hora" id="hora-grande">10:00</p>
+          <p class="estado" id="estado-sol"></p>
         </div>
-        <h1 id="titulo"></h1>
-        <p class="instrumento"><span class="cifra mono" id="hora-grande">10:00</span></p>
-        <p class="estado mono" id="estado-sol"></p>
         <dl class="lecturas" id="lecturas"></dl>
-        <p class="nota-ejemplo mono">Cifras de ejemplo · ERA5 describe una celda de unos 28 km</p>
-        <div class="paradas" role="group" aria-label="Paradas del recorrido" id="paradas"></div>
+        <p class="nota">Cifras de ejemplo. ERA5 describe una celda de unos 28 km, no el patio.</p>
       </div>
 
       <aside class="panel" aria-labelledby="panel-titulo" id="panel">
+        <nav class="paradas" aria-label="Paradas del recorrido" id="paradas"></nav>
         <div class="panel-cabeza">
-          <p class="eyebrow" id="panel-eyebrow">Para conversar · 1 de 4</p>
-          <span class="insignia">no es un pronóstico</span>
+          <p class="rotulo-acento" id="panel-eyebrow">Parada 2 de 4</p>
+          <span class="insignia">Para conversar</span>
         </div>
         <h2 id="panel-titulo"></h2>
         <p class="panel-texto" id="panel-texto" aria-live="polite"></p>
         <div class="panel-acciones">
-          <button type="button" class="boton" id="anterior">Parada anterior</button>
-          <button type="button" class="boton" id="siguiente">Siguiente parada</button>
+          <button type="button" class="boton" id="anterior">Anterior</button>
+          <button type="button" class="boton" id="siguiente">Siguiente</button>
         </div>
-        <p class="panel-pie mono"><span id="panel-fuente">Maqueta esquemática · cifras de ejemplo</span> <a href="#limites">Límites</a></p>
+        <p class="panel-pie">No es un pronóstico ni una evaluación de riesgo. <a href="#limites">Ver límites</a></p>
       </aside>
 
-      <div class="mando" aria-label="Controles de la maqueta" role="group">
+      <div class="mando">
         <div class="linea-tiempo">
-          <span class="mono extremo">6:00</span>
-          <label class="visualmente-oculto" for="hora">Hora del día</label>
-          <input type="range" id="hora" min="6" max="18" step="0.25" value="10">
-          <span class="mono extremo">18:00</span>
+          <label class="rotulo" for="hora">Hora del día</label>
+          <div class="pista">
+            <div class="franjas" aria-hidden="true">
+              <span class="franja" style="--desde: 7; --hasta: 12">Turno de la mañana</span>
+              <span class="franja" style="--desde: 13; --hasta: 17">Turno de la tarde</span>
+            </div>
+            <input type="range" id="hora" min="6" max="18" step="0.25" value="10">
+            <div class="escala" aria-hidden="true" id="escala"></div>
+          </div>
         </div>
-        <div class="barra">
+        <div class="barra" role="group" aria-label="Controles de la maqueta">
           <div class="celda">
             <label class="rotulo" for="fecha">Día del año</label>
             <select id="fecha"></select>
           </div>
           <fieldset class="celda">
             <legend class="rotulo">Capa</legend>
-            <div class="segmentado segmentado-ancho">
+            <div class="segmentado">
               <label><input type="radio" name="capa" value="sombra" checked><span>Sombra</span></label>
               <label><input type="radio" name="capa" value="calor"><span>Calor de superficie</span></label>
               <label><input type="radio" name="capa" value="agua"><span>Agua de lluvia</span></label>
@@ -105,67 +136,80 @@
           </fieldset>
           <div class="celda">
             <p class="rotulo">Sol</p>
-            <p class="valor mono" id="sol-valor">—</p>
+            <p class="valor" id="sol-valor">—</p>
           </div>
           <div class="celda">
             <p class="rotulo">Patio a la sombra</p>
-            <p class="valor mono" id="patio-valor">—</p>
+            <p class="valor" id="patio-valor">—</p>
           </div>
-          <button type="button" class="boton boton-accion" id="abrir-3d">Maqueta 3D <span class="mono">· 470 KB</span></button>
+          <fieldset class="celda">
+            <legend class="rotulo">Vista</legend>
+            <div class="segmentado">
+              <label><input type="radio" name="vista" value="maqueta" checked><span>Maqueta</span></label>
+              <label><input type="radio" name="vista" value="2d"><span>Mapa 2D</span></label>
+              <label><input type="radio" name="vista" value="3d"><span>3D</span></label>
+            </div>
+          </fieldset>
         </div>
-        <p class="leyenda mono" id="leyenda"></p>
+        <div class="pie-mando">
+          <p class="leyenda" id="leyenda"></p>
+          <ul class="clases-calor" id="clases-calor" aria-label="Temperatura de superficie, cuadros de 100 m" hidden></ul>
+        </div>
       </div>
     </section>
 
     <section class="seccion" id="clima" aria-labelledby="clima-titulo">
-      <div class="seccion-cabeza">
-        <h2 id="clima-titulo">Clima de la zona</h2>
-        <p id="clima-nota"></p>
-      </div>
-      <p class="eyebrow">Cifras clave · de ejemplo</p>
-      <dl class="cifras" id="cifras"></dl>
+      <h2 id="clima-titulo">Clima de la zona</h2>
+      <p class="entradilla" id="clima-nota"></p>
+      <table class="tabla">
+        <caption class="visualmente-oculto">Indicadores de clima de la zona, con cifras de ejemplo</caption>
+        <thead>
+          <tr><th scope="col">Indicador</th><th scope="col" class="num">Valor</th><th scope="col">Referencia</th></tr>
+        </thead>
+        <tbody id="cifras"></tbody>
+      </table>
+      <p class="nota" id="clima-fuente"></p>
     </section>
 
     <section class="seccion" id="recorrido" aria-labelledby="recorrido-titulo">
-      <div class="seccion-cabeza">
-        <h2 id="recorrido-titulo">El recorrido, en texto</h2>
-        <p>Lo mismo que enseña la maqueta, para leerlo, imprimirlo o escucharlo con un lector de pantalla.</p>
-      </div>
+      <h2 id="recorrido-titulo">El recorrido, en texto</h2>
+      <p class="entradilla">Lo mismo que enseña la maqueta, para leerlo, imprimirlo o escucharlo con un lector de pantalla.</p>
       <ol class="lista-paradas" id="lista-paradas"></ol>
     </section>
 
     <section class="seccion" id="preguntar" aria-labelledby="preguntar-titulo">
-      <div class="seccion-cabeza">
-        <h2 id="preguntar-titulo">Preguntar sobre esta escuela</h2>
-        <p>Las respuestas salen solo de la ficha de la escuela: sus cifras, sus fuentes y sus límites.</p>
-      </div>
+      <h2 id="preguntar-titulo">Preguntar sobre esta escuela</h2>
+      <p class="entradilla">Las respuestas salen solo de la ficha de la escuela: sus cifras, sus fuentes y sus límites.</p>
       <form class="pregunta" id="form-pregunta">
-        <label class="visualmente-oculto" for="texto-pregunta">Tu pregunta</label>
-        <input type="text" id="texto-pregunta" placeholder="Por ejemplo: ¿en qué meses hace más calor en horario de clase?" autocomplete="off">
-        <button type="submit" class="boton boton-accion">Preguntar</button>
+        <label class="rotulo" for="texto-pregunta">Tu pregunta</label>
+        <div class="pregunta-fila">
+          <input type="text" id="texto-pregunta" placeholder="Por ejemplo: ¿en qué meses hace más calor en horario de clase?" autocomplete="off">
+          <button type="submit" class="boton boton-accion">Preguntar</button>
+        </div>
+        <p class="nota">Tu pregunta se envía a un servicio externo para responderla. No escribas nombres ni datos personales.</p>
       </form>
-      <p class="aviso-privacidad">Tu pregunta se envía a un servicio externo para responderla. No escribas nombres ni datos personales.</p>
-      <p class="mono respuesta" id="respuesta" aria-live="polite"></p>
+      <p class="respuesta" id="respuesta" aria-live="polite"></p>
     </section>
 
     <section class="seccion" id="limites" aria-labelledby="limites-titulo">
-      <div class="seccion-cabeza">
-        <h2 id="limites-titulo">Lo que esta herramienta no es</h2>
-      </div>
+      <h2 id="limites-titulo">Lo que esta herramienta no es</h2>
       <ul class="lista-limites" id="lista-limites"></ul>
     </section>
 
     <section class="seccion" id="fuentes" aria-labelledby="fuentes-titulo">
-      <div class="seccion-cabeza">
-        <h2 id="fuentes-titulo">Fuentes y licencias</h2>
-      </div>
-      <ul class="lista-fuentes" id="lista-fuentes"></ul>
+      <h2 id="fuentes-titulo">Fuentes y licencias</h2>
+      <table class="tabla">
+        <caption class="visualmente-oculto">Fuentes de datos y de código, con su licencia</caption>
+        <thead>
+          <tr><th scope="col">Fuente</th><th scope="col">Licencia</th><th scope="col">Para qué</th></tr>
+        </thead>
+        <tbody id="lista-fuentes"></tbody>
+      </table>
     </section>
   </main>
 
   <footer class="pie">
-    <p>Para conversar sobre preparación ante el calor y el agua. No es un pronóstico ni una evaluación oficial de riesgo.</p>
-    <p class="mono">SARCAE-LAT · equipo Itzpapálotl · CoAfina 2026, reto 10 · código MIT, material CC BY 4.0</p>
+    <p>SARCAE-LAT, del equipo Itzpapálotl, para el reto 10 de CoAfina 2026. Sirve para conversar sobre la preparación ante el calor y el agua; no es un pronóstico ni una evaluación oficial de riesgo.</p>
   </footer>
 </body>
 </html>

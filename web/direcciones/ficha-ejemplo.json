@@ -6,10 +6,10 @@
     "fuente": "ERA5, Copernicus Climate Change Service (CC BY 4.0). Cifras de ejemplo.",
     "nota": "ERA5 describe una celda de unos 28 km, no el patio de la escuela.",
     "cifras": [
-      { "valor": "34", "unidad": "días", "rotulo": "al año con más de 32 °C en horario de clase", "detalle": "eran 12 en la década de 1940" },
-      { "valor": "+1,1", "unidad": "°C", "rotulo": "en la temperatura media de la zona desde 1940", "detalle": "década de 2016 a 2025 frente a la de 1940" },
-      { "valor": "96", "unidad": "mm", "rotulo": "en el día más lluvioso de un año típico", "detalle": "la mediana de 1991 a 2020" },
-      { "valor": "abril", "unidad": "", "rotulo": "es el mes más caluroso", "detalle": "mayo y junio, los de más lluvia al empezar el curso" }
+      { "icono": "calor", "valor": "34", "unidad": "días", "rotulo_corto": "Días al año con más de 32 °C en clase", "rotulo": "Días al año con más de 32 °C en horario de clase", "detalle": "Eran 12 en la década de 1940." },
+      { "icono": "calor", "valor": "+1,1", "unidad": "°C", "rotulo_corto": "Cambio de la temperatura media desde 1940", "rotulo": "Cambio de la temperatura media de la zona desde 1940", "detalle": "Década de 2016 a 2025 frente a la de 1940." },
+      { "icono": "lluvia", "valor": "96", "unidad": "mm", "rotulo_corto": "Lluvia del día más lluvioso del año", "rotulo": "Lluvia del día más lluvioso de un año típico", "detalle": "Mediana de 1991 a 2020." },
+      { "icono": "calendario", "valor": "abril", "unidad": "", "rotulo_corto": "Mes más caluroso", "rotulo": "Mes más caluroso", "detalle": "Mayo y junio son los de más lluvia al empezar el curso." }
     ]
   },
   "fechas": [
@@ -44,8 +44,8 @@
       "hora": 13,
       "texto": {
         "estudiante": "El techo de lámina se calienta mucho más que el aire. Por eso el aula se siente caliente aunque afuera corra algo de viento.",
-        "docente": "En el ejemplo, la lámina sin aislante pasa de 60 °C al mediodía y calienta el aula desde arriba. La cifra real saldrá de Landsat.",
-        "direccion": "Los techos de lámina son la superficie más caliente del esquema. El Manual Mi Nueva Escuela da criterios de ventilación y aislamiento para revisarlos."
+        "docente": "La lámina sin aislante se calienta mucho más que el aire y calienta el aula desde arriba. Landsat no ve cada techo: mide en cuadros de 100 m, y la escuela entera cabe en uno.",
+        "direccion": "Los techos de lámina sin aislante calientan las aulas. El Manual Mi Nueva Escuela da criterios de ventilación y aislamiento para revisarlos. El mapa 2D compara el calor del entorno, no el de cada techo."
       },
       "pregunta": {
         "estudiante": "¿En qué aula hace más calor después del recreo? ¿Por qué crees que pasa?",
@@ -108,16 +108,16 @@
   "limites": [
     "No es un pronóstico ni una evaluación oficial de riesgo. Las preguntas son para conversar, no una calificación de la escuela.",
     "ERA5 describe la zona, no la escuela: su celda mide unos 28 km.",
-    "La temperatura de superficie de Landsat es la de techos y suelos a la hora en que pasa el satélite, no la del aire.",
+    "La temperatura de superficie de Landsat es la de techos y suelos a la hora en que pasa el satélite, no la del aire. Se mide en cuadros de 100 m, así que compara zonas del entorno y no separa el techo del patio de una misma escuela.",
     "Las alturas de los edificios son estimaciones, con un error medio de 1,5 m.",
     "La maqueta muestra volúmenes: contornos, alturas, techos, patio y drenaje. Nunca la distribución interior, las puertas ni los accesos.",
     "En este prototipo, la maqueta es un esquema de una escuela tipo y las cifras son de ejemplo."
   ],
   "fuentes": [
     { "nombre": "ERA5, Copernicus Climate Change Service", "licencia": "CC BY 4.0", "uso": "clima de la zona (aquí, cifras de ejemplo)" },
-    { "nombre": "Landsat 8 y 9, USGS", "licencia": "dominio público", "uso": "temperatura de superficie (aquí, cifras de ejemplo)" },
+    { "nombre": "Landsat 8 y 9, USGS", "licencia": "dominio público", "uso": "temperatura de superficie en cuadros de 100 m (aquí, cifras de ejemplo)" },
     { "nombre": "Manual de Diseño Mi Nueva Escuela, MINEDUCYT, 2022", "licencia": "sin licencia declarada; solo se citan sus criterios", "uso": "aleros, ventilación y aguas lluvias" },
     { "nombre": "IBM Plex Sans e IBM Plex Mono", "licencia": "SIL OFL 1.1", "uso": "tipografía" },
-    { "nombre": "MapLibre GL JS 6.20.0", "licencia": "BSD-3-Clause", "uso": "maqueta 3D" }
+    { "nombre": "MapLibre GL JS 6.20.0", "licencia": "BSD-3-Clause", "uso": "mapa 2D y maqueta 3D" }
   ]
 }

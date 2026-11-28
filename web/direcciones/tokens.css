@@ -1,7 +1,13 @@
 /* Tokens de las dos direcciones visuales de la decisión #20.
-   Color por rol, escala tipográfica, espaciado con base de 4 px, radios y movimiento (ADR-001).
-   La dirección se elige con el atributo data-direccion del <html>: "noche" (A) o "dia" (B).
-   Los contrastes de texto se comprobaron con WCAG 2.2: ver README.md de esta carpeta. */
+   Color por rol, escala tipográfica, espaciado con base de 4 px, radios, profundidad y
+   movimiento (ADR-001). La dirección se elige con el atributo data-direccion del <html>:
+   "noche" (A) o "dia" (B). Los contrastes de texto se comprobaron con WCAG 2.2: ver README.md.
+
+   Criterio de estilo (revisión del 2026-11-28): atractivo para estudiantes y docentes sin
+   sobresaturar. Halo de fondo y paneles de cristal, esquinas suaves, un acento cálido solo
+   para acciones y selección, y el color de calor y de agua reservado a los datos. Sin
+   mosaicos de cifras gigantes. Lo que flota sobre la escena usa un cristal más opaco
+   (--superficie-fuerte) para que su texto mantenga 4,5 a 1 sobre cualquier cosa. */
 
 @font-face {
   font-family: "IBM Plex Sans";
@@ -33,19 +39,20 @@
 }
 
 :root {
-  /* Tipografía: Plex Sans para leer, Plex Mono para cifras, rótulos y datos. */
+  /* Tipografía: Plex Sans para leer; Plex Mono para la hora y los rótulos de datos. */
   --fuente-texto: "IBM Plex Sans", "Segoe UI", sans-serif;
   --fuente-datos: "IBM Plex Mono", ui-monospace, "Cascadia Mono", monospace;
 
-  --t-rotulo: 0.75rem;   /* 12 px, rótulos en mono */
+  --t-nota: 0.75rem;     /* 12 px */
+  --t-rotulo: 0.8125rem; /* 13 px */
   --t-pequeno: 0.875rem; /* 14 px */
   --t-cuerpo: 1rem;      /* 16 px */
-  --t-medio: 1.25rem;    /* 20 px */
-  --t-titulo: 1.625rem;  /* 26 px */
-  --t-cifra: 3.5rem;     /* 56 px, la cifra del instrumento */
+  --t-medio: 1.125rem;   /* 18 px */
+  --t-titulo: 1.5rem;    /* 24 px */
+  --t-portada: 1.75rem;  /* 28 px */
+  --t-hora: 3rem;        /* 48 px, la lectura de la hora */
   --interlineado: 1.5;
-  --interlineado-corto: 1.2;
-  --tracking-rotulo: 0.06em;
+  --interlineado-corto: 1.25;
 
   /* Espaciado, base de 4 px. */
   --e-1: 4px;
@@ -60,97 +67,112 @@
 
   --radio-1: 6px;
   --radio-2: 10px;
+  --radio-3: 14px;
   --radio-pildora: 999px;
 
-  /* Movimiento: corto y sin rebotes. Con movimiento reducido, nada se anima. */
-  --mov-rapido: 120ms;
-  --mov: 240ms;
+  --desenfoque: blur(14px) saturate(1.2);
+
+  /* Movimiento: transiciones de estado, cortas. Con movimiento reducido, ninguna. */
+  --mov-rapido: 140ms;
   --curva: cubic-bezier(0.2, 0.7, 0.2, 1);
 
   --ancho-panel: 22rem;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  :root {
-    --mov-rapido: 0ms;
-    --mov: 0ms;
-  }
+  :root { --mov-rapido: 0ms; }
 }
 
-/* A. Noche: el instrumento sobre fondo oscuro, como un laboratorio de noche. */
+/* A. Noche: azul noche profundo con un halo, como el cielo sobre la maqueta. */
 [data-direccion="noche"] {
   color-scheme: dark;
-  --fondo: #05070c;
-  --fondo-escena: #070a11;
-  --superficie: rgb(11 15 23 / 0.88);
-  --superficie-solida: #0b0f17;
-  --borde: rgb(255 255 255 / 0.14);
-  --texto: #eef3f8;
-  --texto-2: #a9b3bf;
-  --accion: #ff9147;
-  --accion-texto: #1a0b02;
-  --calor: #f6a83b;
-  --agua: #62c6ff;
-  --sombra-rol: #a3b3d6;
-  --foco: #62c6ff;
-  --insignia-borde: #f6a83b;
+  --fondo: #0a0f16;
+  --fondo-escena: #0b1119;
+  --halo: radial-gradient(ellipse 55% 60% at 50% 45%, #1a2a3d 0%, rgb(26 42 61 / 0) 70%),
+          radial-gradient(ellipse 35% 30% at 72% 18%, rgb(255 164 92 / 0.10) 0%, rgb(255 164 92 / 0) 70%);
+  --superficie: rgb(16 23 33 / 0.72);
+  --superficie-fuerte: rgb(16 23 33 / 0.9);
+  --superficie-solida: #121a25;
+  --superficie-2: rgb(255 255 255 / 0.06);
+  --borde: rgb(255 255 255 / 0.11);
+  --borde-fuerte: rgb(255 255 255 / 0.22);
+  --sombra-panel: 0 12px 32px rgb(0 0 0 / 0.35);
+  --texto: #eef2f7;
+  --texto-2: #a9b4c2;
+  --accion: #ffa45c;
+  --accion-texto: #1b0d02;
+  --accion-suave: rgb(255 164 92 / 0.16);
+  --calor: #f4ad5f;
+  --agua: #6cc8e0;
+  --foco: #8fd0ff;
 
-  --suelo: #25282e;
-  --suelo-lado: #15171b;
-  --suelo-lado-2: #1c1f24;
-  --patio: #34373d;
-  --cancha: #2c3832;
+  --suelo: #273140;
+  --suelo-lado: #161d27;
+  --suelo-lado-2: #1d2632;
+  --patio: #324052;
+  --cancha: #2b4140;
   --cancha-linea: rgb(255 255 255 / 0.35);
-  --muro-claro: #e4ded4;
-  --muro-oscuro: #6f6a63;
-  --techo: #c9c3b8;
-  --techo-lamina: #aeb6bd;
-  --techo-lado: #7d8389;
-  --copa: #4f7a57;
-  --copa-luz: #6e9a72;
-  --tronco: #5b4a3a;
-  --sombra-escena: rgb(0 0 0 / 0.6);
-  --halo: #0f1522;
-  --pulgar: #ffffff;
-  --pulgar-borde: #05070c;
-  --linea-tiempo: linear-gradient(90deg, #4f8fd6 0%, #8fb6d8 18%, #f6a83b 48%, #ef7b45 72%, #6c7fa6 100%);
+  --muro-claro: #e6e2da;
+  --muro-oscuro: #6c7078;
+  --techo: #cfcac0;
+  --techo-lamina: #b3bcc6;
+  --techo-lado: #78808a;
+  --copa: #5b8a62;
+  --copa-luz: #7aa97f;
+  --tronco: #64523f;
+  --sombra-escena: rgb(2 6 12 / 0.55);
+  --sombra-mapa: #02060c;
+  --sombra-mapa-opacidad: 0.5;
+  --sombra-maqueta: drop-shadow(0 26px 30px rgb(0 0 0 / 0.45));
+  --franja-clase: rgb(255 255 255 / 0.05);
+  --marca-hora: rgb(255 255 255 / 0.3);
+  --linea-tiempo: linear-gradient(90deg, #3f6ea8 0%, #8db3d6 15%, #f4ad5f 45%, #ef8a4f 70%, #5b6b94 100%);
+  --sol: #ffc46b;
 }
 
-/* B. Día: el mismo esquema en claro, como una maqueta sobre papel. */
+/* B. Día: papel cálido con luz de mañana. */
 [data-direccion="dia"] {
   color-scheme: light;
-  --fondo: #f4efe6;
-  --fondo-escena: #efe8dc;
-  --superficie: rgb(255 253 248 / 0.94);
-  --superficie-solida: #fffdf8;
-  --borde: #d3c9b7;
-  --texto: #1c222a;
-  --texto-2: #4f5866;
-  --accion: #b3441b;
+  --fondo: #f4efe7;
+  --fondo-escena: #f1ece3;
+  --halo: radial-gradient(ellipse 55% 60% at 50% 45%, #fffaf1 0%, rgb(255 250 241 / 0) 70%),
+          radial-gradient(ellipse 40% 35% at 78% 12%, rgb(242 170 90 / 0.16) 0%, rgb(242 170 90 / 0) 70%);
+  --superficie: rgb(255 255 255 / 0.72);
+  --superficie-fuerte: rgb(255 255 255 / 0.9);
+  --superficie-solida: #ffffff;
+  --superficie-2: rgb(30 40 55 / 0.05);
+  --borde: rgb(30 40 55 / 0.10);
+  --borde-fuerte: rgb(30 40 55 / 0.22);
+  --sombra-panel: 0 10px 30px rgb(60 50 30 / 0.10);
+  --texto: #1d232b;
+  --texto-2: #535b67;
+  --accion: #b8461a;
   --accion-texto: #ffffff;
-  --calor: #8f4f00;
-  --agua: #0a5f94;
-  --sombra-rol: #42517a;
-  --foco: #0a5f94;
-  --insignia-borde: #8f4f00;
+  --accion-suave: rgb(184 70 26 / 0.10);
+  --calor: #a34a12;
+  --agua: #0b6a8e;
+  --foco: #0b6a8e;
 
-  --suelo: #e2dacb;
-  --suelo-lado: #b9ad97;
-  --suelo-lado-2: #cbc0ab;
-  --patio: #d3cbbc;
-  --cancha: #c6d2c0;
+  --suelo: #e3dccf;
+  --suelo-lado: #b9ae9a;
+  --suelo-lado-2: #cbc1ae;
+  --patio: #d5cdbf;
+  --cancha: #c6d3c4;
   --cancha-linea: rgb(255 255 255 / 0.9);
   --muro-claro: #fffcf6;
-  --muro-oscuro: #b3a996;
-  --techo: #efe9de;
-  --techo-lamina: #d5dadf;
-  --techo-lado: #a4a9ae;
-  --copa: #7d9b6f;
-  --copa-luz: #9bb88c;
-  --tronco: #8a6e55;
-  --sombra-escena: rgb(52 60 88 / 0.3);
-  --halo: #fbf8f1;
-  --pulgar: #fffdf8;
-  --pulgar-borde: #1c222a;
-  --linea-tiempo: linear-gradient(90deg, #5a87b8 0%, #9bb7cf 18%, #d9932f 48%, #c4552a 72%, #6b7896 100%);
+  --muro-oscuro: #b2a996;
+  --techo: #efe9dd;
+  --techo-lamina: #d5dbe0;
+  --techo-lado: #a5aaaf;
+  --copa: #7fa073;
+  --copa-luz: #9bbd8d;
+  --tronco: #8b6f55;
+  --sombra-escena: rgb(52 60 88 / 0.28);
+  --sombra-mapa: #283044;
+  --sombra-mapa-opacidad: 0.28;
+  --sombra-maqueta: drop-shadow(0 24px 26px rgb(90 70 40 / 0.22));
+  --franja-clase: rgb(30 40 55 / 0.05);
+  --marca-hora: rgb(30 40 55 / 0.3);
+  --linea-tiempo: linear-gradient(90deg, #6f95c2 0%, #a9c3da 15%, #e9a64f 45%, #d26a35 70%, #7584a6 100%);
+  --sol: #f0a43a;
 }

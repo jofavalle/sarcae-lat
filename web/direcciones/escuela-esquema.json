@@ -6,26 +6,44 @@
   "huso_horas": -6,
   "terreno": { "x0": -42, "y0": -27, "x1": 42, "y1": 27, "espesor": 2 },
   "superficies": [
-    { "id": "patio", "nombre": "Patio de concreto", "x0": -30, "y0": -9, "x1": 10, "y1": 9, "rol": "patio", "t_superficie": 50 },
-    { "id": "cancha", "nombre": "Cancha", "x0": 14, "y0": -10, "x1": 34, "y1": 8, "rol": "cancha", "t_superficie": 55 }
+    { "id": "patio", "nombre": "Patio de concreto", "x0": -30, "y0": -9, "x1": 10, "y1": 9, "rol": "patio" },
+    { "id": "cancha", "nombre": "Cancha", "x0": 14, "y0": -10, "x1": 34, "y1": 8, "rol": "cancha" }
   ],
   "volumenes": [
-    { "id": "pabellon-a", "nombre": "Pabellón de aulas A", "x0": -30, "y0": 12, "x1": 10, "y1": 20, "altura": 3.6, "alero": 1.2, "techo": "lámina", "t_superficie": 64 },
-    { "id": "pabellon-b", "nombre": "Pabellón de aulas B", "x0": -30, "y0": -20, "x1": 10, "y1": -12, "altura": 3.6, "alero": 1.2, "techo": "lámina", "t_superficie": 63 },
-    { "id": "direccion", "nombre": "Dirección", "x0": 16, "y0": 12, "x1": 30, "y1": 20, "altura": 3.2, "alero": 0.8, "techo": "losa", "t_superficie": 52 },
-    { "id": "sanitarios", "nombre": "Sanitarios", "x0": 18, "y0": -21, "x1": 28, "y1": -14, "altura": 3.0, "alero": 0.6, "techo": "lámina", "t_superficie": 61 }
+    { "id": "pabellon-a", "nombre": "Pabellón de aulas A", "x0": -30, "y0": 12, "x1": 10, "y1": 20, "altura": 3.6, "alero": 1.2, "techo": "lámina" },
+    { "id": "pabellon-b", "nombre": "Pabellón de aulas B", "x0": -30, "y0": -20, "x1": 10, "y1": -12, "altura": 3.6, "alero": 1.2, "techo": "lámina" },
+    { "id": "direccion", "nombre": "Dirección", "x0": 16, "y0": 12, "x1": 30, "y1": 20, "altura": 3.2, "alero": 0.8, "techo": "losa" },
+    { "id": "sanitarios", "nombre": "Sanitarios", "x0": 18, "y0": -21, "x1": 28, "y1": -14, "altura": 3.0, "alero": 0.6, "techo": "lámina" }
   ],
   "cubiertas": [
-    { "id": "techo-patio", "nombre": "Techo del patio", "x0": -14, "y0": -5, "x1": 2, "y1": 5, "altura": 4.5, "techo": "lámina", "t_superficie": 60 }
+    { "id": "techo-patio", "nombre": "Techo del patio", "x0": -14, "y0": -5, "x1": 2, "y1": 5, "altura": 4.5, "techo": "lámina" }
   ],
   "arboles": [
-    { "x": -37, "y": 15, "radio": 3, "altura": 6, "t_superficie": 31 },
-    { "x": -37, "y": -1, "radio": 3.2, "altura": 6.5, "t_superficie": 31 },
-    { "x": 38, "y": 12, "radio": 2.8, "altura": 5.5, "t_superficie": 32 },
-    { "x": 38, "y": -20, "radio": 3, "altura": 6, "t_superficie": 31 },
-    { "x": 12, "y": 24, "radio": 2.5, "altura": 5, "t_superficie": 32 },
-    { "x": 6, "y": 3, "radio": 3, "altura": 6, "t_superficie": 31 }
+    { "x": -37, "y": 15, "radio": 3, "altura": 6 },
+    { "x": -37, "y": -1, "radio": 3.2, "altura": 6.5 },
+    { "x": 38, "y": 12, "radio": 2.8, "altura": 5.5 },
+    { "x": 38, "y": -20, "radio": 3, "altura": 6 },
+    { "x": 12, "y": 24, "radio": 2.5, "altura": 5 },
+    { "x": 6, "y": 3, "radio": 3, "altura": 6 }
   ],
+  "calor_landsat": {
+    "t_superficie": 47,
+    "lado_m": 100,
+    "nota": "Temperatura de superficie de ejemplo del cuadro de Landsat en el que cae la escuela. Landsat mide en cuadros de 100 m (se sirve a 30 m): no separa el techo del patio."
+  },
+  "entorno_calor": {
+    "nota": "Cuadros de 100 m alrededor de la escuela, con temperaturas de superficie de ejemplo. Filas de sur a norte y columnas de oeste a este; la escuela cae en el cuadro central.",
+    "lado_m": 100,
+    "x0": -350,
+    "y0": -250,
+    "valores": [
+      [44, 46, 48, 49, 47, 45, 43],
+      [42, 45, 49, 51, 48, 44, 41],
+      [40, 43, 46, 47, 46, 42, 39],
+      [38, 40, 44, 45, 43, 40, 37],
+      [36, 38, 41, 42, 40, 38, 36]
+    ]
+  },
   "agua": {
     "lineas": [
       [[-20, 10.8], [-22, 2], [-26, -6], [-30, -10.6]],
