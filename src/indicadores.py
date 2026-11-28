@@ -62,10 +62,10 @@ NASADEM = {"nombre": "NASADEM_HGT, NASA JPL, distribuido por LP DAAC", "version"
            "licencia": "CC0-1.0",
            "url": "https://www.earthdata.nasa.gov/data/catalog/lpcloud-nasadem-hgt-001"}
 ERA5 = {"nombre": "ERA5, serie horaria por punto (ECMWF, para el C3S)",
-        "licencia": "CC-BY-4.0",
+        "version": "reanalysis-era5-single-levels-timeseries", "licencia": "CC-BY-4.0",
         "url": "https://cds.climate.copernicus.eu/datasets/reanalysis-era5-single-levels-timeseries"}
 ERA5_Z = {"nombre": "ERA5, niveles de superficie: geopotencial de la celda (ECMWF, para el C3S)",
-          "licencia": "CC-BY-4.0",
+          "version": "reanalysis-era5-single-levels", "licencia": "CC-BY-4.0",
           "url": "https://cds.climate.copernicus.eu/datasets/reanalysis-era5-single-levels"}
 
 
@@ -300,7 +300,6 @@ def leer_entradas(slug: str, recorte: Path, altitud_manual=None) -> dict:
     if ficha is None:
         raise SystemExit(f"{slug} no está en web/datos/escuelas.json")
     celda = _leer_json(recorte / "celda.json")
-    manifiesto = _leer_json(recorte / "manifiesto.json")
     serie = pd.read_parquet(recorte / "serie.parquet")
     notas = [celda["nota_ficticio"]] if celda.get("ficticio") else []
     relieve = DATOS / slug / "relieve" / "relieve.json"
@@ -316,10 +315,8 @@ def leer_entradas(slug: str, recorte: Path, altitud_manual=None) -> dict:
     else:
         raise SystemExit(f"falta {relieve.relative_to(ROOT).as_posix()} (orden #60); "
                          "con --altitud se da una provisional, que queda marcada como ficticia")
-    version = manifiesto["fuente"]["version"]
-    fuentes_era5 = [dict(ERA5, version=version), dict(ERA5_Z, version=version)]
     return {"ficha": ficha, "serie": serie, "celda": celda, "altitud": altitud,
-            "nasadem": nasadem, "fuentes_era5": fuentes_era5,
+            "nasadem": nasadem, "fuentes_era5": [dict(ERA5), dict(ERA5_Z)],
             "ficticio": " ".join(notas) or None}
 
 
