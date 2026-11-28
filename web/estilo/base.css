@@ -163,7 +163,30 @@ select:disabled { opacity: 0.6; cursor: default; }
 }
 .lienzo-vacio p { max-width: 40ch; }
 
-.capa-info { grid-area: info; display: grid; gap: var(--e-4); align-content: start; }
+/* Avisos de la página: el del ejemplo, con cifras ficticias, y el de una escuela que no
+   existe. Van encima del escenario, a todo el ancho, y se leen sin depender del color. */
+.avisos {
+  display: grid; gap: var(--e-1);
+  margin: var(--e-4) var(--e-8) 0;
+  padding: var(--e-3) var(--e-4);
+  background: var(--superficie-solida);
+  border: 1px solid var(--borde-fuerte); border-left-width: 4px; border-radius: var(--radio-2);
+  font-size: var(--t-pequeno);
+}
+.avisos p::before { content: "Aviso: "; font-weight: 600; }
+
+/* La escuela y el registro, en la columna de lectura. */
+.eleccion { display: grid; gap: var(--e-3); }
+.campo { display: grid; gap: var(--e-1); justify-items: start; min-width: 0; }
+.campo select {
+  width: 100%;
+  background: var(--superficie-2); border: 1px solid var(--borde); border-radius: var(--radio-1);
+  padding: 4px var(--e-2); font-size: var(--t-pequeno); cursor: pointer;
+}
+.campo select option { background: var(--superficie-solida); color: var(--texto); }
+
+/* minmax(0, 1fr): lo que lleva dentro no ensancha la columna ni la monta sobre la escena. */
+.capa-info { grid-area: info; display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--e-4); align-content: start; }
 .contexto { display: flex; align-items: center; gap: var(--e-2); font-size: var(--t-pequeno); color: var(--texto-2); }
 .punto { width: 8px; height: 8px; border-radius: 50%; background: var(--accion); box-shadow: 0 0 0 4px var(--accion-suave); }
 .capa-info h1 { font-size: var(--t-portada); font-weight: 600; line-height: var(--interlineado-corto); margin-top: calc(-1 * var(--e-1)); }
@@ -333,6 +356,7 @@ fieldset.celda .segmentado { clear: both; justify-self: start; }
   .celda:nth-child(2n) { border-right: 0; }
   .celda:last-child { grid-column: 1 / -1; border-bottom: 0; }
   .cabecera { padding-inline: var(--e-5); }
+  .avisos { margin-inline: var(--e-5); }
 }
 @media (max-width: 640px) {
   .cabecera { flex-direction: column; align-items: flex-start; gap: var(--e-2); }

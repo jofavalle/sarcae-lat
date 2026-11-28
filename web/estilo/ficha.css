@@ -1,0 +1,76 @@
+/* Estilo de web/js/ficha.js (orden #64). Todo valor sale de tokens.css: el calor y el agua
+   tienen color solo en los datos, y el texto va siempre en las tintas de texto. */
+
+/* El nombre largo se parte en líneas junto al punto, sin bajar debajo de él. */
+.contexto > span:not(.punto) { min-width: 0; }
+
+/* Las tres lecturas de la primera pantalla: la cifra y, debajo, su periodo. */
+.lecturas dd { display: grid; justify-items: end; max-width: 11rem; }
+.lecturas dd .periodo { font-size: var(--t-nota); font-weight: 400; color: var(--texto-2); white-space: normal; text-align: right; }
+
+/* El aviso de cifras ficticias: el tratamiento del aviso del ejemplo (base.css), junto a las
+   cifras. Se lee por su texto, «Aviso:», no por un color. */
+.aviso-datos {
+  display: grid; gap: var(--e-2);
+  padding: var(--e-3) var(--e-4);
+  background: var(--superficie-solida);
+  border: 1px solid var(--borde-fuerte); border-left-width: 4px; border-radius: var(--radio-2);
+  font-size: var(--t-pequeno);
+}
+.aviso-datos .nota { max-width: 76ch; }
+.aviso-datos summary { cursor: pointer; color: var(--accion); font-size: var(--t-rotulo); width: fit-content; }
+.aviso-datos details[open] summary { margin-bottom: var(--e-1); }
+
+.seccion h3 { font-size: var(--t-medio); font-weight: 600; margin-top: var(--e-4); }
+
+/* En las tablas de la ficha, la cabecera de fila es texto normal, no un rótulo. */
+.seccion .tabla tbody th {
+  font-size: inherit; font-weight: 400; color: var(--texto);
+  padding: var(--e-3) var(--e-4) var(--e-3) 0; border-bottom: 1px solid var(--borde);
+  vertical-align: top;
+}
+.tabla th.num { text-align: right; white-space: normal; }
+/* «el mismo umbral» es texto, no cifra: puede partirse en el móvil. */
+.tabla td.num.secundario { white-space: normal; font-weight: 400; }
+.tabla-meses { max-width: 28rem; }
+.tabla-meses caption { text-align: left; padding-bottom: var(--e-2); }
+
+/* La serie anual, en SVG hecho a mano. */
+.graficos { display: grid; gap: var(--e-6); }
+.grafico { display: grid; gap: var(--e-2); min-width: 0; }
+.grafico .lamina { height: 200px; overflow: hidden; }
+.serie { display: block; max-width: 100%; overflow: visible; }
+.serie text { font-family: var(--fuente-texto); font-size: 12px; fill: var(--texto-2); }
+.serie .rejilla { stroke: var(--borde); stroke-width: 1; }
+.serie .base { stroke: var(--borde-fuerte); stroke-width: 1; }
+.serie .barras.calor rect { fill: var(--calor); }
+.serie .barras.lluvia rect { fill: var(--agua); }
+.serie .barras rect:hover { fill: var(--texto); }
+.serie .promedios line { stroke: var(--texto); stroke-width: 2; stroke-dasharray: 5 3; }
+/* El rótulo del promedio lleva un halo del color del fondo, para leerse sobre las barras. */
+.serie .promedios text {
+  fill: var(--texto); font-weight: 600;
+  paint-order: stroke; stroke: var(--fondo); stroke-width: 4px; stroke-linejoin: round;
+}
+
+.serie-tabla summary { cursor: pointer; color: var(--accion); font-size: var(--t-pequeno); width: fit-content; }
+.serie-tabla[open] summary { margin-bottom: var(--e-2); }
+.serie-tabla .tabla { max-width: 36rem; }
+
+.glosario { display: grid; grid-template-columns: minmax(8rem, 14rem) 1fr; gap: var(--e-2) var(--e-6); max-width: 76ch; }
+.glosario dt { font-weight: 600; }
+.glosario dd { color: var(--texto-2); }
+
+.lista-material { display: grid; gap: var(--e-2); }
+.lista-material .secundario { color: var(--texto-2); font-size: var(--t-pequeno); }
+
+/* En el móvil, base.css apila las filas de las tablas y esconde su cabecera. Las de la ficha
+   son de cifras, que sin su cabecera no se entienden: se quedan como tablas. */
+@media (max-width: 640px) {
+  .seccion .tabla thead { display: table-header-group; }
+  .seccion .tabla tr { display: table-row; padding: 0; border: 0; }
+  .seccion .tabla td, .seccion .tabla th { padding: var(--e-2) var(--e-2) var(--e-2) 0; border-bottom: 1px solid var(--borde); }
+  .seccion .tabla .num { text-align: right; }
+  .glosario { grid-template-columns: 1fr; gap: var(--e-1); }
+  .glosario dd { margin-bottom: var(--e-2); }
+}

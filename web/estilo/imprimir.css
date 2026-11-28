@@ -1,0 +1,14 @@
+/* Impresión de la ficha (media="print" en index.html). La impresión completa de la ficha la
+   prepara la orden #74; las órdenes que llenan un módulo añaden aquí lo suyo, cada una en su
+   bloque. */
+
+/* #64: los avisos de cifras ficticias y del ejemplo salen en papel, en tinta oscura sobre
+   blanco: el papel no lleva el fondo oscuro de la pantalla. Son colores del sistema, no
+   valores nuevos: tokens.css sigue siendo la única fuente de color. */
+.avisos, .aviso-datos {
+  color-scheme: light;
+  color: CanvasText;
+  background: Canvas;
+  border-color: CanvasText;
+}
+.avisos *, .aviso-datos * { color: inherit; }

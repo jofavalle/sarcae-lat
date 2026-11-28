@@ -9,6 +9,12 @@
   <link rel="preload" href="fonts/ibm-plex-sans-latin-600-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="estilo/tokens.css">
   <link rel="stylesheet" href="estilo/base.css">
+  <link rel="stylesheet" href="estilo/ficha.css">
+  <link rel="stylesheet" href="estilo/maqueta.css">
+  <link rel="stylesheet" href="estilo/mapa.css">
+  <link rel="stylesheet" href="estilo/recorrido.css">
+  <link rel="stylesheet" href="estilo/asistente.css">
+  <link rel="stylesheet" href="estilo/imprimir.css" media="print">
   <script type="module" src="app.js"></script>
 </head>
 <body>
@@ -27,25 +33,48 @@
         <li><a href="#preguntar">Preguntar</a></li>
         <li><a href="#limites">Límites</a></li>
         <li><a href="#fuentes">Fuentes</a></li>
+        <li><a href="#glosario">Glosario</a></li>
       </ul>
     </nav>
   </header>
 
   <main id="principal">
+    <!-- Lo llena app.js: el aviso del ejemplo y el de una escuela que no existe. -->
+    <div class="avisos" id="avisos" role="status" hidden></div>
+
     <section class="escenario" aria-labelledby="titulo">
       <!-- La lectura va primero en el documento: el lector de pantalla y el teclado empiezan
            por el título. La rejilla la coloca a la izquierda. -->
       <div class="capa-info">
-        <p class="contexto"><span class="punto" aria-hidden="true"></span><span>Escuela ancla, El Salvador</span></p>
+        <!-- Punto de montaje de la ficha (js/ficha.js): el nombre, el municipio y el país. -->
+        <p class="contexto" id="ficha-escuela"><span class="punto" aria-hidden="true"></span><span>Escuela ancla, El Salvador</span></p>
         <h1 id="titulo">Calor y agua en la escuela: qué revisar y de qué conversar</h1>
         <p class="entrada">Para estudiantes, docentes y dirección. Mueve la hora, recorre las paradas de la maqueta y lleva sus preguntas a la clase o a la reunión.</p>
+        <!-- La escuela y el registro son estado: los enlaza app.js y van en la URL. -->
+        <div class="eleccion">
+          <div class="campo">
+            <label class="rotulo" for="escuela">Escuela</label>
+            <select id="escuela" disabled></select>
+          </div>
+          <fieldset class="con-leyenda">
+            <legend class="rotulo">Para quién es el texto</legend>
+            <div class="segmentado">
+              <label><input type="radio" name="registro" value="estudiante"><span>Estudiante</span></label>
+              <label><input type="radio" name="registro" value="docente" checked><span>Docente</span></label>
+              <label><input type="radio" name="registro" value="direccion"><span>Dirección</span></label>
+            </div>
+          </fieldset>
+        </div>
         <div class="lectura-hora">
           <p class="rotulo">Hora en la maqueta</p>
           <p class="hora" id="hora-grande">10:00</p>
           <p class="estado">La posición del sol a esta hora llega con la maqueta, desde el contrato de datos.</p>
         </div>
         <p class="rotulo">Calor y lluvia en la zona, y cómo han cambiado</p>
-        <dl class="lecturas">
+        <!-- Punto de montaje de la ficha: el aviso de cifras ficticias, junto a las cifras. -->
+        <div id="ficha-aviso" hidden></div>
+        <!-- Punto de montaje de la ficha: los tres indicadores con sus periodos. -->
+        <dl class="lecturas" id="ficha-lecturas">
           <div>
             <dt><svg class="icono icono-calor" viewBox="0 0 16 16" aria-hidden="true"><path d="M10 13.2V4a2 2 0 1 0-4 0v9.2a3.4 3.4 0 1 0 4 0Z"/><path d="M8 9v5"/></svg>Horas al año por encima de 27 °C en horario de clase</dt>
             <dd class="hueco">Llega con el contrato de datos.</dd>
@@ -63,14 +92,20 @@
       </div>
 
       <div class="lienzo">
-        <div class="lienzo-vacio">
-          <p class="rotulo-acento">La escena</p>
-          <p>Aquí va la maqueta de la escuela: dónde se acumula más el calor y por dónde podría llegar el agua.</p>
-          <p class="hueco">Llega con el contrato de datos: el relieve de NASADEM y los volúmenes de los edificios.</p>
+        <!-- Punto de montaje de la maqueta (js/maqueta.js, orden #65). -->
+        <div id="maqueta">
+          <div class="lienzo-vacio">
+            <p class="rotulo-acento">La escena</p>
+            <p>Aquí va la maqueta de la escuela: dónde se acumula más el calor y por dónde podría llegar el agua.</p>
+            <p class="hueco">Llega con el contrato de datos: el relieve de NASADEM y los volúmenes de los edificios.</p>
+          </div>
         </div>
+        <!-- Punto de montaje del mapa (js/mapa.js, orden #66), oculto en la vista de maqueta. -->
+        <div id="mapa" hidden></div>
       </div>
 
-      <aside class="panel" aria-labelledby="panel-titulo">
+      <!-- Punto de montaje del recorrido (js/recorrido.js, orden #68): el panel. -->
+      <aside class="panel" id="recorrido-panel" aria-labelledby="panel-titulo">
         <div class="panel-cabeza">
           <p class="rotulo-acento">Recorrido</p>
           <span class="insignia">Para conversar</span>
@@ -114,10 +149,10 @@
           <div class="celda">
             <label class="rotulo" for="fecha">Día del año</label>
             <select id="fecha" disabled>
-              <option>15 de enero</option>
-              <option selected>15 de abril</option>
-              <option>15 de julio</option>
-              <option>15 de octubre</option>
+              <option value="15">15 de enero</option>
+              <option value="105" selected>15 de abril</option>
+              <option value="196">15 de julio</option>
+              <option value="288">15 de octubre</option>
             </select>
           </div>
           <fieldset class="celda" disabled>
@@ -151,6 +186,8 @@
       </div>
     </section>
 
+    <!-- Puntos de montaje de la ficha (js/ficha.js): clima, límites, fuentes, glosario y
+         material. Del recorrido en texto (#68) y del asistente (#73), sus secciones. -->
     <section class="seccion" id="clima" aria-labelledby="clima-titulo">
       <h2 id="clima-titulo">Clima de la zona</h2>
       <p class="entradilla">Cuánto calor y cuánta lluvia extrema hay en el lugar de la escuela, y cómo han cambiado desde 1940. ERA5 describe la zona, no la escuela: su celda mide unos 28 km.</p>
@@ -190,6 +227,7 @@
     <section class="seccion" id="limites" aria-labelledby="limites-titulo">
       <h2 id="limites-titulo">Límites</h2>
       <p class="entradilla">Lo que la herramienta no hace y lo que sus datos no pueden decir.</p>
+      <p class="nota" id="limites-registro"></p>
       <ul class="lista-limites">
         <li>No es un pronóstico ni una evaluación oficial de riesgo. Las preguntas para conversar no son una calificación de la escuela.</li>
         <li>ERA5 describe la zona, no la escuela: su celda mide unos 28 km.</li>
@@ -209,10 +247,20 @@
           <tr><th scope="col">Fuente</th><th scope="col">Licencia</th><th scope="col">Para qué</th></tr>
         </thead>
         <tbody>
-          <tr><td>IBM Plex Sans e IBM Plex Mono, de IBM Corp.</td><td>SIL OFL 1.1</td><td>tipografía</td></tr>
+          <tr data-fija><td>IBM Plex Sans e IBM Plex Mono, de IBM Corp.</td><td>SIL OFL 1.1</td><td>tipografía</td></tr>
         </tbody>
       </table>
-      <p class="hueco">Las fuentes de los datos, con su fecha y su licencia, llegan con el contrato de datos.</p>
+      <p class="hueco" id="fuentes-hueco">Las fuentes de los datos, con su fecha y su licencia, llegan con el contrato de datos.</p>
+    </section>
+
+    <section class="seccion" id="glosario" aria-labelledby="glosario-titulo">
+      <h2 id="glosario-titulo">Glosario</h2>
+      <p class="hueco">Las palabras de la ficha, con su definición, llegan con el contrato de datos.</p>
+    </section>
+
+    <!-- Se enseña solo si existe material/material.json o la maqueta en STL. -->
+    <section class="seccion" id="material" aria-labelledby="material-titulo" hidden>
+      <h2 id="material-titulo">Para imprimir y construir</h2>
     </section>
   </main>
 
