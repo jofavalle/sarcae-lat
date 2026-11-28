@@ -36,8 +36,8 @@ fonts/ibm-plex-mono-latin-500-normal.woff2
 
 # Los datos (docs/contrato-datos.md). validacion.json y recorrido.json de la ancla todavía no
 # existen (#71 y #67): hasta que lleguen, se miden en su lugar los del ejemplo, que siguen el
-# mismo contrato, y quien los traiga cambia aquí su ruta. maqueta-generica.json (#65),
-# material.json (#74) y sv-88118/maqueta-stl.json (#75) entran aquí con su orden.
+# mismo contrato, y quien los traiga cambia aquí su ruta. material.json (#74) y
+# sv-88118/maqueta-stl.json (#75) entran aquí con su orden.
 datos/escuelas.json
 datos/sv-88118/escuela.json
 datos/sv-88118/clima.json
@@ -45,3 +45,4 @@ datos/ejemplo/validacion.json
 datos/ejemplo/recorrido.json
 datos/comun/limites.json
 datos/comun/glosario.json
+datos/comun/maqueta-generica.json

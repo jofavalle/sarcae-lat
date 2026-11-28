@@ -1,0 +1,279 @@
+{
+  "contrato": 1,
+  "generado": {
+    "utc": "2026-11-28T19:00:23+00:00",
+    "commit": "e7f5b374e1fcc192b22268f7167f944cefe20f04",
+    "comando": "python -m src.maqueta_generica"
+  },
+  "fuentes": [
+    {
+      "nombre": "Esquema de una escuela tipo, dibujo del equipo Itzpapálotl",
+      "version": "sha256:6b73aefb598c192bfc4864add216360682d3a5ec74c2985dfc0a9d1c42c5830d",
+      "licencia": "CC-BY-4.0",
+      "url": "https://github.com/jofavalle/sarcae-lat/blob/main/web/direcciones/escuela-esquema.json"
+    },
+    {
+      "nombre": "Zona baja y rutas hipotéticas, dibujo del equipo Itzpapálotl",
+      "version": "sha256:11dcfd4dd82efa6809c23f2f18fa1d1f2d327b5e1467479617cc84a222af42e3",
+      "licencia": "CC-BY-4.0",
+      "url": "https://github.com/jofavalle/sarcae-lat/blob/main/src/maqueta_generica.py"
+    }
+  ],
+  "aviso": "Maqueta genérica: no es la escuela. Son los volúmenes de una escuela tipo, dibujados por el equipo con medidas habituales de aulas, sin distribución interior, puertas ni accesos. El sol y las sombras son los de la escuela elegida; los edificios, no. Las rutas son hipotéticas, sobre una escuela genérica.",
+  "unidades": "metros; x hacia el este, y hacia el norte, origen en el centro del terreno",
+  "terreno": {
+    "x0": -42,
+    "y0": -27,
+    "x1": 42,
+    "y1": 27,
+    "espesor": 2
+  },
+  "superficies": [
+    {
+      "id": "patio",
+      "nombre": "Patio de concreto",
+      "x0": -30,
+      "y0": -9,
+      "x1": 10,
+      "y1": 9,
+      "rol": "patio"
+    },
+    {
+      "id": "cancha",
+      "nombre": "Cancha",
+      "x0": 14,
+      "y0": -10,
+      "x1": 34,
+      "y1": 8,
+      "rol": "cancha"
+    }
+  ],
+  "volumenes": [
+    {
+      "id": "pabellon-a",
+      "nombre": "Pabellón de aulas A",
+      "x0": -30,
+      "y0": 12,
+      "x1": 10,
+      "y1": 20,
+      "altura": 3.6,
+      "alero": 1.2,
+      "techo": "lámina"
+    },
+    {
+      "id": "pabellon-b",
+      "nombre": "Pabellón de aulas B",
+      "x0": -30,
+      "y0": -20,
+      "x1": 10,
+      "y1": -12,
+      "altura": 3.6,
+      "alero": 1.2,
+      "techo": "lámina"
+    },
+    {
+      "id": "direccion",
+      "nombre": "Dirección",
+      "x0": 16,
+      "y0": 12,
+      "x1": 30,
+      "y1": 20,
+      "altura": 3.2,
+      "alero": 0.8,
+      "techo": "losa"
+    },
+    {
+      "id": "sanitarios",
+      "nombre": "Sanitarios",
+      "x0": 18,
+      "y0": -21,
+      "x1": 28,
+      "y1": -14,
+      "altura": 3.0,
+      "alero": 0.6,
+      "techo": "lámina"
+    }
+  ],
+  "cubiertas": [
+    {
+      "id": "techo-patio",
+      "nombre": "Techo del patio",
+      "x0": -14,
+      "y0": -5,
+      "x1": 2,
+      "y1": 5,
+      "altura": 4.5,
+      "techo": "lámina"
+    }
+  ],
+  "arboles": [
+    {
+      "x": -37,
+      "y": 15,
+      "radio": 3,
+      "altura": 6
+    },
+    {
+      "x": -37,
+      "y": -1,
+      "radio": 3.2,
+      "altura": 6.5
+    },
+    {
+      "x": 38,
+      "y": 12,
+      "radio": 2.8,
+      "altura": 5.5
+    },
+    {
+      "x": 38,
+      "y": -20,
+      "radio": 3,
+      "altura": 6
+    },
+    {
+      "x": 12,
+      "y": 24,
+      "radio": 2.5,
+      "altura": 5
+    },
+    {
+      "x": 6,
+      "y": 3,
+      "radio": 3,
+      "altura": 6
+    }
+  ],
+  "agua": {
+    "lineas": [
+      [
+        [
+          -20,
+          10.8
+        ],
+        [
+          -22,
+          2
+        ],
+        [
+          -26,
+          -6
+        ],
+        [
+          -30,
+          -10.6
+        ]
+      ],
+      [
+        [
+          0,
+          10.8
+        ],
+        [
+          -3,
+          2
+        ],
+        [
+          -8,
+          -6
+        ],
+        [
+          -12,
+          -10.6
+        ]
+      ],
+      [
+        [
+          24,
+          8
+        ],
+        [
+          18,
+          -2
+        ],
+        [
+          12,
+          -10.6
+        ]
+      ],
+      [
+        [
+          10,
+          -11
+        ],
+        [
+          -36,
+          -11
+        ],
+        [
+          -38,
+          -23.5
+        ]
+      ]
+    ],
+    "canaleta": [
+      [
+        10,
+        -11
+      ],
+      [
+        -36,
+        -11
+      ]
+    ],
+    "punto_bajo": [
+      -38,
+      -24
+    ],
+    "zona_baja": {
+      "x0": -42,
+      "y0": -27,
+      "x1": -32,
+      "y1": -18
+    }
+  },
+  "rutas": [
+    {
+      "id": "a",
+      "nombre": "Ruta A",
+      "hasta": "la cancha",
+      "puntos": [
+        [
+          -10,
+          10
+        ],
+        [
+          12,
+          10
+        ],
+        [
+          12,
+          0
+        ],
+        [
+          24,
+          0
+        ]
+      ]
+    },
+    {
+      "id": "b",
+      "nombre": "Ruta B",
+      "hasta": "el terreno abierto del suroeste",
+      "puntos": [
+        [
+          -10,
+          10
+        ],
+        [
+          -34,
+          10
+        ],
+        [
+          -34,
+          -24
+        ]
+      ]
+    }
+  ]
+}

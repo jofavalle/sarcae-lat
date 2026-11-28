@@ -961,10 +961,31 @@ def validar_maqueta_generica(e, d, ejemplo=False):
     texto(e, d, "aviso", "")
     for k in ("volumenes", "superficies", "cubiertas", "arboles"):
         lista(e, d, k, "")
-    objeto(e, d, "agua", "")
+    agua = objeto(e, d, "agua", "")
     for k in ("lat", "lon", "latitud", "longitud"):
         if k in d:
             e(k, "la maqueta genérica no lleva puntos geográficos")
+    # La etapa 2 de la #65: la zona baja y las dos rutas hipotéticas, si están.
+    if isinstance(agua, dict) and "zona_baja" in agua:
+        z = objeto(e, agua, "zona_baja", "agua")
+        if z is not None:
+            x0, y0, x1, y1 = (numero(e, z, k, "agua.zona_baja") for k in ("x0", "y0", "x1", "y1"))
+            if None not in (x0, y0, x1, y1) and not (x0 < x1 and y0 < y1):
+                e("agua.zona_baja", "x0 y y0 van por debajo de x1 y y1")
+    if "rutas" in d:
+        ids = set()
+        for ri, r in _elementos(e, lista(e, d, "rutas", "", n=2), "rutas"):
+            rid = texto(e, r, "id", ri)
+            if rid in ids:
+                e(ri + ".id", f"{rid!r} se repite")
+            ids.add(rid)
+            for k in ("nombre", "hasta"):
+                t = texto(e, r, k, ri)
+                if t and vetadas(t):
+                    e(f"{ri}.{k}", f"lleva {', '.join(vetadas(t))}")
+            for i, pt in enumerate(lista(e, r, "puntos", ri, minimo=2) or []):
+                if not (isinstance(pt, list) and len(pt) == 2 and all(_es_numero(v) for v in pt)):
+                    e(f"{ri}.puntos[{i}]", "no es un punto [x, y] en metros")
 
 
 def validar_reserva(e, d, ejemplo=False):
