@@ -71,14 +71,20 @@ qué necesita en `main` antes de empezar y, si las hay, qué órdenes esperan po
    revisarlas en cuanto lleguen.
 
    **La #61 va con datos ficticios provisionales** (PR #91 y #94, `Refs #61`, decisión del
-   equipo en la issue). La serie completa de ERA5 de la 88118 está pedida al CDS, pero todavía
-   no se puede descargar, así que `web/datos/sv-88118/escuela.json` y `clima.json` llevan un
-   campo `datos_ficticios`. La #64 (ficha), la #67 (recorrido) y la #73 (asistente) tienen
+   equipo en la issue). La serie horaria completa de ERA5 de la 88118 llegó del CDS el 28 a las
+   11:31: 753 912 filas, de 1940-01-01 a 2026-01-01, en la celda (14,0; −89,25). Falta el
+   geopotencial de esa celda, que da `z_celda` y está en la cola del CDS (petición
+   `f2658a4d-f2d9-4c54-afde-3ef8230a26e3`). Hasta que llegue, `src/era5.py` deja la serie en
+   `data/raw/era5/.parcial-sv-88118-17kg6_gi/`, sin `registro.json`, y `--comprobar` espera a
+   la carpeta final. La descarga sigue en marcha en la máquina de cesarp03 y baja el
+   geopotencial sola cuando le toque; si se corta, se baja desde la página de solicitudes del
+   CDS. Mientras tanto, `web/datos/sv-88118/escuela.json` y `clima.json` siguen con el campo
+   `datos_ficticios`. La #64 (ficha), la #67 (recorrido) y la #73 (asistente) tienen
    pedido enseñarlo o propagarlo. La altura de la escuela ya es la real: con el relieve del #90,
    el #94 recalculó sin `--altitud`, y `z_escuela` pasó de 400 m ficticios a los 313,8 m de
-   NASADEM. La serie y `z_celda` siguen siendo ficticias. Para cerrar la #61 falta:
-   - la serie real, con `--comprobar` en verde, su recorte versionado en `recortes/sv-88118/era5/`
-     y volver a calcular, sin `--recorte`;
+   NASADEM. La serie publicada y `z_celda` siguen siendo ficticias. Para cerrar la #61 falta:
+   - el geopotencial de la celda y, con él, la serie real con `--comprobar` en verde, su recorte
+     versionado en `recortes/sv-88118/era5/` y volver a calcular, sin `--recorte`;
    - revisar la lluvia: la descarga de prueba de 2025 da 573 mm en la celda y no pasa el
      control de `src/era5_checks.py` (de 1,0 a 3,5 m al año). Se mira con la serie completa y
      contra CHIRPS (#79);
@@ -156,7 +162,8 @@ congelado el domingo 29 a las 8:00 y entrega a las 11:00.
   `metrics.json` del experimento, con la cita de la estación. En la ancla, Santa Ana/El Palmar
   se contrasta hora a hora de 07:00 a 17:00 hora local, porque solo tiene datos de día; las
   máximas y mínimas diarias se validan solo en las réplicas.
-- **2026-11-28. Datos ficticios mientras falta ERA5** (#61). La serie está pedida al CDS y
-  todavía no se puede descargar. Las órdenes siguen con una serie ficticia de
-  `src/era5_ficticio.py`, marcada con `datos_ficticios` y fuera de `recortes/`, y se sustituye
-  por la real cuando llegue. La regla operativa está en `CLAUDE.md`.
+- **2026-11-28. Datos ficticios mientras falta ERA5** (#61). Lo que falta de ERA5 se sustituye
+  con datos ficticios de `src/era5_ficticio.py`, marcados con `datos_ficticios` y fuera de
+  `recortes/`, hasta que llegue lo real. A las 11:31 llegó la serie horaria completa de la
+  88118, y solo falta el geopotencial de su celda y el de Santa Ana/El Palmar. La regla
+  operativa está en `CLAUDE.md`.
