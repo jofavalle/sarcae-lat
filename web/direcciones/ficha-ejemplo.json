@@ -1,15 +1,15 @@
 {
   "ejemplo": true,
-  "aviso": "Cifras de ejemplo para comparar las direcciones visuales. No son de la escuela ancla: se sustituyen por las del contrato de datos, y los indicadores, por los que se decidan en la #22.",
+  "aviso": "Cifras de ejemplo para comparar las direcciones visuales. No son de la escuela ancla: se sustituyen por las del contrato de datos. Los rótulos ya siguen las definiciones de los indicadores acordadas en la #22.",
   "escuela": { "nombre": "Escuela ancla", "pais": "El Salvador" },
   "clima": {
     "fuente": "ERA5, Copernicus Climate Change Service (CC BY 4.0). Cifras de ejemplo.",
     "nota": "ERA5 describe una celda de unos 28 km, no el patio de la escuela.",
     "cifras": [
-      { "icono": "calor", "valor": "34", "unidad": "días", "rotulo_corto": "Días al año con más de 32 °C en clase", "rotulo": "Días al año con más de 32 °C en horario de clase", "detalle": "Eran 12 en la década de 1940." },
-      { "icono": "calor", "valor": "+1,1", "unidad": "°C", "rotulo_corto": "Cambio de la temperatura media desde 1940", "rotulo": "Cambio de la temperatura media de la zona desde 1940", "detalle": "Década de 2016 a 2025 frente a la de 1940." },
-      { "icono": "lluvia", "valor": "96", "unidad": "mm", "rotulo_corto": "Lluvia del día más lluvioso del año", "rotulo": "Lluvia del día más lluvioso de un año típico", "detalle": "Mediana de 1991 a 2020." },
-      { "icono": "calendario", "valor": "abril", "unidad": "", "rotulo_corto": "Mes más caluroso", "rotulo": "Mes más caluroso", "detalle": "Mayo y junio son los de más lluvia al empezar el curso." }
+      { "icono": "calor", "valor": "410", "unidad": "horas", "rotulo_corto": "Horas al año sobre 27 °C en horario de clase", "rotulo": "Horas al año por encima de 27 °C, de lunes a viernes de 07:00 a 17:00", "detalle": "Promedio de 1996 a 2025, con la temperatura del aire corregida por altitud. De 1961 a 1990 eran 190." },
+      { "icono": "calor", "valor": "+0,9", "unidad": "°C", "rotulo_corto": "Cambio de la temperatura media desde 1961–1990", "rotulo": "Cambio de la temperatura media anual de la zona", "detalle": "Promedio de 1996 a 2025 frente al de 1961 a 1990." },
+      { "icono": "lluvia", "valor": "5", "unidad": "días", "rotulo_corto": "Días al año con lluvia sobre 85 mm", "rotulo": "Días al año con más de 85 mm de lluvia, el percentil 99 de la lluvia diaria de 1961 a 1990", "detalle": "Promedio de 1996 a 2025. De 1961 a 1990 eran 3,7: por definición, el 1 % de los días." },
+      { "icono": "calendario", "valor": "abril", "unidad": "", "rotulo_corto": "Mes más caluroso", "rotulo": "Mes más caluroso", "detalle": "El curso empieza en enero, y mayo abre la época de lluvias." }
     ]
   },
   "fechas": [
@@ -79,12 +79,12 @@
       "texto": {
         "estudiante": "El borde del techo que sobresale se llama alero. Protege la pared y las ventanas del sol y de la lluvia.",
         "docente": "Con la hora en la tarde se ve qué paredes quedan al sol. El alero del esquema mide 1,2 m.",
-        "direccion": "El manual recomienda la medida de los aleros según la zona de diseño de la escuela, que se decide en la #23."
+        "direccion": "Aquí no se recomienda una medida de alero: falta una referencia del manual aplicable a esta escuela y a cada fachada. Lo que sí se puede revisar es qué ventanas quedan al sol por la tarde."
       },
       "pregunta": {
         "estudiante": "¿Qué ventanas de tu aula reciben sol directo durante la clase?",
         "docente": "¿En qué aulas entra el sol por la ventana a media mañana o a media tarde?",
-        "direccion": "¿Los aleros de cada pabellón cubren las ventanas a media mañana y a media tarde?"
+        "direccion": "¿Qué ventanas reciben sol directo por la tarde y qué sombra les dan los aleros o parteluces?"
       }
     },
     {
@@ -95,7 +95,7 @@
       "hora": 14,
       "texto": {
         "estudiante": "Cuando llueve fuerte, el agua baja de los techos y corre por el patio hacia la parte más baja del terreno.",
-        "docente": "Las flechas siguen la pendiente del esquema. En el ejemplo, el día más lluvioso de un año típico deja 96 mm.",
+        "docente": "Las flechas siguen la pendiente del esquema. En el ejemplo, la lluvia de un día pasa de 85 mm unos 5 días al año.",
         "direccion": "La canaleta y el desagüe recogen el agua de los techos y del patio. La pendiente real saldrá del modelo de elevación NASADEM."
       },
       "pregunta": {

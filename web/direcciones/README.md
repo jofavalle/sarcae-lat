@@ -67,7 +67,9 @@ Hace falta un servidor porque la página lee dos JSON, y `file://` no lo permite
 
 - **Las cifras son de ejemplo** (`ficha-ejemplo.json`, y los cuadros de calor de
   `escuela-esquema.json`): no son de la escuela ancla. Se sustituyen por las del contrato de
-  datos, y los indicadores, por los de la #22.
+  datos. Los rótulos ya siguen las definiciones de los indicadores acordadas en la #22: horas
+  por encima de 27 °C en horario de clase, días por encima del percentil 99 de la lluvia
+  diaria de 1961 a 1990, y el cambio de 1961–1990 a 1996–2025.
 - **La maqueta es un esquema** (`escuela-esquema.json`) de una escuela tipo, en metros: dos
   pabellones de aulas, dirección, sanitarios, techo del patio, cancha y árboles. Solo
   volúmenes, sin distribución interior, puertas ni accesos. Se sustituye por Google Open
@@ -102,9 +104,9 @@ Hace falta un servidor porque la página lee dos JSON, y `file://` no lo permite
 
 ## Presupuesto
 
-Medido con `python -m src.presupuesto web/direcciones --limite-kb 70`: 31,1 KB con `gzip -9`
+Medido con `python -m src.presupuesto web/direcciones --limite-kb 70`: 32,2 KB con `gzip -9`
 para toda la carpeta. De ellos, `mapa.js` (4,7 KB) solo se carga con el mapa o la 3D, y el
-`README.md` (3,0 KB) no lo carga la página.
+`README.md` (3,2 KB) no lo carga la página.
 
 Las cuatro fuentes woff2 de `web/fonts/` suman 76,4 KB (límite de la ADR-001: 80 KB). La primera
 pantalla queda en unos 100 KB, por debajo de los 150 KB de la ADR-001.
