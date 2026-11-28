@@ -22,8 +22,9 @@ def gz(datos: bytes) -> int:
 
 
 def carpeta(tmp_path: Path) -> Path:
-    """Tres archivos, uno en una subcarpeta: texto repetido, que comprime mucho, y bytes
-    pseudoaleatorios, que apenas comprimen."""
+    """Cuatro archivos, uno en una subcarpeta: texto repetido, que comprime mucho, bytes
+    pseudoaleatorios, que apenas comprimen, un archivo vacío y `D.md`, que está para comprobar
+    que el orden de la tabla no depende del sistema."""
     raiz = tmp_path / "sitio"
     (raiz / "sub").mkdir(parents=True)
     (raiz / "a.txt").write_bytes(b"hola " * 2000)

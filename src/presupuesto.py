@@ -1,8 +1,9 @@
 """Presupuesto de carga: lo que pesa una carpeta del sitio, comprimida con gzip -9.
 
 Mide cada archivo de la carpeta, también los de sus subcarpetas, sin comprimir y comprimido
-con `gzip.compress(datos, compresslevel=9)`, como las tablas de ADR-001: en KB de 1000 bytes,
-con una décima. Imprime una fila por archivo y el total, y sale con código 1 si el total
+con `gzip.compress(datos, compresslevel=9)`, en KB de 1000 bytes y con una décima, en las
+mismas unidades que ADR-001; las cifras dependen del zlib de Python y pueden diferir de GNU
+gzip en unas décimas. Imprime una fila por archivo y el total, y sale con código 1 si el total
 comprimido pasa del límite. El límite se compara con los bytes exactos, no con el total
 redondeado.
 
