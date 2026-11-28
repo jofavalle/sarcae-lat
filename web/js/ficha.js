@@ -54,6 +54,34 @@ function icono(nombre) {
   return n;
 }
 
+// Una escuela con datos provisionales lleva `datos_ficticios` en escuela.json o clima.json
+// (comentario de la #61 en la #64). Mientras esté, el aviso va junto a las cifras, en los tres
+// registros y también al imprimir. Sin el campo, no se enseña nada.
+const AVISO_FICTICIOS = "Cifras provisionales y ficticias: la serie de ERA5 de esta escuela todavía no está descargada.";
+
+function notasFicticias(datos) {
+  const notas = [datos.escuela?.datos_ficticios, datos.clima?.datos_ficticios]
+    .filter((t) => typeof t === "string" && t.trim() !== "");
+  return [...new Set(notas)];
+}
+
+// desplegable: en la primera pantalla, la nota va en un <details> para no alargar la columna.
+function avisoFicticios(notas, { desplegable }) {
+  const caja = el("div", { class: "aviso-datos", role: "note" },
+    el("p", {}, el("strong", { texto: "Aviso: " }), AVISO_FICTICIOS));
+  const textos = notas.map((n) => el("p", { class: "nota", texto: n }));
+  if (desplegable) caja.append(el("details", {}, el("summary", { texto: "Qué es ficticio" }), ...textos));
+  else caja.append(...textos);
+  return caja;
+}
+
+function pintarAviso(ctx) {
+  const caja = document.getElementById("ficha-aviso");
+  const notas = notasFicticias(ctx.datos);
+  caja.replaceChildren(...(notas.length ? [avisoFicticios(notas, { desplegable: true })] : []));
+  caja.hidden = notas.length === 0;
+}
+
 const falta = (que) => el("p", { class: "hueco", texto: `Todavía no hay ${que} para esta escuela.` });
 const url = (ruta) => new URL(`../${ruta}`, import.meta.url).href;
 
@@ -190,16 +218,19 @@ function figuraSerie(id, opciones) {
   const lamina = el("div", { class: "lamina" });
   const figura = el("figure", { class: "grafico", id },
     el("figcaption", { class: "rotulo", texto: opciones.titulo }), lamina);
-  // Se dibuja cuando la lámina ya tiene ancho, y otra vez si cambia, en el fotograma siguiente.
+  // pintar() dibuja si el ancho de la lámina cambió. pintarClima la llama en cuanto la figura
+  // está en la página, y el observador en cada cambio de ancho. Dibujar dentro de la lámina no
+  // cambia su tamaño (alto fijo y overflow oculto), así que el observador no entra en bucle.
   let ultimo = 0;
-  new ResizeObserver(() => {
+  const pintar = () => {
     const w = Math.round(lamina.clientWidth);
     if (w > 0 && w !== ultimo) {
       ultimo = w;
-      requestAnimationFrame(() => dibujarSerie(figura, opciones));
+      dibujarSerie(figura, opciones);
     }
-  }).observe(lamina);
-  return figura;
+  };
+  new ResizeObserver(pintar).observe(lamina);
+  return { figura, pintar };
 }
 
 function pintarClima(ctx) {
@@ -237,7 +268,7 @@ function pintarClima(ctx) {
       el("th", { scope: "row", texto: MESES[x.mes - 1] }),
       el("td", { class: "num", texto: d1(x.horas) })))));
 
-  const graficos = el("div", { class: "graficos" },
+  const series = [
     figuraSerie("serie-calor", {
       serie: calor.serie, clave: "horas", unidad: calor.unidad, clase: "calor",
       titulo: `Horas al año por encima de ${coma(calor.umbral.valor)} ${calor.umbral.unidad} en horario de clase, de ${calor.serie[0].anio} a ${calor.serie.at(-1).anio}`,
@@ -253,7 +284,9 @@ function pintarClima(ctx) {
         { desde: 1961, hasta: 1990, valor: lluvia.dias_1961_1990 },
         { desde: 1996, hasta: 2025, valor: lluvia.dias_1996_2025 },
       ],
-    }));
+    }),
+  ];
+  const graficos = el("div", { class: "graficos" }, ...series.map((s) => s.figura));
 
   // La tabla alternativa de los dos gráficos: un año por fila.
   const dias = new Map(lluvia.serie.map((p) => [p.anio, p.dias]));
@@ -270,9 +303,12 @@ function pintarClima(ctx) {
         el("td", { class: "num", texto: coma(p.horas) }),
         el("td", { class: "num", texto: dias.has(p.anio) ? coma(dias.get(p.anio)) : "—" }))))));
 
-  seccion.replaceChildren(...cabeza, tabla, notas,
+  const ficticias = notasFicticias(ctx.datos);
+  const aviso = ficticias.length ? [avisoFicticios(ficticias, { desplegable: false })] : [];
+  seccion.replaceChildren(...cabeza, ...aviso, tabla, notas,
     el("h3", { texto: "Cómo ha cambiado desde 1940" }), graficos, serie,
     el("h3", { texto: "En qué meses hace más calor en horario de clase" }), meses);
+  for (const s of series) s.pintar();
 }
 
 function pintarLimites(ctx) {
@@ -362,6 +398,7 @@ function pintarMaterial(ctx) {
 
 export function iniciar(ctx) {
   pintarEscuela(ctx);
+  pintarAviso(ctx);
   pintarLecturas(ctx);
   pintarClima(ctx);
   pintarLimites(ctx);

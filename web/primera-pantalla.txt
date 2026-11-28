@@ -34,13 +34,13 @@ fonts/ibm-plex-sans-latin-600-normal.woff2
 fonts/ibm-plex-mono-latin-400-normal.woff2
 fonts/ibm-plex-mono-latin-500-normal.woff2
 
-# Los datos (docs/contrato-datos.md). La carpeta de la ancla, sv-88118/, llega con la #61:
-# hasta entonces se miden en su lugar los del ejemplo, que siguen el mismo contrato, y la #61
-# cambia estas cuatro rutas por las de sv-88118/. maqueta-generica.json (#65), material.json
-# (#74) y sv-88118/maqueta-stl.json (#75) entran aquí con su orden.
+# Los datos (docs/contrato-datos.md). validacion.json y recorrido.json de la ancla todavía no
+# existen (#71 y #67): hasta que lleguen, se miden en su lugar los del ejemplo, que siguen el
+# mismo contrato, y quien los traiga cambia aquí su ruta. maqueta-generica.json (#65),
+# material.json (#74) y sv-88118/maqueta-stl.json (#75) entran aquí con su orden.
 datos/escuelas.json
-datos/ejemplo/escuela.json
-datos/ejemplo/clima.json
+datos/sv-88118/escuela.json
+datos/sv-88118/clima.json
 datos/ejemplo/validacion.json
 datos/ejemplo/recorrido.json
 datos/comun/limites.json

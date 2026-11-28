@@ -8,6 +8,19 @@
 .lecturas dd { display: grid; justify-items: end; max-width: 11rem; }
 .lecturas dd .periodo { font-size: var(--t-nota); font-weight: 400; color: var(--texto-2); white-space: normal; text-align: right; }
 
+/* El aviso de cifras ficticias: el tratamiento del aviso del ejemplo (base.css), junto a las
+   cifras. Se lee por su texto, «Aviso:», no por un color. */
+.aviso-datos {
+  display: grid; gap: var(--e-2);
+  padding: var(--e-3) var(--e-4);
+  background: var(--superficie-solida);
+  border: 1px solid var(--borde-fuerte); border-left-width: 4px; border-radius: var(--radio-2);
+  font-size: var(--t-pequeno);
+}
+.aviso-datos .nota { max-width: 76ch; }
+.aviso-datos summary { cursor: pointer; color: var(--accion); font-size: var(--t-rotulo); width: fit-content; }
+.aviso-datos details[open] summary { margin-bottom: var(--e-1); }
+
 .seccion h3 { font-size: var(--t-medio); font-weight: 600; margin-top: var(--e-4); }
 
 /* En las tablas de la ficha, la cabecera de fila es texto normal, no un rótulo. */
