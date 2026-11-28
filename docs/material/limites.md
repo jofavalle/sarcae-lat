@@ -28,10 +28,10 @@ reconstruir el tiempo de cada hora desde 1940. Da un solo valor por celda, y cad
 28 km de lado, así que describe la zona y no la escuela. El detalle del entorno sale de otros
 datos, como el modelo de elevación y las imágenes de Landsat.
 
-**Dirección.** Las cifras de calor y lluvia de la ficha valen para una celda de unos 28 km de lado
-que contiene a la escuela, no para su edificio. Sirven para conocer el clima de la zona y cómo ha
-cambiado. Para decidir qué revisar conviene sumarlas a lo que observan quienes usan la escuela cada
-día.
+**Dirección.** Las cifras de calor y lluvia de la ficha salen de una celda de unos 28 km de lado
+que contiene a la escuela, y no describen su edificio. Sirven para conocer el clima de la zona y
+cómo ha cambiado. Para decidir qué revisar conviene sumarlas a lo que observan quienes usan la
+escuela cada día.
 
 ## La temperatura de superficie no es la del aire
 
