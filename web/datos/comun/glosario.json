@@ -1,0 +1,118 @@
+{
+  "contrato": 1,
+  "generado": {
+    "utc": "2026-11-28T15:06:02+00:00",
+    "commit": "b3e21926093e05203577a2f178ae07a457a049ab",
+    "comando": "python -m src.material"
+  },
+  "fuentes": [
+    {
+      "nombre": "docs/material/glosario.md",
+      "version": "sha256:db8fdb6cc8ba8c446e164c05bb1d1c1616334204bbe500db82d4ce90ea8545aa",
+      "licencia": "CC-BY-4.0",
+      "url": "https://github.com/jofavalle/sarcae-lat/blob/main/docs/material/glosario.md"
+    }
+  ],
+  "terminos": [
+    {
+      "termino": "celda",
+      "definicion": "cada cuadro en que se divide un mapa para hacer cálculos. Todo lo que queda dentro recibe el mismo valor. En ERA5, cada celda mide unos 28 km de lado."
+    },
+    {
+      "termino": "clima",
+      "definicion": "cómo es el tiempo de un lugar a lo largo de muchos años: cuánto calor hace, cuánto llueve y en qué meses."
+    },
+    {
+      "termino": "contorno",
+      "definicion": "la línea que marca el borde de un edificio visto desde arriba."
+    },
+    {
+      "termino": "criterio de diseño",
+      "definicion": "regla o recomendación para construir o adaptar una escuela, por ejemplo cuánta ventilación necesita un aula. Los criterios generales son los que no vienen de un país concreto."
+    },
+    {
+      "termino": "drenaje",
+      "definicion": "el camino que sigue el agua de lluvia para salir de un lugar, como canales, cunetas o la inclinación del patio."
+    },
+    {
+      "termino": "ERA5",
+      "definicion": "reanálisis de todo el planeta, hora por hora desde 1940, del programa europeo Copernicus de observación de la Tierra. Divide el mundo en celdas de unos 28 km de lado."
+    },
+    {
+      "termino": "error medio",
+      "definicion": "cuánto se aleja, en promedio, una estimación del valor real. Algunos casos se alejan más y otros menos."
+    },
+    {
+      "termino": "estación meteorológica",
+      "definicion": "un lugar con instrumentos que miden, cada hora o cada día, la temperatura, la humedad y la lluvia. Sus datos sirven para comprobar ERA5."
+    },
+    {
+      "termino": "estimación",
+      "definicion": "un valor calculado de forma indirecta, que se acerca al real pero puede no coincidir con él."
+    },
+    {
+      "termino": "evaluación oficial de riesgo",
+      "definicion": "el estudio con el que una autoridad, como protección civil, califica un lugar y decide qué medidas pide. SARCAE-LAT no la hace ni la sustituye."
+    },
+    {
+      "termino": "ficha",
+      "definicion": "la página de cada escuela, con su ubicación, el clima de la zona, el calor y el agua en su entorno, preguntas para conversar, fuentes y límites."
+    },
+    {
+      "termino": "impresión 3D",
+      "definicion": "fabricar un objeto sólido, capa por capa, a partir de un archivo. La maqueta digital se puede exportar para imprimirla así."
+    },
+    {
+      "termino": "Landsat",
+      "definicion": "satélites de la NASA y del Servicio Geológico de Estados Unidos que fotografían la Tierra desde 1972. También miden el calor que desprenden techos y suelos."
+    },
+    {
+      "termino": "lluvia extrema",
+      "definicion": "lluvia de un día o de pocas horas que está entre las más fuertes registradas en un lugar. La herramienta explica desde qué cantidad la cuenta."
+    },
+    {
+      "termino": "Manual de Diseño Mi Nueva Escuela",
+      "definicion": "guía del Ministerio de Educación de El Salvador (2022) con medidas y criterios de diseño para escuelas, como la ventilación, la sombra y el agua de lluvia."
+    },
+    {
+      "termino": "maqueta digital",
+      "definicion": "la escuela y su entorno en tres dimensiones, que se pueden girar en la pantalla. Muestra el relieve y los edificios como volúmenes."
+    },
+    {
+      "termino": "modelo de elevación",
+      "definicion": "un mapa con la altura del terreno sobre el nivel del mar, en cuadros de 30 m. SARCAE-LAT usa NASADEM, de la NASA."
+    },
+    {
+      "termino": "preguntas para conversar",
+      "definicion": "las que propone la herramienta para hablar en la escuela de qué revisar o preparar. No son una calificación de la escuela."
+    },
+    {
+      "termino": "pronóstico",
+      "definicion": "el cálculo de cómo estará el tiempo en las próximas horas o días. SARCAE-LAT no da pronósticos: muestra cómo ha sido el clima desde 1940."
+    },
+    {
+      "termino": "protección civil",
+      "definicion": "la autoridad pública de cada país que organiza la prevención y la atención de emergencias. Ante una emergencia, se sigue lo que ella indique."
+    },
+    {
+      "termino": "reanálisis",
+      "definicion": "una reconstrucción del tiempo de cada hora del pasado, que combina un programa de computadora con mediciones de estaciones meteorológicas, barcos, globos y satélites. No es una medición directa."
+    },
+    {
+      "termino": "relieve",
+      "definicion": "la forma del terreno, con sus subidas, bajadas y llanos. En la maqueta digital sale del modelo de elevación."
+    },
+    {
+      "termino": "temperatura de superficie",
+      "definicion": "lo calientes que están techos, calles y suelos, medido por satélite en cuadros de 100 m. Al sol puede ser mucho más alta que la del aire."
+    },
+    {
+      "termino": "temperatura del aire",
+      "definicion": "la que marca un termómetro a la sombra, a unos 2 m del suelo. Es la que da ERA5; el calor que se siente depende además de la humedad."
+    },
+    {
+      "termino": "volumen",
+      "definicion": "la forma exterior de un edificio vista como un bloque, con su contorno, su altura y su techo, sin nada de lo que hay dentro."
+    }
+  ]
+}

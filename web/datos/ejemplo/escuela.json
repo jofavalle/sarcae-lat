@@ -1,0 +1,53 @@
+{
+  "contrato": 1,
+  "ejemplo": true,
+  "aviso": "Ejemplo con cifras ficticias, inventadas para describir el contrato de datos. No son de ninguna escuela ni salen de ERA5.",
+  "generado": {
+    "utc": "2026-11-28T18:00:00+00:00",
+    "commit": "b3e2192",
+    "comando": "redactado en la orden #58: cifras ficticias, sin cálculo"
+  },
+  "fuentes": [
+    {
+      "nombre": "SARCAE-LAT, ejemplo del contrato de datos",
+      "version": "1",
+      "licencia": "CC-BY-4.0",
+      "url": "https://github.com/jofavalle/sarcae-lat"
+    },
+    {
+      "nombre": "Manual de Diseño Mi Nueva Escuela, MINEDUCYT",
+      "version": "2022",
+      "licencia": "cita",
+      "url": "https://www.mined.gob.sv/"
+    }
+  ],
+  "slug": "ejemplo",
+  "nombre": "Escuela de ejemplo",
+  "codigo": null,
+  "municipio": "Municipio de ejemplo",
+  "division": "Departamento de ejemplo",
+  "pais": "El Salvador",
+  "iso_pais": "SV",
+  "lat": 13.7,
+  "lon": -89.2,
+  "huso_horas": -6,
+  "altitud": {
+    "valor": 412.3,
+    "unidad": "m",
+    "fuente": "NASADEM"
+  },
+  "zona_diseno": "tropical caliente",
+  "zona_diseno_franja": {
+    "desde": 300,
+    "hasta": 700,
+    "unidad": "m",
+    "referencia": "Manual de Diseño Mi Nueva Escuela, anexo 8, p. 16"
+  },
+  "celda_era5": {
+    "lat": 13.75,
+    "lon": -89.25,
+    "resolucion": 0.25,
+    "unidad": "grados"
+  },
+  "criterios": "propios"
+}

@@ -1,0 +1,109 @@
+{
+  "contrato": 1,
+  "generado": {
+    "utc": "2026-11-28T15:16:29+00:00",
+    "commit": "b3e21926093e05203577a2f178ae07a457a049ab",
+    "comando": "python -m src.escuelas"
+  },
+  "escuelas": [
+    {
+      "slug": "sv-88118",
+      "nombre": "Centro Escolar Católico San Pablo Apóstol",
+      "codigo": "88118",
+      "municipio": "San Pablo Tacachico",
+      "division": "La Libertad",
+      "pais": "El Salvador",
+      "iso_pais": "SV",
+      "lat": 13.97567,
+      "lon": -89.34056,
+      "huso_horas": -6,
+      "ancla": true,
+      "estacion": {
+        "nombre": "Santa Ana/El Palmar",
+        "id": "ESI0000MSSA",
+        "lat": 13.97,
+        "lon": -89.53,
+        "distancia_km": 20.5
+      },
+      "fuente_coordenadas": {
+        "nombre": "SIGES (MINEDUCYT): ficha de la sede 88118 y mapa de sedes educativas",
+        "url": "https://portal.siges.sv/pp/sede?sede=11212",
+        "fecha_consulta": "2026-11-28",
+        "metodo": "directorio",
+        "licencia": null,
+        "direccion": "Avenida Vilanova, Barrio El Centro, San Pablo Tacachico, La Libertad",
+        "mapa": {
+          "nombre": "Mapa de sedes educativas del SIGES, capa de centros educativos privados",
+          "url": "https://qgis-client.siges.sv/"
+        },
+        "nota": "El punto es el que el mapa del SIGES da a la sede 88118 (13,975672; -89,340556), redondeado a 5 decimales, y cae sobre el edificio de la esquina de la Calle Principal Poniente con la 5a Avenida Sur. La ficha da el código y la dirección, Avenida Vilanova, que en los mapas web es otra calle, al este del centro; vale el punto del mapa oficial. Ni la ficha ni el mapa muestran una licencia."
+      }
+    },
+    {
+      "slug": "co-nicolas-esguerra",
+      "nombre": "Colegio Nacional Nicolás Esguerra",
+      "codigo": "111001010910",
+      "municipio": "Bogotá",
+      "division": "Bogotá, D.C.",
+      "pais": "Colombia",
+      "iso_pais": "CO",
+      "lat": 4.63279,
+      "lon": -74.12200,
+      "huso_horas": -5,
+      "ancla": false,
+      "estacion": {
+        "nombre": "El Dorado",
+        "id": "COI0000SKBO",
+        "lat": 4.7016,
+        "lon": -74.1469,
+        "distancia_km": 8.1
+      },
+      "fuente_coordenadas": {
+        "nombre": "Directorio de establecimientos educativos del Ministerio de Educación Nacional (datos.gov.co, conjunto upkm-vdjb), con el punto medido en Mapas Bogotá (IDECA)",
+        "url": "https://www.datos.gov.co/resource/upkm-vdjb.json?codigoestablecimiento=111001010910",
+        "fecha_consulta": "2026-11-28",
+        "metodo": "direccion-en-mapa",
+        "licencia": "CC BY-SA 4.0, la del directorio del MEN. Del mapa solo se midió el punto.",
+        "direccion": "AV 68 10 05, que Catastro reconoce como AK 68 10 05",
+        "mapa": {
+          "nombre": "Mapas Bogotá (IDECA): geocodificador de Catastro y herramienta de coordenadas, en MAGNA-SIRGAS (EPSG:4686)",
+          "url": "https://mapas.bogota.gov.co/"
+        },
+        "nota": "El directorio es del año 2016 y da el código DANE y la dirección. El punto es el centro del bloque principal del predio que el mapa rotula como Colegio Nacional Nicolás Esguerra (IED), al oeste de la Av. Carrera 68, entre las calles 9C y 10A. MAGNA-SIRGAS y WGS84 difieren en menos de un metro."
+      }
+    },
+    {
+      "slug": "ve-rafael-maria-baralt",
+      "nombre": "Unidad Educativa Nacional Rafael María Baralt",
+      "codigo": null,
+      "municipio": "Maracaibo",
+      "division": "Zulia",
+      "pais": "Venezuela",
+      "iso_pais": "VE",
+      "lat": 10.67002,
+      "lon": -71.62749,
+      "huso_horas": -4,
+      "ancla": false,
+      "estacion": {
+        "nombre": "La Chinita",
+        "id": "VEI0000SVMC",
+        "lat": 10.5582,
+        "lon": -71.7279,
+        "distancia_km": 16.6
+      },
+      "fuente_coordenadas": {
+        "nombre": "Ríos de Finol, M. J. (2000). La gestión administrativa escolar: estudio de casos. Encuentro Educacional, 7(2), 251-268. Universidad del Zulia. Con el punto medido en Google Maps",
+        "url": "https://produccioncientifica.luz.edu.ve/index.php/encuentro/article/view/1163",
+        "fecha_consulta": "2026-11-28",
+        "metodo": "direccion-en-mapa",
+        "licencia": "Derechos de autor de Encuentro Educacional. Solo se cita la ubicación, y del mapa solo se midió el punto.",
+        "direccion": "Al final de la Avenida 17, entre el sector Ziruma y la Circunvalación 2, Maracaibo (p. 259 del artículo)",
+        "mapa": {
+          "nombre": "Google Maps, vista de satélite",
+          "url": "https://www.google.com/maps"
+        },
+        "nota": "No se encontró un directorio público del MPPE con este plantel (orden #57). El punto es el centro del edificio más grande del recinto donde termina la Avenida 17, que el mapa rotula como Unidad Educativa Nacional Rafael María Baralt."
+      }
+    }
+  ]
+}
