@@ -13,9 +13,9 @@
     ],
     "limite": "Landsat estima la temperatura de techos y suelos cuando pasa el satélite. La temperatura del aire se mide por separado.",
     "generado": {
-      "utc": "2026-11-28T16:40:38+00:00",
-      "commit": "f94034475673693b6e8e7db53eb91b02a32ec762",
-      "comando": "python -m src.capas --todas"
+      "utc": "2026-11-28T18:12:14+00:00",
+      "commit": "323d7e4d964e14b4fec88058392cfec370a91171",
+      "comando": "python -m src.capas --escuela co-nicolas-esguerra"
     }
   },
   "features": [
@@ -49,9 +49,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 29.8,
+        "n_escenas": 15,
+        "sin_dato": false
       }
     },
     {
@@ -84,9 +84,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 33.9,
+        "n_escenas": 13,
+        "sin_dato": false
       }
     },
     {
@@ -119,9 +119,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 34.0,
+        "n_escenas": 14,
+        "sin_dato": false
       }
     },
     {
@@ -154,9 +154,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 32.1,
+        "n_escenas": 12,
+        "sin_dato": false
       }
     },
     {
@@ -189,9 +189,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 31.5,
+        "n_escenas": 14,
+        "sin_dato": false
       }
     },
     {
@@ -224,9 +224,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 32.7,
+        "n_escenas": 15,
+        "sin_dato": false
       }
     },
     {
@@ -259,9 +259,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 32.8,
+        "n_escenas": 15,
+        "sin_dato": false
       }
     },
     {
@@ -294,9 +294,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 32.7,
+        "n_escenas": 15,
+        "sin_dato": false
       }
     },
     {
@@ -329,9 +329,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 33.8,
+        "n_escenas": 17,
+        "sin_dato": false
       }
     },
     {
@@ -364,9 +364,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 36.4,
+        "n_escenas": 18,
+        "sin_dato": false
       }
     },
     {
@@ -399,9 +399,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 37.7,
+        "n_escenas": 18,
+        "sin_dato": false
       }
     },
     {
@@ -434,9 +434,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 37.2,
+        "n_escenas": 18,
+        "sin_dato": false
       }
     },
     {
@@ -469,9 +469,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 38.4,
+        "n_escenas": 17,
+        "sin_dato": false
       }
     },
     {
@@ -504,9 +504,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 40.9,
+        "n_escenas": 17,
+        "sin_dato": false
       }
     },
     {
@@ -539,9 +539,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 42.0,
+        "n_escenas": 17,
+        "sin_dato": false
       }
     },
     {
@@ -574,9 +574,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 40.5,
+        "n_escenas": 17,
+        "sin_dato": false
       }
     },
     {
@@ -609,9 +609,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 39.9,
+        "n_escenas": 17,
+        "sin_dato": false
       }
     },
     {
@@ -644,9 +644,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 40.3,
+        "n_escenas": 17,
+        "sin_dato": false
       }
     },
     {
@@ -679,9 +679,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 38.6,
+        "n_escenas": 17,
+        "sin_dato": false
       }
     },
     {
@@ -714,9 +714,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 38.1,
+        "n_escenas": 17,
+        "sin_dato": false
       }
     },
     {
@@ -749,9 +749,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 37.8,
+        "n_escenas": 16,
+        "sin_dato": false
       }
     },
     {
@@ -784,9 +784,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 30.1,
+        "n_escenas": 14,
+        "sin_dato": false
       }
     },
     {
@@ -819,9 +819,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 29.8,
+        "n_escenas": 14,
+        "sin_dato": false
       }
     },
     {
@@ -854,9 +854,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 31.7,
+        "n_escenas": 14,
+        "sin_dato": false
       }
     },
     {
@@ -889,9 +889,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 33.2,
+        "n_escenas": 14,
+        "sin_dato": false
       }
     },
     {
@@ -924,9 +924,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 33.2,
+        "n_escenas": 14,
+        "sin_dato": false
       }
     },
     {
@@ -959,9 +959,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 33.0,
+        "n_escenas": 15,
+        "sin_dato": false
       }
     },
     {
@@ -994,9 +994,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 33.1,
+        "n_escenas": 15,
+        "sin_dato": false
       }
     },
     {
@@ -1029,9 +1029,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 32.4,
+        "n_escenas": 15,
+        "sin_dato": false
       }
     },
     {
@@ -1064,9 +1064,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 32.8,
+        "n_escenas": 15,
+        "sin_dato": false
       }
     },
     {
@@ -1099,9 +1099,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 35.7,
+        "n_escenas": 16,
+        "sin_dato": false
       }
     },
     {
@@ -1134,9 +1134,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 37.4,
+        "n_escenas": 18,
+        "sin_dato": false
       }
     },
     {
@@ -1169,9 +1169,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 37.4,
+        "n_escenas": 18,
+        "sin_dato": false
       }
     },
     {
@@ -1204,9 +1204,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 40.0,
+        "n_escenas": 17,
+        "sin_dato": false
       }
     },
     {
@@ -1239,9 +1239,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 42.9,
+        "n_escenas": 17,
+        "sin_dato": false
       }
     },
     {
@@ -1274,9 +1274,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 42.5,
+        "n_escenas": 17,
+        "sin_dato": false
       }
     },
     {
@@ -1309,9 +1309,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 41.2,
+        "n_escenas": 17,
+        "sin_dato": false
       }
     },
     {
@@ -1344,9 +1344,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 39.5,
+        "n_escenas": 17,
+        "sin_dato": false
       }
     },
     {
@@ -1379,9 +1379,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 39.2,
+        "n_escenas": 17,
+        "sin_dato": false
       }
     },
     {
@@ -1414,9 +1414,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 38.4,
+        "n_escenas": 17,
+        "sin_dato": false
       }
     },
     {
@@ -1449,9 +1449,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 36.9,
+        "n_escenas": 17,
+        "sin_dato": false
       }
     },
     {
@@ -1484,9 +1484,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 37.3,
+        "n_escenas": 16,
+        "sin_dato": false
       }
     },
     {
@@ -1519,9 +1519,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 31.7,
+        "n_escenas": 14,
+        "sin_dato": false
       }
     },
     {
@@ -1554,9 +1554,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 28.3,
+        "n_escenas": 14,
+        "sin_dato": false
       }
     },
     {
@@ -1589,9 +1589,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 29.3,
+        "n_escenas": 14,
+        "sin_dato": false
       }
     },
     {
@@ -1624,9 +1624,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 31.8,
+        "n_escenas": 14,
+        "sin_dato": false
       }
     },
     {
@@ -1659,9 +1659,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 32.5,
+        "n_escenas": 14,
+        "sin_dato": false
       }
     },
     {
@@ -1694,9 +1694,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 32.3,
+        "n_escenas": 14,
+        "sin_dato": false
       }
     },
     {
@@ -1729,9 +1729,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 33.1,
+        "n_escenas": 15,
+        "sin_dato": false
       }
     },
     {
@@ -1764,9 +1764,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 31.8,
+        "n_escenas": 15,
+        "sin_dato": false
       }
     },
     {
@@ -1799,9 +1799,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 32.0,
+        "n_escenas": 15,
+        "sin_dato": false
       }
     },
     {
@@ -1834,9 +1834,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 34.2,
+        "n_escenas": 16,
+        "sin_dato": false
       }
     },
     {
@@ -1869,9 +1869,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 36.2,
+        "n_escenas": 17,
+        "sin_dato": false
       }
     },
     {
@@ -1904,9 +1904,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 38.1,
+        "n_escenas": 18,
+        "sin_dato": false
       }
     },
     {
@@ -1939,9 +1939,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 40.3,
+        "n_escenas": 17,
+        "sin_dato": false
       }
     },
     {
@@ -1974,9 +1974,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 40.8,
+        "n_escenas": 17,
+        "sin_dato": false
       }
     },
     {
@@ -2009,9 +2009,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 41.8,
+        "n_escenas": 17,
+        "sin_dato": false
       }
     },
     {
@@ -2044,9 +2044,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 42.2,
+        "n_escenas": 17,
+        "sin_dato": false
       }
     },
     {
@@ -2079,9 +2079,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 40.0,
+        "n_escenas": 17,
+        "sin_dato": false
       }
     },
     {
@@ -2114,9 +2114,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 38.6,
+        "n_escenas": 17,
+        "sin_dato": false
       }
     },
     {
@@ -2149,9 +2149,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 39.0,
+        "n_escenas": 17,
+        "sin_dato": false
       }
     },
     {
@@ -2184,9 +2184,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 37.0,
+        "n_escenas": 16,
+        "sin_dato": false
       }
     },
     {
@@ -2219,9 +2219,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 36.8,
+        "n_escenas": 16,
+        "sin_dato": false
       }
     },
     {
@@ -2254,9 +2254,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 34.4,
+        "n_escenas": 14,
+        "sin_dato": false
       }
     },
     {
@@ -2289,9 +2289,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 30.9,
+        "n_escenas": 14,
+        "sin_dato": false
       }
     },
     {
@@ -2324,9 +2324,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 29.6,
+        "n_escenas": 14,
+        "sin_dato": false
       }
     },
     {
@@ -2359,9 +2359,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 30.6,
+        "n_escenas": 14,
+        "sin_dato": false
       }
     },
     {
@@ -2394,9 +2394,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 31.1,
+        "n_escenas": 14,
+        "sin_dato": false
       }
     },
     {
@@ -2429,9 +2429,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 31.1,
+        "n_escenas": 14,
+        "sin_dato": false
       }
     },
     {
@@ -2464,9 +2464,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 33.3,
+        "n_escenas": 15,
+        "sin_dato": false
       }
     },
     {
@@ -2499,9 +2499,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 32.2,
+        "n_escenas": 15,
+        "sin_dato": false
       }
     },
     {
@@ -2534,9 +2534,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 32.6,
+        "n_escenas": 15,
+        "sin_dato": false
       }
     },
     {
@@ -2569,9 +2569,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 34.7,
+        "n_escenas": 16,
+        "sin_dato": false
       }
     },
     {
@@ -2604,9 +2604,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 35.8,
+        "n_escenas": 15,
+        "sin_dato": false
       }
     },
     {
@@ -2639,9 +2639,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 37.0,
+        "n_escenas": 17,
+        "sin_dato": false
       }
     },
     {
@@ -2674,9 +2674,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 38.0,
+        "n_escenas": 17,
+        "sin_dato": false
       }
     },
     {
@@ -2709,9 +2709,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 39.6,
+        "n_escenas": 17,
+        "sin_dato": false
       }
     },
     {
@@ -2744,9 +2744,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 40.0,
+        "n_escenas": 17,
+        "sin_dato": false
       }
     },
     {
@@ -2779,9 +2779,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 40.0,
+        "n_escenas": 17,
+        "sin_dato": false
       }
     },
     {
@@ -2814,9 +2814,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 40.3,
+        "n_escenas": 17,
+        "sin_dato": false
       }
     },
     {
@@ -2849,9 +2849,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 38.8,
+        "n_escenas": 17,
+        "sin_dato": false
       }
     },
     {
@@ -2884,9 +2884,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 39.0,
+        "n_escenas": 17,
+        "sin_dato": false
       }
     },
     {
@@ -2919,9 +2919,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 37.1,
+        "n_escenas": 16,
+        "sin_dato": false
       }
     },
     {
@@ -2954,9 +2954,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 36.1,
+        "n_escenas": 16,
+        "sin_dato": false
       }
     },
     {
@@ -2989,9 +2989,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 36.9,
+        "n_escenas": 14,
+        "sin_dato": false
       }
     },
     {
@@ -3024,9 +3024,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 33.8,
+        "n_escenas": 14,
+        "sin_dato": false
       }
     },
     {
@@ -3059,9 +3059,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 28.6,
+        "n_escenas": 14,
+        "sin_dato": false
       }
     },
     {
@@ -3094,9 +3094,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 28.7,
+        "n_escenas": 14,
+        "sin_dato": false
       }
     },
     {
@@ -3129,9 +3129,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 31.5,
+        "n_escenas": 14,
+        "sin_dato": false
       }
     },
     {
@@ -3164,9 +3164,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 31.8,
+        "n_escenas": 14,
+        "sin_dato": false
       }
     },
     {
@@ -3199,9 +3199,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 31.2,
+        "n_escenas": 15,
+        "sin_dato": false
       }
     },
     {
@@ -3234,9 +3234,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 31.5,
+        "n_escenas": 15,
+        "sin_dato": false
       }
     },
     {
@@ -3269,9 +3269,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 33.0,
+        "n_escenas": 15,
+        "sin_dato": false
       }
     },
     {
@@ -3304,9 +3304,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 34.7,
+        "n_escenas": 17,
+        "sin_dato": false
       }
     },
     {
@@ -3339,9 +3339,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 35.4,
+        "n_escenas": 16,
+        "sin_dato": false
       }
     },
     {
@@ -3374,9 +3374,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 36.7,
+        "n_escenas": 16,
+        "sin_dato": false
       }
     },
     {
@@ -3409,9 +3409,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 37.4,
+        "n_escenas": 16,
+        "sin_dato": false
       }
     },
     {
@@ -3444,9 +3444,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 37.8,
+        "n_escenas": 16,
+        "sin_dato": false
       }
     },
     {
@@ -3479,9 +3479,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 37.1,
+        "n_escenas": 16,
+        "sin_dato": false
       }
     },
     {
@@ -3514,9 +3514,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 36.7,
+        "n_escenas": 17,
+        "sin_dato": false
       }
     },
     {
@@ -3549,9 +3549,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 38.4,
+        "n_escenas": 17,
+        "sin_dato": false
       }
     },
     {
@@ -3584,9 +3584,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 39.8,
+        "n_escenas": 15,
+        "sin_dato": false
       }
     },
     {
@@ -3619,9 +3619,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 38.8,
+        "n_escenas": 15,
+        "sin_dato": false
       }
     },
     {
@@ -3654,9 +3654,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 37.9,
+        "n_escenas": 15,
+        "sin_dato": false
       }
     },
     {
@@ -3689,9 +3689,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 37.1,
+        "n_escenas": 16,
+        "sin_dato": false
       }
     },
     {
@@ -3724,9 +3724,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 33.2,
+        "n_escenas": 14,
+        "sin_dato": false
       }
     },
     {
@@ -3759,9 +3759,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 30.6,
+        "n_escenas": 14,
+        "sin_dato": false
       }
     },
     {
@@ -3794,9 +3794,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 27.6,
+        "n_escenas": 14,
+        "sin_dato": false
       }
     },
     {
@@ -3829,9 +3829,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 29.4,
+        "n_escenas": 14,
+        "sin_dato": false
       }
     },
     {
@@ -3864,9 +3864,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 32.2,
+        "n_escenas": 14,
+        "sin_dato": false
       }
     },
     {
@@ -3899,9 +3899,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 33.1,
+        "n_escenas": 14,
+        "sin_dato": false
       }
     },
     {
@@ -3934,9 +3934,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 32.2,
+        "n_escenas": 14,
+        "sin_dato": false
       }
     },
     {
@@ -3969,9 +3969,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 32.7,
+        "n_escenas": 15,
+        "sin_dato": false
       }
     },
     {
@@ -4004,9 +4004,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 33.2,
+        "n_escenas": 15,
+        "sin_dato": false
       }
     },
     {
@@ -4039,9 +4039,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 34.3,
+        "n_escenas": 14,
+        "sin_dato": false
       }
     },
     {
@@ -4074,9 +4074,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 35.4,
+        "n_escenas": 15,
+        "sin_dato": false
       }
     },
     {
@@ -4109,9 +4109,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 37.1,
+        "n_escenas": 14,
+        "sin_dato": false
       }
     },
     {
@@ -4144,9 +4144,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 39.4,
+        "n_escenas": 15,
+        "sin_dato": false
       }
     },
     {
@@ -4179,9 +4179,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 37.3,
+        "n_escenas": 16,
+        "sin_dato": false
       }
     },
     {
@@ -4214,9 +4214,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 35.6,
+        "n_escenas": 16,
+        "sin_dato": false
       }
     },
     {
@@ -4249,9 +4249,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 34.6,
+        "n_escenas": 17,
+        "sin_dato": false
       }
     },
     {
@@ -4284,9 +4284,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 35.7,
+        "n_escenas": 14,
+        "sin_dato": false
       }
     },
     {
@@ -4319,9 +4319,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 37.2,
+        "n_escenas": 14,
+        "sin_dato": false
       }
     },
     {
@@ -4354,9 +4354,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 38.7,
+        "n_escenas": 14,
+        "sin_dato": false
       }
     },
     {
@@ -4389,9 +4389,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 39.4,
+        "n_escenas": 14,
+        "sin_dato": false
       }
     },
     {
@@ -4424,9 +4424,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 37.0,
+        "n_escenas": 15,
+        "sin_dato": false
       }
     },
     {
@@ -4459,9 +4459,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 28.5,
+        "n_escenas": 14,
+        "sin_dato": false
       }
     },
     {
@@ -4494,9 +4494,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 29.0,
+        "n_escenas": 14,
+        "sin_dato": false
       }
     },
     {
@@ -4529,9 +4529,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 30.4,
+        "n_escenas": 14,
+        "sin_dato": false
       }
     },
     {
@@ -4564,9 +4564,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 32.9,
+        "n_escenas": 14,
+        "sin_dato": false
       }
     },
     {
@@ -4599,9 +4599,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 33.5,
+        "n_escenas": 15,
+        "sin_dato": false
       }
     },
     {
@@ -4634,9 +4634,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 33.7,
+        "n_escenas": 14,
+        "sin_dato": false
       }
     },
     {
@@ -4669,9 +4669,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 32.7,
+        "n_escenas": 14,
+        "sin_dato": false
       }
     },
     {
@@ -4704,9 +4704,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 32.8,
+        "n_escenas": 15,
+        "sin_dato": false
       }
     },
     {
@@ -4739,9 +4739,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 33.6,
+        "n_escenas": 15,
+        "sin_dato": false
       }
     },
     {
@@ -4774,9 +4774,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 35.8,
+        "n_escenas": 14,
+        "sin_dato": false
       }
     },
     {
@@ -4809,9 +4809,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 36.1,
+        "n_escenas": 14,
+        "sin_dato": false
       }
     },
     {
@@ -4844,9 +4844,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 36.9,
+        "n_escenas": 14,
+        "sin_dato": false
       }
     },
     {
@@ -4879,9 +4879,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 38.8,
+        "n_escenas": 14,
+        "sin_dato": false
       }
     },
     {
@@ -4914,9 +4914,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 37.2,
+        "n_escenas": 16,
+        "sin_dato": false
       }
     },
     {
@@ -4949,9 +4949,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 36.8,
+        "n_escenas": 17,
+        "sin_dato": false
       }
     },
     {
@@ -4984,9 +4984,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 35.5,
+        "n_escenas": 16,
+        "sin_dato": false
       }
     },
     {
@@ -5019,9 +5019,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 34.6,
+        "n_escenas": 14,
+        "sin_dato": false
       }
     },
     {
@@ -5054,9 +5054,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 35.9,
+        "n_escenas": 14,
+        "sin_dato": false
       }
     },
     {
@@ -5089,9 +5089,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 38.6,
+        "n_escenas": 14,
+        "sin_dato": false
       }
     },
     {
@@ -5124,9 +5124,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 38.3,
+        "n_escenas": 14,
+        "sin_dato": false
       }
     },
     {
@@ -5159,9 +5159,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 36.2,
+        "n_escenas": 14,
+        "sin_dato": false
       }
     },
     {
@@ -5194,9 +5194,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 27.5,
+        "n_escenas": 14,
+        "sin_dato": false
       }
     },
     {
@@ -5229,9 +5229,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 31.2,
+        "n_escenas": 14,
+        "sin_dato": false
       }
     },
     {
@@ -5264,9 +5264,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 34.5,
+        "n_escenas": 13,
+        "sin_dato": false
       }
     },
     {
@@ -5299,9 +5299,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 35.8,
+        "n_escenas": 13,
+        "sin_dato": false
       }
     },
     {
@@ -5334,9 +5334,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 36.3,
+        "n_escenas": 14,
+        "sin_dato": false
       }
     },
     {
@@ -5369,9 +5369,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 34.2,
+        "n_escenas": 14,
+        "sin_dato": false
       }
     },
     {
@@ -5404,9 +5404,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 31.6,
+        "n_escenas": 14,
+        "sin_dato": false
       }
     },
     {
@@ -5439,9 +5439,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 30.9,
+        "n_escenas": 15,
+        "sin_dato": false
       }
     },
     {
@@ -5474,9 +5474,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 33.7,
+        "n_escenas": 14,
+        "sin_dato": false
       }
     },
     {
@@ -5509,9 +5509,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 36.4,
+        "n_escenas": 14,
+        "sin_dato": false
       }
     },
     {
@@ -5544,9 +5544,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 37.0,
+        "n_escenas": 14,
+        "sin_dato": false
       }
     },
     {
@@ -5579,9 +5579,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 36.3,
+        "n_escenas": 13,
+        "sin_dato": false
       }
     },
     {
@@ -5614,9 +5614,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 36.1,
+        "n_escenas": 13,
+        "sin_dato": false
       }
     },
     {
@@ -5649,9 +5649,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 37.3,
+        "n_escenas": 15,
+        "sin_dato": false
       }
     },
     {
@@ -5684,9 +5684,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 37.3,
+        "n_escenas": 17,
+        "sin_dato": false
       }
     },
     {
@@ -5719,9 +5719,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 36.2,
+        "n_escenas": 16,
+        "sin_dato": false
       }
     },
     {
@@ -5754,9 +5754,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 34.6,
+        "n_escenas": 14,
+        "sin_dato": false
       }
     },
     {
@@ -5789,9 +5789,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 34.7,
+        "n_escenas": 14,
+        "sin_dato": false
       }
     },
     {
@@ -5824,9 +5824,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 36.8,
+        "n_escenas": 13,
+        "sin_dato": false
       }
     },
     {
@@ -5859,9 +5859,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 37.2,
+        "n_escenas": 13,
+        "sin_dato": false
       }
     },
     {
@@ -5894,9 +5894,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 37.3,
+        "n_escenas": 15,
+        "sin_dato": false
       }
     },
     {
@@ -5929,9 +5929,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 32.5,
+        "n_escenas": 14,
+        "sin_dato": false
       }
     },
     {
@@ -5964,9 +5964,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 34.7,
+        "n_escenas": 14,
+        "sin_dato": false
       }
     },
     {
@@ -5999,9 +5999,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 35.2,
+        "n_escenas": 13,
+        "sin_dato": false
       }
     },
     {
@@ -6034,9 +6034,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 36.3,
+        "n_escenas": 12,
+        "sin_dato": false
       }
     },
     {
@@ -6069,9 +6069,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 37.2,
+        "n_escenas": 12,
+        "sin_dato": false
       }
     },
     {
@@ -6104,9 +6104,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 33.6,
+        "n_escenas": 12,
+        "sin_dato": false
       }
     },
     {
@@ -6139,9 +6139,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 31.6,
+        "n_escenas": 14,
+        "sin_dato": false
       }
     },
     {
@@ -6174,9 +6174,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 31.4,
+        "n_escenas": 15,
+        "sin_dato": false
       }
     },
     {
@@ -6209,9 +6209,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 34.4,
+        "n_escenas": 14,
+        "sin_dato": false
       }
     },
     {
@@ -6244,9 +6244,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 36.9,
+        "n_escenas": 13,
+        "sin_dato": false
       }
     },
     {
@@ -6279,9 +6279,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 39.7,
+        "n_escenas": 14,
+        "sin_dato": false
       }
     },
     {
@@ -6314,9 +6314,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 39.2,
+        "n_escenas": 14,
+        "sin_dato": false
       }
     },
     {
@@ -6349,9 +6349,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 36.8,
+        "n_escenas": 13,
+        "sin_dato": false
       }
     },
     {
@@ -6384,9 +6384,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 37.0,
+        "n_escenas": 14,
+        "sin_dato": false
       }
     },
     {
@@ -6419,9 +6419,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 36.7,
+        "n_escenas": 15,
+        "sin_dato": false
       }
     },
     {
@@ -6454,9 +6454,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 36.1,
+        "n_escenas": 15,
+        "sin_dato": false
       }
     },
     {
@@ -6489,9 +6489,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 35.3,
+        "n_escenas": 15,
+        "sin_dato": false
       }
     },
     {
@@ -6524,9 +6524,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 35.0,
+        "n_escenas": 15,
+        "sin_dato": false
       }
     },
     {
@@ -6559,9 +6559,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 35.2,
+        "n_escenas": 14,
+        "sin_dato": false
       }
     },
     {
@@ -6594,9 +6594,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 37.2,
+        "n_escenas": 14,
+        "sin_dato": false
       }
     },
     {
@@ -6629,9 +6629,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 38.6,
+        "n_escenas": 14,
+        "sin_dato": false
       }
     },
     {
@@ -6664,9 +6664,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 36.2,
+        "n_escenas": 12,
+        "sin_dato": false
       }
     },
     {
@@ -6699,9 +6699,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 36.2,
+        "n_escenas": 13,
+        "sin_dato": false
       }
     },
     {
@@ -6734,9 +6734,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 35.2,
+        "n_escenas": 12,
+        "sin_dato": false
       }
     },
     {
@@ -6769,9 +6769,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 35.5,
+        "n_escenas": 12,
+        "sin_dato": false
       }
     },
     {
@@ -6804,9 +6804,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 36.1,
+        "n_escenas": 12,
+        "sin_dato": false
       }
     },
     {
@@ -6839,9 +6839,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 32.9,
+        "n_escenas": 12,
+        "sin_dato": false
       }
     },
     {
@@ -6874,9 +6874,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 32.5,
+        "n_escenas": 12,
+        "sin_dato": false
       }
     },
     {
@@ -6909,9 +6909,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 31.8,
+        "n_escenas": 14,
+        "sin_dato": false
       }
     },
     {
@@ -6944,9 +6944,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 34.2,
+        "n_escenas": 13,
+        "sin_dato": false
       }
     },
     {
@@ -6979,9 +6979,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 36.2,
+        "n_escenas": 13,
+        "sin_dato": false
       }
     },
     {
@@ -7014,9 +7014,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 37.3,
+        "n_escenas": 13,
+        "sin_dato": false
       }
     },
     {
@@ -7049,9 +7049,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 38.2,
+        "n_escenas": 15,
+        "sin_dato": false
       }
     },
     {
@@ -7084,9 +7084,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 36.6,
+        "n_escenas": 15,
+        "sin_dato": false
       }
     },
     {
@@ -7119,9 +7119,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 37.4,
+        "n_escenas": 15,
+        "sin_dato": false
       }
     },
     {
@@ -7154,9 +7154,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 37.1,
+        "n_escenas": 14,
+        "sin_dato": false
       }
     },
     {
@@ -7189,9 +7189,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 35.9,
+        "n_escenas": 15,
+        "sin_dato": false
       }
     },
     {
@@ -7224,9 +7224,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 36.1,
+        "n_escenas": 15,
+        "sin_dato": false
       }
     },
     {
@@ -7259,9 +7259,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 35.4,
+        "n_escenas": 15,
+        "sin_dato": false
       }
     },
     {
@@ -7294,9 +7294,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 36.3,
+        "n_escenas": 14,
+        "sin_dato": false
       }
     },
     {
@@ -7329,9 +7329,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 36.7,
+        "n_escenas": 14,
+        "sin_dato": false
       }
     },
     {
@@ -7364,9 +7364,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 37.3,
+        "n_escenas": 13,
+        "sin_dato": false
       }
     },
     {
@@ -7399,9 +7399,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 36.4,
+        "n_escenas": 12,
+        "sin_dato": false
       }
     },
     {
@@ -7434,9 +7434,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 35.8,
+        "n_escenas": 12,
+        "sin_dato": false
       }
     },
     {
@@ -7469,9 +7469,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 35.3,
+        "n_escenas": 12,
+        "sin_dato": false
       }
     },
     {
@@ -7504,9 +7504,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 35.0,
+        "n_escenas": 12,
+        "sin_dato": false
       }
     },
     {
@@ -7539,9 +7539,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 35.3,
+        "n_escenas": 12,
+        "sin_dato": false
       }
     },
     {
@@ -7574,9 +7574,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 33.0,
+        "n_escenas": 12,
+        "sin_dato": false
       }
     },
     {
@@ -7609,9 +7609,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 31.7,
+        "n_escenas": 13,
+        "sin_dato": false
       }
     },
     {
@@ -7644,9 +7644,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 31.9,
+        "n_escenas": 14,
+        "sin_dato": false
       }
     },
     {
@@ -7679,9 +7679,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 35.2,
+        "n_escenas": 14,
+        "sin_dato": false
       }
     },
     {
@@ -7714,9 +7714,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 34.5,
+        "n_escenas": 14,
+        "sin_dato": false
       }
     },
     {
@@ -7749,9 +7749,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 29.9,
+        "n_escenas": 14,
+        "sin_dato": false
       }
     },
     {
@@ -7784,9 +7784,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 32.0,
+        "n_escenas": 14,
+        "sin_dato": false
       }
     },
     {
@@ -7819,9 +7819,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 34.9,
+        "n_escenas": 15,
+        "sin_dato": false
       }
     },
     {
@@ -7854,9 +7854,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 36.9,
+        "n_escenas": 15,
+        "sin_dato": false
       }
     },
     {
@@ -7889,9 +7889,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 36.2,
+        "n_escenas": 14,
+        "sin_dato": false
       }
     },
     {
@@ -7924,9 +7924,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 34.6,
+        "n_escenas": 14,
+        "sin_dato": false
       }
     },
     {
@@ -7959,9 +7959,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 35.6,
+        "n_escenas": 14,
+        "sin_dato": false
       }
     },
     {
@@ -7994,9 +7994,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 37.0,
+        "n_escenas": 15,
+        "sin_dato": false
       }
     },
     {
@@ -8029,9 +8029,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 38.5,
+        "n_escenas": 15,
+        "sin_dato": false
       }
     },
     {
@@ -8064,9 +8064,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 36.4,
+        "n_escenas": 15,
+        "sin_dato": false
       }
     },
     {
@@ -8099,9 +8099,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 37.2,
+        "n_escenas": 13,
+        "sin_dato": false
       }
     },
     {
@@ -8134,9 +8134,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 36.7,
+        "n_escenas": 11,
+        "sin_dato": false
       }
     },
     {
@@ -8169,9 +8169,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 36.6,
+        "n_escenas": 12,
+        "sin_dato": false
       }
     },
     {
@@ -8204,9 +8204,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 36.7,
+        "n_escenas": 11,
+        "sin_dato": false
       }
     },
     {
@@ -8239,9 +8239,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 36.5,
+        "n_escenas": 11,
+        "sin_dato": false
       }
     },
     {
@@ -8274,9 +8274,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 35.7,
+        "n_escenas": 13,
+        "sin_dato": false
       }
     },
     {
@@ -8309,9 +8309,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 33.3,
+        "n_escenas": 13,
+        "sin_dato": false
       }
     },
     {
@@ -8344,9 +8344,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 31.4,
+        "n_escenas": 13,
+        "sin_dato": false
       }
     },
     {
@@ -8379,9 +8379,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 34.7,
+        "n_escenas": 14,
+        "sin_dato": false
       }
     },
     {
@@ -8414,9 +8414,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 38.5,
+        "n_escenas": 14,
+        "sin_dato": false
       }
     },
     {
@@ -8449,9 +8449,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 37.4,
+        "n_escenas": 14,
+        "sin_dato": false
       }
     },
     {
@@ -8484,9 +8484,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 33.0,
+        "n_escenas": 14,
+        "sin_dato": false
       }
     },
     {
@@ -8519,9 +8519,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 32.9,
+        "n_escenas": 14,
+        "sin_dato": false
       }
     },
     {
@@ -8554,9 +8554,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 35.5,
+        "n_escenas": 15,
+        "sin_dato": false
       }
     },
     {
@@ -8589,9 +8589,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 35.7,
+        "n_escenas": 15,
+        "sin_dato": false
       }
     },
     {
@@ -8624,9 +8624,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 36.6,
+        "n_escenas": 14,
+        "sin_dato": false
       }
     },
     {
@@ -8659,9 +8659,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 34.3,
+        "n_escenas": 14,
+        "sin_dato": false
       }
     },
     {
@@ -8694,9 +8694,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 34.6,
+        "n_escenas": 14,
+        "sin_dato": false
       }
     },
     {
@@ -8729,9 +8729,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 36.7,
+        "n_escenas": 14,
+        "sin_dato": false
       }
     },
     {
@@ -8764,9 +8764,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 37.9,
+        "n_escenas": 13,
+        "sin_dato": false
       }
     },
     {
@@ -8799,9 +8799,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 38.0,
+        "n_escenas": 14,
+        "sin_dato": false
       }
     },
     {
@@ -8834,9 +8834,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 38.7,
+        "n_escenas": 13,
+        "sin_dato": false
       }
     },
     {
@@ -8869,9 +8869,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 36.2,
+        "n_escenas": 11,
+        "sin_dato": false
       }
     },
     {
@@ -8904,9 +8904,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 36.7,
+        "n_escenas": 12,
+        "sin_dato": false
       }
     },
     {
@@ -8939,9 +8939,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 37.0,
+        "n_escenas": 11,
+        "sin_dato": false
       }
     },
     {
@@ -8974,9 +8974,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 36.4,
+        "n_escenas": 11,
+        "sin_dato": false
       }
     },
     {
@@ -9009,9 +9009,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 35.8,
+        "n_escenas": 12,
+        "sin_dato": false
       }
     },
     {
@@ -9044,9 +9044,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 34.2,
+        "n_escenas": 12,
+        "sin_dato": false
       }
     },
     {
@@ -9079,9 +9079,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 32.9,
+        "n_escenas": 13,
+        "sin_dato": false
       }
     },
     {
@@ -9114,9 +9114,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 35.4,
+        "n_escenas": 13,
+        "sin_dato": false
       }
     },
     {
@@ -9149,9 +9149,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 38.5,
+        "n_escenas": 14,
+        "sin_dato": false
       }
     },
     {
@@ -9184,9 +9184,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 39.5,
+        "n_escenas": 14,
+        "sin_dato": false
       }
     },
     {
@@ -9219,9 +9219,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 36.7,
+        "n_escenas": 14,
+        "sin_dato": false
       }
     },
     {
@@ -9254,9 +9254,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 36.2,
+        "n_escenas": 15,
+        "sin_dato": false
       }
     },
     {
@@ -9289,9 +9289,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 36.6,
+        "n_escenas": 15,
+        "sin_dato": false
       }
     },
     {
@@ -9324,9 +9324,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 35.9,
+        "n_escenas": 15,
+        "sin_dato": false
       }
     },
     {
@@ -9359,9 +9359,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 37.5,
+        "n_escenas": 14,
+        "sin_dato": false
       }
     },
     {
@@ -9394,9 +9394,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 36.4,
+        "n_escenas": 14,
+        "sin_dato": false
       }
     },
     {
@@ -9429,9 +9429,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 36.6,
+        "n_escenas": 14,
+        "sin_dato": false
       }
     },
     {
@@ -9464,9 +9464,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 37.1,
+        "n_escenas": 13,
+        "sin_dato": false
       }
     },
     {
@@ -9499,9 +9499,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 37.8,
+        "n_escenas": 13,
+        "sin_dato": false
       }
     },
     {
@@ -9534,9 +9534,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 38.5,
+        "n_escenas": 13,
+        "sin_dato": false
       }
     },
     {
@@ -9569,9 +9569,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 38.6,
+        "n_escenas": 13,
+        "sin_dato": false
       }
     },
     {
@@ -9604,9 +9604,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 35.6,
+        "n_escenas": 11,
+        "sin_dato": false
       }
     },
     {
@@ -9639,9 +9639,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 36.1,
+        "n_escenas": 12,
+        "sin_dato": false
       }
     },
     {
@@ -9674,9 +9674,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 36.4,
+        "n_escenas": 12,
+        "sin_dato": false
       }
     },
     {
@@ -9709,9 +9709,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 35.6,
+        "n_escenas": 12,
+        "sin_dato": false
       }
     },
     {
@@ -9744,9 +9744,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 35.2,
+        "n_escenas": 13,
+        "sin_dato": false
       }
     },
     {
@@ -9779,9 +9779,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 35.0,
+        "n_escenas": 13,
+        "sin_dato": false
       }
     },
     {
@@ -9814,9 +9814,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 34.2,
+        "n_escenas": 13,
+        "sin_dato": false
       }
     },
     {
@@ -9849,9 +9849,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 35.1,
+        "n_escenas": 13,
+        "sin_dato": false
       }
     },
     {
@@ -9884,9 +9884,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 38.2,
+        "n_escenas": 13,
+        "sin_dato": false
       }
     },
     {
@@ -9919,9 +9919,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 40.5,
+        "n_escenas": 14,
+        "sin_dato": false
       }
     },
     {
@@ -9954,9 +9954,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 36.7,
+        "n_escenas": 14,
+        "sin_dato": false
       }
     },
     {
@@ -9989,9 +9989,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 37.7,
+        "n_escenas": 14,
+        "sin_dato": false
       }
     },
     {
@@ -10024,9 +10024,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 37.3,
+        "n_escenas": 14,
+        "sin_dato": false
       }
     },
     {
@@ -10059,9 +10059,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 35.9,
+        "n_escenas": 15,
+        "sin_dato": false
       }
     },
     {
@@ -10094,9 +10094,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 38.0,
+        "n_escenas": 14,
+        "sin_dato": false
       }
     },
     {
@@ -10129,9 +10129,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 39.3,
+        "n_escenas": 14,
+        "sin_dato": false
       }
     },
     {
@@ -10164,9 +10164,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 39.1,
+        "n_escenas": 12,
+        "sin_dato": false
       }
     },
     {
@@ -10199,9 +10199,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 39.0,
+        "n_escenas": 12,
+        "sin_dato": false
       }
     },
     {
@@ -10234,9 +10234,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 39.2,
+        "n_escenas": 12,
+        "sin_dato": false
       }
     },
     {
@@ -10269,9 +10269,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 37.6,
+        "n_escenas": 12,
+        "sin_dato": false
       }
     },
     {
@@ -10304,9 +10304,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 36.2,
+        "n_escenas": 12,
+        "sin_dato": false
       }
     },
     {
@@ -10339,9 +10339,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 35.7,
+        "n_escenas": 12,
+        "sin_dato": false
       }
     },
     {
@@ -10374,9 +10374,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 36.2,
+        "n_escenas": 13,
+        "sin_dato": false
       }
     },
     {
@@ -10409,9 +10409,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 36.6,
+        "n_escenas": 12,
+        "sin_dato": false
       }
     },
     {
@@ -10444,9 +10444,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 36.0,
+        "n_escenas": 11,
+        "sin_dato": false
       }
     },
     {
@@ -10479,9 +10479,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 34.6,
+        "n_escenas": 13,
+        "sin_dato": false
       }
     },
     {
@@ -10514,9 +10514,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 34.0,
+        "n_escenas": 13,
+        "sin_dato": false
       }
     },
     {
@@ -10549,9 +10549,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 33.6,
+        "n_escenas": 13,
+        "sin_dato": false
       }
     },
     {
@@ -10584,9 +10584,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 34.5,
+        "n_escenas": 13,
+        "sin_dato": false
       }
     },
     {
@@ -10619,9 +10619,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 35.5,
+        "n_escenas": 13,
+        "sin_dato": false
       }
     },
     {
@@ -10654,9 +10654,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 36.2,
+        "n_escenas": 14,
+        "sin_dato": false
       }
     },
     {
@@ -10689,9 +10689,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 35.5,
+        "n_escenas": 14,
+        "sin_dato": false
       }
     },
     {
@@ -10724,9 +10724,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 36.4,
+        "n_escenas": 14,
+        "sin_dato": false
       }
     },
     {
@@ -10759,9 +10759,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 36.2,
+        "n_escenas": 14,
+        "sin_dato": false
       }
     },
     {
@@ -10794,9 +10794,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 36.6,
+        "n_escenas": 14,
+        "sin_dato": false
       }
     },
     {
@@ -10829,9 +10829,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 37.3,
+        "n_escenas": 14,
+        "sin_dato": false
       }
     },
     {
@@ -10864,9 +10864,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 37.4,
+        "n_escenas": 13,
+        "sin_dato": false
       }
     },
     {
@@ -10899,9 +10899,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 37.8,
+        "n_escenas": 12,
+        "sin_dato": false
       }
     },
     {
@@ -10934,9 +10934,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 36.9,
+        "n_escenas": 12,
+        "sin_dato": false
       }
     },
     {
@@ -10969,9 +10969,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 36.3,
+        "n_escenas": 12,
+        "sin_dato": false
       }
     },
     {
@@ -11004,9 +11004,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 36.6,
+        "n_escenas": 12,
+        "sin_dato": false
       }
     },
     {
@@ -11039,9 +11039,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 35.4,
+        "n_escenas": 12,
+        "sin_dato": false
       }
     },
     {
@@ -11074,9 +11074,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 36.9,
+        "n_escenas": 12,
+        "sin_dato": false
       }
     },
     {
@@ -11109,9 +11109,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 37.0,
+        "n_escenas": 13,
+        "sin_dato": false
       }
     },
     {
@@ -11144,9 +11144,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 37.3,
+        "n_escenas": 13,
+        "sin_dato": false
       }
     },
     {
@@ -11179,9 +11179,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 36.5,
+        "n_escenas": 13,
+        "sin_dato": false
       }
     },
     {
@@ -11214,9 +11214,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 34.0,
+        "n_escenas": 13,
+        "sin_dato": false
       }
     },
     {
@@ -11249,9 +11249,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 32.7,
+        "n_escenas": 12,
+        "sin_dato": false
       }
     },
     {
@@ -11284,9 +11284,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 31.8,
+        "n_escenas": 12,
+        "sin_dato": false
       }
     },
     {
@@ -11319,9 +11319,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 32.3,
+        "n_escenas": 13,
+        "sin_dato": false
       }
     },
     {
@@ -11354,9 +11354,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 33.1,
+        "n_escenas": 13,
+        "sin_dato": false
       }
     },
     {
@@ -11389,9 +11389,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 34.6,
+        "n_escenas": 14,
+        "sin_dato": false
       }
     },
     {
@@ -11424,9 +11424,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 36.4,
+        "n_escenas": 14,
+        "sin_dato": false
       }
     },
     {
@@ -11459,9 +11459,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 36.4,
+        "n_escenas": 14,
+        "sin_dato": false
       }
     },
     {
@@ -11494,9 +11494,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 36.2,
+        "n_escenas": 14,
+        "sin_dato": false
       }
     },
     {
@@ -11529,9 +11529,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 37.8,
+        "n_escenas": 14,
+        "sin_dato": false
       }
     },
     {
@@ -11564,9 +11564,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 37.3,
+        "n_escenas": 13,
+        "sin_dato": false
       }
     },
     {
@@ -11599,9 +11599,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 37.1,
+        "n_escenas": 12,
+        "sin_dato": false
       }
     },
     {
@@ -11634,9 +11634,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 36.6,
+        "n_escenas": 12,
+        "sin_dato": false
       }
     },
     {
@@ -11669,9 +11669,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 35.7,
+        "n_escenas": 12,
+        "sin_dato": false
       }
     },
     {
@@ -11704,9 +11704,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 36.5,
+        "n_escenas": 12,
+        "sin_dato": false
       }
     },
     {
@@ -11739,9 +11739,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 37.2,
+        "n_escenas": 11,
+        "sin_dato": false
       }
     },
     {
@@ -11774,9 +11774,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 36.0,
+        "n_escenas": 11,
+        "sin_dato": false
       }
     },
     {
@@ -11809,9 +11809,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 36.7,
+        "n_escenas": 13,
+        "sin_dato": false
       }
     },
     {
@@ -11844,9 +11844,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 36.2,
+        "n_escenas": 13,
+        "sin_dato": false
       }
     },
     {
@@ -11879,9 +11879,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 36.3,
+        "n_escenas": 13,
+        "sin_dato": false
       }
     },
     {
@@ -11914,9 +11914,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 35.2,
+        "n_escenas": 13,
+        "sin_dato": false
       }
     },
     {
@@ -11949,9 +11949,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 33.6,
+        "n_escenas": 13,
+        "sin_dato": false
       }
     },
     {
@@ -11984,9 +11984,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 31.8,
+        "n_escenas": 13,
+        "sin_dato": false
       }
     },
     {
@@ -12019,9 +12019,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 30.6,
+        "n_escenas": 12,
+        "sin_dato": false
       }
     },
     {
@@ -12054,9 +12054,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 30.2,
+        "n_escenas": 12,
+        "sin_dato": false
       }
     },
     {
@@ -12089,9 +12089,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 32.4,
+        "n_escenas": 12,
+        "sin_dato": false
       }
     },
     {
@@ -12124,9 +12124,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 35.5,
+        "n_escenas": 14,
+        "sin_dato": false
       }
     },
     {
@@ -12159,9 +12159,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 38.8,
+        "n_escenas": 14,
+        "sin_dato": false
       }
     },
     {
@@ -12194,9 +12194,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 39.0,
+        "n_escenas": 14,
+        "sin_dato": false
       }
     },
     {
@@ -12229,9 +12229,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 38.4,
+        "n_escenas": 14,
+        "sin_dato": false
       }
     },
     {
@@ -12264,9 +12264,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 37.9,
+        "n_escenas": 14,
+        "sin_dato": false
       }
     },
     {
@@ -12299,9 +12299,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 38.2,
+        "n_escenas": 13,
+        "sin_dato": false
       }
     },
     {
@@ -12334,9 +12334,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 37.2,
+        "n_escenas": 13,
+        "sin_dato": false
       }
     },
     {
@@ -12369,9 +12369,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 37.1,
+        "n_escenas": 13,
+        "sin_dato": false
       }
     },
     {
@@ -12404,9 +12404,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 36.9,
+        "n_escenas": 12,
+        "sin_dato": false
       }
     },
     {
@@ -12439,9 +12439,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 38.0,
+        "n_escenas": 11,
+        "sin_dato": false
       }
     },
     {
@@ -12474,9 +12474,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 38.1,
+        "n_escenas": 11,
+        "sin_dato": false
       }
     },
     {
@@ -12509,9 +12509,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 38.3,
+        "n_escenas": 11,
+        "sin_dato": false
       }
     },
     {
@@ -12544,9 +12544,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 36.1,
+        "n_escenas": 14,
+        "sin_dato": false
       }
     },
     {
@@ -12579,9 +12579,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 35.5,
+        "n_escenas": 13,
+        "sin_dato": false
       }
     },
     {
@@ -12614,9 +12614,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 35.3,
+        "n_escenas": 12,
+        "sin_dato": false
       }
     },
     {
@@ -12649,9 +12649,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 34.3,
+        "n_escenas": 13,
+        "sin_dato": false
       }
     },
     {
@@ -12684,9 +12684,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 34.0,
+        "n_escenas": 12,
+        "sin_dato": false
       }
     },
     {
@@ -12719,9 +12719,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 31.5,
+        "n_escenas": 12,
+        "sin_dato": false
       }
     },
     {
@@ -12754,9 +12754,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 30.4,
+        "n_escenas": 13,
+        "sin_dato": false
       }
     },
     {
@@ -12789,9 +12789,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 30.7,
+        "n_escenas": 13,
+        "sin_dato": false
       }
     },
     {
@@ -12824,9 +12824,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 33.6,
+        "n_escenas": 13,
+        "sin_dato": false
       }
     },
     {
@@ -12859,9 +12859,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 36.7,
+        "n_escenas": 13,
+        "sin_dato": false
       }
     },
     {
@@ -12894,9 +12894,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 38.5,
+        "n_escenas": 15,
+        "sin_dato": false
       }
     },
     {
@@ -12929,9 +12929,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 38.3,
+        "n_escenas": 14,
+        "sin_dato": false
       }
     },
     {
@@ -12964,9 +12964,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 37.7,
+        "n_escenas": 14,
+        "sin_dato": false
       }
     },
     {
@@ -12999,9 +12999,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 37.9,
+        "n_escenas": 14,
+        "sin_dato": false
       }
     },
     {
@@ -13034,9 +13034,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 38.5,
+        "n_escenas": 13,
+        "sin_dato": false
       }
     },
     {
@@ -13069,9 +13069,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 38.9,
+        "n_escenas": 12,
+        "sin_dato": false
       }
     },
     {
@@ -13104,9 +13104,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 38.6,
+        "n_escenas": 11,
+        "sin_dato": false
       }
     },
     {
@@ -13139,9 +13139,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 37.9,
+        "n_escenas": 11,
+        "sin_dato": false
       }
     },
     {
@@ -13174,9 +13174,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 37.9,
+        "n_escenas": 11,
+        "sin_dato": false
       }
     },
     {
@@ -13209,9 +13209,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 37.6,
+        "n_escenas": 11,
+        "sin_dato": false
       }
     },
     {
@@ -13244,9 +13244,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 38.4,
+        "n_escenas": 11,
+        "sin_dato": false
       }
     },
     {
@@ -13279,9 +13279,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 36.1,
+        "n_escenas": 14,
+        "sin_dato": false
       }
     },
     {
@@ -13314,9 +13314,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 35.8,
+        "n_escenas": 13,
+        "sin_dato": false
       }
     },
     {
@@ -13349,9 +13349,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 35.1,
+        "n_escenas": 12,
+        "sin_dato": false
       }
     },
     {
@@ -13384,9 +13384,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 34.6,
+        "n_escenas": 12,
+        "sin_dato": false
       }
     },
     {
@@ -13419,9 +13419,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 35.5,
+        "n_escenas": 12,
+        "sin_dato": false
       }
     },
     {
@@ -13454,9 +13454,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 33.1,
+        "n_escenas": 12,
+        "sin_dato": false
       }
     },
     {
@@ -13489,9 +13489,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 31.3,
+        "n_escenas": 13,
+        "sin_dato": false
       }
     },
     {
@@ -13524,9 +13524,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 31.8,
+        "n_escenas": 13,
+        "sin_dato": false
       }
     },
     {
@@ -13559,9 +13559,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 34.4,
+        "n_escenas": 14,
+        "sin_dato": false
       }
     },
     {
@@ -13594,9 +13594,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 36.5,
+        "n_escenas": 14,
+        "sin_dato": false
       }
     },
     {
@@ -13629,9 +13629,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 37.9,
+        "n_escenas": 14,
+        "sin_dato": false
       }
     },
     {
@@ -13664,9 +13664,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 37.3,
+        "n_escenas": 14,
+        "sin_dato": false
       }
     },
     {
@@ -13699,9 +13699,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 37.3,
+        "n_escenas": 13,
+        "sin_dato": false
       }
     },
     {
@@ -13734,9 +13734,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 36.9,
+        "n_escenas": 13,
+        "sin_dato": false
       }
     },
     {
@@ -13769,9 +13769,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 36.6,
+        "n_escenas": 13,
+        "sin_dato": false
       }
     },
     {
@@ -13804,9 +13804,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 37.9,
+        "n_escenas": 11,
+        "sin_dato": false
       }
     },
     {
@@ -13839,9 +13839,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 37.6,
+        "n_escenas": 11,
+        "sin_dato": false
       }
     },
     {
@@ -13874,9 +13874,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 37.7,
+        "n_escenas": 11,
+        "sin_dato": false
       }
     },
     {
@@ -13909,9 +13909,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 37.0,
+        "n_escenas": 11,
+        "sin_dato": false
       }
     },
     {
@@ -13944,9 +13944,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 36.1,
+        "n_escenas": 11,
+        "sin_dato": false
       }
     },
     {
@@ -13979,9 +13979,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 39.0,
+        "n_escenas": 11,
+        "sin_dato": false
       }
     },
     {
@@ -14014,9 +14014,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 36.1,
+        "n_escenas": 13,
+        "sin_dato": false
       }
     },
     {
@@ -14049,9 +14049,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 36.2,
+        "n_escenas": 13,
+        "sin_dato": false
       }
     },
     {
@@ -14084,9 +14084,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 35.6,
+        "n_escenas": 12,
+        "sin_dato": false
       }
     },
     {
@@ -14119,9 +14119,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 35.4,
+        "n_escenas": 12,
+        "sin_dato": false
       }
     },
     {
@@ -14154,9 +14154,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 35.5,
+        "n_escenas": 12,
+        "sin_dato": false
       }
     },
     {
@@ -14189,9 +14189,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 34.2,
+        "n_escenas": 12,
+        "sin_dato": false
       }
     },
     {
@@ -14224,9 +14224,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 32.4,
+        "n_escenas": 11,
+        "sin_dato": false
       }
     },
     {
@@ -14259,9 +14259,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 33.3,
+        "n_escenas": 12,
+        "sin_dato": false
       }
     },
     {
@@ -14294,9 +14294,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 34.9,
+        "n_escenas": 13,
+        "sin_dato": false
       }
     },
     {
@@ -14329,9 +14329,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 36.7,
+        "n_escenas": 14,
+        "sin_dato": false
       }
     },
     {
@@ -14364,9 +14364,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 37.4,
+        "n_escenas": 14,
+        "sin_dato": false
       }
     },
     {
@@ -14399,9 +14399,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 38.0,
+        "n_escenas": 15,
+        "sin_dato": false
       }
     },
     {
@@ -14434,9 +14434,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 37.2,
+        "n_escenas": 13,
+        "sin_dato": false
       }
     },
     {
@@ -14469,9 +14469,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 36.3,
+        "n_escenas": 13,
+        "sin_dato": false
       }
     },
     {
@@ -14504,9 +14504,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 36.2,
+        "n_escenas": 13,
+        "sin_dato": false
       }
     },
     {
@@ -14539,9 +14539,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 36.6,
+        "n_escenas": 11,
+        "sin_dato": false
       }
     },
     {
@@ -14574,9 +14574,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 36.1,
+        "n_escenas": 11,
+        "sin_dato": false
       }
     },
     {
@@ -14609,9 +14609,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 36.4,
+        "n_escenas": 12,
+        "sin_dato": false
       }
     },
     {
@@ -14644,9 +14644,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 36.4,
+        "n_escenas": 11,
+        "sin_dato": false
       }
     },
     {
@@ -14679,9 +14679,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 36.6,
+        "n_escenas": 11,
+        "sin_dato": false
       }
     },
     {
@@ -14714,9 +14714,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 38.4,
+        "n_escenas": 11,
+        "sin_dato": false
       }
     },
     {
@@ -14749,9 +14749,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 35.4,
+        "n_escenas": 12,
+        "sin_dato": false
       }
     },
     {
@@ -14784,9 +14784,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 36.0,
+        "n_escenas": 13,
+        "sin_dato": false
       }
     },
     {
@@ -14819,9 +14819,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 35.9,
+        "n_escenas": 13,
+        "sin_dato": false
       }
     },
     {
@@ -14854,9 +14854,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 35.4,
+        "n_escenas": 13,
+        "sin_dato": false
       }
     },
     {
@@ -14889,9 +14889,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 34.6,
+        "n_escenas": 11,
+        "sin_dato": false
       }
     },
     {
@@ -14924,9 +14924,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 32.9,
+        "n_escenas": 11,
+        "sin_dato": false
       }
     },
     {
@@ -14959,9 +14959,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 31.3,
+        "n_escenas": 11,
+        "sin_dato": false
       }
     },
     {
@@ -14994,9 +14994,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 33.0,
+        "n_escenas": 12,
+        "sin_dato": false
       }
     },
     {
@@ -15029,9 +15029,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 34.3,
+        "n_escenas": 12,
+        "sin_dato": false
       }
     },
     {
@@ -15064,9 +15064,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 35.3,
+        "n_escenas": 13,
+        "sin_dato": false
       }
     },
     {
@@ -15099,9 +15099,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 36.2,
+        "n_escenas": 13,
+        "sin_dato": false
       }
     },
     {
@@ -15134,9 +15134,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 36.7,
+        "n_escenas": 15,
+        "sin_dato": false
       }
     },
     {
@@ -15169,9 +15169,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 36.5,
+        "n_escenas": 14,
+        "sin_dato": false
       }
     },
     {
@@ -15204,9 +15204,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 36.2,
+        "n_escenas": 13,
+        "sin_dato": false
       }
     },
     {
@@ -15239,9 +15239,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 36.3,
+        "n_escenas": 12,
+        "sin_dato": false
       }
     },
     {
@@ -15274,9 +15274,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 36.5,
+        "n_escenas": 12,
+        "sin_dato": false
       }
     },
     {
@@ -15309,9 +15309,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 35.5,
+        "n_escenas": 11,
+        "sin_dato": false
       }
     },
     {
@@ -15344,9 +15344,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 35.6,
+        "n_escenas": 12,
+        "sin_dato": false
       }
     },
     {
@@ -15379,9 +15379,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 36.1,
+        "n_escenas": 11,
+        "sin_dato": false
       }
     },
     {
@@ -15414,9 +15414,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 36.5,
+        "n_escenas": 11,
+        "sin_dato": false
       }
     },
     {
@@ -15449,9 +15449,9 @@
         ]
       },
       "properties": {
-        "t_superficie_c": null,
-        "n_escenas": 2,
-        "sin_dato": true
+        "t_superficie_c": 36.6,
+        "n_escenas": 11,
+        "sin_dato": false
       }
     }
   ]

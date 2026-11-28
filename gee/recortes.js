@@ -1,11 +1,14 @@
 // Orden #62. Pegar en el editor de Earth Engine y ejecutar las tareas de Drive.
 // Recortes de las tres sedes exportados el 2026-11-28 (UTC).
+// Orden #96: umbral de CLOUD_COVER por escena, declarado en `nubes` de cada sede:
+// 20 en sv-88118 y ve-rafael-maria-baralt, y 60 en co-nicolas-esguerra, cuyo
+// recorte Landsat se volvió a exportar el 2026-11-28 (UTC) con ese umbral.
 // Cambiar SEDE a uno de los otros slugs después de comprobar el primer recorte.
 var SEDE = 'sv-88118';
 var SEDES = {
-  'sv-88118': {lon: -89.34056, lat: 13.97567, utm: 'EPSG:32616'},
-  'co-nicolas-esguerra': {lon: -74.12200, lat: 4.63279, utm: 'EPSG:32618'},
-  've-rafael-maria-baralt': {lon: -71.62749, lat: 10.67002, utm: 'EPSG:32619'}
+  'sv-88118': {lon: -89.34056, lat: 13.97567, utm: 'EPSG:32616', nubes: 20},
+  'co-nicolas-esguerra': {lon: -74.12200, lat: 4.63279, utm: 'EPSG:32618', nubes: 60},
+  've-rafael-maria-baralt': {lon: -71.62749, lat: 10.67002, utm: 'EPSG:32619', nubes: 20}
 };
 var sede = SEDES[SEDE];
 var WGS84 = 'EPSG:4326';
@@ -55,7 +58,7 @@ function landsat() {
     .filterBounds(ventana)
     .filterDate(DESDE, HASTA_EXCLUSIVO)
     .filter(ee.Filter.gte('CLOUD_COVER', 0))
-    .filter(ee.Filter.lt('CLOUD_COVER', 20))
+    .filter(ee.Filter.lt('CLOUD_COVER', sede.nubes))
     .filter(ee.Filter.eq('PROCESSING_LEVEL', 'L2SP'))
     .sort('system:time_start');
 

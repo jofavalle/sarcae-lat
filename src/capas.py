@@ -20,6 +20,13 @@ HASTA_EXCLUSIVO = date(2026, 1, 1)
 NUM_CUADROS = 21 ** 2
 LADO_COBERTURA = 210
 
+# Umbral de CLOUD_COVER por escena; el mismo que declara `nubes` en gee/recortes.js.
+NUBES_ESCENA = {
+    "sv-88118": 20,
+    "co-nicolas-esguerra": 60,
+    "ve-rafael-maria-baralt": 20,
+}
+
 PALETA = {
     0: ("Sin dato", "#414653"),
     10: ("Arbolado", "#406857"),
@@ -64,7 +71,7 @@ def cabecera(fuentes):
     return {"contrato": 1, "fuentes": fuentes}
 
 
-def estadisticas_escenas(ruta, huso_horas):
+def estadisticas_escenas(ruta, huso_horas, nubosidad_max):
     ids = set()
     segundos_utc = 0
     with ruta.open(encoding="utf-8-sig", newline="") as entrada:
@@ -75,7 +82,7 @@ def estadisticas_escenas(ruta, huso_horas):
             nubosidad = float(fila["nubosidad"])
             if not identidad or identidad in ids:
                 raise ValueError(f"{ruta.name}: escena vacía o repetida ({identidad!r})")
-            if not DESDE <= fecha < HASTA_EXCLUSIVO or not 0 <= nubosidad < 20:
+            if not DESDE <= fecha < HASTA_EXCLUSIVO or not 0 <= nubosidad < nubosidad_max:
                 raise ValueError(f"{ruta.name}: fecha o nubosidad fuera del filtro en {identidad}")
             if hora.tzinfo is not None:
                 raise ValueError(f"{ruta.name}: hora_utc debe venir en UTC sin sufijo en {identidad}")
@@ -226,7 +233,8 @@ def preparar(escuela):
     landsat, worldcover, open_buildings = (carpeta / nombre
                                          for nombre in ("landsat", "worldcover", "open-buildings"))
     fuentes = [fuente(ruta) for ruta in (landsat, worldcover, open_buildings)]
-    escenas = estadisticas_escenas(landsat / "escenas.csv", escuela["huso_horas"])
+    escenas = estadisticas_escenas(landsat / "escenas.csv", escuela["huso_horas"],
+                                   NUBES_ESCENA[escuela["slug"]])
     calor = capa_calor(landsat / "cuadros.geojson", fuentes[0], escenas["escenas"])
     edificios = capa_edificios(open_buildings / "edificios.geojson", fuentes[2])
     rgb, clases = imagen_cobertura(worldcover / "celdas.csv")

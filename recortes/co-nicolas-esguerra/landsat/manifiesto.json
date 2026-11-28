@@ -12,20 +12,20 @@
   "atribucion": "Landsat Collection 2 Level-2 image courtesy of the U.S. Geological Survey.",
   "fecha_descarga": "2026-11-28",
   "generado": {
-    "utc": "2026-11-28T16:40:32+00:00",
-    "commit": "f94034475673693b6e8e7db53eb91b02a32ec762",
+    "utc": "2026-11-28T18:11:45+00:00",
+    "commit": "323d7e4d964e14b4fec88058392cfec370a91171",
     "comando": "python -m src.recortes --escribir recortes/co-nicolas-esguerra/landsat --fuente 'Landsat 8 y 9' --version 'Collection 2, Tier 1, Level-2 (L2SP)' --url-fuente https://www.usgs.gov/landsat-missions/landsat-collection-2-level-2-science-products --licencia dominio-publico --url-licencia https://www.usgs.gov/landsat-missions/landsat-collection-2-level-2-science-products --atribucion 'Landsat Collection 2 Level-2 image courtesy of the U.S. Geological Survey.' --fecha-descarga 2026-11-28"
   },
   "archivos": [
     {
       "nombre": "cuadros.geojson",
-      "bytes": 151078,
-      "sha256": "fcf48b1d087ad5ac0e6c625132b6afa2ff35bbe313deabee07aec75ed64792d8"
+      "bytes": 151478,
+      "sha256": "9348fefb6a74b67004f578188f42beceb3ff37e5e19140bad0e109f65122cca4"
     },
     {
       "nombre": "escenas.csv",
-      "bytes": 161,
-      "sha256": "d93d150a30505166855e55b74621987aea8d321582240f9adf80bb225c9ebe07"
+      "bytes": 1701,
+      "sha256": "718b2cd27cc2641617a31e038d86c083618f023e9b341598e0a656c94ddf3195"
     }
   ]
 }
