@@ -24,9 +24,11 @@ inferencia sin estado y marca las respuestas HTTP para que no se almacenen en ca
   models.» Las entradas y salidas de la inferencia sin estado se conservan el tiempo necesario para
   responder, con excepciones de seguridad y obligaciones legales. Cloudflare también puede conservar
   metadatos operativos. Consulta del 2026-11-27. [Uso de datos de Workers AI](https://developers.cloudflare.com/workers-ai/platform/data-usage/).
-- El apartado 9 de las condiciones de Developer Platform contempla usar el contenido «as needed to
-  provide and improve the Services». Ese permiso para operar y mejorar el servicio se lee junto con
-  el compromiso de Workers AI sobre entrenamiento. Consulta del 2026-11-27. [Condiciones de Developer Platform](https://www.cloudflare.com/service-specific-terms-developer-platform/).
+- El apartado 9 de la sección «Cloudflare Workers AI; AI Gateway» de las condiciones específicas
+  del servicio contempla usar el contenido «as needed to provide and improve the Services», salvo
+  acuerdo distinto. El apartado 1 de esa sección establece que, salvo acuerdo distinto, Cloudflare
+  no usa ese contenido para entrenar herramientas de IA generativa. Consulta del 2026-11-28.
+  [Condiciones específicas de Cloudflare](https://www.cloudflare.com/service-specific-terms-developer-platform/).
 
 ## Edad del público
 
