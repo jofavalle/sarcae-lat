@@ -1,0 +1,381 @@
+{
+  "descripcion": "ERA5 frente a la estación, día a día: la media, la máxima y la mínima de las horas emparejadas. El sesgo es una limitación que se declara, no una calificación.",
+  "definiciones": {
+    "sesgo_k": "media de ERA5 menos la estación, en K",
+    "error_cuadratico_medio_k": "raíz de la media de (ERA5 menos la estación) al cuadrado, en K",
+    "con_correccion": "ERA5 corregido en cada hora: T_ERA5 - Γ·(z_est - z_celda)",
+    "dias": "días locales válidos según el criterio de cobertura del config.yaml"
+  },
+  "estaciones": {
+    "COI0000SKBO": {
+      "nombre": "Bogotá/El Dorado",
+      "lat": 4.7016,
+      "lon": -74.1469,
+      "z_estacion_m": 2548.4,
+      "huso_horas": -5,
+      "distancia_estacion_escuela_km": 8.1,
+      "era5": {
+        "punto_pedido": {
+          "lat": 4.7016,
+          "lon": -74.1469
+        },
+        "punto_rejilla": {
+          "lat": 4.75,
+          "lon": -74.25
+        },
+        "z_celda_m": 2430.61
+      },
+      "correccion_k": -0.7656,
+      "por_anio": {
+        "2024": {
+          "dias": 361,
+          "media": {
+            "sin_correccion": {
+              "sesgo_k": 1.4545,
+              "error_cuadratico_medio_k": 1.7331
+            },
+            "con_correccion": {
+              "sesgo_k": 0.6889,
+              "error_cuadratico_medio_k": 1.1673
+            }
+          },
+          "maxima": {
+            "sin_correccion": {
+              "sesgo_k": 0.3489,
+              "error_cuadratico_medio_k": 1.8439
+            },
+            "con_correccion": {
+              "sesgo_k": -0.4167,
+              "error_cuadratico_medio_k": 1.858
+            }
+          },
+          "minima": {
+            "sin_correccion": {
+              "sesgo_k": 3.1226,
+              "error_cuadratico_medio_k": 3.4665
+            },
+            "con_correccion": {
+              "sesgo_k": 2.357,
+              "error_cuadratico_medio_k": 2.7966
+            }
+          }
+        },
+        "2025": {
+          "dias": 355,
+          "media": {
+            "sin_correccion": {
+              "sesgo_k": 1.5054,
+              "error_cuadratico_medio_k": 1.787
+            },
+            "con_correccion": {
+              "sesgo_k": 0.7397,
+              "error_cuadratico_medio_k": 1.2143
+            }
+          },
+          "maxima": {
+            "sin_correccion": {
+              "sesgo_k": -0.2944,
+              "error_cuadratico_medio_k": 1.7552
+            },
+            "con_correccion": {
+              "sesgo_k": -1.06,
+              "error_cuadratico_medio_k": 2.0292
+            }
+          },
+          "minima": {
+            "sin_correccion": {
+              "sesgo_k": 3.0192,
+              "error_cuadratico_medio_k": 3.3483
+            },
+            "con_correccion": {
+              "sesgo_k": 2.2536,
+              "error_cuadratico_medio_k": 2.6784
+            }
+          }
+        }
+      },
+      "total": {
+        "dias": 716,
+        "media": {
+          "sin_correccion": {
+            "sesgo_k": 1.4797,
+            "error_cuadratico_medio_k": 1.7601
+          },
+          "con_correccion": {
+            "sesgo_k": 0.7141,
+            "error_cuadratico_medio_k": 1.1908
+          }
+        },
+        "maxima": {
+          "sin_correccion": {
+            "sesgo_k": 0.03,
+            "error_cuadratico_medio_k": 1.8005
+          },
+          "con_correccion": {
+            "sesgo_k": -0.7357,
+            "error_cuadratico_medio_k": 1.9448
+          }
+        },
+        "minima": {
+          "sin_correccion": {
+            "sesgo_k": 3.0714,
+            "error_cuadratico_medio_k": 3.4084
+          },
+          "con_correccion": {
+            "sesgo_k": 2.3057,
+            "error_cuadratico_medio_k": 2.7386
+          }
+        }
+      },
+      "dias_validos_por_mes": {
+        "2024-01": 31,
+        "2024-02": 29,
+        "2024-03": 31,
+        "2024-04": 30,
+        "2024-05": 31,
+        "2024-06": 30,
+        "2024-07": 29,
+        "2024-08": 31,
+        "2024-09": 29,
+        "2024-10": 31,
+        "2024-11": 30,
+        "2024-12": 29,
+        "2025-01": 31,
+        "2025-02": 27,
+        "2025-03": 30,
+        "2025-04": 30,
+        "2025-05": 31,
+        "2025-06": 30,
+        "2025-07": 29,
+        "2025-08": 27,
+        "2025-09": 28,
+        "2025-10": 31,
+        "2025-11": 30,
+        "2025-12": 31
+      },
+      "meses_sin_dias_validos": [],
+      "horas_emparejadas": 17248,
+      "filas_del_periodo": 19892,
+      "descartes": {
+        "por_calidad": {
+          "sin_temperatura": 19,
+          "codigo_vacio": 132,
+          "otro_codigo": 68
+        },
+        "por_minutos": 2215,
+        "repetidas": 210,
+        "sin_era5_a_esa_hora": 0
+      },
+      "dias_con_horas_no_validos": 11,
+      "fuente": "Menne, Matthew J.; Noone, Simon; Casey, Nancy W.; Dunn, Robert H.; McNeill, Shelley; Kantor, Diana; Thorne, Peter W.; Orcutt, Karen; Cunningham, Sam; Risavi, Nicholas. 2023. Global Historical Climatology Network-Hourly (GHCNh). Estación COI0000SKBO, archivos anuales PSV de 2024, 2025 y 2026. NOAA National Centers for Environmental Information. https://doi.org/10.25921/jp3d-3v19. Consultado el 2026-11-28.",
+      "licencia": "CC0 en la ficha del conjunto; non_commercial en el inventario sub-diario v3.0.0 de C3S y NCEI. La serie no se versiona (#46): solo se publica esta métrica.",
+      "insumos": {
+        "sha256": {
+          "GHCNh_COI0000SKBO_2024.psv": "4a0206823e0b2eee393765cf5ce0703852719cea09c895686c0e1b2ca5ea45b8",
+          "GHCNh_COI0000SKBO_2025.psv": "9d97d172619d47c9a0ed3bc998672dfa421fb070d099e3d9cee4104718cd8841"
+        },
+        "otros_archivos": [
+          {
+            "archivo": "GHCNh_COI0000SKBO_2026.psv",
+            "sha256": "9f1bf7e57ca63a3e6197ae49aae6958ce6c1b7e7254779dec8bdff76248fe439",
+            "nota": "solo aporta las primeras horas UTC del 1 de enero de 2026; el archivo del año en curso sigue creciendo: su SHA-256 cambia de un día a otro"
+          }
+        ],
+        "era5_sha256": {
+          "data/raw/era5/el-dorado/serie.zip": "583b16e07cab9ede2c80cf51c81a6e47673131fd9abeb16f68d2780faadc2086",
+          "data/raw/era5/el-dorado/geopotencial.nc": "a20750bfc9068fefd3b18818e64dcddea0f02bcaa710d5967d600137835ada30"
+        }
+      }
+    },
+    "VEI0000SVMC": {
+      "nombre": "Maracaibo/La Chinita",
+      "lat": 10.5582,
+      "lon": -71.7279,
+      "z_estacion_m": 71.6,
+      "huso_horas": -4,
+      "distancia_estacion_escuela_km": 16.5,
+      "era5": {
+        "punto_pedido": {
+          "lat": 10.5582,
+          "lon": -71.7279
+        },
+        "punto_rejilla": {
+          "lat": 10.5,
+          "lon": -71.75
+        },
+        "z_celda_m": 30.38
+      },
+      "correccion_k": -0.268,
+      "por_anio": {
+        "2024": {
+          "dias": 211,
+          "media": {
+            "sin_correccion": {
+              "sesgo_k": 0.61,
+              "error_cuadratico_medio_k": 0.8882
+            },
+            "con_correccion": {
+              "sesgo_k": 0.342,
+              "error_cuadratico_medio_k": 0.7306
+            }
+          },
+          "maxima": {
+            "sin_correccion": {
+              "sesgo_k": -0.1706,
+              "error_cuadratico_medio_k": 1.3951
+            },
+            "con_correccion": {
+              "sesgo_k": -0.4386,
+              "error_cuadratico_medio_k": 1.4524
+            }
+          },
+          "minima": {
+            "sin_correccion": {
+              "sesgo_k": 1.358,
+              "error_cuadratico_medio_k": 1.6438
+            },
+            "con_correccion": {
+              "sesgo_k": 1.09,
+              "error_cuadratico_medio_k": 1.4305
+            }
+          }
+        },
+        "2025": {
+          "dias": 168,
+          "media": {
+            "sin_correccion": {
+              "sesgo_k": 0.9105,
+              "error_cuadratico_medio_k": 1.0772
+            },
+            "con_correccion": {
+              "sesgo_k": 0.6425,
+              "error_cuadratico_medio_k": 0.8627
+            }
+          },
+          "maxima": {
+            "sin_correccion": {
+              "sesgo_k": -0.3929,
+              "error_cuadratico_medio_k": 1.3519
+            },
+            "con_correccion": {
+              "sesgo_k": -0.6608,
+              "error_cuadratico_medio_k": 1.4526
+            }
+          },
+          "minima": {
+            "sin_correccion": {
+              "sesgo_k": 1.7401,
+              "error_cuadratico_medio_k": 2.0174
+            },
+            "con_correccion": {
+              "sesgo_k": 1.4721,
+              "error_cuadratico_medio_k": 1.7914
+            }
+          }
+        }
+      },
+      "total": {
+        "dias": 379,
+        "media": {
+          "sin_correccion": {
+            "sesgo_k": 0.7432,
+            "error_cuadratico_medio_k": 0.9765
+          },
+          "con_correccion": {
+            "sesgo_k": 0.4752,
+            "error_cuadratico_medio_k": 0.7919
+          }
+        },
+        "maxima": {
+          "sin_correccion": {
+            "sesgo_k": -0.2691,
+            "error_cuadratico_medio_k": 1.3761
+          },
+          "con_correccion": {
+            "sesgo_k": -0.5371,
+            "error_cuadratico_medio_k": 1.4525
+          }
+        },
+        "minima": {
+          "sin_correccion": {
+            "sesgo_k": 1.5273,
+            "error_cuadratico_medio_k": 1.8189
+          },
+          "con_correccion": {
+            "sesgo_k": 1.2594,
+            "error_cuadratico_medio_k": 1.6005
+          }
+        }
+      },
+      "dias_validos_por_mes": {
+        "2024-01": 14,
+        "2024-02": 24,
+        "2024-03": 8,
+        "2024-04": 0,
+        "2024-05": 0,
+        "2024-06": 6,
+        "2024-07": 28,
+        "2024-08": 31,
+        "2024-09": 19,
+        "2024-10": 25,
+        "2024-11": 29,
+        "2024-12": 27,
+        "2025-01": 30,
+        "2025-02": 25,
+        "2025-03": 28,
+        "2025-04": 27,
+        "2025-05": 27,
+        "2025-06": 30,
+        "2025-07": 1,
+        "2025-08": 0,
+        "2025-09": 0,
+        "2025-10": 0,
+        "2025-11": 0,
+        "2025-12": 0
+      },
+      "meses_sin_dias_validos": [
+        "2024-04",
+        "2024-05",
+        "2025-08",
+        "2025-09",
+        "2025-10",
+        "2025-11",
+        "2025-12"
+      ],
+      "horas_emparejadas": 10242,
+      "filas_del_periodo": 14709,
+      "descartes": {
+        "por_calidad": {
+          "sin_temperatura": 93,
+          "codigo_vacio": 0,
+          "otro_codigo": 124
+        },
+        "por_minutos": 1,
+        "repetidas": 4249,
+        "sin_era5_a_esa_hora": 0
+      },
+      "dias_con_horas_no_validos": 157,
+      "fuente": "Menne, Matthew J.; Noone, Simon; Casey, Nancy W.; Dunn, Robert H.; McNeill, Shelley; Kantor, Diana; Thorne, Peter W.; Orcutt, Karen; Cunningham, Sam; Risavi, Nicholas. 2023. Global Historical Climatology Network-Hourly (GHCNh). Estación VEI0000SVMC, archivos anuales PSV de 2024, 2025 y 2026. NOAA National Centers for Environmental Information. https://doi.org/10.25921/jp3d-3v19. Consultado el 2026-11-28.",
+      "licencia": "CC0 en la ficha del conjunto; non_commercial en el inventario sub-diario v3.0.0 de C3S y NCEI. La serie no se versiona (#46): solo se publica esta métrica.",
+      "insumos": {
+        "sha256": {
+          "GHCNh_VEI0000SVMC_2024.psv": "4203904d4b3cea9ca428714f79f4ebb8855d30c75d20bfcae5621f32f2cecd5e",
+          "GHCNh_VEI0000SVMC_2025.psv": "4ccd9be1a76b5830dab749317399d2314a2e8208e9074bee1cad32c3d1f3fe80"
+        },
+        "otros_archivos": [
+          {
+            "archivo": "GHCNh_VEI0000SVMC_2026.psv",
+            "sha256": "66b53895569f004fd4e152d9dafa6983aef0388b1c8df2ec2ef130843802d61c",
+            "nota": "solo aporta las primeras horas UTC del 1 de enero de 2026; el archivo del año en curso sigue creciendo: su SHA-256 cambia de un día a otro"
+          }
+        ],
+        "era5_sha256": {
+          "data/raw/era5/la-chinita/serie.zip": "23b73d19617dc37063940eaa5083a3d70d050e989070cb0f99f152fac3dc6c8a",
+          "data/raw/era5/la-chinita/geopotencial.nc": "cad6421ec842412b61cdd5ebace98ff005061584386e0c857f751c607629979c"
+        }
+      }
+    }
+  },
+  "commit": "d03b1d7100cc14120fbcf102a3d92e3c8541eb2a",
+  "corrida_utc": "2026-11-28T14:39:02+00:00"
+}
