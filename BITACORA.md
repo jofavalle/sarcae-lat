@@ -70,15 +70,15 @@ qué necesita en `main` antes de empezar y, si las hay, qué órdenes esperan po
    tres primeras desbloquean casi todo lo demás: con la cola limitada a tres PR, conviene
    revisarlas en cuanto lleguen.
 
-   **La #61 va con datos ficticios provisionales** (PR #91, `Refs #61`, decisión del equipo en
-   la issue). La serie completa de ERA5 de la 88118 no ha llegado del CDS, así que
-   `web/datos/sv-88118/escuela.json` y `clima.json` llevan un campo `datos_ficticios`. La #64
-   (ficha), la #67 (recorrido) y la #73 (asistente) tienen pedido enseñarlo o propagarlo. Para
-   cerrar la #61 falta:
+   **La #61 va con datos ficticios provisionales** (PR #91 y #94, `Refs #61`, decisión del
+   equipo en la issue). La serie completa de ERA5 de la 88118 está pedida al CDS, pero todavía
+   no se puede descargar, así que `web/datos/sv-88118/escuela.json` y `clima.json` llevan un
+   campo `datos_ficticios`. La #64 (ficha), la #67 (recorrido) y la #73 (asistente) tienen
+   pedido enseñarlo o propagarlo. La altura de la escuela ya es la real: con el relieve del #90,
+   el #94 recalculó sin `--altitud`, y `z_escuela` pasó de 400 m ficticios a los 313,8 m de
+   NASADEM. La serie y `z_celda` siguen siendo ficticias. Para cerrar la #61 falta:
    - la serie real, con `--comprobar` en verde, su recorte versionado en `recortes/sv-88118/era5/`
      y volver a calcular, sin `--recorte`;
-   - con el #90 (relieve) en `main`, recalcular sin `--altitud`: la escuela pasa de 400 m
-     ficticios a los 313,8 m de NASADEM;
    - revisar la lluvia: la descarga de prueba de 2025 da 573 mm en la celda y no pasa el
      control de `src/era5_checks.py` (de 1,0 a 3,5 m al año). Se mira con la serie completa y
      contra CHIRPS (#79);
