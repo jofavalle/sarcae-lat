@@ -1,0 +1,23 @@
+{
+  "escuela": "sv-88118",
+  "punto_pedido": {
+    "lat": 13.97567,
+    "lon": -89.34056
+  },
+  "punto_rejilla": {
+    "lat": 14.0,
+    "lon": -89.25
+  },
+  "z_celda": {
+    "valor": 487.84,
+    "unidad": "m",
+    "dataset": "reanalysis-era5-single-levels"
+  },
+  "periodo": {
+    "inicio": "1940-01-01",
+    "fin": "2026-01-01"
+  },
+  "filas": 753912,
+  "primera_hora_utc": "1940-01-01T00:00:00+00:00",
+  "ultima_hora_utc": "2026-01-01T23:00:00+00:00"
+}
