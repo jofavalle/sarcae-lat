@@ -114,3 +114,20 @@ su versionado queda pendiente de confirmación. [Aviso histórico de NCEI](https
 ## Verificación
 
 `python3 .github/higiene.py`
+
+## Licencia
+
+- **El código propio** (los scripts, las pruebas y el código del sitio) va con la licencia MIT:
+  [LICENSE](LICENSE).
+- **La documentación, el material educativo y los modelos propios** (`docs/`, este README y las
+  maquetas que genere el proyecto) van con CC BY 4.0:
+  [texto legal](LICENSE-CC-BY-4.0.txt) ·
+  [traducción oficial al español](https://creativecommons.org/licenses/by/4.0/legalcode.es).
+- **Los datos y el código de terceros conservan su licencia**: la de cada fuente, en
+  [Fuentes y licencias](#fuentes-y-licencias), y la de MapLibre, en
+  [web/vendor/maplibre-gl-6.20.0/LICENSE.txt](web/vendor/maplibre-gl-6.20.0/LICENSE.txt).
+
+Para citar el material:
+
+> equipo Itzpapálotl (2026). *SARCAE-LAT: sistema de aprendizaje sobre riesgos de calor y agua
+> en escuelas latinoamericanas*. CC BY 4.0. https://github.com/jofavalle/sarcae-lat
