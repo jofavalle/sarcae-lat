@@ -49,6 +49,12 @@
 .maqueta-svg .agua .canaleta { fill: none; stroke: var(--agua); stroke-opacity: 0.45; stroke-width: 1; stroke-linecap: round; }
 .maqueta-svg .agua .punto-bajo { fill: color-mix(in oklab, var(--agua) 35%, transparent); stroke: var(--agua); stroke-width: 0.2; }
 .maqueta-svg .flecha { fill: var(--agua); }
+/* La zona baja y las rutas. Las rutas se distinguen por el trazo y por su letra, no por el
+   color, y las dos van con el mismo peso: ninguna es la recomendada. */
+.maqueta-svg .zona-baja { fill: none; stroke: var(--agua); stroke-opacity: 0.7; stroke-width: 0.25; stroke-dasharray: 0.8 0.6; }
+.maqueta-svg .ruta { fill: none; stroke: var(--texto); stroke-width: 0.5; stroke-linecap: round; stroke-linejoin: round; }
+.maqueta-svg .ruta-b { stroke-dasharray: 1.6 1; }
+.maqueta-svg .ruta-letra text { font-weight: 600; }
 @keyframes mq-correr { to { stroke-dashoffset: -2; } }
 @media (prefers-reduced-motion: reduce) {
   .maqueta-svg .agua .flujo { animation: none; }
@@ -63,6 +69,9 @@
 .tabla-patio { max-width: 24rem; }
 .tabla-patio th[scope="row"] { font-family: var(--fuente-datos); font-weight: 500; color: var(--texto); border-bottom: 1px solid var(--borde); padding: var(--e-2) var(--e-4) var(--e-2) 0; font-size: var(--t-pequeno); }
 .tabla-patio td { padding-block: var(--e-2); }
+.tabla-rutas th[scope="row"] { font-weight: 600; color: var(--texto); border-bottom: 1px solid var(--borde); padding: var(--e-2) var(--e-4) var(--e-2) 0; font-size: var(--t-pequeno); }
+.tabla-rutas td { padding-block: var(--e-2); }
+.maqueta-frase { margin: 0; max-width: 60ch; font-size: var(--t-pequeno); color: var(--texto-2); border-left: 2px solid var(--borde-fuerte); padding-left: var(--e-3); }
 .maqueta-pregunta { display: grid; gap: var(--e-1); max-width: 60ch; margin: 0; font-size: var(--t-pequeno); }
 
 @media (max-width: 640px) {

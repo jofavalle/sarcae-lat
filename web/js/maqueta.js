@@ -1,6 +1,7 @@
 // La maqueta genérica (orden #65): una escuela tipo en SVG isométrico, con el sol y las
 // sombras del día y la hora elegidos en la latitud de la escuela seleccionada, y la tabla de
-// la sombra del patio. Es la escena del prototipo de web/direcciones/maqueta.js (PR #35),
+// la sombra del patio, y dos rutas de evacuación hipotéticas que se comparan sin recomendar
+// ninguna. Es la escena del prototipo de web/direcciones/maqueta.js (PR #35),
 // portada a este módulo. Nunca representa una escuela concreta (docs/PLAN.md, sección 7): los
 // volúmenes son los de comun/maqueta-generica.json, y de la escuela elegida solo se toma el sol.
 //
@@ -17,12 +18,18 @@ import { posicionSol } from "./sol.js";
 const RAD = Math.PI / 180;
 const SVG = "http://www.w3.org/2000/svg";
 const GROSOR_TECHO = 0.25;
-// Con el sol a menos de 2° no se dibujan sombras: serían más largas que el terreno.
+// Con el sol a menos de 2° no se dibujan sombras: serían más largas que el terreno, y en las
+// rutas no se cuentan metros al sol.
 const SOL_MINIMO = 2;
 const HORAS_TABLA = [7, 10, 12, 15];
 const ROTULO = "Maqueta genérica: no es la escuela";
 // La pregunta de la #23, literal.
 const PREGUNTA_ALEROS = "¿Qué ventanas reciben sol directo por la tarde y qué sombra les dan los aleros o parteluces?";
+// La pregunta de las rutas, y la frase fija de la orden #65, literal.
+const PREGUNTA_RUTAS = "¿Qué cambia en cada ruta a esta hora, o después de una lluvia fuerte, y qué preguntarían al revisar el plan de evacuación del centro?";
+const FRASE_RUTAS = "Las rutas son hipotéticas, sobre una escuela genérica. En una emergencia se sigue el plan del centro y lo que indique protección civil.";
+// Paso con que se recorre una ruta para contar sus metros al sol.
+const PASO_RUTA = 0.1;
 // El punto del ejemplo (docs/contrato-datos.md), si la escuela elegida no trae el suyo.
 const PUNTO_EJEMPLO = { lat: 13.7, lon: -89.2, huso: -6 };
 
@@ -138,6 +145,54 @@ export function sombraEnPatio(esquema, s) {
   return sombra / total;
 }
 
+// Las rutas
+
+const segmentos = (ruta) => ruta.puntos.slice(1).map((b, i) => [ruta.puntos[i], b]);
+const largoSegmento = ([a, b]) => Math.hypot(b[0] - a[0], b[1] - a[1]);
+
+/** El largo de una ruta, en metros: la suma de sus segmentos. */
+export function largoRuta(ruta) {
+  return segmentos(ruta).reduce((t, seg) => t + largoSegmento(seg), 0);
+}
+
+/** Los metros de una ruta dentro de un rectángulo {x0, y0, x1, y1}, recortando cada segmento. */
+export function metrosEnRect(ruta, r) {
+  let total = 0;
+  for (const [a, b] of segmentos(ruta)) {
+    // Liang-Barsky: el tramo del segmento, de t0 a t1, que cae dentro del rectángulo.
+    const dx = b[0] - a[0];
+    const dy = b[1] - a[1];
+    let t0 = 0;
+    let t1 = 1;
+    for (const [pp, q] of [[-dx, a[0] - r.x0], [dx, r.x1 - a[0]], [-dy, a[1] - r.y0], [dy, r.y1 - a[1]]]) {
+      if (pp === 0) {
+        if (q < 0) { t1 = -1; break; }
+      } else {
+        const t = q / pp;
+        if (pp < 0) t0 = Math.max(t0, t);
+        else t1 = Math.min(t1, t);
+      }
+    }
+    if (t1 > t0) total += (t1 - t0) * Math.hypot(dx, dy);
+  }
+  return total;
+}
+
+/** Los metros de una ruta al sol: se recorre cada décimo de metro y se mira si cae a la sombra. */
+export function metrosAlSol(ruta, s, sol) {
+  if (sol.altura <= SOL_MINIMO) return 0;
+  let total = 0;
+  for (const [a, b] of segmentos(ruta)) {
+    const largo = largoSegmento([a, b]);
+    const n = Math.max(1, Math.round(largo / PASO_RUTA));
+    for (let i = 0; i < n; i++) {
+      const t = (i + 0.5) / n;
+      if (!enSombra(s, a[0] + (b[0] - a[0]) * t, a[1] + (b[1] - a[1]) * t)) total += largo / n;
+    }
+  }
+  return total;
+}
+
 /** El sol en el lugar de la escuela, y el porcentaje del patio a la sombra, o null sin sol. */
 function momento(esquema, punto, dia, hora) {
   const sol = posicionSol({ lat: punto.lat, lon: punto.lon, huso: punto.huso, dia, hora });
@@ -242,6 +297,10 @@ function dibujar(svg, esquema, { sol, s, capa }) {
     }
   }
 
+  // La zona baja, con su contorno, para leer la columna de las rutas que pasa por ella.
+  const zb = esquema.agua.zona_baja;
+  if (zb) el("polygon", { points: puntos(rect(zb.x0, zb.y0, zb.x1, zb.y1, 0)), class: "zona-baja" }, base);
+
   // Las sombras, recortadas al terreno. En la capa de agua no se dibujan, como en el prototipo.
   if (capa !== "agua") {
     const gs = el("g", { class: "sombras", "clip-path": "url(#mq-recorte-terreno)" }, svg);
@@ -259,6 +318,13 @@ function dibujar(svg, esquema, { sol, s, capa }) {
     }
     const [bx, by] = p(...esquema.agua.punto_bajo, 0);
     el("ellipse", { cx: bx, cy: by, rx: 2.4, ry: 1.4, class: "punto-bajo" }, ga);
+  }
+
+  // Las rutas, en el suelo: los volúmenes las tapan donde pasan por detrás. Se distinguen por
+  // el trazo y por su letra, no por el color, y ninguna lleva un estilo de recomendada.
+  const gru = el("g", { class: "rutas" }, svg);
+  for (const ruta of esquema.rutas ?? []) {
+    el("polyline", { points: puntos(ruta.puntos.map(([x, y]) => [x, y, 0])), class: `ruta ruta-${ruta.id}` }, gru);
   }
 
   // Volúmenes, cubiertas y árboles, del fondo hacia delante.
@@ -287,17 +353,22 @@ function dibujar(svg, esquema, { sol, s, capa }) {
     }
   }
 
-  if (capa === "agua") {
-    const gr = el("g", { class: "rotulos" }, svg);
-    const rotular = (x, y, z, texto) => {
-      const [px, py] = p(x, y, z);
-      const g = el("g", { class: "rotulo-svg", transform: `translate(${px.toFixed(2)} ${py.toFixed(2)})` }, gr);
-      const ancho = texto.length * 1.02 + 2.4;
-      el("rect", { x: -ancho / 2, y: -2.1, width: ancho, height: 3.2, rx: 0.2 }, g);
-      el("text", { x: 0, y: 0.4, "text-anchor": "middle" }, g).textContent = texto;
-    };
-    rotular(...esquema.agua.punto_bajo, 1.5, "punto bajo");
+  // Los rótulos, encima de todo: la letra de cada ruta en su punto de encuentro y la zona baja
+  // en su esquina, que contiene el punto bajo del agua.
+  const gr = el("g", { class: "rotulos" }, svg);
+  const rotular = (x, y, z, texto, cls = "") => {
+    const [px, py] = p(x, y, z);
+    const g = el("g", { class: `rotulo-svg ${cls}`, transform: `translate(${px.toFixed(2)} ${py.toFixed(2)})` }, gr);
+    const ancho = texto.length * 1.02 + 2.4;
+    el("rect", { x: -ancho / 2, y: -2.1, width: ancho, height: 3.2, rx: 0.2 }, g);
+    el("text", { x: 0, y: 0.4, "text-anchor": "middle" }, g).textContent = texto;
+  };
+  for (const ruta of esquema.rutas ?? []) {
+    const fin = ruta.puntos[ruta.puntos.length - 1];
+    rotular(fin[0], fin[1], 2.2, ruta.id.toUpperCase(), "ruta-letra");
   }
+  if (zb) rotular(zb.x0 + 1, zb.y1 - 1.5, 0.6, "zona baja");
+  else if (capa === "agua") rotular(...esquema.agua.punto_bajo, 1.5, "punto bajo");
 
   svg.classList.toggle("sin-sol", sol.altura <= 0);
 }
@@ -427,8 +498,29 @@ export function iniciar(ctx) {
     html("p", { class: "maqueta-pregunta" },
       html("span", { class: "rotulo", texto: "Para conversar" }), html("span", { texto: PREGUNTA_ALEROS })));
 
+  // Las dos rutas hipotéticas, en una tabla, con su pregunta y la frase fija.
+  const rutas = esquema.rutas ?? [];
+  const cabeceraSol = html("th", { scope: "col", class: "num" });
+  const cuerpoRutas = html("tbody");
+  const bloqueRutas = html("section", { class: "maqueta-bloque", "aria-labelledby": "rutas-titulo" },
+    html("h2", { class: "maqueta-titulo", id: "rutas-titulo", texto: "Dos rutas de evacuación hipotéticas" }),
+    html("p", { class: "nota", texto: "Salen del mismo punto, junto al pabellón de aulas A, y se comparan: ninguna es la recomendada." }),
+    html("table", { class: "tabla tabla-rutas" },
+      html("caption", { class: "visualmente-oculto", texto: "Las dos rutas hipotéticas de la maqueta genérica: largo, metros al sol a la hora elegida y metros por la zona baja" }),
+      html("thead", {}, html("tr", {},
+        html("th", { scope: "col", texto: "Ruta" }),
+        html("th", { scope: "col", texto: "Hasta" }),
+        html("th", { scope: "col", class: "num", texto: "Largo" }),
+        cabeceraSol,
+        html("th", { scope: "col", class: "num", texto: "Por la zona baja" }))),
+      cuerpoRutas),
+    html("p", { class: "maqueta-pregunta" },
+      html("span", { class: "rotulo", texto: "Para conversar" }), html("span", { texto: PREGUNTA_RUTAS })),
+    html("p", { class: "maqueta-frase", texto: FRASE_RUTAS }));
+
   montaje.classList.add("con-escena");
-  montaje.replaceChildren(escena, leyenda, html("div", { class: "maqueta-texto" }, bloquePatio));
+  montaje.replaceChildren(escena, leyenda,
+    html("div", { class: "maqueta-texto" }, bloquePatio, ...(rutas.length ? [bloqueRutas] : [])));
 
   // Los mandos que activa este módulo: el día y la capa.
   const fecha = document.getElementById("fecha");
@@ -487,7 +579,7 @@ export function iniciar(ctx) {
     leyenda.textContent = {
       sombra: `Sombras con el sol de ${punto.nombre}, sobre una escuela tipo: los edificios no son los suyos. El alero de los pabellones de aulas mide ${coma(alero)} m.`,
       calor: "Tiñe el suelo del patio y de la cancha que recibe sol directo a esta hora. No es una temperatura: la de superficie, de Landsat, se ve en el mapa del entorno.",
-      agua: "Por dónde tendería a correr el agua de lluvia según la pendiente dibujada de la escuela tipo, hacia el punto bajo de la esquina suroeste. No es el relieve de la escuela.",
+      agua: "Por dónde tendería a correr el agua de lluvia según la pendiente dibujada de la escuela tipo, hacia el punto bajo, en la zona baja de la esquina suroeste. No es el relieve de la escuela.",
     }[estado.capa];
 
     const partes = [
@@ -497,6 +589,22 @@ export function iniciar(ctx) {
     ];
     if (conSol) partes.push(`El ${patio} % del patio queda a la sombra.`);
     if (estado.capa === "agua") partes.push("Capa de agua: el agua baja de los techos hacia la canaleta del pabellón de aulas B y corre hacia el punto bajo, en la esquina suroeste.");
+
+    // Las rutas: lo que se ve en la tabla, y lo mismo en la descripción de la escena.
+    const zb = esquema.agua.zona_baja;
+    cabeceraSol.textContent = `Al sol a las ${hora}`;
+    cuerpoRutas.replaceChildren(...rutas.map((ruta) => {
+      const largo = Math.round(largoRuta(ruta));
+      const alSol = conSol ? `${Math.round(metrosAlSol(ruta, s, sol))} m` : "sin sol directo";
+      const bajo = zb ? `${Math.round(metrosEnRect(ruta, zb))} m` : "—";
+      partes.push(`${ruta.nombre}, hasta ${ruta.hasta}: ${largo} m; al sol, ${alSol}; por la zona baja, ${bajo}.`);
+      return html("tr", {},
+        html("th", { scope: "row", texto: ruta.nombre }),
+        html("td", { texto: ruta.hasta }),
+        html("td", { class: "num", texto: `${largo} m` }),
+        html("td", { class: "num", texto: alSol }),
+        html("td", { class: "num", texto: bajo }));
+    }));
     desc.textContent = partes.join(" ");
   };
 

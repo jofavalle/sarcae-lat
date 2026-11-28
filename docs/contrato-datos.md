@@ -271,7 +271,10 @@ polígonos.
 - **`comun/maqueta-generica.json`**, con la cabecera, `aviso`, `volumenes`, `superficies`,
   `cubiertas` y `arboles` (listas), y `agua` (objeto), en metros, como en
   `web/direcciones/escuela-esquema.json`. Sin `lat`, `lon` ni ningún punto geográfico: el sol
-  sale de la escuela elegida. Con la etapa 2 de la #65 gana `rutas`.
+  sale de la escuela elegida. Con la etapa 2 de la #65 gana `agua.zona_baja` (`{x0, y0, x1,
+  y1}`, el rectángulo donde el agua del esquema tiende a juntarse) y `rutas`: dos rutas de
+  evacuación hipotéticas, cada una `{id, nombre, hasta, puntos}`, con `puntos` como lista de
+  `[x, y]` en metros, del bloque de aulas a un punto de encuentro. Ninguna es la recomendada.
 - **`comun/reserva.json`**, con la cabecera y `registros.<registro>`: lista de `{pregunta,
   respuesta, fila_bateria}`, con `fila_bateria` entero. Sin cifras de ninguna escuela (#73).
 - **`web/material/material.json`**, con la cabecera y `pdfs`: lista de `{escuela, registro,

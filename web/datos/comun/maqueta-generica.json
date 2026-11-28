@@ -1,8 +1,8 @@
 {
   "contrato": 1,
   "generado": {
-    "utc": "2026-11-28T18:51:09+00:00",
-    "commit": "2e23691c7af56858d0a6782318397426d689ec44",
+    "utc": "2026-11-28T19:00:23+00:00",
+    "commit": "e7f5b374e1fcc192b22268f7167f944cefe20f04",
     "comando": "python -m src.maqueta_generica"
   },
   "fuentes": [
@@ -11,9 +11,15 @@
       "version": "sha256:6b73aefb598c192bfc4864add216360682d3a5ec74c2985dfc0a9d1c42c5830d",
       "licencia": "CC-BY-4.0",
       "url": "https://github.com/jofavalle/sarcae-lat/blob/main/web/direcciones/escuela-esquema.json"
+    },
+    {
+      "nombre": "Zona baja y rutas hipotéticas, dibujo del equipo Itzpapálotl",
+      "version": "sha256:11dcfd4dd82efa6809c23f2f18fa1d1f2d327b5e1467479617cc84a222af42e3",
+      "licencia": "CC-BY-4.0",
+      "url": "https://github.com/jofavalle/sarcae-lat/blob/main/src/maqueta_generica.py"
     }
   ],
-  "aviso": "Maqueta genérica: no es la escuela. Son los volúmenes de una escuela tipo, dibujados por el equipo con medidas habituales de aulas, sin distribución interior, puertas ni accesos. El sol y las sombras son los de la escuela elegida; los edificios, no.",
+  "aviso": "Maqueta genérica: no es la escuela. Son los volúmenes de una escuela tipo, dibujados por el equipo con medidas habituales de aulas, sin distribución interior, puertas ni accesos. El sol y las sombras son los de la escuela elegida; los edificios, no. Las rutas son hipotéticas, sobre una escuela genérica.",
   "unidades": "metros; x hacia el este, y hacia el norte, origen en el centro del terreno",
   "terreno": {
     "x0": -42,
@@ -218,6 +224,56 @@
     "punto_bajo": [
       -38,
       -24
-    ]
-  }
+    ],
+    "zona_baja": {
+      "x0": -42,
+      "y0": -27,
+      "x1": -32,
+      "y1": -18
+    }
+  },
+  "rutas": [
+    {
+      "id": "a",
+      "nombre": "Ruta A",
+      "hasta": "la cancha",
+      "puntos": [
+        [
+          -10,
+          10
+        ],
+        [
+          12,
+          10
+        ],
+        [
+          12,
+          0
+        ],
+        [
+          24,
+          0
+        ]
+      ]
+    },
+    {
+      "id": "b",
+      "nombre": "Ruta B",
+      "hasta": "el terreno abierto del suroeste",
+      "puntos": [
+        [
+          -10,
+          10
+        ],
+        [
+          -34,
+          10
+        ],
+        [
+          -34,
+          -24
+        ]
+      ]
+    }
+  ]
 }
