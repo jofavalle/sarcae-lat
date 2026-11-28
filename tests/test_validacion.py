@@ -317,3 +317,19 @@ def test_end_to_end(tmp_path, monkeypatch, capsys):
     pares = pd.read_csv(pairs_path)
     assert len(pares) == 4
     assert set(pares["diferencia_k"]) == {1.0}
+
+    # Con una descarga real no hay aviso; con una marcada como ficticia, va arriba del todo.
+    assert "datos_ficticios" not in metrics and "datos_ficticios" not in config
+    assert "FICTICIOS" not in printed
+    record_path = era5_dir / "registro.json"
+    era5_record = json.loads(record_path.read_text(encoding="utf-8"))
+    era5_record.update(ficticio=True, nota_ficticio="z_celda ficticia (500 m)")
+    record_path.write_text(json.dumps(era5_record), encoding="utf-8")
+    fake_dir = tmp_path / "experiments" / "ficticio"
+    assert validacion.main(["--estacion", str(station_dir), "--era5", str(era5_dir),
+                            "--salida", str(fake_dir)]) == 0
+    assert capsys.readouterr().out.startswith("AVISO, DATOS FICTICIOS: z_celda ficticia")
+    fake_metrics = json.loads((fake_dir / "metrics.json").read_text(encoding="utf-8"))
+    assert list(fake_metrics)[0] == "datos_ficticios"
+    assert (fake_dir / "config.yaml").read_text(encoding="utf-8").startswith(
+        'datos_ficticios: "z_celda ficticia (500 m)"')

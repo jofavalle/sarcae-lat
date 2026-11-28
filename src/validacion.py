@@ -322,8 +322,13 @@ def main(argv=None) -> int:
                        _months(*cfg["periodo"]))
     shift = height_shift(z_station, z_cell, LAPSE_K_PER_KM)
     hours_in_pairs = sorted(int(h) for h in pairs["hora"].dt.hour.unique())
+    # Una carpeta de ERA5 marcada como ficticia (decisión del equipo del 2026-11-28, #54) se
+    # declara arriba del todo en las dos salidas; con una descarga real no aparece.
+    fake = ({"datos_ficticios": era5_record.get("nota_ficticio", "ERA5 ficticio")}
+            if era5_record.get("ficticio") else {})
 
     config = {
+        **fake,
         "experimento": "validación de ERA5 en la escuela ancla contra Santa Ana/El Palmar (#54)",
         "estacion": {"id": cfg["estacion"], "nombre": cfg["nombre"],
                      "z_estacion_m": z_station, "z_estacion_fuente": cfg["inventario"]},
@@ -342,6 +347,7 @@ def main(argv=None) -> int:
         "nota_semilla": "no hay semilla: el cálculo no tiene aleatoriedad",
     }
     metrics = {
+        **fake,
         "descripcion": ("ERA5 frente a la estación, hora a hora, en el horario escolar. El "
                         "sesgo es una limitación que se declara, no una calificación."),
         "definiciones": {
@@ -382,6 +388,8 @@ def main(argv=None) -> int:
         json.dump(metrics, handle, ensure_ascii=False, indent=2)
         handle.write("\n")
 
+    if fake:
+        print(f"AVISO, DATOS FICTICIOS: {fake['datos_ficticios']}")
     if meta["altura_m"] != z_station:
         print(f"aviso: el archivo da {meta['altura_m']} m de altura para la estación, "
               f"y el inventario {z_station} m")
