@@ -1,0 +1,25 @@
+datos_ficticios: "z_celda ficticia (700 m): el geopotencial de ERA5 (petición 9ea2bc4a-4cba-44c6-938e-2901a967af25) espera en la cola del CDS. La serie es la real. Decisión del equipo del 2026-11-28; se sustituye por data/raw/era5/santa-ana-el-palmar cuando llegue."
+experimento: "validación de ERA5 en la escuela ancla contra Santa Ana/El Palmar (#54)"
+estacion:
+  id: "ESI0000MSSA"
+  nombre: "Santa Ana/El Palmar"
+  z_estacion_m: 660.0
+  z_estacion_fuente: "https://confluence.ecmwf.int/download/attachments/656869601/Sub_daily_inventory_v3.0.0.psv?version=1&modificationDate=1776783749830&api=v2"
+datos:
+  estacion: "insitu-observations-surface-land v3_0_0"
+  era5: "reanalysis-era5-single-levels-timeseries, en la ubicación de la estación, y reanalysis-era5-single-levels para z_celda"
+periodo:
+  inicio: "2024-01-01"
+  fin: "2025-12-31"
+ventana_utc:
+  desde: 13
+  hasta_excluida: 23
+  nota: "de 07:00 a 17:00 hora local, con las 17:00 fuera; todos los días de la semana"
+huso_horas: -6
+gradiente_k_por_km: 6.5
+tolerancia_min: 10
+filtro_calidad:
+  estacion: "ESI0000MSSA"
+  quality_flag: 0
+semilla: null
+nota_semilla: "no hay semilla: el cálculo no tiene aleatoriedad"

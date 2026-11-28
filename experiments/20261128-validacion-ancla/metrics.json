@@ -1,0 +1,138 @@
+{
+  "datos_ficticios": "z_celda ficticia (700 m): el geopotencial de ERA5 (petición 9ea2bc4a-4cba-44c6-938e-2901a967af25) espera en la cola del CDS. La serie es la real. Decisión del equipo del 2026-11-28; se sustituye por data/raw/era5/santa-ana-el-palmar cuando llegue.",
+  "descripcion": "ERA5 frente a la estación, hora a hora, en el horario escolar. El sesgo es una limitación que se declara, no una calificación.",
+  "definiciones": {
+    "sesgo_k": "media de ERA5 menos la estación, en K",
+    "error_cuadratico_medio_k": "raíz de la media de (ERA5 menos la estación) al cuadrado, en K",
+    "con_correccion": "ERA5 corregido: T_ERA5 - Γ·(z_est - z_celda)",
+    "dias": "días locales con al menos una hora emparejada"
+  },
+  "estacion": {
+    "id": "ESI0000MSSA",
+    "nombre": "SANTA ANA/EL PALMAR",
+    "lat": 13.97,
+    "lon": -89.53,
+    "z_estacion_m": 660.0,
+    "altura_en_el_archivo_m": 660.0
+  },
+  "era5": {
+    "punto_pedido": {
+      "lat": 13.97,
+      "lon": -89.53
+    },
+    "punto_rejilla": {
+      "lat": 14.0,
+      "lon": -89.5
+    },
+    "z_celda_m": 700.0
+  },
+  "correccion_k": 0.26,
+  "distancia_estacion_escuela_km": 20.5,
+  "nota_distancia": "aproximada, medida en la #39 desde el casco urbano de San Pablo Tacachico (13,975; -89,340), porque el repositorio no tiene las coordenadas de la escuela",
+  "por_anio": {
+    "2024": {
+      "horas": 2861,
+      "dias": 352,
+      "sin_correccion": {
+        "sesgo_k": -0.3673,
+        "error_cuadratico_medio_k": 1.6642
+      },
+      "con_correccion": {
+        "sesgo_k": -0.1073,
+        "error_cuadratico_medio_k": 1.6267
+      }
+    },
+    "2025": {
+      "horas": 2911,
+      "dias": 340,
+      "sin_correccion": {
+        "sesgo_k": 0.0065,
+        "error_cuadratico_medio_k": 1.5306
+      },
+      "con_correccion": {
+        "sesgo_k": 0.2665,
+        "error_cuadratico_medio_k": 1.5536
+      }
+    }
+  },
+  "total": {
+    "horas": 5772,
+    "dias": 692,
+    "sin_correccion": {
+      "sesgo_k": -0.1788,
+      "error_cuadratico_medio_k": 1.5982
+    },
+    "con_correccion": {
+      "sesgo_k": 0.0812,
+      "error_cuadratico_medio_k": 1.5903
+    }
+  },
+  "horas_por_mes": {
+    "2024-01": 266,
+    "2024-02": 216,
+    "2024-03": 258,
+    "2024-04": 235,
+    "2024-05": 268,
+    "2024-06": 242,
+    "2024-07": 231,
+    "2024-08": 241,
+    "2024-09": 234,
+    "2024-10": 232,
+    "2024-11": 240,
+    "2024-12": 198,
+    "2025-01": 249,
+    "2025-02": 215,
+    "2025-03": 229,
+    "2025-04": 216,
+    "2025-05": 259,
+    "2025-06": 246,
+    "2025-07": 276,
+    "2025-08": 237,
+    "2025-09": 241,
+    "2025-10": 280,
+    "2025-11": 231,
+    "2025-12": 232
+  },
+  "horas_utc_en_pares": [
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22
+  ],
+  "descartes": {
+    "sin_valor": 0,
+    "a_mas_de_la_tolerancia": 0,
+    "fuera_de_la_ventana": 980,
+    "otra_mas_cercana_en_la_misma_hora": 1655,
+    "sin_era5_a_esa_hora": 0
+  },
+  "observaciones_de_calidad": 8407,
+  "fuente": {
+    "source_id": 223,
+    "archivo": "https://confluence.ecmwf.int/download/attachments/656869601/sources_v3.0.0.psv?version=1&modificationDate=1776783749760&api=v2",
+    "cita": "International Civil Aviation Organisation USAF : National Climatic Data Center/NESDIS/NOAA/U.S. Department of Commerce. 1982.AWS TD13 Global Surface Observations, daily 1901-1973. Research Data Archive at the National Center for Atmospheric Research, Computational and Information Systems Laboratory. https://rda.ucar.edu/datasets/ds467.0/. Accesseddd mmm yyyy."
+  },
+  "licencia": {
+    "conjunto": "CC-BY-4.0",
+    "conjunto_url": "https://cds.climate.copernicus.eu/datasets/insitu-observations-surface-land",
+    "registros": "data_policy_licence 1, 'WMO essential'",
+    "inventario_estacion": "non_commercial",
+    "serie": "no versionada: se lee lo más restrictivo (regla 6) y solo se publica la métrica (#39, #46)"
+  },
+  "insumos": {
+    "id_peticion_cds_estacion": "b2560615-27e9-4997-9bc1-50783107b717",
+    "sha256": {
+      "data/raw/c3s-insitu/santa-ana-el-palmar/observaciones.zip": "81b383229e1f38e80b6894856d2bcdd0d07433333c7037ebbd9c7d2389b28eec",
+      "data/processed/era5-ficticio/santa-ana-el-palmar/serie.zip": "4796f95e6a4779fa7f42d47b60b414854958e36ae554742d801f38f4b28b08cf",
+      "data/processed/era5-ficticio/santa-ana-el-palmar/geopotencial.nc": "b3982ad615577ef015a5db17a08ddbb633c087c8f47619d16972fc860d9f816f"
+    }
+  },
+  "commit": "af5f309a16852eb381368b2eab7eeb1d98fd3309",
+  "corrida_utc": "2026-11-28T14:17:40+00:00"
+}
