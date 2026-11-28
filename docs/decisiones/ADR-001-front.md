@@ -76,6 +76,11 @@ en el README.
 Los tamaños van comprimidos con `gzip -9`, en KB de 1000 bytes. La medida se escoge
 conservadora: el alojamiento puede servir Brotli, que comprime más.
 
+La tabla de MapLibre se midió con GNU gzip 1.14. `python -m src.presupuesto`, que comprime con
+el zlib de Python, da cifras algo distintas según la versión: unas décimas en cada archivo, y
+entre 473,5 y 475,7 KB de total con `LICENSE.txt` y `ORIGEN.md` (CPython 3.13 con zlib 1.3.1 y
+3.15 con zlib-ng 2.2.4, en la #10).
+
 **La carga de MapLibre, medida** sobre los archivos de la versión 6.20.0 el 27 de noviembre de
 2026:
 
