@@ -1,0 +1,76 @@
+{
+  "contrato": 1,
+  "generado": {
+    "utc": "2026-11-28T16:10:43+00:00",
+    "commit": "f94034475673693b6e8e7db53eb91b02a32ec762",
+    "comando": "python -m src.relieve --escuela sv-88118 --precision-m 0.25 --altura-esperada 150-600"
+  },
+  "fuentes": [
+    {
+      "nombre": "NASADEM_HGT",
+      "version": "001",
+      "licencia": "CC0-1.0",
+      "url": "https://www.earthdata.nasa.gov/data/catalog/lpcloud-nasadem-hgt-001"
+    }
+  ],
+  "escuela": "sv-88118",
+  "granulos": [
+    "n13w090"
+  ],
+  "bounds": [
+    -89.359722,
+    13.956945,
+    -89.321389,
+    13.994444
+  ],
+  "minzoom": 10,
+  "maxzoom": 14,
+  "precision_m": 0.25,
+  "altitud_escuela_m": 313.8,
+  "altura_esperada_m": [
+    150.0,
+    600.0
+  ],
+  "punto": {
+    "lat": 13.97567,
+    "lon": -89.34056
+  },
+  "lado_km": 4.0,
+  "recorte": {
+    "sur": 13.956944444444444,
+    "norte": 13.994444444444444,
+    "oeste": -89.35972222222222,
+    "este": -89.32138888888889
+  },
+  "margen_celdas": 2,
+  "proyeccion": "EPSG:3857",
+  "codificacion": "terrarium",
+  "tamano_px": 256,
+  "remuestreo": "bilineal desde el recorte, en el centro de cada píxel; fuera del recorte, el valor del borde",
+  "pixeles_fuera_del_recorte": {
+    "10": 64752,
+    "11": 62344,
+    "12": 52992,
+    "13": 211969,
+    "14": 192516
+  },
+  "elevacion_recorte_m": {
+    "min": 278,
+    "max": 671
+  },
+  "teselas": [
+    "10/257/471.png",
+    "11/515/943.png",
+    "12/1031/1887.png",
+    "13/2062/3774.png",
+    "13/2062/3775.png",
+    "13/2063/3774.png",
+    "13/2063/3775.png",
+    "14/4125/7548.png",
+    "14/4125/7549.png",
+    "14/4125/7550.png",
+    "14/4126/7548.png",
+    "14/4126/7549.png",
+    "14/4126/7550.png"
+  ]
+}

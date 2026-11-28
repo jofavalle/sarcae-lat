@@ -1,0 +1,58 @@
+{
+  "contrato": 1,
+  "datos_ficticios": "Serie de ERA5 ficticia: cada año de 1940 a 2025 copia uno de 3 años reales de ERA5, elegido con la semilla 20261128, con una anomalía aleatoria y sin tendencia; z_celda ficticia (500 m). Decisión del equipo del 2026-11-28 (#61): se sustituye por la descarga real.",
+  "generado": {
+    "utc": "2026-11-28T16:52:45+00:00",
+    "commit": "5d4a4db6b609b6e7444144302c4f43e74ae001c9",
+    "comando": "python -m src.indicadores --escuela sv-88118 --recorte data/processed/era5-ficticio/recortes/sv-88118/era5"
+  },
+  "fuentes": [
+    {
+      "nombre": "NASADEM_HGT",
+      "version": "001",
+      "licencia": "CC0-1.0",
+      "url": "https://www.earthdata.nasa.gov/data/catalog/lpcloud-nasadem-hgt-001"
+    },
+    {
+      "nombre": "ERA5, niveles de superficie: geopotencial de la celda (ECMWF, para el C3S)",
+      "version": "reanalysis-era5-single-levels",
+      "licencia": "CC-BY-4.0",
+      "url": "https://cds.climate.copernicus.eu/datasets/reanalysis-era5-single-levels"
+    },
+    {
+      "nombre": "Manual de Diseño Mi Nueva Escuela, MINEDUCYT",
+      "version": "2022",
+      "licencia": "cita",
+      "url": "https://www.mined.gob.sv/"
+    }
+  ],
+  "slug": "sv-88118",
+  "nombre": "Centro Escolar Católico San Pablo Apóstol",
+  "municipio": "San Pablo Tacachico",
+  "division": "La Libertad",
+  "pais": "El Salvador",
+  "iso_pais": "SV",
+  "codigo": "88118",
+  "lat": 13.97567,
+  "lon": -89.34056,
+  "huso_horas": -6,
+  "altitud": {
+    "valor": 313.8,
+    "unidad": "m",
+    "fuente": "NASADEM"
+  },
+  "zona_diseno": "tropical caliente",
+  "zona_diseno_franja": {
+    "desde": 300,
+    "hasta": 700,
+    "unidad": "m",
+    "referencia": "Manual de Diseño Mi Nueva Escuela, anexo 8, p. 16"
+  },
+  "celda_era5": {
+    "lat": 14.0,
+    "lon": -89.25,
+    "resolucion": 0.25,
+    "unidad": "grados"
+  },
+  "criterios": "propios"
+}

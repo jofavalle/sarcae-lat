@@ -1,0 +1,31 @@
+{
+  "escuela": "sv-88118",
+  "fuente": {
+    "nombre": "Landsat 8 y 9",
+    "version": "Collection 2, Tier 1, Level-2 (L2SP)",
+    "url": "https://www.usgs.gov/landsat-missions/landsat-collection-2-level-2-science-products"
+  },
+  "licencia": {
+    "spdx": "dominio-publico",
+    "url": "https://www.usgs.gov/landsat-missions/landsat-collection-2-level-2-science-products"
+  },
+  "atribucion": "Landsat Collection 2 Level-2 image courtesy of the U.S. Geological Survey.",
+  "fecha_descarga": "2026-11-28",
+  "generado": {
+    "utc": "2026-11-28T16:34:09+00:00",
+    "commit": "f94034475673693b6e8e7db53eb91b02a32ec762",
+    "comando": "python -m src.recortes --escribir recortes/sv-88118/landsat --fuente 'Landsat 8 y 9' --version 'Collection 2, Tier 1, Level-2 (L2SP)' --url-fuente https://www.usgs.gov/landsat-missions/landsat-collection-2-level-2-science-products --licencia dominio-publico --url-licencia https://www.usgs.gov/landsat-missions/landsat-collection-2-level-2-science-products --atribucion 'Landsat Collection 2 Level-2 image courtesy of the U.S. Geological Survey.' --fecha-descarga 2026-11-28"
+  },
+  "archivos": [
+    {
+      "nombre": "cuadros.geojson",
+      "bytes": 153242,
+      "sha256": "42404228e07a910c8625c4831271d52bcb762bcea603082f88f7cc75d796702e"
+    },
+    {
+      "nombre": "escenas.csv",
+      "bytes": 1628,
+      "sha256": "0dd8d515b3404f00544bb71ce0e061e58eae7cdd831e52b50c0638b256aa0d1f"
+    }
+  ]
+}

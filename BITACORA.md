@@ -68,9 +68,25 @@ qué necesita en `main` antes de empezar y, si las hay, qué órdenes esperan po
    el envío final de la #82, y la #80 espera además a la #62, la #63 y la #69. Sin esperar a
    nada pueden empezar la #57, la #58, la #59, la etapa 1 de la #64 y el guion de la #81. Las
    tres primeras desbloquean casi todo lo demás: con la cola limitada a tres PR, conviene
-   revisarlas en cuanto lleguen. La descarga de prueba contra el CDS con `src/era5.py` de
-   `main`, que la revisión de la #37 no hizo, es el primer paso de la #61: del 2025-01-01 al
-   2026-01-01 en una carpeta nueva, con 8784 filas y todos los controles en verde.
+   revisarlas en cuanto lleguen.
+
+   **La #61 va con datos ficticios provisionales** (PR #91 y #94, `Refs #61`, decisión del
+   equipo en la issue). La serie completa de ERA5 de la 88118 está pedida al CDS, pero todavía
+   no se puede descargar, así que `web/datos/sv-88118/escuela.json` y `clima.json` llevan un
+   campo `datos_ficticios`. La #64 (ficha), la #67 (recorrido) y la #73 (asistente) tienen
+   pedido enseñarlo o propagarlo. La altura de la escuela ya es la real: con el relieve del #90,
+   el #94 recalculó sin `--altitud`, y `z_escuela` pasó de 400 m ficticios a los 313,8 m de
+   NASADEM. La serie y `z_celda` siguen siendo ficticias. Para cerrar la #61 falta:
+   - la serie real, con `--comprobar` en verde, su recorte versionado en `recortes/sv-88118/era5/`
+     y volver a calcular, sin `--recorte`;
+   - revisar la lluvia: la descarga de prueba de 2025 da 573 mm en la celda y no pasa el
+     control de `src/era5_checks.py` (de 1,0 a 3,5 m al año). Se mira con la serie completa y
+     contra CHIRPS (#79);
+   - una orden que recoja `datos_ficticios` en `docs/contrato-datos.md`, que la #61 no podía
+     tocar.
+
+   La serie ficticia solo existe en la máquina de cesarp03 y sale de
+   `data/raw/era5/.parcial-prueba-88118-2025-20ndmhlw/`, que no se borra mientras haga falta.
 3. **El asistente**: la #72 decide, antes del domingo 29 a las 04:00, si producción responde
    con el LLM o solo con respuestas de reserva, que es la propuesta. La orden #73 deja la
    reserva funcionando en cualquier caso, y su parte de producción espera a la #72.
@@ -140,3 +156,7 @@ congelado el domingo 29 a las 8:00 y entrega a las 11:00.
   `metrics.json` del experimento, con la cita de la estación. En la ancla, Santa Ana/El Palmar
   se contrasta hora a hora de 07:00 a 17:00 hora local, porque solo tiene datos de día; las
   máximas y mínimas diarias se validan solo en las réplicas.
+- **2026-11-28. Datos ficticios mientras falta ERA5** (#61). La serie está pedida al CDS y
+  todavía no se puede descargar. Las órdenes siguen con una serie ficticia de
+  `src/era5_ficticio.py`, marcada con `datos_ficticios` y fuera de `recortes/`, y se sustituye
+  por la real cuando llegue. La regla operativa está en `CLAUDE.md`.

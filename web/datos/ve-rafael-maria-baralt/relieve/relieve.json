@@ -1,0 +1,83 @@
+{
+  "contrato": 1,
+  "generado": {
+    "utc": "2026-11-28T16:13:32+00:00",
+    "commit": "dba0afb0e04081fad14d33a68679976eb9856916",
+    "comando": "python -m src.relieve --escuela ve-rafael-maria-baralt --precision-m 0.25 --altura-esperada 0-100"
+  },
+  "fuentes": [
+    {
+      "nombre": "NASADEM_HGT",
+      "version": "001",
+      "licencia": "CC0-1.0",
+      "url": "https://www.earthdata.nasa.gov/data/catalog/lpcloud-nasadem-hgt-001"
+    }
+  ],
+  "escuela": "ve-rafael-maria-baralt",
+  "granulos": [
+    "n10w072"
+  ],
+  "bounds": [
+    -71.646388,
+    10.651389,
+    -71.608612,
+    10.688611
+  ],
+  "minzoom": 10,
+  "maxzoom": 14,
+  "precision_m": 0.25,
+  "altitud_escuela_m": 38.0,
+  "altura_esperada_m": [
+    0.0,
+    100.0
+  ],
+  "punto": {
+    "lat": 10.67002,
+    "lon": -71.62749
+  },
+  "lado_km": 4.0,
+  "recorte": {
+    "sur": 10.651388888888889,
+    "norte": 10.688611111111111,
+    "oeste": -71.6463888888889,
+    "este": -71.60861111111112
+  },
+  "margen_celdas": 2,
+  "proyeccion": "EPSG:3857",
+  "codificacion": "terrarium",
+  "tamano_px": 256,
+  "remuestreo": "bilineal desde el recorte, en el centro de cada píxel; fuera del recorte, el valor del borde",
+  "pixeles_fuera_del_recorte": {
+    "10": 64780,
+    "11": 127992,
+    "12": 250044,
+    "13": 213524,
+    "14": 395784
+  },
+  "elevacion_recorte_m": {
+    "min": 6,
+    "max": 60
+  },
+  "teselas": [
+    "10/308/481.png",
+    "11/616/962.png",
+    "11/616/963.png",
+    "12/1232/1925.png",
+    "12/1232/1926.png",
+    "12/1233/1925.png",
+    "12/1233/1926.png",
+    "13/2465/3851.png",
+    "13/2465/3852.png",
+    "13/2466/3851.png",
+    "13/2466/3852.png",
+    "14/4931/7702.png",
+    "14/4931/7703.png",
+    "14/4931/7704.png",
+    "14/4932/7702.png",
+    "14/4932/7703.png",
+    "14/4932/7704.png",
+    "14/4933/7702.png",
+    "14/4933/7703.png",
+    "14/4933/7704.png"
+  ]
+}
