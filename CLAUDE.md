@@ -95,6 +95,16 @@ equipo: un cambio en ella se propone por PR, como cualquier otro. Lo de cada uno
   entra lo que tenga licencia compatible. `data/raw/` sigue inmutable y sin versionar: el
   recorte es una copia derivada, no el original.
 - **ERA5 se descarga del Climate Data Store** (2026-11-27), que es la fuente que nombra el reto.
+- **ERA5 todavía no está** (2026-11-28, #61). La serie de ERA5 de las escuelas está pedida al
+  CDS y todavía no se puede descargar. Ninguna orden se detiene por ella, ni se lanza otra
+  petición: si hace falta, se trabaja con datos ficticios, que se sustituyen por los reales
+  volviendo a ejecutar los mismos comandos.
+  - Lo ficticio sale de `src/era5_ficticio.py`, con su semilla, a `data/processed/era5-ficticio/`.
+    Nunca entra en `data/raw/` ni en `recortes/`.
+  - Lo publicado a partir de ello lleva el campo `datos_ficticios` con su nota, y quien lo
+    consume lo enseña o lo propaga.
+  - El PR va con `Refs #N`, no cierra la orden, y dice qué falta para sustituirlo.
+  - Esta regla se retira, por PR, cuando llegue la serie real.
 
 ## Gotchas
 
