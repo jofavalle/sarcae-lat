@@ -1,27 +1,44 @@
-"""Teselas de relieve en terrarium a partir de un granulo de NASADEM.
+"""Teselas de relieve en terrarium a partir de NASADEM, para cualquier escuela.
 
-Recorta un granulo `NASADEM_HGT` de un grado alrededor de un punto y escribe las teselas
-XYZ en PNG que pide ADR-001 para el terreno 3D y el sombreado de MapLibre: Web Mercator
-(EPSG:3857), 256 px y codificación terrarium, `h = R·256 + G + B/256 - 32768`. Al terminar,
-cuenta cuántas teselas salen y cuánto pesan.
+Recorta la malla de NASADEM alrededor de un punto y escribe las teselas XYZ en PNG que pide
+ADR-001 para el terreno 3D y el sombreado de MapLibre: Web Mercator (EPSG:3857), 256 px y
+codificación terrarium, `h = R·256 + G + B/256 - 32768`. Al terminar, cuenta cuántas teselas
+salen y cuánto pesan.
+
+Las teselas salen siempre del recorte: la malla de NASADEM que cubre el lado pedido, con dos
+celdas de margen para la interpolación. Fuera del recorte, la tesela repite el valor del
+borde; el mapa no deja salir de `bounds` (`maxBounds`), así que nadie ve ese relleno. Con
+`--escuela`, el recorte se versiona en `recortes/<slug>/nasadem/elevacion.csv`, y
+`--desde-recorte` regenera desde él las mismas teselas, byte a byte, sin cuenta de Earthdata.
 
 Uso, desde la raíz del repositorio:
+
+    python -m src.relieve --descargar --escuela sv-88118
+    python -m src.relieve --escuela sv-88118 --precision-m 0.25 --altura-esperada 150-600
+    python -m src.relieve --escuela sv-88118 --desde-recorte
+    python -m src.relieve --comprobar web/datos/sv-88118/relieve
+
+Con `--escuela`, la posición sale de `web/datos/escuelas.json`, la salida va a
+`web/datos/<slug>/relieve/`, la precisión es de 0,25 m y el rango de `--altura-esperada` es el
+de `ALTURA_ESPERADA_M`, si no se dan. Lo de antes sigue igual:
 
     python -m src.relieve --descargar
     python -m src.relieve --zip data/raw/nasadem/NASADEM_HGT_n13w090.zip \\
         --lat 13.70 --lon -89.12 --lado-km 4 --zoom 10-14 \\
         --salida data/processed/relieve/prueba-ilopango
-    python -m src.relieve --comprobar data/processed/relieve/prueba-ilopango
 
 La descarga pide una cuenta gratuita de NASA Earthdata, con las credenciales en `~/.netrc`
 y nunca en el repositorio. `data/raw/` es inmutable: si el zip ya existe, no se toca.
 """
 
 import argparse
+import csv
 import hashlib
+import io
 import json
 import math
 import re
+import shlex
 import shutil
 import struct
 import subprocess
@@ -36,17 +53,43 @@ import numpy as np
 
 ROOT = Path(__file__).resolve().parents[1]
 RAW = ROOT / "data" / "raw" / "nasadem"
+WEB_DATOS = ROOT / "web" / "datos"
+ESCUELAS = WEB_DATOS / "escuelas.json"
+RECORTES = ROOT / "recortes"
+CROP_CSV = "elevacion.csv"
 
+PREFIX = "NASADEM_HGT_"
 GRANULE = "NASADEM_HGT_n13w090"
 GRANULE_URL = ("https://data.lpdaac.earthdatacloud.nasa.gov/lp-prod-protected/"
                f"NASADEM_HGT.001/{GRANULE}/{GRANULE}.zip")
 LICENSE = "CC0-1.0"
+LICENSE_URL = ("https://www.earthdata.nasa.gov/engage/open-data-services-software-policies/"
+               "data-use-guidance")
+SOURCE = {"nombre": "NASADEM_HGT", "version": "001", "licencia": LICENSE,
+          "url": "https://www.earthdata.nasa.gov/data/catalog/lpcloud-nasadem-hgt-001"}
+# La de README.md, «Atribución».
+ATTRIBUTION = ("NASA JPL. NASADEM Merged DEM Global 1 arc second V001. 2020, distributed by "
+               "NASA EOSDIS Land Processes Distributed Active Archive Center, "
+               "https://doi.org/10.5067/MEaSUREs/NASADEM/NASADEM_HGT.001")
+CONTRACT = 1  # la versión de docs/contrato-datos.md
+
+# Con --escuela, si no se dan --precision-m ni --altura-esperada (#60).
+DEFAULT_PRECISION_M = 0.25
+ALTURA_ESPERADA_M = {
+    # Santa Ana/El Palmar está a 660 m, unos 350 m por encima (docs/PLAN.md, sección 5).
+    "sv-88118": (150.0, 600.0),
+    "co-nicolas-esguerra": (2500.0, 2700.0),
+    "ve-rafael-maria-baralt": (0.0, 100.0),
+}
+MAX_SCHOOL_BYTES = 1_000_000  # con gzip -9, medido con src.presupuesto
 
 # El .hgt: 3601 × 3601 enteros de 16 bits big-endian, un segundo de arco de paso, filas de
 # norte a sur. El primer píxel está en la esquina noroeste de la celda.
 HGT_SIDE = 3601
 HGT_BYTES = HGT_SIDE * HGT_SIDE * 2  # 25 934 402
 HGT_STEP = 1.0 / 3600.0
+CELLS = 3600       # celdas por grado
+MARGIN_CELLS = 2   # el margen del recorte, para la interpolación
 VOID = -32768
 
 TILE = 256
@@ -130,18 +173,118 @@ def crop_bounds(lat: float, lon: float, side_km: float) -> dict:
             "oeste": lon - half_lon, "este": lon + half_lon}
 
 
-def crop_window(grid: Grid, bounds: dict) -> tuple:
-    """Filas y columnas de los píxeles de la malla cuyo centro cae dentro del recorte."""
-    row_top, col_left = grid.fractional_index(bounds["norte"], bounds["oeste"])
-    row_bottom, col_right = grid.fractional_index(bounds["sur"], bounds["este"])
-    rows = slice(int(math.ceil(row_top)), int(math.floor(row_bottom)) + 1)
-    cols = slice(int(math.ceil(col_left)), int(math.floor(col_right)) + 1)
-    return rows, cols
+def granule_name(lat: float, lon: float) -> str:
+    """El granulo de un punto: `NASADEM_HGT_` + n/s y dos cifras de la latitud redondeada
+    hacia abajo, más e/w y tres cifras de la longitud redondeada hacia abajo."""
+    south, west = math.floor(lat), math.floor(lon)
+    return (f"{PREFIX}{'n' if south >= 0 else 's'}{abs(south):02d}"
+            f"{'e' if west >= 0 else 'w'}{abs(west):03d}")
 
 
-def inside(grid: Grid, bounds: dict) -> bool:
-    return (grid.bottom <= bounds["sur"] and bounds["norte"] <= grid.top
-            and grid.left <= bounds["oeste"] and bounds["este"] <= grid.right)
+def short_name(granule: str) -> str:
+    """`NASADEM_HGT_n13w090` da `n13w090`, como lo escribe relieve.json."""
+    return granule[len(PREFIX):] if granule.startswith(PREFIX) else granule
+
+
+def crop_cells(bounds: dict, cells: int = CELLS, margin: int = MARGIN_CELLS) -> dict:
+    """El recorte en índices enteros de la malla (lat · cells, lon · cells): los nodos que
+    cubren el cuadrado pedido, más `margin` celdas por cada lado."""
+    return {"sur": math.floor(bounds["sur"] * cells) - margin,
+            "norte": math.ceil(bounds["norte"] * cells) + margin,
+            "oeste": math.floor(bounds["oeste"] * cells) - margin,
+            "este": math.ceil(bounds["este"] * cells) + margin}
+
+
+def granules_for(window: dict, cells: int = CELLS) -> list:
+    """Los granulos que hacen falta para un recorte; dos o más si cruza un borde. Un nodo en
+    el borde está en los dos granulos, así que basta con uno de ellos."""
+    lats = range(window["sur"] // cells, -(-window["norte"] // cells))
+    lons = range(window["oeste"] // cells, -(-window["este"] // cells))
+    return sorted(granule_name(south + 0.5, west + 0.5) for south in lats for west in lons)
+
+
+def mosaic(grids: list, window: dict, cells: int = CELLS) -> Grid:
+    """El recorte, unido desde uno o más granulos. ValueError si alguno falta."""
+    rows = window["norte"] - window["sur"] + 1
+    cols = window["este"] - window["oeste"] + 1
+    values = np.zeros((rows, cols), dtype="int16")
+    filled = np.zeros((rows, cols), dtype=bool)
+    for grid in grids:
+        top, left = round(grid.top * cells), round(grid.left * cells)
+        bottom, right = top - (grid.values.shape[0] - 1), left + grid.values.shape[1] - 1
+        north, south = min(window["norte"], top), max(window["sur"], bottom)
+        west, east = max(window["oeste"], left), min(window["este"], right)
+        if north < south or east < west:
+            continue
+        target = (slice(window["norte"] - north, window["norte"] - south + 1),
+                  slice(west - window["oeste"], east - window["oeste"] + 1))
+        values[target] = grid.values[top - north:top - south + 1, west - left:east - left + 1]
+        filled[target] = True
+    if not filled.all():
+        raise ValueError(f"faltan {int(np.count_nonzero(~filled))} nodos del recorte: hace "
+                         "falta otro granulo")
+    return Grid(values, window["norte"] / cells, window["oeste"] / cells, 1.0 / cells)
+
+
+def grid_window(grid: Grid, cells: int = CELLS) -> dict:
+    """Los índices enteros de una malla: lo inverso de `mosaic`."""
+    top, left = round(grid.top * cells), round(grid.left * cells)
+    return {"sur": top - (grid.values.shape[0] - 1), "norte": top,
+            "oeste": left, "este": left + grid.values.shape[1] - 1}
+
+
+def window_bounds(window: dict, cells: int = CELLS) -> dict:
+    return {k: v / cells for k, v in window.items()}
+
+
+def crop_to_csv(grid: Grid, cells: int = CELLS) -> str:
+    """El recorte como CSV: `lat`, `lon` y `altura_m`, en metros enteros como en el .hgt,
+    de norte a sur y de oeste a este. Siete decimales bastan para volver al nodo."""
+    window = grid_window(grid, cells)
+    lons = [f"{(window['oeste'] + c) / cells:.7f}" for c in range(grid.values.shape[1])]
+    out = io.StringIO()
+    out.write("lat,lon,altura_m\n")
+    for r, row in enumerate(grid.values.tolist()):
+        lat = f"{(window['norte'] - r) / cells:.7f}"
+        out.writelines(f"{lat},{lon},{v}\n" for lon, v in zip(lons, row))
+    return out.getvalue()
+
+
+def grid_from_csv(text: str, cells: int = CELLS) -> Grid:
+    """La malla de un CSV de `crop_to_csv`. ValueError si no es una malla completa."""
+    reader = csv.reader(io.StringIO(text))
+    if next(reader, None) != ["lat", "lon", "altura_m"]:
+        raise ValueError("el recorte no empieza por lat,lon,altura_m")
+    nodes = {}
+    for line, row in enumerate(reader, start=2):
+        try:
+            key = (round(float(row[0]) * cells), round(float(row[1]) * cells))
+            value = int(row[2])
+        except (ValueError, IndexError):
+            raise ValueError(f"línea {line} del recorte: {row!r} no es lat,lon,altura_m")
+        if key in nodes:
+            raise ValueError(f"línea {line} del recorte: el nodo se repite")
+        if not -32768 <= value <= 32767:
+            raise ValueError(f"línea {line} del recorte: {value} no cabe en 16 bits")
+        nodes[key] = value
+    if not nodes:
+        raise ValueError("el recorte no tiene filas")
+    lats = sorted({i for i, _ in nodes}, reverse=True)
+    lons = sorted({j for _, j in nodes})
+    if len(nodes) != len(lats) * len(lons) or lats[0] - lats[-1] + 1 != len(lats) \
+            or lons[-1] - lons[0] + 1 != len(lons):
+        raise ValueError("el recorte no es una malla rectangular completa")
+    values = np.array([[nodes[(i, j)] for j in lons] for i in lats], dtype="int16")
+    return Grid(values, lats[0] / cells, lons[0] / cells, 1.0 / cells)
+
+
+def inward_bounds(bounds: dict) -> list:
+    """`[oeste, sur, este, norte]` con 6 decimales, redondeados hacia dentro: `maxBounds`
+    no deja ver nada fuera del recorte."""
+    return [math.ceil(bounds["oeste"] * 1e6 - 1e-6) / 1e6,
+            math.ceil(bounds["sur"] * 1e6 - 1e-6) / 1e6,
+            math.floor(bounds["este"] * 1e6 + 1e-6) / 1e6,
+            math.floor(bounds["norte"] * 1e6 + 1e-6) / 1e6]
 
 
 # Web Mercator y teselas XYZ
@@ -223,6 +366,15 @@ def render_tile(grid: Grid, zoom: int, x: int, y: int) -> tuple:
     """Elevaciones de una tesela (256 × 256, en m) y cuántos píxeles caen fuera de la malla."""
     lon, lat = pixel_centers(zoom, x, y)
     return bilinear(grid, lat, lon)
+
+
+def quantize(height, precision_m):
+    """Las alturas redondeadas a múltiplos de `precision_m` antes de codificarlas (#11: a
+    0,25 m, el canal B de terrarium solo toma 0, 64, 128 y 192, y se comprime). Sin
+    precisión, se devuelven como están."""
+    if precision_m is None:
+        return height
+    return np.round(np.asarray(height, dtype="float64") / precision_m) * precision_m
 
 
 # Terrarium
@@ -350,15 +502,27 @@ def _kb(size: int) -> str:
 
 # Descarga
 
-def download() -> Path:
-    """Descarga el granulo con curl y escribe su `registro.json` al lado.
+def granule_url(granule: str) -> str:
+    return ("https://data.lpdaac.earthdatacloud.nasa.gov/lp-prod-protected/"
+            f"NASADEM_HGT.001/{granule}/{granule}.zip")
+
+
+def record_path(granule: str, raw: Path = RAW) -> Path:
+    """El registro de un granulo. El de n13w090, el primero que se bajó, se llama
+    `registro.json`; los demás, `<GRANULO>.registro.json`."""
+    return raw / ("registro.json" if granule == GRANULE else f"{granule}.registro.json")
+
+
+def download(granule: str = GRANULE) -> Path:
+    """Descarga el granulo con curl y escribe su registro al lado.
 
     Se descarga a una carpeta temporal y se mueve al final: si algo falla a mitad, el
     destino no llega a existir.
     """
-    final = RAW / f"{GRANULE}.zip"
-    record_path = RAW / "registro.json"
-    for path in (final, record_path):
+    final = RAW / f"{granule}.zip"
+    record = record_path(granule)
+    url = granule_url(granule)
+    for path in (final, record):
         if path.exists():
             sys.exit(f"{_relative(path)} ya existe, y data/raw es inmutable: no se toca.")
     RAW.mkdir(parents=True, exist_ok=True)
@@ -368,31 +532,45 @@ def download() -> Path:
         landing = work / final.name
         cookies = work / "cookies"
         result = subprocess.run(["curl", "-n", "-L", "-f", "-c", str(cookies), "-b", str(cookies),
-                                 "-o", str(landing), GRANULE_URL])
+                                 "-o", str(landing), url])
         if result.returncode != 0 or not zipfile.is_zipfile(landing):
             sys.exit("la descarga no trajo un zip: revisa la cuenta de Earthdata en ~/.netrc "
                      "y que la aplicación LP DAAC esté autorizada en ella.")
         with zipfile.ZipFile(landing) as archive:
             member = hgt_member(archive)
-        record = {
-            "url": GRANULE_URL,
-            "granulo": GRANULE,
+        data = {
+            "url": url,
+            "granulo": granule,
             "descargado_utc": started_utc,
             "commit": _commit(),
             "licencia": LICENSE,
-            "licencia_url": "https://www.earthdata.nasa.gov/engage/open-data-services-software-policies/data-use-guidance",
+            "licencia_url": LICENSE_URL,
             "archivo": _relative(final),
             "bytes": landing.stat().st_size,
             "sha256": _sha256(landing),
             "hgt": {"nombre": member.filename, "bytes": member.file_size},
         }
         shutil.move(str(landing), final)
-    with open(record_path, "w", encoding="utf-8") as handle:
-        json.dump(record, handle, ensure_ascii=False, indent=2)
+    with open(record, "w", encoding="utf-8") as handle:
+        json.dump(data, handle, ensure_ascii=False, indent=2)
         handle.write("\n")
-    print(f"guardado en {_relative(final)} ({_kb(record['bytes'])}), "
-          f"con {_relative(record_path)}")
+    print(f"guardado en {_relative(final)} ({_kb(data['bytes'])}), con {_relative(record)}")
     return final
+
+
+def download_school(slug: str, side_km: float, escuelas: Path = ESCUELAS) -> int:
+    """Baja los granulos que pide el recorte de una escuela y no estén ya en data/raw."""
+    lat, lon = school_point(slug, escuelas)
+    for granule in granules_for(crop_cells(crop_bounds(lat, lon, side_km))):
+        final, record = RAW / f"{granule}.zip", record_path(granule)
+        if final.exists() and record.exists():
+            print(f"{_relative(final)} ya está, con {_relative(record)}: no se toca")
+        elif final.exists() or record.exists():
+            sys.exit(f"de {granule} está el zip o su registro, pero no los dos. data/raw es "
+                     "inmutable: lo resuelve una persona.")
+        else:
+            download(granule)
+    return 0
 
 
 # Generación de las teselas
@@ -405,92 +583,245 @@ def parse_zooms(text: str) -> list:
     return list(range(low, high + 1))
 
 
-def generate(zip_path: Path, lat: float, lon: float, side_km: float, zooms: list,
-             out: Path) -> int:
-    # El manifiesto guarda la ruta del zip relativa a la raíz, y --comprobar la lee desde
-    # ahí: se comprueba antes de escribir nada, para no dejar teselas sin manifiesto.
-    if not zip_path.resolve().is_relative_to(ROOT):
-        sys.exit(f"{zip_path} está fuera del repositorio: el manifiesto guarda su ruta "
-                 "relativa a la raíz. Muévelo a data/raw/nasadem/.")
+def parse_range(text: str) -> tuple:
+    match = re.fullmatch(r"\s*(-?\d+(?:\.\d+)?)\s*-\s*(-?\d+(?:\.\d+)?)\s*", text)
+    if not match or float(match.group(1)) > float(match.group(2)):
+        raise argparse.ArgumentTypeError(f"{text}: se espera 'MIN-MAX' en metros, como 150-600")
+    return float(match.group(1)), float(match.group(2))
+
+
+def parse_precision(text: str) -> float:
+    value = float(text)
+    if not 0 < value <= 100:
+        raise argparse.ArgumentTypeError(f"{text}: la precisión va de 0 a 100 m")
+    return value
+
+
+def school_point(slug: str, escuelas: Path = ESCUELAS) -> tuple:
+    """Latitud y longitud de una escuela de escuelas.json."""
+    with open(escuelas, encoding="utf-8") as handle:
+        data = json.load(handle)
+    by_slug = {e.get("slug"): e for e in data.get("escuelas", [])}
+    if slug not in by_slug:
+        sys.exit(f"{slug} no está en {escuelas.name}: son {', '.join(sorted(by_slug))}")
+    return float(by_slug[slug]["lat"]), float(by_slug[slug]["lon"])
+
+
+def _empty_output(out: Path):
     if out.exists() and any(out.iterdir()):
         sys.exit(f"{out} ya tiene archivos: elige otra --salida o vacíala a mano, para no "
                  "mezclar teselas de dos ejecuciones.")
-    grid = read_hgt(zip_path)
-    bounds = crop_bounds(lat, lon, side_km)
-    if not inside(grid, bounds):
-        sys.exit("el recorte se sale del granulo: hace falta el granulo vecino.")
 
-    rows, cols = crop_window(grid, bounds)
-    crop = grid.values[rows, cols]
-    crop_voids = int(np.count_nonzero(crop == VOID))
-    if crop_voids:
-        sys.exit(f"el recorte tiene {crop_voids} píxeles vacíos (-32768). Cómo rellenarlos se "
+
+def _no_voids(grid: Grid):
+    voids = int(np.count_nonzero(grid.values == VOID))
+    if voids:
+        sys.exit(f"el recorte tiene {voids} píxeles vacíos (-32768). Cómo rellenarlos se "
                  "decide en la issue: no se generan teselas.")
 
-    tiles = {zoom: tiles_for(bounds, zoom) for zoom in zooms}
-    for zoom, items in tiles.items():
-        for x, y in items:
-            lon_c, lat_c = pixel_centers(zoom, x, y)
-            voids = voids_under(grid, lat_c, lon_c)
-            if voids:
-                sys.exit(f"la tesela {zoom}/{x}/{y} pasa por {voids} píxeles vacíos fuera del "
-                         "recorte. Cómo rellenarlos se decide en la issue.")
 
-    out.mkdir(parents=True, exist_ok=True)
-    total_bytes, outside_by_zoom, names = 0, {}, []
-    for zoom, items in tiles.items():
+def render(grid: Grid, zooms: list, precision_m, out: Path) -> tuple:
+    """Las teselas que cubren el recorte, desde el recorte: (nombres, bytes, píxeles fuera
+    del recorte por zoom). Fuera del recorte, el bilineal repite el borde."""
+    extent = window_bounds(grid_window(grid))
+    names, total_bytes, outside_by_zoom = [], 0, {}
+    for zoom in zooms:
         outside_by_zoom[zoom] = 0
-        for x, y in items:
+        for x, y in tiles_for(extent, zoom):
             height, outside = render_tile(grid, zoom, x, y)
             outside_by_zoom[zoom] += outside
             total_bytes += write_png(out / str(zoom) / str(x) / f"{y}.png",
-                                     terrarium_encode(height))
+                                     terrarium_encode(quantize(height, precision_m)))
             names.append(f"{zoom}/{x}/{y}.png")
+    return names, total_bytes, outside_by_zoom
 
+
+def _finish(grid: Grid, *, lat, lon, side_km, zooms, precision_m, expected, out, escuela,
+            granules, comando, extra=None) -> int:
+    """Escribe las teselas y relieve.json, e imprime el resumen."""
+    out.mkdir(parents=True, exist_ok=True)
+    names, total_bytes, outside_by_zoom = render(grid, zooms, precision_m, out)
+    extent = window_bounds(grid_window(grid))
     point_height = float(bilinear(grid, np.array([lat]), np.array([lon]))[0][0])
     manifest = {
-        "generado_utc": datetime.now(timezone.utc).isoformat(timespec="seconds"),
-        "commit": _commit(),
-        "fuente": {"zip": _relative(zip_path), "sha256": _sha256(zip_path),
-                   "licencia": LICENSE},
+        "contrato": CONTRACT,
+        "generado": {"utc": datetime.now(timezone.utc).isoformat(timespec="seconds"),
+                     "commit": _commit(), "comando": comando},
+        "fuentes": [SOURCE],
+        "escuela": escuela,
+        "granulos": [short_name(g) for g in granules],
+        "bounds": inward_bounds(extent),
+        "minzoom": min(zooms),
+        "maxzoom": max(zooms),
+        "precision_m": precision_m,
+        "altitud_escuela_m": round(point_height, 1),
+        "altura_esperada_m": list(expected),
         "punto": {"lat": lat, "lon": lon},
         "lado_km": side_km,
-        "recorte": bounds,
-        "zoom": [min(zooms), max(zooms)],
+        "recorte": extent,
+        "margen_celdas": MARGIN_CELLS,
         "proyeccion": "EPSG:3857",
         "codificacion": "terrarium",
         "tamano_px": TILE,
-        "remuestreo": "bilineal desde la malla geográfica, en el centro de cada píxel",
-        "pixeles_fuera_del_granulo": outside_by_zoom,
-        "elevacion_recorte_m": {"min": int(crop.min()), "max": int(crop.max())},
-        "elevacion_punto_m": round(point_height, 2),
+        "remuestreo": ("bilineal desde el recorte, en el centro de cada píxel; fuera del "
+                       "recorte, el valor del borde"),
+        "pixeles_fuera_del_recorte": outside_by_zoom,
+        "elevacion_recorte_m": {"min": int(grid.values.min()), "max": int(grid.values.max())},
         "teselas": names,
     }
-    with open(out / MANIFEST, "w", encoding="utf-8") as handle:
+    manifest.update(extra or {})
+    with open(out / MANIFEST, "w", encoding="utf-8", newline="\n") as handle:
         json.dump(manifest, handle, ensure_ascii=False, indent=2)
         handle.write("\n")
 
-    for zoom, items in tiles.items():
-        extra = (f", {outside_by_zoom[zoom]} píxeles fuera del granulo, con el valor del borde"
-                 if outside_by_zoom[zoom] else "")
-        print(f"zoom {zoom}: {len(items)} teselas{extra}")
+    by_zoom = {}
+    for name in names:
+        by_zoom[int(name.split("/")[0])] = by_zoom.get(int(name.split("/")[0]), 0) + 1
+    for zoom in zooms:
+        extra_px = (f", {outside_by_zoom[zoom]} píxeles fuera del recorte, con el valor del "
+                    "borde" if outside_by_zoom[zoom] else "")
+        print(f"zoom {zoom}: {by_zoom.get(zoom, 0)} teselas{extra_px}")
     print(f"total: {len(names)} archivos, {_kb(total_bytes)}")
-    print(f"elevación del recorte: {crop.min()} a {crop.max()} m")
+    print(f"elevación del recorte: {grid.values.min()} a {grid.values.max()} m")
     print(f"elevación en el punto: {point_height:.1f} m")
     print(f"guardado en {out}")
     return 0
 
 
+def generate(zip_path: Path, lat: float, lon: float, side_km: float, zooms: list,
+             out: Path, precision_m=None, expected=POINT_RANGE_M,
+             comando="python -m src.relieve") -> int:
+    """Las teselas de un punto desde un zip, sin escuela: el uso de antes."""
+    # El manifiesto guarda la ruta del zip relativa a la raíz, y --comprobar la lee desde
+    # ahí: se comprueba antes de escribir nada, para no dejar teselas sin manifiesto.
+    if not zip_path.resolve().is_relative_to(ROOT):
+        sys.exit(f"{zip_path} está fuera del repositorio: el manifiesto guarda su ruta "
+                 "relativa a la raíz. Muévelo a data/raw/nasadem/.")
+    _empty_output(out)
+    granule = read_hgt(zip_path)
+    try:
+        crop = mosaic([granule], crop_cells(crop_bounds(lat, lon, side_km)))
+    except ValueError:
+        sys.exit("el recorte se sale del granulo: hace falta el granulo vecino.")
+    _no_voids(crop)
+    # Un solo camino: las teselas salen del recorte leído de su CSV.
+    crop = grid_from_csv(crop_to_csv(crop))
+    south, west = cell_corner(zip_path.name)
+    return _finish(crop, lat=lat, lon=lon, side_km=side_km, zooms=zooms,
+                   precision_m=precision_m, expected=expected, out=out, escuela=None,
+                   granules=[granule_name(south + 0.5, west + 0.5)], comando=comando,
+                   extra={"fuente": {"zip": _relative(zip_path), "sha256": _sha256(zip_path),
+                                     "licencia": LICENSE}})
+
+
+def _download_date(granules: list, raw: Path) -> str:
+    """La fecha de descarga del recorte: la más reciente de sus granulos."""
+    dates = []
+    for granule in granules:
+        path = record_path(granule, raw)
+        if not path.is_file():
+            sys.exit(f"falta {path.name} en {raw.name}/: sin él no se sabe la fecha de descarga.")
+        with open(path, encoding="utf-8") as handle:
+            dates.append(json.load(handle)["descargado_utc"][:10])
+    return max(dates)
+
+
+def crop_path(slug: str, recortes: Path = RECORTES) -> Path:
+    return recortes / slug / "nasadem" / CROP_CSV
+
+
+def generate_school(slug: str, side_km: float, zooms: list, precision_m, expected,
+                    from_crop: bool, out: Path, comando: str, *, escuelas: Path = ESCUELAS,
+                    raw: Path = RAW, recortes: Path = RECORTES) -> int:
+    """Las teselas de una escuela, desde los zip de data/raw o desde su recorte versionado.
+
+    Desde los zip, escribe antes el recorte en recortes/<slug>/nasadem/, con su manifiesto.
+    En los dos casos las teselas salen del texto del CSV, y por eso son las mismas.
+    """
+    from src import recortes as manifests  # solo aquí: src.recortes no hace falta para lo demás
+
+    lat, lon = school_point(slug, escuelas)
+    _empty_output(out)
+    window = crop_cells(crop_bounds(lat, lon, side_km))
+    granules = granules_for(window)
+    csv_file = crop_path(slug, recortes)
+    if from_crop:
+        if not csv_file.is_file():
+            sys.exit(f"falta el recorte de {slug} en recortes/{slug}/nasadem/{CROP_CSV}.")
+        text = csv_file.read_bytes().decode("utf-8")
+    else:
+        zips = [raw / f"{g}.zip" for g in granules]
+        missing = [z.name for z in zips if not z.is_file()]
+        if missing:
+            sys.exit(f"faltan en {raw.name}/: {', '.join(missing)}. Se bajan con "
+                     f"python -m src.relieve --descargar --escuela {slug}")
+        try:
+            crop = mosaic([read_hgt(z) for z in zips], window)
+        except ValueError as error:
+            sys.exit(f"{error}.")
+        _no_voids(crop)
+        text = crop_to_csv(crop)
+        fecha = _download_date(granules, raw)
+        csv_file.parent.mkdir(parents=True, exist_ok=True)
+        csv_file.write_bytes(text.encode("utf-8"))
+        manifests.escribir(csv_file.parent, fuente=SOURCE["nombre"], version=SOURCE["version"],
+                           licencia=LICENSE, url_licencia=LICENSE_URL, atribucion=ATTRIBUTION,
+                           fecha_descarga=fecha)
+        print(f"recorte: recortes/{slug}/nasadem/{CROP_CSV}, "
+              f"{crop.values.shape[0]} × {crop.values.shape[1]} nodos, con su manifiesto")
+    try:
+        grid = grid_from_csv(text)
+    except ValueError as error:
+        sys.exit(f"recortes/{slug}/nasadem/{CROP_CSV}: {error}")
+    if grid_window(grid) != window:
+        sys.exit(f"el recorte de {slug} no es el de un lado de {side_km:g} km: se generó con "
+                 "otro --lado-km, o el CSV cambió.")
+    return _finish(grid, lat=lat, lon=lon, side_km=side_km, zooms=zooms,
+                   precision_m=precision_m, expected=expected, out=out, escuela=slug,
+                   granules=granules, comando=comando)
+
+
 # Comprobación
+
+def _reference(manifest: dict, lat: float, lon: float) -> tuple:
+    """La altura del píxel más cercano al punto en el .hgt, o en el recorte si el zip no
+    está en data/raw (quien regenera sin cuenta de Earthdata). (valor, descripción)."""
+    if "fuente" in manifest:
+        zip_path = ROOT / manifest["fuente"]["zip"]
+    else:
+        zip_path = RAW / f"{granule_name(lat, lon)}.zip"
+    if zip_path.is_file():
+        south, west = cell_corner(zip_path.name)
+        row = int(round((south + 1.0 - lat) * 3600.0))
+        col = int(round((lon - west) * 3600.0))
+        return read_hgt_pixel(zip_path, row, col), f"píxel ({row}, {col}) del .hgt"
+    csv_file = crop_path(manifest.get("escuela") or "")
+    if manifest.get("escuela") and csv_file.is_file():
+        grid = grid_from_csv(csv_file.read_bytes().decode("utf-8"))
+        row = int(round((grid.top - lat) / grid.step))
+        col = int(round((lon - grid.left) / grid.step))
+        return (int(grid.values[row, col]),
+                f"nodo ({row}, {col}) del recorte, sin el .hgt en data/raw")
+    sys.exit(f"para comprobar el punto falta {zip_path.name} en data/raw/nasadem/ y el "
+             "recorte versionado.")
+
+
+def _decimal(value: float) -> str:
+    return f"{value:g}".replace(".", ",")
+
 
 def check(directory: Path) -> int:
     """Decodifica las teselas, imprime su resumen y corre los controles. Devuelve 0 o 1."""
+    from src.presupuesto import kb, medir
+
     directory = Path(directory)
     with open(directory / MANIFEST, encoding="utf-8") as handle:
         manifest = json.load(handle)
     lat, lon = manifest["punto"]["lat"], manifest["punto"]["lon"]
     bounds = manifest["recorte"]
-    zip_path = ROOT / manifest["fuente"]["zip"]
+    precision = manifest.get("precision_m")
+    low_ok, high_ok = manifest.get("altura_esperada_m", POINT_RANGE_M)
+    school = manifest.get("escuela")
     results = []
 
     on_disk = sorted(p.relative_to(directory).as_posix() for p in directory.rglob("*.png"))
@@ -499,11 +830,15 @@ def check(directory: Path) -> int:
                     f"{len(on_disk)} en disco, {len(expected)} en el manifiesto"))
 
     by_zoom, total_bytes, low, high = {}, 0, math.inf, -math.inf
+    off_grid = 0
     for name in on_disk:
         zoom, x, y = (int(part) for part in name[:-4].split("/"))
         by_zoom[zoom] = by_zoom.get(zoom, 0) + 1
         total_bytes += (directory / name).stat().st_size
         height = terrarium_decode(read_png(directory / name))
+        if precision:
+            steps = height / precision
+            off_grid += int(np.count_nonzero(np.abs(steps - np.round(steps)) > 1e-9))
         lon_c, lat_c = pixel_centers(zoom, x, y)
         mask = ((lat_c >= bounds["sur"]) & (lat_c <= bounds["norte"])
                 & (lon_c >= bounds["oeste"]) & (lon_c <= bounds["este"]))
@@ -516,24 +851,34 @@ def check(directory: Path) -> int:
     decoded = terrarium_decode(read_png(directory / str(top_zoom) / str(x) / f"{y}.png"))
     point_tile = float(decoded[int((py - y) * TILE), int((px - x) * TILE)])
 
-    south, west = cell_corner(Path(zip_path).name)
-    row = int(round((south + 1.0 - lat) * 3600.0))
-    col = int(round((lon - west) * 3600.0))
-    point_hgt = read_hgt_pixel(zip_path, row, col)
+    reference, where = _reference(manifest, lat, lon)
     results.append((f"el punto en zoom {top_zoom} coincide con el .hgt",
-                    abs(point_tile - point_hgt) < POINT_TOLERANCE_M,
-                    f"tesela {point_tile:.1f} m, píxel ({row}, {col}) del .hgt {point_hgt} m, "
-                    f"tolerancia {POINT_TOLERANCE_M:.0f} m"))
+                    abs(point_tile - reference) < POINT_TOLERANCE_M,
+                    f"tesela {point_tile:.1f} m, {where} {reference} m, diferencia "
+                    f"{abs(point_tile - reference):.1f} m, tolerancia {POINT_TOLERANCE_M:.0f} m"))
+    school_height = manifest.get("altitud_escuela_m", point_tile)
     results.append(("el punto está a la altura esperada",
-                    POINT_RANGE_M[0] <= point_tile <= POINT_RANGE_M[1],
-                    f"{point_tile:.1f} m, entre {POINT_RANGE_M[0]:.0f} y {POINT_RANGE_M[1]:.0f} m"))
+                    low_ok <= school_height <= high_ok,
+                    f"{school_height:.1f} m, entre {low_ok:.0f} y {high_ok:.0f} m"))
+    if school:
+        gzip_bytes = sum(g for _, _, g in medir(directory))
+        results.append(("el relieve cabe en su presupuesto", gzip_bytes <= MAX_SCHOOL_BYTES,
+                        f"{kb(gzip_bytes)} KB con gzip -9, de {MAX_SCHOOL_BYTES // 1000} KB"))
+    if precision:
+        results.append((f"precision {_decimal(precision)} m", off_grid == 0,
+                        "todas las alturas son múltiplos" if not off_grid
+                        else f"{off_grid} píxeles no son múltiplos"))
 
     print(f"teselas: {directory.as_posix()}")
+    if school:
+        print(f"escuela: {school}, granulos {', '.join(manifest.get('granulos', []))}")
     for zoom in sorted(by_zoom):
         print(f"zoom {zoom}: {by_zoom[zoom]} teselas")
     print(f"total: {len(on_disk)} archivos, {_kb(total_bytes)}")
     print(f"elevación decodificada dentro del recorte: {low:.1f} a {high:.1f} m")
     print(f"elevación en el punto (zoom {top_zoom}): {point_tile:.1f} m")
+    if "altitud_escuela_m" in manifest:
+        print(f"altitud de la escuela (bilineal, relieve.json): {school_height:.1f} m")
     for name, ok, detail in results:
         print(f"[{'OK' if ok else 'FALLA'}] {name}: {detail}")
     failed = [name for name, ok, _ in results if not ok]
@@ -543,11 +888,25 @@ def check(directory: Path) -> int:
 
 
 def main(argv=None) -> int:
+    argv = list(sys.argv[1:] if argv is None else argv)
     parser = argparse.ArgumentParser(description=__doc__.split("\n\n")[0])
     parser.add_argument("--descargar", action="store_true",
-                        help=f"descarga {GRANULE} a data/raw/nasadem/")
+                        help=f"descarga {GRANULE} a data/raw/nasadem/; con --escuela, los "
+                             "granulos de su recorte que falten")
     parser.add_argument("--comprobar", type=Path, metavar="CARPETA",
                         help="comprueba unas teselas ya generadas")
+    parser.add_argument("--escuela", metavar="SLUG",
+                        help="toma lat y lon de web/datos/escuelas.json y escribe en "
+                             "web/datos/<slug>/relieve/")
+    parser.add_argument("--desde-recorte", action="store_true",
+                        help="con --escuela, genera desde recortes/<slug>/nasadem/elevacion.csv, "
+                             "sin el zip")
+    parser.add_argument("--precision-m", type=parse_precision,
+                        help="redondea las alturas a múltiplos de este valor antes de "
+                             f"codificarlas (con --escuela, {DEFAULT_PRECISION_M} por defecto)")
+    parser.add_argument("--altura-esperada", type=parse_range, metavar="MIN-MAX",
+                        help="el rango de la altura del punto en --comprobar; se guarda en "
+                             "relieve.json")
     parser.add_argument("--zip", type=Path, help="el zip del granulo de NASADEM")
     parser.add_argument("--lat", type=float)
     parser.add_argument("--lon", type=float)
@@ -555,16 +914,38 @@ def main(argv=None) -> int:
     parser.add_argument("--zoom", type=parse_zooms, default=parse_zooms("10-14"))
     parser.add_argument("--salida", type=Path)
     args = parser.parse_args(argv)
+    comando = shlex.join(["python", "-m", "src.relieve", *argv])
 
     if args.descargar:
+        if args.escuela:
+            return download_school(args.escuela, args.lado_km)
         download()
         return 0
     if args.comprobar is not None:
         return check(args.comprobar)
+    if args.escuela:
+        if args.zip or args.lat is not None or args.lon is not None:
+            parser.error("con --escuela, la posición sale de escuelas.json: sin --zip, --lat "
+                         "ni --lon")
+        expected = args.altura_esperada or ALTURA_ESPERADA_M.get(args.escuela)
+        if expected is None:
+            parser.error(f"{args.escuela} no tiene rango en ALTURA_ESPERADA_M: da "
+                         "--altura-esperada MIN-MAX")
+        precision = DEFAULT_PRECISION_M if args.precision_m is None else args.precision_m
+        out = args.salida or WEB_DATOS / args.escuela / "relieve"
+        return generate_school(args.escuela, args.lado_km, args.zoom, precision, expected,
+                               args.desde_recorte, out, comando)
+    if args.desde_recorte:
+        parser.error("--desde-recorte va con --escuela")
     if args.zip is None or args.lat is None or args.lon is None or args.salida is None:
-        parser.error("para generar hacen falta --zip, --lat, --lon y --salida")
-    return generate(args.zip, args.lat, args.lon, args.lado_km, args.zoom, args.salida)
+        parser.error("para generar hacen falta --zip, --lat, --lon y --salida, o --escuela")
+    return generate(args.zip, args.lat, args.lon, args.lado_km, args.zoom, args.salida,
+                    precision_m=args.precision_m,
+                    expected=args.altura_esperada or POINT_RANGE_M, comando=comando)
 
 
 if __name__ == "__main__":
+    # En Windows la consola no siempre escribe en UTF-8.
+    if hasattr(sys.stdout, "reconfigure"):
+        sys.stdout.reconfigure(encoding="utf-8")
     sys.exit(main())
