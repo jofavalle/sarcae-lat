@@ -6,6 +6,11 @@ Descarga del Climate Data Store la serie horaria de ERA5 de un punto
 `data/raw/era5/<nombre>/`, junto con un `registro.json`. `data/raw/` es inmutable: si el
 destino ya existe, no se toca.
 
+Por defecto, la serie va del 1940-01-01 al 2026-01-01, los dos días enteros. El CDS pide días
+completos, y del 1 de enero de 2026 llegan sus 24 horas: hacen falta las seis primeras para
+completar el último día local de 2025 en las tres sedes (UTC-6, UTC-5 y UTC-4). La serie se
+guarda tal como llega; el recorte a las 06:00 UTC lo hace el contrato de datos.
+
 Uso, desde la raíz del repositorio:
 
     python -m src.era5 --lat 13.70 --lon -89.12 --nombre prueba-ilopango
@@ -42,7 +47,7 @@ LEVELS_DATASET = "reanalysis-era5-single-levels"
 VARIABLES = ["2m_temperature", "2m_dewpoint_temperature", "total_precipitation"]
 LICENSE = "CC-BY-4.0"
 DEFAULT_START = "1940-01-01"
-DEFAULT_END = "2025-12-31"
+DEFAULT_END = "2026-01-01"
 
 # Nombres con que pueden llegar las columnas, y el nombre interno de cada una.
 TIME_COLUMNS = ("valid_time", "time", "date")
@@ -283,8 +288,11 @@ def main(argv=None) -> int:
     parser.add_argument("--lat", type=float)
     parser.add_argument("--lon", type=float)
     parser.add_argument("--nombre", help="carpeta de destino dentro de data/raw/era5/")
-    parser.add_argument("--inicio", default=DEFAULT_START)
-    parser.add_argument("--fin", default=DEFAULT_END)
+    parser.add_argument("--inicio", default=DEFAULT_START, metavar="AAAA-MM-DD",
+                        help=f"primer día, entero (por defecto {DEFAULT_START})")
+    parser.add_argument("--fin", default=DEFAULT_END, metavar="AAAA-MM-DD",
+                        help=f"último día, entero: llegan sus 24 horas (por defecto "
+                             f"{DEFAULT_END}, para completar el último día local de 2025)")
     args = parser.parse_args(argv)
 
     if args.comprobar is not None:
