@@ -1,0 +1,26 @@
+{
+  "escuela": "co-nicolas-esguerra",
+  "fuente": {
+    "nombre": "Google Open Buildings v3 y 2.5D Temporal",
+    "version": "v3 (contornos) y Temporal v1 (alturas de 2023)",
+    "url": "https://sites.research.google/gr/open-buildings/"
+  },
+  "licencia": {
+    "spdx": "CC-BY-4.0",
+    "url": "https://creativecommons.org/licenses/by/4.0/"
+  },
+  "atribucion": "Google Research, CC BY 4.0. W. Sirko, S. Kashubin, M. Ritter, A. Annkah, Y.S.E. Bouchareb, Y. Dauphin, D. Keysers, M. Neumann, M. Cisse, J.A. Quinn. Continental-scale building detection from high resolution satellite imagery. arXiv:2107.12283, 2021. W. Sirko, E.A. Brempong, J.T.C. Marcos, A. Annkah, A. Korme, M.A. Hassen, K. Sapkota, T. Shekel, A. Diack, S. Nevo, J. Hickey, J.A. Quinn. High-Resolution Building and Road Detection from Sentinel-2. arXiv:2310.11622, 2023. Contornos seleccionados por radio y confianza, con la altura media de 2023 por contorno.",
+  "fecha_descarga": "2026-11-28",
+  "generado": {
+    "utc": "2026-11-28T16:40:32+00:00",
+    "commit": "f94034475673693b6e8e7db53eb91b02a32ec762",
+    "comando": "python -m src.recortes --escribir recortes/co-nicolas-esguerra/open-buildings --fuente 'Google Open Buildings v3 y 2.5D Temporal' --version 'v3 (contornos) y Temporal v1 (alturas de 2023)' --url-fuente https://sites.research.google/gr/open-buildings/ --licencia CC-BY-4.0 --url-licencia https://creativecommons.org/licenses/by/4.0/ --atribucion 'Google Research, CC BY 4.0. W. Sirko, S. Kashubin, M. Ritter, A. Annkah, Y.S.E. Bouchareb, Y. Dauphin, D. Keysers, M. Neumann, M. Cisse, J.A. Quinn. Continental-scale building detection from high resolution satellite imagery. arXiv:2107.12283, 2021. W. Sirko, E.A. Brempong, J.T.C. Marcos, A. Annkah, A. Korme, M.A. Hassen, K. Sapkota, T. Shekel, A. Diack, S. Nevo, J. Hickey, J.A. Quinn. High-Resolution Building and Road Detection from Sentinel-2. arXiv:2310.11622, 2023. Contornos seleccionados por radio y confianza, con la altura media de 2023 por contorno.' --fecha-descarga 2026-11-28"
+  },
+  "archivos": [
+    {
+      "nombre": "edificios.geojson",
+      "bytes": 117672,
+      "sha256": "5dd268daa6407fef667da9bac1c7aec32e0584a94b57a01cc28b63f012b5ba54"
+    }
+  ]
+}

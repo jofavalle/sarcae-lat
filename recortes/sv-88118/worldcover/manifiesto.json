@@ -1,0 +1,31 @@
+{
+  "escuela": "sv-88118",
+  "fuente": {
+    "nombre": "ESA WorldCover",
+    "version": "v200 (2021)",
+    "url": "https://esa-worldcover.org/en/data-access"
+  },
+  "licencia": {
+    "spdx": "CC-BY-4.0",
+    "url": "https://creativecommons.org/licenses/by/4.0/"
+  },
+  "atribucion": "© ESA WorldCover project 2021 / Contains modified Copernicus Sentinel data (2021) processed by ESA WorldCover consortium. CC BY 4.0. Recortado y muestreado a 10 m en la cuadrícula UTM de la sede.",
+  "fecha_descarga": "2026-11-28",
+  "generado": {
+    "utc": "2026-11-28T16:34:09+00:00",
+    "commit": "f94034475673693b6e8e7db53eb91b02a32ec762",
+    "comando": "python -m src.recortes --escribir recortes/sv-88118/worldcover --fuente 'ESA WorldCover' --version 'v200 (2021)' --url-fuente https://esa-worldcover.org/en/data-access --licencia CC-BY-4.0 --url-licencia https://creativecommons.org/licenses/by/4.0/ --atribucion '© ESA WorldCover project 2021 / Contains modified Copernicus Sentinel data (2021) processed by ESA WorldCover consortium. CC BY 4.0. Recortado y muestreado a 10 m en la cuadrícula UTM de la sede.' --fecha-descarga 2026-11-28"
+  },
+  "archivos": [
+    {
+      "nombre": "celdas.csv",
+      "bytes": 615310,
+      "sha256": "fe371545983326a1057ecaa8b3d0e45885cbe745916034dfe66699f4541dd7de"
+    },
+    {
+      "nombre": "esquinas.json",
+      "bytes": 224,
+      "sha256": "1f0c609206b9262b8ed0d8fd2cf9f187bce8c5f43738a1aeacf0d6f883283e82"
+    }
+  ]
+}

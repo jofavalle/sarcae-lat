@@ -1,0 +1,31 @@
+{
+  "escuela": "ve-rafael-maria-baralt",
+  "fuente": {
+    "nombre": "Landsat 8 y 9",
+    "version": "Collection 2, Tier 1, Level-2 (L2SP)",
+    "url": "https://www.usgs.gov/landsat-missions/landsat-collection-2-level-2-science-products"
+  },
+  "licencia": {
+    "spdx": "dominio-publico",
+    "url": "https://www.usgs.gov/landsat-missions/landsat-collection-2-level-2-science-products"
+  },
+  "atribucion": "Landsat Collection 2 Level-2 image courtesy of the U.S. Geological Survey.",
+  "fecha_descarga": "2026-11-28",
+  "generado": {
+    "utc": "2026-11-28T16:40:32+00:00",
+    "commit": "f94034475673693b6e8e7db53eb91b02a32ec762",
+    "comando": "python -m src.recortes --escribir recortes/ve-rafael-maria-baralt/landsat --fuente 'Landsat 8 y 9' --version 'Collection 2, Tier 1, Level-2 (L2SP)' --url-fuente https://www.usgs.gov/landsat-missions/landsat-collection-2-level-2-science-products --licencia dominio-publico --url-licencia https://www.usgs.gov/landsat-missions/landsat-collection-2-level-2-science-products --atribucion 'Landsat Collection 2 Level-2 image courtesy of the U.S. Geological Survey.' --fecha-descarga 2026-11-28"
+  },
+  "archivos": [
+    {
+      "nombre": "cuadros.geojson",
+      "bytes": 153079,
+      "sha256": "c9e39ac64406a2e1f7eb9ddeb1524ef135afad8ad29ea0ce95b4da87c83e7edd"
+    },
+    {
+      "nombre": "escenas.csv",
+      "bytes": 1295,
+      "sha256": "5dd6ebd1ff550da88be47da6b8b9363f87360fde7acd0d0d3f307e4121ae9ad8"
+    }
+  ]
+}
