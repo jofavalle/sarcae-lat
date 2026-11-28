@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="es" data-direccion="noche">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SARCAE-LAT · Calor y agua en la escuela</title>
+  <meta name="description" content="SARCAE-LAT ayuda a estudiantes, docentes y dirección a conversar sobre qué revisar o preparar en la escuela ante el calor y el agua.">
+  <link rel="preload" href="fonts/ibm-plex-sans-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="fonts/ibm-plex-sans-latin-600-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="estilo/tokens.css">
+  <link rel="stylesheet" href="estilo/base.css">
+  <script type="module" src="app.js"></script>
+</head>
+<body>
+  <a class="saltar" href="#principal">Saltar al contenido</a>
+
+  <header class="cabecera">
+    <a class="marca" href="#principal">
+      <span class="marca-nombre">SARCAE-LAT</span>
+      <span class="marca-lema">Calor y agua en la escuela</span>
+    </a>
+    <nav aria-label="Secciones">
+      <ul>
+        <li><a href="#principal">Maqueta</a></li>
+        <li><a href="#clima">Clima</a></li>
+        <li><a href="#recorrido">Recorrido</a></li>
+        <li><a href="#preguntar">Preguntar</a></li>
+        <li><a href="#limites">Límites</a></li>
+        <li><a href="#fuentes">Fuentes</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="principal">
+    <section class="escenario" aria-labelledby="titulo">
+      <!-- La lectura va primero en el documento: el lector de pantalla y el teclado empiezan
+           por el título. La rejilla la coloca a la izquierda. -->
+      <div class="capa-info">
+        <p class="contexto"><span class="punto" aria-hidden="true"></span><span>Escuela ancla, El Salvador</span></p>
+        <h1 id="titulo">Calor y agua en la escuela: qué revisar y de qué conversar</h1>
+        <p class="entrada">Para estudiantes, docentes y dirección. Mueve la hora, recorre las paradas de la maqueta y lleva sus preguntas a la clase o a la reunión.</p>
+        <div class="lectura-hora">
+          <p class="rotulo">Hora en la maqueta</p>
+          <p class="hora" id="hora-grande">10:00</p>
+          <p class="estado">La posición del sol a esta hora llega con la maqueta, desde el contrato de datos.</p>
+        </div>
+        <p class="rotulo">Calor y lluvia en la zona, y cómo han cambiado</p>
+        <dl class="lecturas">
+          <div>
+            <dt><svg class="icono icono-calor" viewBox="0 0 16 16" aria-hidden="true"><path d="M10 13.2V4a2 2 0 1 0-4 0v9.2a3.4 3.4 0 1 0 4 0Z"/><path d="M8 9v5"/></svg>Horas al año por encima de 27 °C en horario de clase</dt>
+            <dd class="hueco">Llega con el contrato de datos.</dd>
+          </div>
+          <div>
+            <dt><svg class="icono icono-calor" viewBox="0 0 16 16" aria-hidden="true"><path d="M10 13.2V4a2 2 0 1 0-4 0v9.2a3.4 3.4 0 1 0 4 0Z"/><path d="M8 9v5"/></svg>Cambio de la temperatura media entre 1961–1990 y 1996–2025</dt>
+            <dd class="hueco">Llega con el contrato de datos.</dd>
+          </div>
+          <div>
+            <dt><svg class="icono icono-lluvia" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 2s-4.5 5-4.5 8.5a4.5 4.5 0 0 0 9 0C12.5 7 8 2 8 2Z"/></svg>Días al año con lluvia por encima del percentil 99 de 1961–1990</dt>
+            <dd class="hueco">Llega con el contrato de datos.</dd>
+          </div>
+        </dl>
+        <p class="nota">ERA5 describe la zona, no la escuela: su celda mide unos 28 km.</p>
+      </div>
+
+      <div class="lienzo">
+        <div class="lienzo-vacio">
+          <p class="rotulo-acento">La escena</p>
+          <p>Aquí va la maqueta de la escuela: dónde se acumula más el calor y por dónde podría llegar el agua.</p>
+          <p class="hueco">Llega con el contrato de datos: el relieve de NASADEM y los volúmenes de los edificios.</p>
+        </div>
+      </div>
+
+      <aside class="panel" aria-labelledby="panel-titulo">
+        <div class="panel-cabeza">
+          <p class="rotulo-acento">Recorrido</p>
+          <span class="insignia">Para conversar</span>
+        </div>
+        <h2 id="panel-titulo">Qué revisar o preparar, y de qué conversar</h2>
+        <p class="panel-texto hueco">Las paradas del recorrido, con una pregunta cada una, llegan con el contrato de datos.</p>
+        <div class="panel-acciones">
+          <button type="button" class="boton" disabled>Anterior</button>
+          <button type="button" class="boton" disabled>Siguiente</button>
+        </div>
+        <p class="panel-pie">No es un pronóstico ni una evaluación oficial de riesgo. <a href="#limites">Ver límites</a></p>
+      </aside>
+
+      <div class="mando">
+        <div class="linea-tiempo">
+          <label class="rotulo" for="hora">Hora del día</label>
+          <div class="pista">
+            <div class="franjas" aria-hidden="true">
+              <span class="franja" style="--desde: 7; --hasta: 12">Turno de la mañana</span>
+              <span class="franja" style="--desde: 13; --hasta: 17">Turno de la tarde</span>
+            </div>
+            <input type="range" id="hora" min="6" max="18" step="0.25" value="10" aria-valuetext="10:00">
+            <div class="escala" aria-hidden="true">
+              <span style="left: 0%">6:00</span>
+              <span class="menor" style="left: 8.3333%">7:00</span>
+              <span style="left: 16.6667%">8:00</span>
+              <span class="menor" style="left: 25%">9:00</span>
+              <span style="left: 33.3333%">10:00</span>
+              <span class="menor" style="left: 41.6667%">11:00</span>
+              <span style="left: 50%">12:00</span>
+              <span class="menor" style="left: 58.3333%">13:00</span>
+              <span style="left: 66.6667%">14:00</span>
+              <span class="menor" style="left: 75%">15:00</span>
+              <span style="left: 83.3333%">16:00</span>
+              <span class="menor" style="left: 91.6667%">17:00</span>
+              <span style="left: 100%">18:00</span>
+            </div>
+          </div>
+        </div>
+        <div class="barra" role="group" aria-label="Controles de la maqueta" aria-describedby="mandos-nota">
+          <div class="celda">
+            <label class="rotulo" for="fecha">Día del año</label>
+            <select id="fecha" disabled>
+              <option>15 de enero</option>
+              <option selected>15 de abril</option>
+              <option>15 de julio</option>
+              <option>15 de octubre</option>
+            </select>
+          </div>
+          <fieldset class="celda" disabled>
+            <legend class="rotulo">Capa</legend>
+            <div class="segmentado">
+              <label><input type="radio" name="capa" value="sombra" checked><span>Sombra</span></label>
+              <label><input type="radio" name="capa" value="calor"><span>Calor de superficie</span></label>
+              <label><input type="radio" name="capa" value="agua"><span>Agua de lluvia</span></label>
+            </div>
+          </fieldset>
+          <div class="celda">
+            <p class="rotulo">Sol</p>
+            <p class="valor hueco">Con el contrato de datos</p>
+          </div>
+          <div class="celda">
+            <p class="rotulo">Patio a la sombra</p>
+            <p class="valor hueco">Con el contrato de datos</p>
+          </div>
+          <fieldset class="celda" disabled>
+            <legend class="rotulo">Vista</legend>
+            <div class="segmentado">
+              <label><input type="radio" name="vista" value="maqueta" checked><span>Maqueta</span></label>
+              <label><input type="radio" name="vista" value="2d"><span>Mapa 2D</span></label>
+              <label><input type="radio" name="vista" value="3d"><span>3D</span></label>
+            </div>
+          </fieldset>
+        </div>
+        <div class="pie-mando">
+          <p class="leyenda" id="mandos-nota">La hora ya se puede mover. El día, la capa y la vista se activan con la maqueta, que llega con el contrato de datos, igual que la altura del sol y la sombra del patio.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="seccion" id="clima" aria-labelledby="clima-titulo">
+      <h2 id="clima-titulo">Clima de la zona</h2>
+      <p class="entradilla">Cuánto calor y cuánta lluvia extrema hay en el lugar de la escuela, y cómo han cambiado desde 1940. ERA5 describe la zona, no la escuela: su celda mide unos 28 km.</p>
+      <table class="tabla">
+        <caption class="visualmente-oculto">Indicadores de clima de la zona. Sus valores llegan con el contrato de datos.</caption>
+        <thead>
+          <tr><th scope="col">Indicador</th><th scope="col">Valor</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Horas al año por encima de 27 °C en horario de clase</td><td class="hueco">Llega con el contrato de datos.</td></tr>
+          <tr><td>Cambio de la temperatura media entre 1961–1990 y 1996–2025</td><td class="hueco">Llega con el contrato de datos.</td></tr>
+          <tr><td>Días al año con lluvia por encima del percentil 99 de 1961–1990</td><td class="hueco">Llega con el contrato de datos.</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="seccion" id="recorrido" aria-labelledby="recorrido-titulo">
+      <h2 id="recorrido-titulo">El recorrido, en texto</h2>
+      <p class="entradilla">Lo mismo que enseña la maqueta, para leerlo, imprimirlo o escucharlo con un lector de pantalla.</p>
+      <p class="hueco">Las paradas y sus preguntas para conversar llegan con el contrato de datos.</p>
+    </section>
+
+    <section class="seccion" id="preguntar" aria-labelledby="preguntar-titulo">
+      <h2 id="preguntar-titulo">Preguntar sobre esta escuela</h2>
+      <p class="entradilla">Las respuestas saldrán solo de la ficha de la escuela: sus cifras, sus fuentes y sus límites.</p>
+      <form class="pregunta" aria-describedby="preguntar-estado">
+        <label class="rotulo" for="texto-pregunta">Tu pregunta</label>
+        <div class="pregunta-fila">
+          <input type="text" id="texto-pregunta" autocomplete="off" disabled>
+          <button type="submit" class="boton boton-accion" disabled>Preguntar</button>
+        </div>
+        <p class="nota">Tu pregunta se enviará a un servicio externo para responderla. No escribas nombres ni datos personales.</p>
+      </form>
+      <p class="hueco" id="preguntar-estado">El asistente todavía no está conectado.</p>
+    </section>
+
+    <section class="seccion" id="limites" aria-labelledby="limites-titulo">
+      <h2 id="limites-titulo">Límites</h2>
+      <p class="entradilla">Lo que la herramienta no hace y lo que sus datos no pueden decir.</p>
+      <ul class="lista-limites">
+        <li>No es un pronóstico ni una evaluación oficial de riesgo. Las preguntas para conversar no son una calificación de la escuela.</li>
+        <li>ERA5 describe la zona, no la escuela: su celda mide unos 28 km.</li>
+        <li>La temperatura de superficie de Landsat es la de techos y suelos a la hora en que pasa el satélite, no la del aire.</li>
+        <li>Las alturas de los edificios son estimaciones, con un error medio de 1,5 m.</li>
+        <li>Los criterios del Manual de Diseño Mi Nueva Escuela son salvadoreños. En Colombia y Venezuela se usan los mismos indicadores como referencia de comparación, y su ficha lo declara.</li>
+        <li>Las estaciones validan ERA5 donde están, no en la escuela.</li>
+        <li>La maqueta muestra volúmenes: contornos, alturas, techos, patio y drenaje. Nunca la distribución interior, las puertas ni los accesos de una escuela concreta, por la seguridad de quienes la ocupan. Las rutas de evacuación que se comparan son hipotéticas y van sobre una maqueta genérica.</li>
+      </ul>
+    </section>
+
+    <section class="seccion" id="fuentes" aria-labelledby="fuentes-titulo">
+      <h2 id="fuentes-titulo">Fuentes</h2>
+      <table class="tabla">
+        <caption class="visualmente-oculto">Fuentes de terceros que usa la página, con su licencia</caption>
+        <thead>
+          <tr><th scope="col">Fuente</th><th scope="col">Licencia</th><th scope="col">Para qué</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>IBM Plex Sans e IBM Plex Mono, de IBM Corp.</td><td>SIL OFL 1.1</td><td>tipografía</td></tr>
+        </tbody>
+      </table>
+      <p class="hueco">Las fuentes de los datos, con su fecha y su licencia, llegan con el contrato de datos.</p>
+    </section>
+  </main>
+
+  <footer class="pie">
+    <p>SARCAE-LAT, del equipo Itzpapálotl, para el reto 10 de CoAfina 2026. Sirve para conversar sobre la preparación ante el calor y el agua; no es un pronóstico ni una evaluación oficial de riesgo.</p>
+  </footer>
+</body>
+</html>
