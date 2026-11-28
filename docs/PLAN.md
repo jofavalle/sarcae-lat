@@ -222,5 +222,5 @@ API de Gemini de AI Studio.
 | 6 | Proveedor del LLM | la integración |
 | 7 | Estaciones para la validación | el contrato de datos |
 | 8 | Modelo de elevación: NASADEM. Es el único de los dos con licencia compatible (CC0, por la política de datos de NASA), y sus recortes se versionan (sección 4). El Copernicus DEM es más reciente (2011 a 2015, frente a febrero de 2000), pero la licencia de su instancia pública, GLO-30-F, es propia y no CC0, CC BY ni dominio público: aunque permite distribuir (art. 4), su art. 6 exige un aviso que termina en "all rights reserved" y una cláusula de exención de responsabilidad, y obliga a los usuarios posteriores | cerrada |
-| 9 | Dirección visual: A · Noche, elegida y congelada en la issue #20 entre dos direcciones del prototipo del PR #35. Azul noche con halo, paneles de cristal, IBM Plex Sans y Mono, y un acento cálido (`#ffa45c`) solo para acciones y selección. Sus tokens son el bloque `noche` y la escala común de `web/direcciones/tokens.css`, y pasan al PR de la fundación del front. No se reestiliza sin una decisión escrita | cerrada |
+| 9 | Referencias visuales | las direcciones visuales |
 | 10 | Criterios equivalentes al manual salvadoreño para Colombia y Venezuela | la ficha |
