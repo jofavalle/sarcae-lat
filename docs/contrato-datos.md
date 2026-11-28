@@ -219,7 +219,10 @@ Ningún texto lleva un marcador sin resolver (`{{` o `}}`).
 ## Las capas del mapa
 
 Siguen los formatos de la ADR-001. Las coordenadas van en longitud y latitud (EPSG:4326,
-RFC 7946), con 6 decimales como mucho.
+RFC 7946), con 6 decimales como mucho. Cada geometría tiene la estructura de su tipo: un
+`Point` es una posición; un `LineString`, dos o más; un `Polygon`, una lista de anillos de
+cuatro posiciones o más, con la última igual a la primera; un `MultiPolygon`, una lista de
+polígonos.
 
 - **`relieve/relieve.json`**, con la cabecera y `escuela`, `granulos` (lista de textos, como
   `n13w090`), `bounds` (`[oeste, sur, este, norte]` del recorte), `minzoom` y `maxzoom`
@@ -302,7 +305,8 @@ python -m src.contrato --todas
   `escuelas.json`, `comun/` y `web/material/material.json`.
 - Comprueba lo que dice este documento: los campos obligatorios, los tipos, las unidades, los
   decimales, `contrato`, `generado` y `fuentes`, los rangos, la coherencia de `clima.json`, el
-  lenguaje y los archivos que no están en el contrato.
+  lenguaje y los archivos que no están en el contrato. Todo archivo JSON es un objeto en la
+  raíz: uno que contiene solo `null` es un error, no un archivo completo.
 - **Presupuestos**, con gzip -9 y en KB de 1000 bytes, medidos con `src.presupuesto.medir`:
   - **la primera pantalla de una escuela**, 20 KB como mucho: `escuelas.json`, su
     `escuela.json`, `clima.json`, `validacion.json` y `recorrido.json`, y `comun/limites.json`,

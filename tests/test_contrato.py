@@ -227,7 +227,8 @@ def test_la_validacion_retirada_no_lleva_cifras(tmp_path, capsys):
     carpeta = copia(tmp_path)
 
     def retirar(d):
-        for k in ("estacion", "periodo", "que_se_valida", "unidad", "variables"):
+        for k in ("estacion", "periodo", "que_se_valida", "unidad", "variables",
+                  "nota_licencia", "experimento"):
             d.pop(k)
         d.update(estado="retirada", motivo="La estación no se puede usar (#39).")
     editar(carpeta, "validacion.json", retirar)
@@ -238,6 +239,116 @@ def test_la_validacion_retirada_no_lleva_cifras(tmp_path, capsys):
     codigo, salida = validar(carpeta, capsys)
     assert codigo == 1
     assert "ejemplo/validacion.json: motivo: es null" in salida
+
+
+def test_una_validacion_retirada_que_conserva_las_cifras_falla(tmp_path, capsys):
+    carpeta = copia(tmp_path)
+    # Solo se cambia el estado: estacion, periodo, variables y lo demás siguen ahí.
+    editar(carpeta, "validacion.json",
+           lambda d: d.update(estado="retirada", motivo="La estación no se puede usar (#39)."))
+    codigo, salida = validar(carpeta, capsys)
+    assert codigo == 1
+    lineas = errores(salida)
+    for k in ("estacion", "periodo", "variables", "unidad"):
+        assert any(l.startswith(f"ejemplo/validacion.json: {k}: una validación retirada")
+                   for l in lineas), salida
+
+    def solo_variables(d):
+        for k in ("estacion", "periodo", "que_se_valida", "unidad", "nota_licencia",
+                  "experimento"):
+            d.pop(k)
+    editar(carpeta, "validacion.json", solo_variables)
+    codigo, salida = validar(carpeta, capsys)
+    assert codigo == 1
+    assert [l.split(": ")[1] for l in errores(salida)] == ["variables"], salida
+
+
+# Un archivo con null
+
+@pytest.mark.parametrize("archivo", [
+    "clima.json", "escuela.json", "../comun/limites.json", "relieve/relieve.json",
+])
+def test_un_archivo_con_null_no_pasa_como_completo(tmp_path, capsys, archivo):
+    carpeta = copia(tmp_path)
+    if archivo == "relieve/relieve.json":
+        tesela = carpeta / "relieve" / "12" / "1" / "2.png"
+        tesela.parent.mkdir(parents=True)
+        tesela.write_bytes(contrato.PNG + b"\0" * 100)
+    ruta = (carpeta / archivo).resolve()
+    ruta.parent.mkdir(parents=True, exist_ok=True)
+    ruta.write_text("null", encoding="utf-8")
+    codigo, salida = validar(carpeta, capsys)
+    assert codigo == 1, salida
+    assert "(raíz): es null, y tiene que ser un objeto" in salida
+    assert not salida.rstrip().endswith("contrato en orden")
+
+
+# Las geometrías
+
+def edificios(geometria):
+    return {
+        "type": "FeatureCollection",
+        "metadatos": cabecera(ejemplo=True, aviso="Volúmenes con cifras ficticias."),
+        "features": [{"type": "Feature", "geometry": geometria,
+                      "properties": {"altura": 6.0, "base": 0.0, "altura_supuesta": True}}],
+    }
+
+
+CUADRADO = [[-89.2, 13.7], [-89.1999, 13.7], [-89.1999, 13.7001], [-89.2, 13.7001],
+            [-89.2, 13.7]]
+
+
+@pytest.mark.parametrize("geometria", [
+    {"type": "Polygon", "coordinates": [CUADRADO]},
+    {"type": "MultiPolygon", "coordinates": [[CUADRADO], [CUADRADO]]},
+])
+def test_un_poligono_valido_pasa(tmp_path, capsys, geometria):
+    carpeta = copia(tmp_path)
+    escribir(carpeta / "edificios.geojson", edificios(geometria))
+    codigo, salida = validar(carpeta, capsys)
+    assert codigo == 0, salida
+
+
+@pytest.mark.parametrize("geometria, campo, mensaje", [
+    ({"type": "Polygon", "coordinates": [-89.2, 13.7]},
+     "features[0].geometry.coordinates[0]", "no es una lista de posiciones"),
+    ({"type": "Polygon", "coordinates": [CUADRADO[:-1]]},
+     "features[0].geometry.coordinates[0]", "el anillo no se cierra"),
+    ({"type": "Polygon", "coordinates": [[CUADRADO[0], CUADRADO[1], CUADRADO[0]]]},
+     "features[0].geometry.coordinates[0]", "el anillo tiene 3 posiciones"),
+    ({"type": "Polygon", "coordinates": []},
+     "features[0].geometry.coordinates", "no es una lista de anillos"),
+    ({"type": "MultiPolygon", "coordinates": [CUADRADO]},
+     "features[0].geometry.coordinates[0][0]", "el anillo tiene 2 posiciones"),
+])
+def test_un_poligono_mal_formado_falla(tmp_path, capsys, geometria, campo, mensaje):
+    carpeta = copia(tmp_path)
+    escribir(carpeta / "edificios.geojson", edificios(geometria))
+    codigo, salida = validar(carpeta, capsys)
+    assert codigo == 1, salida
+    assert any(l.startswith(f"ejemplo/edificios.geojson: {campo}: ") and mensaje in l
+               for l in errores(salida)), salida
+
+
+# Un tipo inesperado no interrumpe el informe
+
+def test_un_anio_que_es_una_lista_se_informa(tmp_path, capsys):
+    carpeta = copia(tmp_path)
+    editar(carpeta, "clima.json", lambda d: d["lluvia"]["serie"][0].update(anio=[]))
+    codigo, salida = validar(carpeta, capsys)
+    assert codigo == 1
+    assert any(l.startswith("ejemplo/clima.json: lluvia.serie[0].anio: [] no es un número")
+               for l in errores(salida)), salida
+
+
+def test_una_escuela_que_no_es_un_objeto_no_rompe_el_clima(tmp_path, capsys):
+    carpeta = copia(tmp_path)
+    escribir(carpeta / "escuela.json", "x")
+    codigo, salida = validar(carpeta, capsys)
+    assert codigo == 1
+    assert "ejemplo/escuela.json: (raíz): no es un objeto" in salida
+    linea = next(l for l in salida.splitlines() if l.startswith("ejemplo/clima.json"))
+    assert "en orden" in linea
 
 
 # Las palabras

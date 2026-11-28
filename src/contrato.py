@@ -72,6 +72,9 @@ CAPAS_MAQUETA = ("calor", "sombra", "agua")
 CAPAS_MAPA = ("relieve", "calor", "cobertura", "agua")
 VISTAS = ("2d", "3d")
 VARIABLES_VALIDACION = ("horaria", "media", "maxima", "minima")
+# Con `estado: "retirada"`, la cabecera, escuela, estado, motivo y texto (#71), sin cifras.
+CAMPOS_RETIRADA = ("contrato", "generado", "fuentes", "ejemplo", "aviso",
+                   "escuela", "estado", "motivo", "texto")
 
 # Los archivos de una carpeta de escuela, en el orden de la tabla, con su grupo del
 # presupuesto: "primera" (la primera pantalla), "mapa" o "peticion" (no cuenta).
@@ -552,8 +555,11 @@ def validar_clima(e, d, slug, ejemplo, contexto):
         if u is not None:
             igual(e, u, "lluvia", "episodios.unidades", "mm")
             igual(e, u, "temperatura", "episodios.unidades", "°C")
-        dias_por_anio = {s.get("anio"): s.get("dias") for s in serie_lluvia
-                         if isinstance(s, dict)}
+        # Solo los años que la serie ya dio por buenos: un `anio` de otro tipo tiene su
+        # error en lluvia.serie[i].anio, y aquí no puede ser una clave.
+        dias_por_anio = {s["anio"]: s.get("dias") for s in serie_lluvia
+                         if isinstance(s, dict) and _es_numero(s.get("anio"))
+                         and isinstance(s["anio"], int)}
         previo, vistas = None, set()
         for i, x in enumerate(lista(e, ep, "lista", "episodios", n=3) or []):
             ri = f"episodios.lista[{i}]"
@@ -603,6 +609,10 @@ def validar_validacion(e, d, slug, ejemplo, contexto):
     lenguaje(e, d)
     if estado == "retirada":
         texto(e, d, "motivo", "")
+        for k in d:
+            if k not in CAMPOS_RETIRADA:
+                e(k, "una validación retirada no lleva cifras: solo "
+                  + ", ".join(CAMPOS_RETIRADA))
         return
     est = objeto(e, d, "estacion", "")
     if est is not None:
@@ -685,20 +695,57 @@ def validar_recorrido(e, d, slug, ejemplo, contexto):
 
 # Las capas del mapa
 
-def _coordenadas(e, c, ruta, decimales=6):
-    """Recorre las coordenadas de una geometría: pares [lon, lat] con 6 decimales."""
-    if isinstance(c, list) and len(c) >= 2 and all(_es_numero(x) for x in c[:2]) \
-            and not any(isinstance(x, list) for x in c):
-        lon, lat = c[0], c[1]
-        if not (-180 <= lon <= 180 and -90 <= lat <= 90):
-            e(ruta, f"{c} no es [longitud, latitud]")
-        elif not (_decimales_ok(lon, decimales) and _decimales_ok(lat, decimales)):
-            e(ruta, f"{c} lleva más de {decimales} decimales")
-        return 1
-    if isinstance(c, list) and c:
-        return sum(_coordenadas(e, x, ruta, decimales) for x in c)
-    e(ruta, "no son coordenadas")
-    return 0
+def _posicion(e, c, ruta, decimales=6) -> bool:
+    """Una posición GeoJSON: [lon, lat], o [lon, lat, altura], con 6 decimales."""
+    if not (isinstance(c, list) and len(c) in (2, 3) and all(_es_numero(x) for x in c)):
+        e(ruta, f"{c!r} no es una posición [longitud, latitud]")
+        return False
+    lon, lat = c[0], c[1]
+    if not (-180 <= lon <= 180 and -90 <= lat <= 90):
+        e(ruta, f"{c} no es [longitud, latitud]")
+        return False
+    if not (_decimales_ok(lon, decimales) and _decimales_ok(lat, decimales)):
+        e(ruta, f"{c} lleva más de {decimales} decimales")
+    return True
+
+
+def _posiciones(e, c, ruta, minimo, que) -> list:
+    """Una lista de `minimo` posiciones o más; devuelve las que son válidas."""
+    if not isinstance(c, list):
+        e(ruta, f"{c!r} no es una lista de posiciones")
+        return []
+    if len(c) < minimo:
+        e(ruta, f"{que} tiene {len(c)} posiciones, y son {minimo} como mínimo")
+    return [p for i, p in enumerate(c) if _posicion(e, p, f"{ruta}[{i}]")]
+
+
+def _poligono(e, c, ruta):
+    """Una lista de anillos: cada uno, de cuatro posiciones o más, cerrado."""
+    if not isinstance(c, list) or not c:
+        e(ruta, f"{c!r} no es una lista de anillos")
+        return
+    for i, anillo in enumerate(c):
+        ra = f"{ruta}[{i}]"
+        validas = _posiciones(e, anillo, ra, 4, "el anillo")
+        if isinstance(anillo, list) and len(validas) == len(anillo) >= 2 \
+                and anillo[0] != anillo[-1]:
+            e(ra, "el anillo no se cierra: la última posición no repite la primera")
+
+
+def _geometria(e, tipo, c, ruta):
+    """Las coordenadas de una geometría, con la estructura de su tipo (RFC 7946, 3.1)."""
+    if tipo == "Point":
+        _posicion(e, c, ruta)
+    elif tipo == "LineString":
+        _posiciones(e, c, ruta, 2, "la línea")
+    elif tipo == "Polygon":
+        _poligono(e, c, ruta)
+    elif tipo == "MultiPolygon":
+        if not isinstance(c, list) or not c:
+            e(ruta, f"{c!r} no es una lista de polígonos")
+            return
+        for i, p in enumerate(c):
+            _poligono(e, p, f"{ruta}[{i}]")
 
 
 def _geojson(e, d, ejemplo, geometrias, propiedades):
@@ -719,9 +766,9 @@ def _geojson(e, d, ejemplo, geometrias, propiedades):
         g = objeto(e, f, "geometry", ri)
         if g is not None:
             tipo = una_de(e, g, "type", ri + ".geometry", geometrias)
-            if tipo:
-                _coordenadas(e, campo(e, g, "coordinates", ri + ".geometry"),
-                             ri + ".geometry.coordinates")
+            c = campo(e, g, "coordinates", ri + ".geometry")
+            if tipo and c is not None:
+                _geometria(e, tipo, c, ri + ".geometry.coordinates")
         p = objeto(e, f, "properties", ri)
         if p is not None:
             propiedades(e, p, ri + ".properties", g.get("type") if g else None)
@@ -772,7 +819,7 @@ def validar_capas(e, d, slug, ejemplo, contexto):
     if cob is not None:
         esquinas = lista(e, cob, "esquinas", "cobertura", n=4) or []
         for i, c in enumerate(esquinas):
-            _coordenadas(e, c, f"cobertura.esquinas[{i}]")
+            _posicion(e, c, f"cobertura.esquinas[{i}]")
     for ri, c in _elementos(e, lista(e, d, "clases", "", minimo=1), "clases"):
         numero(e, c, "clase", ri, 0, 255, entero=True)
         texto(e, c, "nombre", ri)
@@ -971,13 +1018,19 @@ def _gzip(datos: bytes) -> int:
 
 
 def _leer_json(e, ruta: Path):
+    """El contenido del archivo, o None con un error. Todos los archivos del contrato son un
+    objeto: un `null` en la raíz es un archivo leído, no uno vacío que se da por bueno."""
     try:
-        return json.loads(ruta.read_text(encoding="utf-8"))
+        d = json.loads(ruta.read_text(encoding="utf-8"))
     except UnicodeDecodeError:
         e("(archivo)", "no está en UTF-8")
+        return None
     except json.JSONDecodeError as exc:
         e("(archivo)", f"no es JSON: línea {exc.lineno}, columna {exc.colno}")
-    return None
+        return None
+    if d is None:
+        e("(raíz)", "es null, y tiene que ser un objeto")
+    return d
 
 
 def _errores(n: int) -> str:
@@ -1025,7 +1078,7 @@ def comunes(raiz: Path, informe: Informe) -> dict:
         d = _leer_json(e, raiz / nombre)
         if d is not None:
             r = VALIDADORES_COMUNES[nombre](e, d)
-            if nombre == "comun/limites.json":
+            if nombre == "comun/limites.json" and isinstance(d, dict):
                 contexto["limites"] = r
         pesos[nombre] = medidos[nombre]
         informe.fila(nombre, informe.anotar(nombre, e), medidos[nombre], grupo)
@@ -1080,7 +1133,8 @@ def escuela(carpeta: Path, informe: Informe, compartido: dict) -> tuple:
                 d = _leer_json(e, ruta)
                 if d is not None:
                     VALIDADORES[nombre](e, d, slug, ejemplo, contexto)
-                    contexto[nombre] = d
+                    if isinstance(d, dict):
+                        contexto[nombre] = d
             estado = informe.anotar(mostrado, e)
         if n_bytes is not None:
             if grupo == "primera":
