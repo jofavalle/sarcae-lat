@@ -1,5 +1,4 @@
 {
-  "datos_ficticios": "z_celda ficticia (700 m): el geopotencial de ERA5 (petición 9ea2bc4a-4cba-44c6-938e-2901a967af25) espera en la cola del CDS. La serie es la real. Decisión del equipo del 2026-11-28; se sustituye por data/raw/era5/santa-ana-el-palmar cuando llegue.",
   "descripcion": "ERA5 frente a la estación, hora a hora, en el horario escolar. El sesgo es una limitación que se declara, no una calificación.",
   "definiciones": {
     "sesgo_k": "media de ERA5 menos la estación, en K",
@@ -24,9 +23,9 @@
       "lat": 14.0,
       "lon": -89.5
     },
-    "z_celda_m": 700.0
+    "z_celda_m": 676.2
   },
-  "correccion_k": 0.26,
+  "correccion_k": 0.1053,
   "distancia_estacion_escuela_km": 20.5,
   "nota_distancia": "aproximada, medida en la #39 desde el casco urbano de San Pablo Tacachico (13,975; -89,340), porque el repositorio no tiene las coordenadas de la escuela",
   "por_anio": {
@@ -38,8 +37,8 @@
         "error_cuadratico_medio_k": 1.6642
       },
       "con_correccion": {
-        "sesgo_k": -0.1073,
-        "error_cuadratico_medio_k": 1.6267
+        "sesgo_k": -0.262,
+        "error_cuadratico_medio_k": 1.6442
       }
     },
     "2025": {
@@ -50,8 +49,8 @@
         "error_cuadratico_medio_k": 1.5306
       },
       "con_correccion": {
-        "sesgo_k": 0.2665,
-        "error_cuadratico_medio_k": 1.5536
+        "sesgo_k": 0.1118,
+        "error_cuadratico_medio_k": 1.5347
       }
     }
   },
@@ -63,8 +62,8 @@
       "error_cuadratico_medio_k": 1.5982
     },
     "con_correccion": {
-      "sesgo_k": 0.0812,
-      "error_cuadratico_medio_k": 1.5903
+      "sesgo_k": -0.0734,
+      "error_cuadratico_medio_k": 1.5899
     }
   },
   "horas_por_mes": {
@@ -129,10 +128,10 @@
     "id_peticion_cds_estacion": "b2560615-27e9-4997-9bc1-50783107b717",
     "sha256": {
       "data/raw/c3s-insitu/santa-ana-el-palmar/observaciones.zip": "81b383229e1f38e80b6894856d2bcdd0d07433333c7037ebbd9c7d2389b28eec",
-      "data/processed/era5-ficticio/santa-ana-el-palmar/serie.zip": "4796f95e6a4779fa7f42d47b60b414854958e36ae554742d801f38f4b28b08cf",
-      "data/processed/era5-ficticio/santa-ana-el-palmar/geopotencial.nc": "b3982ad615577ef015a5db17a08ddbb633c087c8f47619d16972fc860d9f816f"
+      "data/raw/era5/santa-ana-el-palmar/serie.zip": "4796f95e6a4779fa7f42d47b60b414854958e36ae554742d801f38f4b28b08cf",
+      "data/raw/era5/santa-ana-el-palmar/geopotencial.nc": "5633661d06413071bd957eb69d8d1f1821578f1b495a5fb1711459720b167c40"
     }
   },
-  "commit": "af5f309a16852eb381368b2eab7eeb1d98fd3309",
-  "corrida_utc": "2026-11-28T14:17:40+00:00"
+  "commit": "d543fab7a3e8286824675116b7d449cae72118f6",
+  "corrida_utc": "2026-11-28T19:33:57+00:00"
 }

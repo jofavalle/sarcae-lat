@@ -1,4 +1,3 @@
-datos_ficticios: "z_celda ficticia (700 m): el geopotencial de ERA5 (petición 9ea2bc4a-4cba-44c6-938e-2901a967af25) espera en la cola del CDS. La serie es la real. Decisión del equipo del 2026-11-28; se sustituye por data/raw/era5/santa-ana-el-palmar cuando llegue."
 experimento: "validación de ERA5 en la escuela ancla contra Santa Ana/El Palmar (#54)"
 estacion:
   id: "ESI0000MSSA"
