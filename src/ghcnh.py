@@ -41,11 +41,13 @@ YEARS = (2024, 2025, 2026)
 USER_AGENT = "sarcae-lat/ghcnh"
 LICENSE = ("CC0 según la ficha del conjunto; el inventario sub-diario v3.0.0 de C3S y NCEI "
            "marca la estación como non_commercial: la serie no se versiona (#46)")
-CITATION = ("Menne, Matthew J.; Noone, Simon; Casey, Nancy W.; Dunn, Robert H.; McNeill, "
-            "Shelley; Kantor, Diana; Thorne, Peter W.; Orcutt, Karen; Cunningham, Sam; "
-            "Risavi, Nicholas. 2023. Global Historical Climatology Network-Hourly (GHCNh). "
-            "NOAA National Centers for Environmental Information. "
-            "https://doi.org/10.25921/jp3d-3v19")
+CITATION_AUTHORS = ("Menne, Matthew J.; Noone, Simon; Casey, Nancy W.; Dunn, Robert H.; "
+                    "McNeill, Shelley; Kantor, Diana; Thorne, Peter W.; Orcutt, Karen; "
+                    "Cunningham, Sam; Risavi, Nicholas. 2023. Global Historical Climatology "
+                    "Network-Hourly (GHCNh).")
+CITATION_PUBLISHER = ("NOAA National Centers for Environmental Information. "
+                      "https://doi.org/10.25921/jp3d-3v19")
+CITATION = f"{CITATION_AUTHORS} {CITATION_PUBLISHER}"
 GROWING_NOTE = ("el archivo del año en curso sigue creciendo: su SHA-256 cambia de un día a "
                 "otro")
 
@@ -84,6 +86,11 @@ def ensure_new(final: Path) -> None:
     """Sale con un mensaje si el destino ya existe: data/raw es inmutable."""
     if final.exists():
         sys.exit(f"{_relative(final)} ya existe, y data/raw es inmutable: no se toca.")
+
+
+def citation(subset: str, accessed: str) -> str:
+    """La cita de NCEI (README, "Atribución") con el subconjunto y la fecha de acceso."""
+    return f"{CITATION_AUTHORS} {subset}. {CITATION_PUBLISHER}. Consultado el {accessed}."
 
 
 def file_name(station: str, year: int) -> str:
