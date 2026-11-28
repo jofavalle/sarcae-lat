@@ -6,6 +6,9 @@ data/
 !data/**/.gitkeep
 *.csv
 *.parquet
+# Los recortes que el jurado necesita para reproducir el análisis sí se versionan (#21).
+!recortes/**/*.csv
+!recortes/**/*.parquet
 *.pkl
 *.joblib
 
