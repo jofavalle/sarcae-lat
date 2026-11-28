@@ -1,0 +1,123 @@
+{
+  "ejemplo": true,
+  "aviso": "Cifras de ejemplo para comparar las direcciones visuales. No son de la escuela ancla: se sustituyen por las del contrato de datos. Los rótulos ya siguen las definiciones de los indicadores acordadas en la #22.",
+  "escuela": { "nombre": "Escuela ancla", "pais": "El Salvador" },
+  "clima": {
+    "fuente": "ERA5, Copernicus Climate Change Service (CC BY 4.0). Cifras de ejemplo.",
+    "nota": "ERA5 describe una celda de unos 28 km, no el patio de la escuela.",
+    "cifras": [
+      { "icono": "calor", "valor": "410", "unidad": "horas", "rotulo_corto": "Horas al año sobre 27 °C en horario de clase", "rotulo": "Horas al año por encima de 27 °C, de lunes a viernes de 07:00 a 17:00", "detalle": "Promedio de 1996 a 2025, con la temperatura del aire corregida por altitud. De 1961 a 1990 eran 190." },
+      { "icono": "calor", "valor": "+0,9", "unidad": "°C", "rotulo_corto": "Cambio de la temperatura media desde 1961–1990", "rotulo": "Cambio de la temperatura media anual de la zona", "detalle": "Promedio de 1996 a 2025 frente al de 1961 a 1990." },
+      { "icono": "lluvia", "valor": "5", "unidad": "días", "rotulo_corto": "Días al año con lluvia sobre 85 mm", "rotulo": "Días al año con más de 85 mm de lluvia, el percentil 99 de la lluvia diaria de 1961 a 1990", "detalle": "Promedio de 1996 a 2025. De 1961 a 1990 eran 3,7: por definición, el 1 % de los días." },
+      { "icono": "calendario", "valor": "abril", "unidad": "", "rotulo_corto": "Mes más caluroso", "rotulo": "Mes más caluroso", "detalle": "El curso empieza en enero, y mayo abre la época de lluvias." }
+    ]
+  },
+  "fechas": [
+    { "id": "ene", "texto": "15 de enero", "dia_del_anio": 15 },
+    { "id": "abr", "texto": "15 de abril", "dia_del_anio": 105 },
+    { "id": "jul", "texto": "15 de julio", "dia_del_anio": 196 },
+    { "id": "oct", "texto": "15 de octubre", "dia_del_anio": 288 }
+  ],
+  "registros": {
+    "estudiante": {
+      "nombre": "Estudiante",
+      "titulo": "Mira cómo se calienta tu escuela y por dónde corre el agua.",
+      "entrada": "Mueve la hora, recorre la maqueta y piensa en las preguntas con tu grupo."
+    },
+    "docente": {
+      "nombre": "Docente",
+      "titulo": "El calor y el agua en la escuela, para preparar la clase y la conversación.",
+      "entrada": "Cuatro paradas con una pregunta cada una, para trabajar en el aula."
+    },
+    "direccion": {
+      "nombre": "Dirección",
+      "titulo": "Qué revisar en la escuela ante el calor y la lluvia, con datos desde 1940.",
+      "entrada": "Cuatro puntos de la escuela para revisar y conversar con la comunidad."
+    }
+  },
+  "paradas": [
+    {
+      "id": "techos",
+      "titulo": "Techos",
+      "volumen": "pabellon-a",
+      "capa": "calor",
+      "hora": 13,
+      "texto": {
+        "estudiante": "El techo de lámina se calienta mucho más que el aire. Por eso el aula se siente caliente aunque afuera corra algo de viento.",
+        "docente": "La lámina sin aislante se calienta mucho más que el aire y calienta el aula desde arriba. Landsat no ve cada techo: mide en cuadros de 100 m, y la escuela entera cabe en uno.",
+        "direccion": "Los techos de lámina sin aislante calientan las aulas. El Manual Mi Nueva Escuela da criterios de ventilación y aislamiento para revisarlos. El mapa 2D compara el calor del entorno, no el de cada techo."
+      },
+      "pregunta": {
+        "estudiante": "¿En qué aula hace más calor después del recreo? ¿Por qué crees que pasa?",
+        "docente": "¿Qué actividades conviene mover a las primeras horas en los meses de más calor?",
+        "direccion": "¿Qué aulas tienen techo sin aislante o sin cielo falso, y cuáles se usan por la tarde?"
+      }
+    },
+    {
+      "id": "patio",
+      "titulo": "Patio",
+      "volumen": "techo-patio",
+      "capa": "sombra",
+      "hora": 10,
+      "texto": {
+        "estudiante": "Mueve la hora y mira cómo cambian las sombras. A la hora del recreo, ¿dónde hay sombra?",
+        "docente": "La barra de abajo mueve el sol del día elegido, y la maqueta calcula qué parte del patio queda a la sombra.",
+        "direccion": "La sombra del patio cambia con el mes: en abril, el sol del mediodía queda casi encima de la escuela."
+      },
+      "pregunta": {
+        "estudiante": "¿Dónde podemos jugar o esperar sin estar al sol a las 10:00?",
+        "docente": "¿Qué zonas del patio sirven para formar o esperar a la sombra a la hora de entrada y del recreo?",
+        "direccion": "¿Hace falta más sombra en el patio, y en qué horario se usaría más?"
+      }
+    },
+    {
+      "id": "aleros",
+      "titulo": "Aleros",
+      "volumen": "pabellon-b",
+      "capa": "sombra",
+      "hora": 15,
+      "texto": {
+        "estudiante": "El borde del techo que sobresale se llama alero. Protege la pared y las ventanas del sol y de la lluvia.",
+        "docente": "Con la hora en la tarde se ve qué paredes quedan al sol. El alero del esquema mide 1,2 m.",
+        "direccion": "Aquí no se recomienda una medida de alero: falta una referencia del manual aplicable a esta escuela y a cada fachada. Lo que sí se puede revisar es qué ventanas quedan al sol por la tarde."
+      },
+      "pregunta": {
+        "estudiante": "¿Qué ventanas de tu aula reciben sol directo durante la clase?",
+        "docente": "¿En qué aulas entra el sol por la ventana a media mañana o a media tarde?",
+        "direccion": "¿Qué ventanas reciben sol directo por la tarde y qué sombra les dan los aleros o parteluces?"
+      }
+    },
+    {
+      "id": "agua",
+      "titulo": "Agua de lluvia",
+      "volumen": "pabellon-b",
+      "capa": "agua",
+      "hora": 14,
+      "texto": {
+        "estudiante": "Cuando llueve fuerte, el agua baja de los techos y corre por el patio hacia la parte más baja del terreno.",
+        "docente": "Las flechas siguen la pendiente del esquema. En el ejemplo, la lluvia de un día pasa de 85 mm unos 5 días al año.",
+        "direccion": "La canaleta y el desagüe recogen el agua de los techos y del patio. La pendiente real saldrá del modelo de elevación NASADEM."
+      },
+      "pregunta": {
+        "estudiante": "¿Por dónde corre el agua en el patio cuando llueve fuerte? ¿Dónde se queda?",
+        "docente": "¿Qué pasillos o rutas dentro de la escuela se mojan o se encharcan en la época de lluvias?",
+        "direccion": "¿Cuándo se limpiaron por última vez la canaleta y los desagües, y quién los revisa antes de mayo?"
+      }
+    }
+  ],
+  "limites": [
+    "No es un pronóstico ni una evaluación oficial de riesgo. Las preguntas son para conversar, no una calificación de la escuela.",
+    "ERA5 describe la zona, no la escuela: su celda mide unos 28 km.",
+    "La temperatura de superficie de Landsat es la de techos y suelos a la hora en que pasa el satélite, no la del aire. Se mide en cuadros de 100 m, así que compara zonas del entorno y no separa el techo del patio de una misma escuela.",
+    "Las alturas de los edificios son estimaciones, con un error medio de 1,5 m.",
+    "La maqueta muestra volúmenes: contornos, alturas, techos, patio y drenaje. Nunca la distribución interior, las puertas ni los accesos.",
+    "En este prototipo, la maqueta es un esquema de una escuela tipo y las cifras son de ejemplo."
+  ],
+  "fuentes": [
+    { "nombre": "ERA5, Copernicus Climate Change Service", "licencia": "CC BY 4.0", "uso": "clima de la zona (aquí, cifras de ejemplo)" },
+    { "nombre": "Landsat 8 y 9, USGS", "licencia": "dominio público", "uso": "temperatura de superficie en cuadros de 100 m (aquí, cifras de ejemplo)" },
+    { "nombre": "Manual de Diseño Mi Nueva Escuela, MINEDUCYT, 2022", "licencia": "sin licencia declarada; solo se citan sus criterios", "uso": "aleros, ventilación y aguas lluvias" },
+    { "nombre": "IBM Plex Sans e IBM Plex Mono", "licencia": "SIL OFL 1.1", "uso": "tipografía" },
+    { "nombre": "MapLibre GL JS 6.20.0", "licencia": "BSD-3-Clause", "uso": "mapa 2D y maqueta 3D" }
+  ]
+}

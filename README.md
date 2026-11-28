@@ -28,6 +28,12 @@ https://dataspace.copernicus.eu/explore-data/data-collections/copernicus-contrib
 y https://dataspace.copernicus.eu/sites/default/files/media/files/2025-06/copernicus_contributing_mission_data_access_v2_cop_dem_licenses.pdf,
 consultadas el 2026-11-27.
 
+### Tipografía
+
+| Fuente | Productor | Licencia | Enlace | Consulta | Para qué |
+|---|---|---|---|---|---|
+| IBM Plex Sans e IBM Plex Mono, en los paquetes `@fontsource/ibm-plex-sans` e `@fontsource/ibm-plex-mono` 5.3.0 | IBM Corp.; reempaquetadas por Fontsource | SIL OFL 1.1 (`web/fonts/OFL-ibm-plex-sans.txt` y `web/fonts/OFL-ibm-plex-mono.txt`) | https://github.com/IBM/plex | 2026-11-28 | Texto, cifras y rótulos del front (`web/fonts/ORIGEN.md`) |
+
 ## Verificación
 
 `python3 .github/higiene.py`
