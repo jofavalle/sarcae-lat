@@ -95,10 +95,11 @@ equipo: un cambio en ella se propone por PR, como cualquier otro. Lo de cada uno
   entra lo que tenga licencia compatible. `data/raw/` sigue inmutable y sin versionar: el
   recorte es una copia derivada, no el original.
 - **ERA5 se descarga del Climate Data Store** (2026-11-27), que es la fuente que nombra el reto.
-- **ERA5 llega por partes** (2026-11-28, #61, #54 y #102). Ya llegaron las series horarias
-  completas de la 88118 y de Bogotá. Falta el geopotencial, que da `z_celda`:
-  - el de la 88118 y el de Santa Ana/El Palmar esperan en la cola de la cuenta de cesarp03;
-  - el de Bogotá y la serie y el geopotencial de Maracaibo los pide la #102, con otra cuenta.
+- **ERA5 llega por partes** (2026-11-28, #61, #54 y #102). Las réplicas ya están completas:
+  Bogotá y Maracaibo tienen serie y geopotencial reales (`recortes/<escuela>/era5/`), que la
+  #102 bajó con la cuenta de jofavalle. Falta el geopotencial, que da `z_celda`, solo en la
+  ancla:
+  - el de la 88118 y el de Santa Ana/El Palmar esperan en la cola de la cuenta de cesarp03.
 
   La cola de `reanalysis-era5-single-levels` va saturada; la de la serie horaria responde en
   segundos. Ninguna orden se detiene por lo que falta: si hace falta, se trabaja con datos
@@ -115,7 +116,7 @@ equipo: un cambio en ella se propone por PR, como cualquier otro. Lo de cada uno
   - Lo publicado a partir de ello lleva el campo `datos_ficticios` con su nota, y quien lo
     consume lo enseña o lo propaga.
   - El PR va con `Refs #N`, no cierra la orden, y dice qué falta para sustituirlo.
-  - Esta regla se retira, por PR, cuando lleguen los geopotenciales de las cuatro celdas.
+  - Esta regla se retira, por PR, cuando lleguen los dos geopotenciales que faltan.
 
 ## Gotchas
 

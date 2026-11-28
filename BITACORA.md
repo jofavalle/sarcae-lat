@@ -121,9 +121,17 @@ qué necesita en `main` antes de empezar y, si las hay, qué órdenes esperan po
    **Bogotá ya tiene ficha provisional** con el mismo método: la serie real llegó a las 11:53
    (`.parcial-co-nicolas-esguerra-9rv1p1h3/`), con `z_celda` ficticia igual a `z_escuela`,
    2555,8 m, en la celda (4,75; −74,0). Da 0 horas sobre 27 °C, como esperaba la #69. Su
-   geopotencial se borró de la cola de cesarp03 para dejar sitio, y la #102 lo pide con otra
-   cuenta, junto con la serie y el geopotencial de Maracaibo. La #69 conserva los rangos por
-   sede.
+   geopotencial se borró de la cola de cesarp03 para dejar sitio, y la #102 lo pidió con la
+   cuenta de jofavalle, junto con la serie y el geopotencial de Maracaibo. La #69 conserva los
+   rangos por sede.
+
+   **Las réplicas ya están completas** (#102). El 28 por la tarde el CDS respondió en
+   segundos: Bogotá bajó su geopotencial (`z_celda` real de 2753,4 m, corrección de +1,3 K) y
+   Maracaibo su serie y su geopotencial (`z_celda` de 36,0 m, corrección de 0,0 K). Las dos
+   tienen recorte versionado en `recortes/<escuela>/era5/` y `escuela.json` y `clima.json`
+   recalculados, sin `datos_ficticios`. En Bogotá las horas sin corregir siguen en 0, como con
+   la serie provisional, que es la misma. Lo que falta de ERA5 es solo de la ancla: los
+   geopotenciales de la 88118 y de Santa Ana, en la cola de la cuenta de cesarp03.
 3. **El asistente**: la #72 decide, antes del domingo 29 a las 04:00, si producción responde
    con el LLM o solo con respuestas de reserva, que es la propuesta. La orden #73 deja la
    reserva funcionando en cualquier caso, y su parte de producción espera a la #72.

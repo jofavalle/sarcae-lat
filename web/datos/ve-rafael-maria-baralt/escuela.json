@@ -1,0 +1,45 @@
+{
+  "contrato": 1,
+  "generado": {
+    "utc": "2026-11-28T18:26:55+00:00",
+    "commit": "5e9aa698ccf955a86645b87639fd0ebcd2569918",
+    "comando": "python -m src.indicadores --escuela ve-rafael-maria-baralt"
+  },
+  "fuentes": [
+    {
+      "nombre": "NASADEM_HGT",
+      "version": "001",
+      "licencia": "CC0-1.0",
+      "url": "https://www.earthdata.nasa.gov/data/catalog/lpcloud-nasadem-hgt-001"
+    },
+    {
+      "nombre": "ERA5, niveles de superficie: geopotencial de la celda (ECMWF, para el C3S)",
+      "version": "reanalysis-era5-single-levels",
+      "licencia": "CC-BY-4.0",
+      "url": "https://cds.climate.copernicus.eu/datasets/reanalysis-era5-single-levels"
+    }
+  ],
+  "slug": "ve-rafael-maria-baralt",
+  "nombre": "Unidad Educativa Nacional Rafael María Baralt",
+  "municipio": "Maracaibo",
+  "division": "Zulia",
+  "pais": "Venezuela",
+  "iso_pais": "VE",
+  "codigo": null,
+  "lat": 10.67002,
+  "lon": -71.62749,
+  "huso_horas": -4,
+  "altitud": {
+    "valor": 38.0,
+    "unidad": "m",
+    "fuente": "NASADEM"
+  },
+  "zona_diseno": null,
+  "celda_era5": {
+    "lat": 10.75,
+    "lon": -71.75,
+    "resolucion": 0.25,
+    "unidad": "grados"
+  },
+  "criterios": "referencia de comparación"
+}
