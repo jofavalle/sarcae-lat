@@ -48,7 +48,27 @@ def test_summary_matches_the_analytic_series():
 
 
 def test_full_period_has_the_hours_of_the_order():
-    assert len(expected_hours("1940-01-01", "2025-12-31")) == 753888
+    # De 1940 a 2025 son 753888 horas, y el 1 de enero de 2026 añade 24.
+    assert (era5.DEFAULT_START, era5.DEFAULT_END) == ("1940-01-01", "2026-01-01")
+    assert len(expected_hours(era5.DEFAULT_START, era5.DEFAULT_END)) == 753912
+
+
+def test_partial_year_does_not_enter_the_annual_rain():
+    # 2025 entero con 1,8 m, y el 1 de enero de 2026 con la misma lluvia por hora. Si el
+    # año parcial entrara en la media, daría (1,8 + 1,8 · 24 / 8760) / 2, unos 0,90 m.
+    time = expected_hours(START, "2026-01-01")
+    hours = time.hour.to_numpy(dtype="float64")
+    t2m = 297.0 + 4.0 * np.cos(2.0 * np.pi * (hours - 19) / 24.0)
+    series = pd.DataFrame({
+        "time": time,
+        "t2m": t2m,
+        "d2m": t2m - 5.0,
+        "tp": np.full(len(time), 1.8 / 8760, dtype="float64"),
+    })
+    assert len(series) == 8760 + 24
+    assert summarize(series)["annual_rain_m"] == pytest.approx(1.8, rel=1e-12)
+    checks = run_checks(series, START, "2026-01-01", POINT, POINT)
+    assert [c.name for c in checks if not c.ok] == []
 
 
 def test_good_series_passes_every_check():

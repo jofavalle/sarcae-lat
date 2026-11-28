@@ -51,14 +51,22 @@ def expected_hours(start: str, end: str) -> pd.DatetimeIndex:
 def summarize(series: pd.DataFrame) -> dict:
     """Resumen de la serie: filas, extremos, medias y hora del máximo del ciclo diario.
 
-    La lluvia anual es la media, sobre los años del periodo, de la suma de cada año. El
-    ciclo diario es la media de `t2m` por hora UTC del día.
+    La lluvia anual es la media, sobre los años completos del periodo, de la suma de cada
+    año. Un año es completo si la serie lo cubre del 1 de enero a las 00:00 al 31 de
+    diciembre a las 23:00 UTC; los huecos de dentro los cuenta el control de horas. Un año
+    parcial no entra: el 1 de enero de 2026, que se descarga para completar el último día
+    local de 2025, sumaría la lluvia de un solo día y hundiría la media. El ciclo diario es
+    la media de `t2m` por hora UTC del día.
     """
     time = series["time"]
     t2m = series["t2m"].astype("float64")
     tp = series["tp"].astype("float64")
     daily_cycle = t2m.groupby(time.dt.hour).mean()
-    annual_rain = tp.groupby(time.dt.year).sum()
+    by_year = time.groupby(time.dt.year)
+    first, last = by_year.min(), by_year.max()
+    complete = ((first.dt.day_of_year == 1) & (first.dt.hour == 0)
+                & (last.dt.month == 12) & (last.dt.day == 31) & (last.dt.hour == 23))
+    annual_rain = tp.groupby(time.dt.year).sum()[complete]
     return {
         "rows": int(len(series)),
         "first": time.min(),
