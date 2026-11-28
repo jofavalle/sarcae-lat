@@ -1,0 +1,42 @@
+experimento: "validación de ERA5 en las réplicas contra El Dorado y La Chinita, con las cifras diarias (#56)"
+estaciones:
+  COI0000SKBO:
+    nombre: "Bogotá/El Dorado"
+    lat: 4.7016
+    lon: -74.1469
+    z_estacion_m: 2548.4
+    huso_horas: -5
+  VEI0000SVMC:
+    nombre: "Maracaibo/La Chinita"
+    lat: 10.5582
+    lon: -71.7279
+    z_estacion_m: 71.6
+    huso_horas: -4
+fuente_coordenadas_y_altura: "https://www.ncei.noaa.gov/oa/global-historical-climatology-network/hourly/doc/ghcnh-station-list.txt"
+datos:
+  estacion: "NOAA NCEI GHCNh v1, archivos anuales PSV (src/ghcnh.py)"
+  era5: "reanalysis-era5-single-levels-timeseries, en la ubicación de la estación, y reanalysis-era5-single-levels para z_celda"
+periodo:
+  inicio: "2024-01-01"
+  fin: "2025-12-31"
+  nota: "días locales; el archivo de 2026 aporta las primeras horas UTC del 1 de enero, que completan el 31 de diciembre local"
+husos:
+  nota: "fijos y sin horario de verano: UTC-5 en Bogotá y UTC-4 en Maracaibo"
+filtro_calidad:
+  regla: "temperature no vacía y temperature_Quality_Code igual a 1"
+  nota: "elección conservadora: se descartan el código vacío (filas de la fuente 999, sin control propio), el 2 («Suspect») y el 4 («Calculated»), según la documentación de GHCNh, sección VI, tabla 3. El filtro va antes del emparejado."
+tolerancia_min: 10
+regla_emparejado: "cada observación va a la hora en punto más cercana si está a 10 minutos o menos; si dos caen en la misma hora, cuenta la más cercana (src/validacion.py, pair_hours)"
+cobertura:
+  horas_minimas: 20
+  cuartos_locales:
+    madrugada: "00 a 05"
+    manana: "06 a 11"
+    tarde: "12 a 17"
+    noche: "18 a 23"
+  nota: "al menos una hora emparejada en cada cuarto; los días que no lo cumplen no entran en ninguna métrica"
+cifras_diarias: "media, máxima y mínima de las mismas horas emparejadas en la estación y en ERA5"
+gradiente_k_por_km: 6.5
+correccion: "T_corr = T_ERA5 - Γ·(z_est - z_celda), en cada hora antes de agregar"
+semilla: null
+nota_semilla: "no hay semilla: el cálculo no tiene aleatoriedad"
