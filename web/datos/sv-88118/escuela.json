@@ -1,9 +1,9 @@
 {
   "contrato": 1,
-  "datos_ficticios": "Serie de ERA5 ficticia: cada año de 1940 a 2025 copia uno de 3 años reales de ERA5, elegido con la semilla 20261128, con una anomalía aleatoria y sin tendencia; z_celda ficticia (500 m). Decisión del equipo del 2026-11-28 (#61): se sustituye por la descarga real.",
+  "datos_ficticios": "Serie real de ERA5; z_celda ficticia (313.8 m) hasta que llegue el geopotencial de la celda (petición f2658a4d-f2d9-4c54-afde-3ef8230a26e3). Decisión del equipo del 2026-11-28 (#61): se sustituye por la descarga completa.",
   "generado": {
-    "utc": "2026-11-28T16:52:45+00:00",
-    "commit": "5d4a4db6b609b6e7444144302c4f43e74ae001c9",
+    "utc": "2026-11-28T18:07:52+00:00",
+    "commit": "84b80997bd9aea14a8a98617cc0d429ea3a736b6",
     "comando": "python -m src.indicadores --escuela sv-88118 --recorte data/processed/era5-ficticio/recortes/sv-88118/era5"
   },
   "fuentes": [

@@ -99,21 +99,31 @@ qué necesita en `main` antes de empezar y, si las hay, qué órdenes esperan po
    `data/raw/era5/.parcial-sv-88118-17kg6_gi/`, sin `registro.json`, y `--comprobar` espera a
    la carpeta final. La descarga sigue en marcha en la máquina de cesarp03 y baja el
    geopotencial sola cuando le toque; si se corta, se baja desde la página de solicitudes del
-   CDS. Mientras tanto, `web/datos/sv-88118/escuela.json` y `clima.json` siguen con el campo
-   `datos_ficticios`. La #64 (ficha), la #67 (recorrido) y la #73 (asistente) tienen
-   pedido enseñarlo o propagarlo. La altura de la escuela ya es la real: con el relieve del #90,
-   el #94 recalculó sin `--altitud`, y `z_escuela` pasó de 400 m ficticios a los 313,8 m de
-   NASADEM. La serie publicada y `z_celda` siguen siendo ficticias. Para cerrar la #61 falta:
-   - el geopotencial de la celda y, con él, la serie real con `--comprobar` en verde, su recorte
-     versionado en `recortes/sv-88118/era5/` y volver a calcular, sin `--recorte`;
-   - revisar la lluvia: la descarga de prueba de 2025 da 573 mm en la celda y no pasa el
-     control de `src/era5_checks.py` (de 1,0 a 3,5 m al año). Se mira con la serie completa y
-     contra CHIRPS (#79);
+   CDS. La #64 (ficha), la #67 (recorrido) y la #73 (asistente) tienen pedido enseñar o
+   propagar el campo `datos_ficticios`. La altura de la escuela ya es la real: con el relieve
+   del #90, el #94 recalculó sin `--altitud`, y `z_escuela` pasó de 400 m ficticios a los
+   313,8 m de NASADEM.
+
+   **Desde el PR de `cesarp03/era5-series-reales`, la serie publicada es la real** (`Refs #61`
+   y `Refs #69`). `src/era5_ficticio.py --serie-real` copia la descarga tal cual a
+   `data/processed/era5-ficticio/sv-88118/`, y solo `z_celda` es ficticia: igual a `z_escuela`,
+   313,8 m, para que la corrección quede en 0 K y no se invente ninguna altura. El p99 pasó de
+   28,4 mm (serie ficticia) a 19,6 mm, y las horas sobre 27 °C, sin corregir, son 1685,5 al
+   año en 1961–1990 y 1858,4 en 1996–2025. Para cerrar la #61 falta:
+   - el geopotencial de la celda y, con él, `--comprobar` en verde, el recorte versionado en
+     `recortes/sv-88118/era5/` y volver a calcular, sin `--recorte`;
+   - revisar la lluvia: la serie completa da 0,67 m al año en 1961–1990 y 0,77 m en 1996–2025,
+     por debajo del control de `src/era5_checks.py` (de 1,0 a 3,5 m al año) en toda la serie,
+     no solo en 2025. Se mira contra CHIRPS (#79);
    - una orden que recoja `datos_ficticios` en `docs/contrato-datos.md`, que la #61 no podía
      tocar.
 
-   La serie ficticia solo existe en la máquina de cesarp03 y sale de
-   `data/raw/era5/.parcial-prueba-88118-2025-20ndmhlw/`, que no se borra mientras haga falta.
+   **Bogotá ya tiene ficha provisional** con el mismo método: la serie real llegó a las 11:53
+   (`.parcial-co-nicolas-esguerra-9rv1p1h3/`), con `z_celda` ficticia igual a `z_escuela`,
+   2555,8 m, en la celda (4,75; −74,0). Da 0 horas sobre 27 °C, como esperaba la #69. Su
+   geopotencial se borró de la cola de cesarp03 para dejar sitio, y la #102 lo pide con otra
+   cuenta, junto con la serie y el geopotencial de Maracaibo. La #69 conserva los rangos por
+   sede.
 3. **El asistente**: la #72 decide, antes del domingo 29 a las 04:00, si producción responde
    con el LLM o solo con respuestas de reserva, que es la propuesta. La orden #73 deja la
    reserva funcionando en cualquier caso, y su parte de producción espera a la #72.
@@ -193,6 +203,7 @@ congelado el domingo 29 a las 8:00 y entrega a las 11:00.
   máximas y mínimas diarias se validan solo en las réplicas.
 - **2026-11-28. Datos ficticios mientras falta ERA5** (#61). Lo que falta de ERA5 se sustituye
   con datos ficticios de `src/era5_ficticio.py`, marcados con `datos_ficticios` y fuera de
-  `recortes/`, hasta que llegue lo real. A las 11:31 llegó la serie horaria completa de la
-  88118, y solo falta el geopotencial de su celda y el de Santa Ana/El Palmar. La regla
-  operativa está en `CLAUDE.md`.
+  `recortes/`, hasta que llegue lo real. Ya llegaron las series de la 88118 (11:31) y de
+  Bogotá (11:53), que se publican con `z_celda` ficticia igual a `z_escuela`. Faltan los
+  geopotenciales de la 88118 y de Santa Ana/El Palmar, en la cuenta de cesarp03, y lo de
+  Bogotá y Maracaibo, que pide la #102. La regla operativa está en `CLAUDE.md`.

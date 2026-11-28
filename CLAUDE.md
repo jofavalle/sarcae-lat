@@ -95,20 +95,27 @@ equipo: un cambio en ella se propone por PR, como cualquier otro. Lo de cada uno
   entra lo que tenga licencia compatible. `data/raw/` sigue inmutable y sin versionar: el
   recorte es una copia derivada, no el original.
 - **ERA5 se descarga del Climate Data Store** (2026-11-27), que es la fuente que nombra el reto.
-- **ERA5 llega por partes** (2026-11-28, #61 y #54). La serie horaria completa de la 88118 ya
-  llegó del CDS. Falta el geopotencial, que da `z_celda`: el de la celda de la 88118 y el de
-  Santa Ana/El Palmar están en la cola de `reanalysis-era5-single-levels`, que va saturada. La
-  de la serie horaria responde en segundos. Ninguna orden se detiene por lo que falta: si hace
-  falta, se trabaja con datos ficticios, que se sustituyen por los reales volviendo a ejecutar
-  los mismos comandos.
+- **ERA5 llega por partes** (2026-11-28, #61, #54 y #102). Ya llegaron las series horarias
+  completas de la 88118 y de Bogotá. Falta el geopotencial, que da `z_celda`:
+  - el de la 88118 y el de Santa Ana/El Palmar esperan en la cola de la cuenta de cesarp03;
+  - el de Bogotá y la serie y el geopotencial de Maracaibo los pide la #102, con otra cuenta.
+
+  La cola de `reanalysis-era5-single-levels` va saturada; la de la serie horaria responde en
+  segundos. Ninguna orden se detiene por lo que falta: si hace falta, se trabaja con datos
+  ficticios, que se sustituyen por los reales volviendo a ejecutar los mismos comandos.
   - Antes de pedir algo al CDS se mira la página de solicitudes de la cuenta: una petición
-    repetida no adelanta el turno de la que ya está en la cola.
+    repetida no adelanta el turno de la que ya está en la cola. Las peticiones van una detrás
+    de otra: el CDS rechaza las que llegan a la vez, y cada cuenta parece admitir unas tres en
+    cola.
+  - Con una serie real que espera su geopotencial, `src/era5_ficticio.py --serie-real` la copia
+    tal cual y solo `z_celda` es ficticia, igual a `z_escuela`: la corrección queda en 0 K y lo
+    publicado son las cifras sin corregir.
   - Lo ficticio sale de `src/era5_ficticio.py`, con su semilla, a `data/processed/era5-ficticio/`.
     Nunca entra en `data/raw/` ni en `recortes/`.
   - Lo publicado a partir de ello lleva el campo `datos_ficticios` con su nota, y quien lo
     consume lo enseña o lo propaga.
   - El PR va con `Refs #N`, no cierra la orden, y dice qué falta para sustituirlo.
-  - Esta regla se retira, por PR, cuando lleguen los dos geopotenciales.
+  - Esta regla se retira, por PR, cuando lleguen los geopotenciales de las cuatro celdas.
 
 ## Gotchas
 
