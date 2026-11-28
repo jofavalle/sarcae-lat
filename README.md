@@ -2,6 +2,19 @@
 
 SARCAE-LAT: sistema de aprendizaje sobre riesgos de calor y agua en escuelas latinoamericanas, con datos de ERA5, un mapa y una maqueta digital interactiva. Reto 10 de CoAfina 2026, equipo Itzpapálotl.
 
+## Límites
+
+Lo que la herramienta no hace y lo que sus datos no pueden decir:
+
+- **No es un pronóstico ni una evaluación oficial de riesgo**: muestra cómo ha sido el clima del lugar desde 1940 y dónde se acumulan el calor y el agua; sus preguntas para conversar no califican a la escuela.
+- **ERA5 describe la zona, no la escuela**: es un reanálisis que da un solo valor por celda de unos 28 km de lado; el detalle del entorno sale del modelo de elevación y de Landsat.
+- **La temperatura de superficie no es la del aire**: Landsat mide el calor de techos y suelos a la hora en que pasa el satélite, en cuadros de 100 m; compara zonas del entorno y no separa el techo del patio de una escuela.
+- **Las alturas de los edificios son estimaciones**: se calculan a partir de imágenes de satélite, con un error medio de 1,5 m, mayor en algunos edificios; bastan para ver la forma del conjunto, no para medir un edificio.
+- **Los criterios de diseño son salvadoreños**: los de ventilación, sombra y agua de lluvia vienen del Manual de Diseño Mi Nueva Escuela; en Colombia y Venezuela se usan criterios generales mientras no se encuentren sus equivalentes.
+- **La maqueta muestra volúmenes, no el interior**: relieve y edificios con su contorno, altura y techo, más el patio y el drenaje; nunca la distribución interior, las puertas ni los accesos de una escuela, por la seguridad de quienes la ocupan.
+
+El detalle de cada límite, en los tres registros, está en [docs/material/limites.md](docs/material/limites.md), y los términos técnicos, en [docs/material/glosario.md](docs/material/glosario.md).
+
 ## Fuentes y licencias
 
 Cada licencia se leyó en el sitio de quien produce el dato.
