@@ -1,0 +1,74 @@
+{
+  "contrato": 1,
+  "generado": {
+    "utc": "2026-11-28T16:13:31+00:00",
+    "commit": "dba0afb0e04081fad14d33a68679976eb9856916",
+    "comando": "python -m src.relieve --escuela co-nicolas-esguerra --precision-m 0.25 --altura-esperada 2500-2700"
+  },
+  "fuentes": [
+    {
+      "nombre": "NASADEM_HGT",
+      "version": "001",
+      "licencia": "CC0-1.0",
+      "url": "https://www.earthdata.nasa.gov/data/catalog/lpcloud-nasadem-hgt-001"
+    }
+  ],
+  "escuela": "co-nicolas-esguerra",
+  "granulos": [
+    "n04w075"
+  ],
+  "bounds": [
+    -74.140833,
+    4.614167,
+    -74.103334,
+    4.651388
+  ],
+  "minzoom": 10,
+  "maxzoom": 14,
+  "precision_m": 0.25,
+  "altitud_escuela_m": 2555.8,
+  "altura_esperada_m": [
+    2500.0,
+    2700.0
+  ],
+  "punto": {
+    "lat": 4.63279,
+    "lon": -74.122
+  },
+  "lado_km": 4.0,
+  "recorte": {
+    "sur": 4.614166666666667,
+    "norte": 4.651388888888889,
+    "oeste": -74.14083333333333,
+    "este": -74.10333333333334
+  },
+  "margen_celdas": 2,
+  "proyeccion": "EPSG:3857",
+  "codificacion": "terrarium",
+  "tamano_px": 256,
+  "remuestreo": "bilineal desde el recorte, en el centro de cada píxel; fuera del recorte, el valor del borde",
+  "pixeles_fuera_del_recorte": {
+    "10": 64780,
+    "11": 62566,
+    "12": 53655,
+    "13": 83549,
+    "14": 203121
+  },
+  "elevacion_recorte_m": {
+    "min": 2537,
+    "max": 2573
+  },
+  "teselas": [
+    "10/301/498.png",
+    "11/602/997.png",
+    "12/1204/1995.png",
+    "13/2408/3990.png",
+    "13/2409/3990.png",
+    "14/4817/7980.png",
+    "14/4817/7981.png",
+    "14/4818/7980.png",
+    "14/4818/7981.png",
+    "14/4819/7980.png",
+    "14/4819/7981.png"
+  ]
+}
