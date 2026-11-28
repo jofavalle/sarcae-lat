@@ -1,10 +1,9 @@
 {
   "contrato": 1,
-  "datos_ficticios": "Serie real de ERA5; z_celda ficticia (2555.8 m) hasta que llegue el geopotencial de la celda (la pide la orden #102). Decisión del equipo del 2026-11-28 (#61): se sustituye por la descarga completa.",
   "generado": {
-    "utc": "2026-11-28T18:07:59+00:00",
-    "commit": "84b80997bd9aea14a8a98617cc0d429ea3a736b6",
-    "comando": "python -m src.indicadores --escuela co-nicolas-esguerra --recorte data/processed/era5-ficticio/recortes/co-nicolas-esguerra/era5"
+    "utc": "2026-11-28T18:26:52+00:00",
+    "commit": "5e9aa698ccf955a86645b87639fd0ebcd2569918",
+    "comando": "python -m src.indicadores --escuela co-nicolas-esguerra"
   },
   "fuentes": [
     {

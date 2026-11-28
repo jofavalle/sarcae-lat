@@ -1,0 +1,23 @@
+{
+  "escuela": "co-nicolas-esguerra",
+  "punto_pedido": {
+    "lat": 4.63279,
+    "lon": -74.122
+  },
+  "punto_rejilla": {
+    "lat": 4.75,
+    "lon": -74.0
+  },
+  "z_celda": {
+    "valor": 2753.4,
+    "unidad": "m",
+    "dataset": "reanalysis-era5-single-levels"
+  },
+  "periodo": {
+    "inicio": "1940-01-01",
+    "fin": "2026-01-01"
+  },
+  "filas": 753912,
+  "primera_hora_utc": "1940-01-01T00:00:00+00:00",
+  "ultima_hora_utc": "2026-01-01T23:00:00+00:00"
+}

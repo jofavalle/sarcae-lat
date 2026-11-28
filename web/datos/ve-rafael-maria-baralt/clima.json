@@ -1,0 +1,1001 @@
+{
+  "contrato": 1,
+  "generado": {
+    "utc": "2026-11-28T18:26:55+00:00",
+    "commit": "5e9aa698ccf955a86645b87639fd0ebcd2569918",
+    "comando": "python -m src.indicadores --escuela ve-rafael-maria-baralt"
+  },
+  "fuentes": [
+    {
+      "nombre": "ERA5, serie horaria por punto (ECMWF, para el C3S)",
+      "version": "reanalysis-era5-single-levels-timeseries",
+      "licencia": "CC-BY-4.0",
+      "url": "https://cds.climate.copernicus.eu/datasets/reanalysis-era5-single-levels-timeseries"
+    },
+    {
+      "nombre": "ERA5, niveles de superficie: geopotencial de la celda (ECMWF, para el C3S)",
+      "version": "reanalysis-era5-single-levels",
+      "licencia": "CC-BY-4.0",
+      "url": "https://cds.climate.copernicus.eu/datasets/reanalysis-era5-single-levels"
+    },
+    {
+      "nombre": "NASADEM_HGT",
+      "version": "001",
+      "licencia": "CC0-1.0",
+      "url": "https://www.earthdata.nasa.gov/data/catalog/lpcloud-nasadem-hgt-001"
+    }
+  ],
+  "escuela": "ve-rafael-maria-baralt",
+  "correccion": {
+    "formula": "T_local = T_ERA5 − Γ·(z_escuela − z_celda)",
+    "z_escuela": {
+      "valor": 38.0,
+      "unidad": "m"
+    },
+    "z_celda": {
+      "valor": 36.0,
+      "unidad": "m"
+    },
+    "gamma": {
+      "valor": 6.5,
+      "unidad": "K/km"
+    },
+    "correccion": {
+      "valor": 0.0,
+      "unidad": "K"
+    }
+  },
+  "calor": {
+    "umbral": {
+      "valor": 27,
+      "unidad": "°C"
+    },
+    "horario": "de lunes a viernes, de 07:00 a 17:00 hora local, con las 17:00 fuera",
+    "unidad": "horas",
+    "horas_1961_1990": 1925.8,
+    "horas_1996_2025": 2097.7,
+    "serie": [
+      {
+        "anio": 1940,
+        "horas": 1796
+      },
+      {
+        "anio": 1941,
+        "horas": 1954
+      },
+      {
+        "anio": 1942,
+        "horas": 1706
+      },
+      {
+        "anio": 1943,
+        "horas": 1703
+      },
+      {
+        "anio": 1944,
+        "horas": 1783
+      },
+      {
+        "anio": 1945,
+        "horas": 1655
+      },
+      {
+        "anio": 1946,
+        "horas": 1703
+      },
+      {
+        "anio": 1947,
+        "horas": 1745
+      },
+      {
+        "anio": 1948,
+        "horas": 1738
+      },
+      {
+        "anio": 1949,
+        "horas": 1752
+      },
+      {
+        "anio": 1950,
+        "horas": 1564
+      },
+      {
+        "anio": 1951,
+        "horas": 1683
+      },
+      {
+        "anio": 1952,
+        "horas": 1788
+      },
+      {
+        "anio": 1953,
+        "horas": 1987
+      },
+      {
+        "anio": 1954,
+        "horas": 1785
+      },
+      {
+        "anio": 1955,
+        "horas": 1655
+      },
+      {
+        "anio": 1956,
+        "horas": 1681
+      },
+      {
+        "anio": 1957,
+        "horas": 1989
+      },
+      {
+        "anio": 1958,
+        "horas": 1999
+      },
+      {
+        "anio": 1959,
+        "horas": 1756
+      },
+      {
+        "anio": 1960,
+        "horas": 1908
+      },
+      {
+        "anio": 1961,
+        "horas": 1898
+      },
+      {
+        "anio": 1962,
+        "horas": 1900
+      },
+      {
+        "anio": 1963,
+        "horas": 1911
+      },
+      {
+        "anio": 1964,
+        "horas": 1820
+      },
+      {
+        "anio": 1965,
+        "horas": 1878
+      },
+      {
+        "anio": 1966,
+        "horas": 1894
+      },
+      {
+        "anio": 1967,
+        "horas": 1933
+      },
+      {
+        "anio": 1968,
+        "horas": 1885
+      },
+      {
+        "anio": 1969,
+        "horas": 1964
+      },
+      {
+        "anio": 1970,
+        "horas": 1811
+      },
+      {
+        "anio": 1971,
+        "horas": 1851
+      },
+      {
+        "anio": 1972,
+        "horas": 2048
+      },
+      {
+        "anio": 1973,
+        "horas": 1825
+      },
+      {
+        "anio": 1974,
+        "horas": 1748
+      },
+      {
+        "anio": 1975,
+        "horas": 1828
+      },
+      {
+        "anio": 1976,
+        "horas": 1976
+      },
+      {
+        "anio": 1977,
+        "horas": 1958
+      },
+      {
+        "anio": 1978,
+        "horas": 1928
+      },
+      {
+        "anio": 1979,
+        "horas": 1748
+      },
+      {
+        "anio": 1980,
+        "horas": 1953
+      },
+      {
+        "anio": 1981,
+        "horas": 1815
+      },
+      {
+        "anio": 1982,
+        "horas": 2035
+      },
+      {
+        "anio": 1983,
+        "horas": 2124
+      },
+      {
+        "anio": 1984,
+        "horas": 1955
+      },
+      {
+        "anio": 1985,
+        "horas": 1831
+      },
+      {
+        "anio": 1986,
+        "horas": 1928
+      },
+      {
+        "anio": 1987,
+        "horas": 2163
+      },
+      {
+        "anio": 1988,
+        "horas": 2065
+      },
+      {
+        "anio": 1989,
+        "horas": 2055
+      },
+      {
+        "anio": 1990,
+        "horas": 2047
+      },
+      {
+        "anio": 1991,
+        "horas": 2185
+      },
+      {
+        "anio": 1992,
+        "horas": 2158
+      },
+      {
+        "anio": 1993,
+        "horas": 2130
+      },
+      {
+        "anio": 1994,
+        "horas": 2159
+      },
+      {
+        "anio": 1995,
+        "horas": 1798
+      },
+      {
+        "anio": 1996,
+        "horas": 1846
+      },
+      {
+        "anio": 1997,
+        "horas": 2057
+      },
+      {
+        "anio": 1998,
+        "horas": 1989
+      },
+      {
+        "anio": 1999,
+        "horas": 1722
+      },
+      {
+        "anio": 2000,
+        "horas": 1769
+      },
+      {
+        "anio": 2001,
+        "horas": 1881
+      },
+      {
+        "anio": 2002,
+        "horas": 1933
+      },
+      {
+        "anio": 2003,
+        "horas": 1876
+      },
+      {
+        "anio": 2004,
+        "horas": 2046
+      },
+      {
+        "anio": 2005,
+        "horas": 2100
+      },
+      {
+        "anio": 2006,
+        "horas": 2142
+      },
+      {
+        "anio": 2007,
+        "horas": 2103
+      },
+      {
+        "anio": 2008,
+        "horas": 2025
+      },
+      {
+        "anio": 2009,
+        "horas": 2196
+      },
+      {
+        "anio": 2010,
+        "horas": 2047
+      },
+      {
+        "anio": 2011,
+        "horas": 1943
+      },
+      {
+        "anio": 2012,
+        "horas": 2142
+      },
+      {
+        "anio": 2013,
+        "horas": 2256
+      },
+      {
+        "anio": 2014,
+        "horas": 2287
+      },
+      {
+        "anio": 2015,
+        "horas": 2409
+      },
+      {
+        "anio": 2016,
+        "horas": 2305
+      },
+      {
+        "anio": 2017,
+        "horas": 2153
+      },
+      {
+        "anio": 2018,
+        "horas": 2252
+      },
+      {
+        "anio": 2019,
+        "horas": 2231
+      },
+      {
+        "anio": 2020,
+        "horas": 2205
+      },
+      {
+        "anio": 2021,
+        "horas": 2146
+      },
+      {
+        "anio": 2022,
+        "horas": 2097
+      },
+      {
+        "anio": 2023,
+        "horas": 2314
+      },
+      {
+        "anio": 2024,
+        "horas": 2273
+      },
+      {
+        "anio": 2025,
+        "horas": 2185
+      }
+    ],
+    "por_mes": {
+      "periodo": [
+        1996,
+        2025
+      ],
+      "unidad": "horas",
+      "meses": [
+        {
+          "mes": 1,
+          "horas": 152.6
+        },
+        {
+          "mes": 2,
+          "horas": 141.4
+        },
+        {
+          "mes": 3,
+          "horas": 167.1
+        },
+        {
+          "mes": 4,
+          "horas": 183.9
+        },
+        {
+          "mes": 5,
+          "horas": 197.1
+        },
+        {
+          "mes": 6,
+          "horas": 192.1
+        },
+        {
+          "mes": 7,
+          "horas": 200.9
+        },
+        {
+          "mes": 8,
+          "horas": 194.8
+        },
+        {
+          "mes": 9,
+          "horas": 175.6
+        },
+        {
+          "mes": 10,
+          "horas": 170.6
+        },
+        {
+          "mes": 11,
+          "horas": 161.0
+        },
+        {
+          "mes": 12,
+          "horas": 160.6
+        }
+      ]
+    }
+  },
+  "lluvia": {
+    "p99": {
+      "valor": 22.4,
+      "unidad": "mm",
+      "periodo": [
+        1961,
+        1990
+      ],
+      "dias_base": 10957
+    },
+    "unidad": "días",
+    "dias_1961_1990": 3.7,
+    "dias_1996_2025": 3.2,
+    "serie": [
+      {
+        "anio": 1940,
+        "dias": 0
+      },
+      {
+        "anio": 1941,
+        "dias": 1
+      },
+      {
+        "anio": 1942,
+        "dias": 3
+      },
+      {
+        "anio": 1943,
+        "dias": 2
+      },
+      {
+        "anio": 1944,
+        "dias": 2
+      },
+      {
+        "anio": 1945,
+        "dias": 1
+      },
+      {
+        "anio": 1946,
+        "dias": 3
+      },
+      {
+        "anio": 1947,
+        "dias": 5
+      },
+      {
+        "anio": 1948,
+        "dias": 6
+      },
+      {
+        "anio": 1949,
+        "dias": 1
+      },
+      {
+        "anio": 1950,
+        "dias": 1
+      },
+      {
+        "anio": 1951,
+        "dias": 0
+      },
+      {
+        "anio": 1952,
+        "dias": 0
+      },
+      {
+        "anio": 1953,
+        "dias": 1
+      },
+      {
+        "anio": 1954,
+        "dias": 1
+      },
+      {
+        "anio": 1955,
+        "dias": 3
+      },
+      {
+        "anio": 1956,
+        "dias": 2
+      },
+      {
+        "anio": 1957,
+        "dias": 1
+      },
+      {
+        "anio": 1958,
+        "dias": 6
+      },
+      {
+        "anio": 1959,
+        "dias": 4
+      },
+      {
+        "anio": 1960,
+        "dias": 7
+      },
+      {
+        "anio": 1961,
+        "dias": 4
+      },
+      {
+        "anio": 1962,
+        "dias": 3
+      },
+      {
+        "anio": 1963,
+        "dias": 1
+      },
+      {
+        "anio": 1964,
+        "dias": 9
+      },
+      {
+        "anio": 1965,
+        "dias": 0
+      },
+      {
+        "anio": 1966,
+        "dias": 4
+      },
+      {
+        "anio": 1967,
+        "dias": 3
+      },
+      {
+        "anio": 1968,
+        "dias": 2
+      },
+      {
+        "anio": 1969,
+        "dias": 4
+      },
+      {
+        "anio": 1970,
+        "dias": 10
+      },
+      {
+        "anio": 1971,
+        "dias": 5
+      },
+      {
+        "anio": 1972,
+        "dias": 4
+      },
+      {
+        "anio": 1973,
+        "dias": 5
+      },
+      {
+        "anio": 1974,
+        "dias": 7
+      },
+      {
+        "anio": 1975,
+        "dias": 4
+      },
+      {
+        "anio": 1976,
+        "dias": 1
+      },
+      {
+        "anio": 1977,
+        "dias": 4
+      },
+      {
+        "anio": 1978,
+        "dias": 4
+      },
+      {
+        "anio": 1979,
+        "dias": 3
+      },
+      {
+        "anio": 1980,
+        "dias": 0
+      },
+      {
+        "anio": 1981,
+        "dias": 7
+      },
+      {
+        "anio": 1982,
+        "dias": 3
+      },
+      {
+        "anio": 1983,
+        "dias": 2
+      },
+      {
+        "anio": 1984,
+        "dias": 1
+      },
+      {
+        "anio": 1985,
+        "dias": 3
+      },
+      {
+        "anio": 1986,
+        "dias": 5
+      },
+      {
+        "anio": 1987,
+        "dias": 4
+      },
+      {
+        "anio": 1988,
+        "dias": 3
+      },
+      {
+        "anio": 1989,
+        "dias": 2
+      },
+      {
+        "anio": 1990,
+        "dias": 3
+      },
+      {
+        "anio": 1991,
+        "dias": 1
+      },
+      {
+        "anio": 1992,
+        "dias": 4
+      },
+      {
+        "anio": 1993,
+        "dias": 2
+      },
+      {
+        "anio": 1994,
+        "dias": 5
+      },
+      {
+        "anio": 1995,
+        "dias": 2
+      },
+      {
+        "anio": 1996,
+        "dias": 2
+      },
+      {
+        "anio": 1997,
+        "dias": 0
+      },
+      {
+        "anio": 1998,
+        "dias": 7
+      },
+      {
+        "anio": 1999,
+        "dias": 2
+      },
+      {
+        "anio": 2000,
+        "dias": 1
+      },
+      {
+        "anio": 2001,
+        "dias": 0
+      },
+      {
+        "anio": 2002,
+        "dias": 3
+      },
+      {
+        "anio": 2003,
+        "dias": 4
+      },
+      {
+        "anio": 2004,
+        "dias": 4
+      },
+      {
+        "anio": 2005,
+        "dias": 1
+      },
+      {
+        "anio": 2006,
+        "dias": 4
+      },
+      {
+        "anio": 2007,
+        "dias": 8
+      },
+      {
+        "anio": 2008,
+        "dias": 4
+      },
+      {
+        "anio": 2009,
+        "dias": 1
+      },
+      {
+        "anio": 2010,
+        "dias": 9
+      },
+      {
+        "anio": 2011,
+        "dias": 9
+      },
+      {
+        "anio": 2012,
+        "dias": 4
+      },
+      {
+        "anio": 2013,
+        "dias": 1
+      },
+      {
+        "anio": 2014,
+        "dias": 4
+      },
+      {
+        "anio": 2015,
+        "dias": 0
+      },
+      {
+        "anio": 2016,
+        "dias": 2
+      },
+      {
+        "anio": 2017,
+        "dias": 4
+      },
+      {
+        "anio": 2018,
+        "dias": 0
+      },
+      {
+        "anio": 2019,
+        "dias": 2
+      },
+      {
+        "anio": 2020,
+        "dias": 4
+      },
+      {
+        "anio": 2021,
+        "dias": 4
+      },
+      {
+        "anio": 2022,
+        "dias": 7
+      },
+      {
+        "anio": 2023,
+        "dias": 1
+      },
+      {
+        "anio": 2024,
+        "dias": 3
+      },
+      {
+        "anio": 2025,
+        "dias": 2
+      }
+    ]
+  },
+  "episodios": {
+    "unidades": {
+      "lluvia": "mm",
+      "temperatura": "°C"
+    },
+    "lista": [
+      {
+        "fecha": "2007-10-28",
+        "lluvia_total": 52.1,
+        "lluvia": [
+          0.0,
+          0.0,
+          0.0,
+          0.6,
+          1.0,
+          1.1,
+          2.5,
+          3.9,
+          4.0,
+          5.6,
+          7.5,
+          9.9,
+          7.8,
+          4.3,
+          1.1,
+          1.8,
+          0.6,
+          0.1,
+          0.0,
+          0.1,
+          0.1,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "temperatura": [
+          25.9,
+          25.6,
+          25.1,
+          24.6,
+          24.7,
+          25.1,
+          25.1,
+          24.9,
+          25.0,
+          25.8,
+          26.6,
+          26.5,
+          27.2,
+          27.4,
+          27.6,
+          28.3,
+          28.4,
+          28.4,
+          27.5,
+          27.2,
+          26.7,
+          26.1,
+          26.2,
+          26.2
+        ]
+      },
+      {
+        "fecha": "2012-10-05",
+        "lluvia_total": 42.0,
+        "lluvia": [
+          3.0,
+          3.3,
+          3.3,
+          4.6,
+          3.7,
+          1.1,
+          0.3,
+          0.2,
+          0.1,
+          1.3,
+          6.4,
+          5.3,
+          1.3,
+          0.6,
+          0.2,
+          1.3,
+          1.6,
+          0.5,
+          0.0,
+          0.0,
+          0.1,
+          0.2,
+          1.5,
+          2.0
+        ],
+        "temperatura": [
+          26.9,
+          25.6,
+          25.6,
+          25.9,
+          25.8,
+          26.3,
+          26.3,
+          26.3,
+          26.8,
+          29.2,
+          28.7,
+          28.8,
+          29.3,
+          29.3,
+          30.4,
+          31.2,
+          30.9,
+          28.8,
+          28.6,
+          28.3,
+          27.9,
+          27.4,
+          26.6,
+          26.4
+        ]
+      },
+      {
+        "fecha": "2020-06-10",
+        "lluvia_total": 40.2,
+        "lluvia": [
+          0.2,
+          0.2,
+          0.8,
+          0.6,
+          1.8,
+          8.3,
+          7.9,
+          1.0,
+          0.7,
+          0.3,
+          0.2,
+          0.1,
+          0.1,
+          0.3,
+          7.6,
+          4.8,
+          2.0,
+          0.6,
+          0.4,
+          0.2,
+          0.4,
+          0.6,
+          0.6,
+          0.3
+        ],
+        "temperatura": [
+          28.1,
+          27.9,
+          27.7,
+          27.5,
+          27.1,
+          26.8,
+          26.3,
+          26.4,
+          26.9,
+          27.9,
+          28.4,
+          28.5,
+          29.5,
+          30.7,
+          31.3,
+          30.3,
+          28.9,
+          26.7,
+          27.0,
+          27.2,
+          26.8,
+          27.5,
+          26.7,
+          26.6
+        ]
+      }
+    ]
+  },
+  "limites": [
+    "no-es-un-pronostico-ni-una-evaluacion-oficial-de-riesgo",
+    "era5-describe-la-zona-no-la-escuela"
+  ]
+}

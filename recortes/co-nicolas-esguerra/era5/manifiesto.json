@@ -1,0 +1,31 @@
+{
+  "escuela": "co-nicolas-esguerra",
+  "fuente": {
+    "nombre": "ERA5",
+    "version": "reanalysis-era5-single-levels-timeseries y reanalysis-era5-single-levels (geopotencial)",
+    "url": "https://cds.climate.copernicus.eu/datasets/reanalysis-era5-single-levels-timeseries"
+  },
+  "licencia": {
+    "spdx": "CC-BY-4.0",
+    "url": "https://creativecommons.org/licenses/by/4.0/"
+  },
+  "atribucion": "Contains modified Copernicus Climate Change Service information 2026. Neither the European Commission nor ECMWF is responsible for any use that may be made of the Copernicus information or data it contains. ERA5, serie por punto: https://doi.org/10.24381/1cf1ad76 · ERA5, niveles de superficie: https://doi.org/10.24381/cds.adbb2d47",
+  "fecha_descarga": "2026-11-28",
+  "generado": {
+    "utc": "2026-11-28T18:26:51+00:00",
+    "commit": "5e9aa698ccf955a86645b87639fd0ebcd2569918",
+    "comando": "python -m src.recortes --escribir recortes/co-nicolas-esguerra/era5 --fuente ERA5 --version 'reanalysis-era5-single-levels-timeseries y reanalysis-era5-single-levels (geopotencial)' --url-fuente https://cds.climate.copernicus.eu/datasets/reanalysis-era5-single-levels-timeseries --licencia CC-BY-4.0 --url-licencia https://creativecommons.org/licenses/by/4.0/ --atribucion 'Contains modified Copernicus Climate Change Service information 2026. Neither the European Commission nor ECMWF is responsible for any use that may be made of the Copernicus information or data it contains. ERA5, serie por punto: https://doi.org/10.24381/1cf1ad76 · ERA5, niveles de superficie: https://doi.org/10.24381/cds.adbb2d47' --fecha-descarga 2026-11-28"
+  },
+  "archivos": [
+    {
+      "nombre": "celda.json",
+      "bytes": 462,
+      "sha256": "69a2484ce32d74303dc7fac5606e0525b29a66522513c9ca3e12727fb6c5f2b0"
+    },
+    {
+      "nombre": "serie.parquet",
+      "bytes": 9593229,
+      "sha256": "422db7f81a5e639348e76ab22ad4f0455dcd91ce8efd22151e6e1fb9619ef89a"
+    }
+  ]
+}
