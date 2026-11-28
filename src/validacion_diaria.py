@@ -218,7 +218,7 @@ def validate_station(station_dir: Path, era5_dir: Path) -> dict:
             "insumos": {
                 "sha256": {Path(f["ruta"]).name: f["sha256"] for f in used},
                 "otros_archivos": [{"archivo": Path(f["ruta"]).name, "sha256": f["sha256"],
-                                    "nota": "solo aportan las primeras horas UTC del 1 de "
+                                    "nota": "solo aporta las primeras horas UTC del 1 de "
                                             "enero de 2026; " + ghcnh.GROWING_NOTE}
                                    for f in extra],
                 "era5_sha256": {f["ruta"]: f["sha256"] for f in era5_record["archivos"]},
