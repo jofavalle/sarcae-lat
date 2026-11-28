@@ -16,7 +16,8 @@ Cada licencia se leyó en el sitio de quien produce el dato.
 | ESA WorldCover | ESA y el consorcio WorldCover | CC BY 4.0 | https://esa-worldcover.org/en/data-access | 2026-11-27 | Cobertura del suelo |
 | Google Open Buildings v3 | Google Research | CC BY 4.0 u ODbL, a elección; se usa con CC BY 4.0 | https://sites.research.google/gr/open-buildings/ | 2026-11-27 | Contornos de los edificios |
 | Google Open Buildings 2.5D Temporal | Google Research | CC BY 4.0 u ODbL, a elección; se usa con CC BY 4.0 | https://sites.research.google/gr/open-buildings/temporal/ | 2026-11-27 | Alturas de los edificios, 2016 a 2023 |
-| CHIRPS v2.0 y v3.0 | Climate Hazards Center, UCSB | v2.0: dominio público; v3.0: CC BY 4.0 | https://www.chc.ucsb.edu/data/chirps y https://www.chc.ucsb.edu/data/chirps3 | 2026-11-27 | Lluvia, para comparar con ERA5 |
+| CHIRPS v3.0 | Climate Hazards Center, UCSB | [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) | https://www.chc.ucsb.edu/data/chirps3 | 2026-11-27 | Lluvia terrestre a 0,05°, de 60° S a 60° N, en todas las longitudes y desde 1981 hasta fechas recientes, para comparar con ERA5 |
+| GHCNh v1, El Dorado (Bogotá, Colombia, `COI0000SKBO`) y La Chinita (Maracaibo, Venezuela, `VEI0000SVMC`) | NOAA NCEI | CC0 según la ficha del conjunto. Permiso para redistribuir ambas series sin restricciones pendiente de confirmar (Resolución 40 de la OMM) | [Ficha de NCEI](https://www.ncei.noaa.gov/access/metadata/landing-page/bin/iso?id=gov.noaa.ncdc%3AC01688) · [Lista de estaciones](https://www.ncei.noaa.gov/oa/global-historical-climatology-network/hourly/doc/ghcnh-station-list.txt) | 2026-11-27 | Contraste de ERA5 contra estaciones de las réplicas |
 | Manual de Diseño Mi Nueva Escuela (2022) | MINEDUCYT, El Salvador | sin licencia declarada: solo se usan sus medidas y criterios, citando la página, y no se copian sus figuras | https://www.mined.gob.sv/licitacion/2023/46-2023-SDO/anexo2/MANUAL%20DE%20DISE%C3%91O-MI%20NUEVA%20ESCUELA.pdf | 2026-11-27 | Medidas de aulas y criterios de ventilación, sombra y aguas lluvias (`docs/refs/manual-mi-nueva-escuela.md`) |
 
 No se usa el Copernicus DEM GLO-30. La licencia de su instancia pública, COP-DEM-GLO-30-F
@@ -27,6 +28,69 @@ usuarios posteriores. Página y licencia:
 https://dataspace.copernicus.eu/explore-data/data-collections/copernicus-contributing-missions/collections-description/COP-DEM
 y https://dataspace.copernicus.eu/sites/default/files/media/files/2025-06/copernicus_contributing_mission_data_access_v2_cop_dem_licenses.pdf,
 consultadas el 2026-11-27.
+
+### Atribución
+
+Textos consultados el 2026-11-27. El control de atribución del mapa muestra el crédito de cada
+capa. En los recortes con CC BY 4.0 se indica también la licencia y qué se modificó.
+
+- **ERA5 y ERA5-Land (C3S)**. Para datos publicados tal cual, «Generated using Copernicus Climate
+  Change Service information [Year]». Para datos adaptados, «Contains modified Copernicus Climate
+  Change Service information [Year]». [Textos de C3S](https://cds.climate.copernicus.eu/licences/licence-to-use-copernicus-products).
+  En ambos casos se añade «Neither the European Commission nor ECMWF is responsible for any use
+  that may be made of the Copernicus information or data it contains.» También se cita la entrada
+  del CDS. [Guía de atribución](https://confluence.ecmwf.int/pages/viewpage.action?pageId=197704114) ·
+  [ERA5, niveles de superficie](https://doi.org/10.24381/cds.adbb2d47) ·
+  [ERA5, serie por punto](https://doi.org/10.24381/1cf1ad76) ·
+  [ERA5-Land](https://doi.org/10.24381/cds.e2161bac).
+- **NASADEM**. «NASA JPL. NASADEM Merged DEM Global 1 arc second V001. 2020, distributed by NASA
+  EOSDIS Land Processes Distributed Active Archive Center, https://doi.org/10.5067/MEaSUREs/NASADEM/NASADEM_HGT.001».
+  [Cita sugerida por NASA Earthdata](https://forum.earthdata.nasa.gov/viewtopic.php?t=5421).
+- **Landsat 8 y 9**. «Landsat Collection 2 Level-2 image courtesy of the U.S. Geological Survey.»
+  [Crédito del USGS](https://www.usgs.gov/landsat-missions/landsat-collection-2-level-2-science-products) ·
+  [Cita de los datos Landsat 8-9](https://doi.org/10.5066/P9OGBGM6).
+- **ESA WorldCover**. «© ESA WorldCover project [year] / Contains modified Copernicus Sentinel data
+  ([year]) processed by ESA WorldCover consortium». Se sustituye `[year]` por 2020 o 2021 según la
+  versión de la capa. [Texto de ESA](https://esa-worldcover.org/en/data-access) ·
+  [Datos de 2020](https://doi.org/10.5281/zenodo.5571936) ·
+  [Datos de 2021](https://doi.org/10.5281/zenodo.7254221).
+- **Google Open Buildings v3**. Crédito a Google Research con CC BY 4.0. Google sugiere citar
+  «W. Sirko, S. Kashubin, M. Ritter, A. Annkah, Y.S.E. Bouchareb, Y. Dauphin, D. Keysers,
+  M. Neumann, M. Cisse, J.A. Quinn. Continental-scale building detection from high resolution
+  satellite imagery. arXiv:2107.12283, 2021.» [Cita de Google Research](https://sites.research.google/gr/open-buildings/).
+- **Google Open Buildings 2.5D Temporal**. Crédito a Google Research con CC BY 4.0. Google
+  sugiere citar «W. Sirko, E.A. Brempong, J.T.C. Marcos, A. Annkah, A. Korme, M.A. Hassen,
+  K. Sapkota, T. Shekel, A. Diack, S. Nevo, J. Hickey, J.A. Quinn. High-Resolution Building and
+  Road Detection from Sentinel-2. arXiv:2310.11622, 2023.»
+  [Cita de Google Research](https://sites.research.google/gr/open-buildings/temporal/).
+- **CHIRPS v3.0**. «Climate Hazards Center Infrared Precipitation with Stations version 3
+  (CHIRPS3) Data Repository: https://doi.org/10.15780/G2JQ0P (2025). Data was accessed on [DATE].»
+  [Cita del Climate Hazards Center](https://www.chc.ucsb.edu/data/chirps3).
+- **NOAA GHCNh**. «Menne, Matthew J.; Noone, Simon; Casey, Nancy W.; Dunn, Robert H.; McNeill,
+  Shelley; Kantor, Diana; Thorne, Peter W.; Orcutt, Karen; Cunningham, Sam; Risavi, Nicholas.
+  2023. Global Historical Climatology Network-Hourly (GHCNh). [indicate subset used]. NOAA
+  National Centers for Environmental Information. https://doi.org/10.25921/jp3d-3v19. [access date]».
+  [Cita de NCEI](https://www.ncei.noaa.gov/metadata/geoportal/rest/metadata/item/gov.noaa.ncdc%3AC01688/html).
+
+Para sus observaciones horarias internacionales históricas, NCEI advierte «These data and
+products may have conditions placed on their international commercial use.» NCEI remite a la
+Resolución 40 de la OMM, sustituida en 2021 por la Resolución 1. La ficha CC0 de GHCNh declara
+la renuncia de NOAA a sus posibles derechos. Las páginas públicas consultadas no precisan si
+esa declaración cubre la redistribución de las series de El Dorado y La Chinita, por lo que
+su versionado queda pendiente de confirmación. [Aviso histórico de NCEI](https://www.ncei.noaa.gov/nespls/olstore.prodspecific?prodnum=4851) ·
+[Ficha de GHCNh](https://www.ncei.noaa.gov/access/metadata/landing-page/bin/iso?id=gov.noaa.ncdc%3AC01688) ·
+[Política de la OMM](https://wmo.int/wmo-unified-data-policy).
+
+### Código de terceros
+
+- **MapLibre GL JS 6.20.0** (BSD-3-Clause). «Copyright (c) 2023, MapLibre contributors».
+  [Versión en npm](https://www.npmjs.com/package/maplibre-gl/v/6.20.0) ·
+  [Archivos y procedencia](web/vendor/maplibre-gl-6.20.0/ORIGEN.md).
+- El [LICENSE.txt distribuido con MapLibre](web/vendor/maplibre-gl-6.20.0/LICENSE.txt) conserva
+  los avisos de **mapbox-gl-js v1.13 y anteriores** (BSD-3-Clause, «Copyright (c) 2020, Mapbox»),
+  **glfx.js** (MIT, «Copyright (C) 2011 by Evan Wallace») y **d3-color** (BSD-3-Clause,
+  «Copyright 2010-2016 Mike Bostock»). El paquete incluye dependencias con licencias ISC, MIT,
+  BSD-2-Clause, BSD-3-Clause y Apache-2.0. [Dependencias del paquete](https://registry.npmjs.org/maplibre-gl/6.20.0).
 
 ### Tipografía
 
