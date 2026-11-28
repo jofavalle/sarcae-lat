@@ -1,0 +1,35 @@
+# Lo que carga la primera pantalla de la escuela ancla, sin el mapa ni la maqueta 3D, para
+# medirlo contra los 150 KB con gzip -9 de la ADR-001 (orden #64):
+#
+#   python -m src.presupuesto web --lista web/primera-pantalla.txt --limite-kb 150
+#
+# Una ruta por línea, relativa a web/. Quien añada un archivo a la primera pantalla lo añade
+# también aquí: tests/test_presupuesto.py comprueba que están todos los que enlazan index.html
+# y app.js. Los datos de la ancla entran con la etapa 2 de la #64.
+
+# El HTML y el CSS. imprimir.css lleva media="print", pero el navegador lo descarga igual.
+index.html
+estilo/tokens.css
+estilo/base.css
+estilo/ficha.css
+estilo/maqueta.css
+estilo/mapa.css
+estilo/recorrido.css
+estilo/asistente.css
+estilo/imprimir.css
+
+# El JavaScript propio.
+app.js
+js/ficha.js
+js/sol.js
+js/maqueta.js
+js/mapa.js
+js/recorrido.js
+js/asistente.js
+
+# Las fuentes tipográficas. IBM Plex Mono 400 puede no descargarse, porque la primera pantalla
+# solo usa la 500 para la hora; se cuenta igual, por si alguna pantalla la pide.
+fonts/ibm-plex-sans-latin-400-normal.woff2
+fonts/ibm-plex-sans-latin-600-normal.woff2
+fonts/ibm-plex-mono-latin-400-normal.woff2
+fonts/ibm-plex-mono-latin-500-normal.woff2

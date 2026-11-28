@@ -7,9 +7,15 @@ gzip en unas décimas. Imprime una fila por archivo y el total, y sale con códi
 comprimido pasa del límite. El límite se compara con los bytes exactos, no con el total
 redondeado.
 
+Con `--lista <archivo>`, mide solo las rutas de esa lista, relativas a la carpeta: una por
+línea, sin líneas vacías ni comentarios que empiecen por `#`. Una ruta que no existe, que no es
+un archivo, que sale de la carpeta o que se repite es un error: un presupuesto que se salta un
+archivo no mide lo que dice.
+
 Uso, desde la raíz del repositorio:
 
     python -m src.presupuesto web/vendor/maplibre-gl-6.20.0 --limite-kb 480
+    python -m src.presupuesto web --lista web/primera-pantalla.txt --limite-kb 150
 
 Solo usa la biblioteca estándar.
 """
@@ -18,13 +24,18 @@ import argparse
 import gzip
 import sys
 from decimal import Decimal, InvalidOperation
-from pathlib import Path
+from pathlib import Path, PurePosixPath
 
 
-def medir(carpeta: Path) -> list:
-    """(ruta relativa con /, bytes sin comprimir, bytes con gzip -9) de cada archivo, en orden."""
+def medir(carpeta: Path, rutas=None) -> list:
+    """(ruta relativa con /, bytes sin comprimir, bytes con gzip -9) de cada archivo, en orden.
+
+    Sin `rutas`, mide todos los archivos de la carpeta y de sus subcarpetas; con `rutas`, una
+    lista de rutas relativas a la carpeta, solo esos.
+    """
+    archivos = carpeta.rglob("*") if rutas is None else (carpeta / r for r in rutas)
     filas = []
-    for archivo in carpeta.rglob("*"):
+    for archivo in archivos:
         if not archivo.is_file():
             continue
         datos = archivo.read_bytes()
@@ -55,6 +66,35 @@ def limite(texto: str) -> Decimal:
     return valor
 
 
+def leer_lista(lista: Path, carpeta: Path) -> list:
+    """Las rutas de la lista, relativas a la carpeta y con /. Lanza ValueError con la línea si
+    una no vale."""
+    try:
+        lineas = lista.read_text(encoding="utf-8").splitlines()
+    except OSError as error:
+        raise ValueError(f"no se puede leer la lista {lista}: {error.strerror}")
+    rutas = []
+    for n, linea in enumerate(lineas, start=1):
+        texto = linea.strip()
+        if not texto or texto.startswith("#"):
+            continue
+        donde = f"{lista}, línea {n}"
+        ruta = PurePosixPath(texto)
+        if "\\" in texto or ruta.is_absolute() or ":" in texto:
+            raise ValueError(f"{donde}: «{texto}» no es una ruta relativa con /")
+        if ".." in ruta.parts:
+            raise ValueError(f"{donde}: «{texto}» sale de {carpeta}")
+        ruta = ruta.as_posix()
+        if ruta in rutas:
+            raise ValueError(f"{donde}: «{texto}» está repetida")
+        if not (carpeta / ruta).is_file():
+            raise ValueError(f"{donde}: {carpeta / ruta} no existe o no es un archivo")
+        rutas.append(ruta)
+    if not rutas:
+        raise ValueError(f"la lista {lista} no tiene ninguna ruta")
+    return rutas
+
+
 def tabla(filas: list) -> list:
     """Las líneas de la tabla: cabecera, una fila por archivo y el total."""
     total = ("Total", sum(f[1] for f in filas), sum(f[2] for f in filas))
@@ -70,11 +110,19 @@ def main(argv=None) -> int:
     parser.add_argument("carpeta", type=Path, help="la carpeta del sitio que se mide")
     parser.add_argument("--limite-kb", type=limite, required=True,
                         help="el límite del total con gzip -9, en KB de 1000 bytes")
+    parser.add_argument("--lista", type=Path,
+                        help="un archivo con las rutas que se miden, relativas a la carpeta")
     args = parser.parse_args(argv)
 
     if not args.carpeta.is_dir():
         parser.error(f"{args.carpeta} no es una carpeta")
-    filas = medir(args.carpeta)
+    rutas = None
+    if args.lista is not None:
+        try:
+            rutas = leer_lista(args.lista, args.carpeta)
+        except ValueError as error:
+            parser.error(str(error))
+    filas = medir(args.carpeta, rutas)
     if not filas:
         parser.error(f"{args.carpeta} no tiene archivos")
 
