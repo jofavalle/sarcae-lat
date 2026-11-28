@@ -76,8 +76,13 @@ equipo: un cambio en ella se propone por PR, como cualquier otro. Lo de cada uno
   alertas, predicciones o niveles de riesgo: se habla de preparación y de preguntas para
   conversar. El brief está en `docs/PLAN.md`.
 - **Lo que se versiona de terceros lleva una licencia compatible con la regla 6 del
-  hackathon** (2026-11-27): CC0, CC BY o dominio público, citado en el README. No se versionan
-  extractos de OpenStreetMap (ODbL) ni datos con cláusula no comercial, como Meteostat.
+  hackathon** (2026-11-27; código y fuentes, #32), y se cita en el README con su licencia:
+  - **código:** una licencia permisiva compatible con MIT (MIT, ISC, BSD-2-Clause,
+    BSD-3-Clause o Apache-2.0, esta con su `NOTICE` si lo trae), con su archivo de licencia
+    al lado, como MapLibre GL JS en `web/vendor/` (ADR-001);
+  - **fuentes tipográficas:** la SIL Open Font License 1.1, con su texto al lado;
+  - **los datos y todo lo demás:** CC0, CC BY o dominio público. No se versionan extractos de
+    OpenStreetMap (ODbL) ni datos con cláusula no comercial, como Meteostat.
 - **Ni planos ni distribución interior de escuelas concretas** (2026-11-27, por la seguridad
   de quienes las ocupan y por los derechos de autor): la maqueta muestra volúmenes.
 - **Google Earth Engine solo extrae** (2026-11-27): los recortes se exportan al repositorio con
