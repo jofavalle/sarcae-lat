@@ -1,0 +1,120 @@
+{
+  "contrato": 1,
+  "fuentes": [
+    {
+      "nombre": "Landsat 8 y 9",
+      "version": "Collection 2, Tier 1, Level-2 (L2SP)",
+      "url": "https://www.usgs.gov/landsat-missions/landsat-collection-2-level-2-science-products",
+      "licencia": "dominio-publico",
+      "atribucion": "Landsat Collection 2 Level-2 image courtesy of the U.S. Geological Survey."
+    },
+    {
+      "nombre": "ESA WorldCover",
+      "version": "v200 (2021)",
+      "url": "https://esa-worldcover.org/en/data-access",
+      "licencia": "CC-BY-4.0",
+      "atribucion": "© ESA WorldCover project 2021 / Contains modified Copernicus Sentinel data (2021) processed by ESA WorldCover consortium. CC BY 4.0. Recortado y muestreado a 10 m en la cuadrícula UTM de la sede."
+    },
+    {
+      "nombre": "Google Open Buildings v3 y 2.5D Temporal",
+      "version": "v3 (contornos) y Temporal v1 (alturas de 2023)",
+      "url": "https://sites.research.google/gr/open-buildings/",
+      "licencia": "CC-BY-4.0",
+      "atribucion": "Google Research, CC BY 4.0. W. Sirko, S. Kashubin, M. Ritter, A. Annkah, Y.S.E. Bouchareb, Y. Dauphin, D. Keysers, M. Neumann, M. Cisse, J.A. Quinn. Continental-scale building detection from high resolution satellite imagery. arXiv:2107.12283, 2021. W. Sirko, E.A. Brempong, J.T.C. Marcos, A. Annkah, A. Korme, M.A. Hassen, K. Sapkota, T. Shekel, A. Diack, S. Nevo, J. Hickey, J.A. Quinn. High-Resolution Building and Road Detection from Sentinel-2. arXiv:2310.11622, 2023. Contornos seleccionados por radio y confianza, con la altura media de 2023 por contorno."
+    }
+  ],
+  "cobertura": {
+    "esquinas": [
+      [
+        -89.35037,
+        13.985062
+      ],
+      [
+        -89.330942,
+        13.98525
+      ],
+      [
+        -89.330751,
+        13.966277
+      ],
+      [
+        -89.350178,
+        13.96609
+      ]
+    ]
+  },
+  "clases": [
+    {
+      "clase": 10,
+      "nombre": "Arbolado",
+      "color": "#406857"
+    },
+    {
+      "clase": 20,
+      "nombre": "Matorral",
+      "color": "#686846"
+    },
+    {
+      "clase": 30,
+      "nombre": "Pastos",
+      "color": "#536e50"
+    },
+    {
+      "clase": 40,
+      "nombre": "Cultivos",
+      "color": "#78784a"
+    },
+    {
+      "clase": 50,
+      "nombre": "Zona construida",
+      "color": "#738094"
+    },
+    {
+      "clase": 60,
+      "nombre": "Suelo desnudo o con poca vegetación",
+      "color": "#73736a"
+    },
+    {
+      "clase": 70,
+      "nombre": "Nieve y hielo",
+      "color": "#bbc8d4"
+    },
+    {
+      "clase": 80,
+      "nombre": "Agua permanente",
+      "color": "#6cc8e0"
+    },
+    {
+      "clase": 90,
+      "nombre": "Humedal herbáceo",
+      "color": "#496762"
+    },
+    {
+      "clase": 95,
+      "nombre": "Manglar",
+      "color": "#35676b"
+    },
+    {
+      "clase": 100,
+      "nombre": "Musgos y líquenes",
+      "color": "#7f8258"
+    }
+  ],
+  "landsat": {
+    "periodo": {
+      "desde": "2024-01-01",
+      "hasta": "2025-12-31"
+    },
+    "escenas": 24,
+    "hora_local": "10:18"
+  },
+  "edificios": {
+    "con_altura": 796,
+    "sin_altura": 47
+  },
+  "generado": {
+    "utc": "2026-11-28T16:40:38+00:00",
+    "commit": "f94034475673693b6e8e7db53eb91b02a32ec762",
+    "comando": "python -m src.capas --todas"
+  }
+}
