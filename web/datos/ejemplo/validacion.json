@@ -1,0 +1,46 @@
+{
+  "contrato": 1,
+  "ejemplo": true,
+  "aviso": "Ejemplo con cifras ficticias, inventadas para describir el contrato de datos. No son de ninguna escuela ni salen de ERA5.",
+  "generado": {
+    "utc": "2026-11-28T18:00:00+00:00",
+    "commit": "b3e2192",
+    "comando": "redactado en la orden #58: cifras ficticias, sin cálculo"
+  },
+  "fuentes": [
+    {
+      "nombre": "SARCAE-LAT, ejemplo del contrato de datos",
+      "version": "1",
+      "licencia": "CC-BY-4.0",
+      "url": "https://github.com/jofavalle/sarcae-lat"
+    }
+  ],
+  "escuela": "ejemplo",
+  "estado": "publicada",
+  "motivo": null,
+  "estacion": {
+    "nombre": "Estación de ejemplo",
+    "fuente": "ficticia",
+    "distancia": {"valor": 18.0, "unidad": "km"},
+    "altitud": {"valor": 650.0, "unidad": "m"}
+  },
+  "periodo": {"desde": "2024-01-01", "hasta": "2025-12-31"},
+  "que_se_valida": "la temperatura del aire hora a hora, de lunes a viernes de 07:00 a 17:00 hora local, sin las máximas ni las mínimas diarias",
+  "unidad": "K",
+  "variables": [
+    {
+      "id": "horaria",
+      "nombre": "Temperatura horaria en el horario escolar",
+      "emparejados": {"valor": 5530, "unidad": "horas"},
+      "sin_correccion": {"sesgo": -0.4, "error_cuadratico_medio": 1.7},
+      "con_correccion": {"sesgo": -0.1, "error_cuadratico_medio": 1.6}
+    }
+  ],
+  "nota_licencia": "La serie de la estación no está en el repositorio: solo se publica la métrica (#46 y #39).",
+  "experimento": null,
+  "texto": {
+    "estudiante": "Comparamos ERA5 con una estación que mide la temperatura en la zona. La diferencia dice cuánto se aparta ERA5 del aire que mide la estación. No es una nota para la escuela.",
+    "docente": "ERA5 se comparó hora a hora con una estación de la zona, en el horario de clase. El sesgo y el error cuadrático medio son una limitación que se declara, no una calificación de la escuela.",
+    "direccion": "La comparación con la estación muestra cuánto se aparta ERA5 del aire medido en la zona. Es una limitación que se declara, no una calificación, y la estación no está en la escuela."
+  }
+}

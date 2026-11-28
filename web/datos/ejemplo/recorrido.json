@@ -1,0 +1,118 @@
+{
+  "contrato": 1,
+  "ejemplo": true,
+  "aviso": "Ejemplo con cifras ficticias, inventadas para describir el contrato de datos. No son de ninguna escuela ni salen de ERA5.",
+  "generado": {
+    "utc": "2026-11-28T18:00:00+00:00",
+    "commit": "b3e2192",
+    "comando": "redactado en la orden #58: cifras ficticias, sin cálculo"
+  },
+  "fuentes": [
+    {
+      "nombre": "SARCAE-LAT, ejemplo del contrato de datos",
+      "version": "1",
+      "licencia": "CC-BY-4.0",
+      "url": "https://github.com/jofavalle/sarcae-lat"
+    }
+  ],
+  "escuela": "ejemplo",
+  "registros": {
+    "estudiante": {
+      "nombre": "Estudiante",
+      "titulo": "Mira cómo se calienta tu escuela y por dónde corre el agua.",
+      "entrada": "Mueve la hora, recorre la maqueta y piensa en las preguntas con tu grupo."
+    },
+    "docente": {
+      "nombre": "Docente",
+      "titulo": "El calor y el agua en la escuela, para preparar la clase y la conversación.",
+      "entrada": "Cinco paradas con una pregunta cada una, para trabajar en el aula."
+    },
+    "direccion": {
+      "nombre": "Dirección",
+      "titulo": "Qué revisar en la escuela ante el calor y la lluvia, con datos desde 1940.",
+      "entrada": "Cinco puntos de la escuela para revisar y conversar con la comunidad."
+    }
+  },
+  "paradas": [
+    {
+      "id": "zona",
+      "titulo": "La zona de la escuela",
+      "maqueta": {"volumen": "pabellon-a", "capa": "sombra", "hora": 10},
+      "mapa": {"vista": "2d", "capa": "relieve"},
+      "texto": {
+        "estudiante": "Los datos del clima salen de ERA5, que mira una zona de unos 28 km. Cuenta lo que pasa en la zona, no en el patio de tu escuela.",
+        "docente": "ERA5 es un reanálisis con celdas de unos 28 km: describe el clima de la zona desde 1940, no el de la escuela. La temperatura se corrige por la altura de la escuela.",
+        "direccion": "Las cifras describen la zona, con una celda de ERA5 de unos 28 km, y no miden la escuela. Sirven para preparar la conversación, no para calificar el edificio."
+      },
+      "pregunta": {
+        "estudiante": "¿En qué se parece y en qué se diferencia tu escuela de la zona que la rodea?",
+        "docente": "¿Qué parte de lo que se siente en el aula explica el clima de la zona, y qué parte el edificio?",
+        "direccion": "¿Qué datos de la propia escuela ayudarían a completar lo que cuenta la zona?"
+      }
+    },
+    {
+      "id": "techos",
+      "titulo": "Techos y calor",
+      "maqueta": {"volumen": "pabellon-a", "capa": "calor", "hora": 13},
+      "mapa": {"vista": "3d", "capa": "calor"},
+      "texto": {
+        "estudiante": "En la zona hay unas 349,7 horas de clase al año por encima de 27 °C. Antes, de 1961 a 1990, eran unas 161,2. El techo de lámina se calienta mucho más que el aire.",
+        "docente": "De lunes a viernes, de 07:00 a 17:00, la zona pasa de 27 °C unas 349,7 horas al año desde 1996, frente a 161,2 de 1961 a 1990. La lámina sin aislante calienta el aula desde arriba.",
+        "direccion": "Las horas de clase sobre 27 °C pasaron de 161,2 al año en 1961–1990 a 349,7 en 1996–2025. El Manual Mi Nueva Escuela da criterios de ventilación y aislamiento para revisar los techos."
+      },
+      "pregunta": {
+        "estudiante": "¿En qué aula hace más calor después del recreo? ¿Por qué crees que pasa?",
+        "docente": "¿Qué actividades conviene mover a las primeras horas en los meses de más calor?",
+        "direccion": "¿Qué aulas tienen techo sin aislante o sin cielo falso, y cuáles se usan por la tarde?"
+      }
+    },
+    {
+      "id": "aleros",
+      "titulo": "Sombra y aleros",
+      "maqueta": {"volumen": "pabellon-b", "capa": "sombra", "hora": 15},
+      "mapa": {"vista": "3d", "capa": "cobertura"},
+      "texto": {
+        "estudiante": "El borde del techo que sobresale se llama alero. Mueve la hora y mira qué paredes y ventanas quedan al sol por la tarde.",
+        "docente": "Con la hora en la tarde se ve qué fachadas quedan al sol. La escuela está en la zona tropical caliente del manual, que no da una medida de alero para esta franja.",
+        "direccion": "La altitud cae en la zona tropical caliente del manual, de 300 a 700 m. No se da una medida de alero: falta una referencia aplicable a esta escuela y a cada fachada."
+      },
+      "pregunta": {
+        "estudiante": "¿Qué ventanas de tu aula reciben sol directo durante la clase?",
+        "docente": "¿En qué aulas entra el sol por la ventana a media mañana o a media tarde?",
+        "direccion": "¿Qué ventanas reciben sol directo por la tarde y qué sombra les dan los aleros o parteluces?"
+      }
+    },
+    {
+      "id": "lluvia",
+      "titulo": "Lluvia intensa",
+      "maqueta": {"volumen": "techo-patio", "capa": "agua", "hora": 17},
+      "mapa": {"vista": "2d", "capa": "agua"},
+      "texto": {
+        "estudiante": "Un día de mucha lluvia en la zona pasa de 85,3 mm. Antes ocurría unos 3,7 días al año, y desde 1996, unos 5,0. El 17 de septiembre de 2008 cayeron 182,4 mm.",
+        "docente": "El umbral es el percentil 99 de la lluvia diaria de 1961 a 1990: 85,3 mm. Se superó 3,7 días al año entonces y 5,0 desde 1996. El episodio del 17-09-2008 sumó 182,4 mm.",
+        "direccion": "Los días con más de 85,3 mm pasaron de 3,7 al año en 1961–1990 a 5,0 en 1996–2025. El episodio más lluvioso del ejemplo, el 17-09-2008, sumó 182,4 mm en un día."
+      },
+      "pregunta": {
+        "estudiante": "¿Qué pasa en tu escuela el día que más llueve del año?",
+        "docente": "¿Qué cambia en la jornada escolar un día de lluvia intensa?",
+        "direccion": "¿Quién revisa la canaleta y los desagües antes de la época de lluvias?"
+      }
+    },
+    {
+      "id": "agua",
+      "titulo": "Por dónde corre el agua",
+      "maqueta": {"volumen": "pabellon-b", "capa": "agua", "hora": 14},
+      "mapa": {"vista": "2d", "capa": "agua"},
+      "texto": {
+        "estudiante": "Cuando llueve fuerte, el agua baja de los techos y tiende a correr por el patio hacia la parte más baja del terreno.",
+        "docente": "Las líneas siguen la pendiente del relieve: muestran por dónde tiende a correr el agua y dónde tiende a juntarse. No simulan caudal ni profundidad.",
+        "direccion": "La capa muestra por dónde tiende a correr el agua según el relieve, en cuadros de 30 m. No ve canaletas ni muros: sirve para decidir qué revisar en el terreno."
+      },
+      "pregunta": {
+        "estudiante": "¿Por dónde corre el agua en el patio cuando llueve fuerte? ¿Dónde se queda?",
+        "docente": "¿Qué pasillos o rutas exteriores se mojan o se encharcan en la época de lluvias?",
+        "direccion": "¿Cuándo se limpiaron por última vez la canaleta y los desagües, y quién los revisa antes de mayo?"
+      }
+    }
+  ]
+}
