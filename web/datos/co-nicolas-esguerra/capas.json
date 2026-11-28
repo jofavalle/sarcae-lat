@@ -105,7 +105,7 @@
       "desde": "2024-01-01",
       "hasta": "2025-12-31"
     },
-    "escenas": 2,
+    "escenas": 25,
     "hora_local": "10:13"
   },
   "edificios": {
@@ -113,8 +113,8 @@
     "sin_altura": 7
   },
   "generado": {
-    "utc": "2026-11-28T16:40:38+00:00",
-    "commit": "f94034475673693b6e8e7db53eb91b02a32ec762",
-    "comando": "python -m src.capas --todas"
+    "utc": "2026-11-28T18:12:14+00:00",
+    "commit": "323d7e4d964e14b4fec88058392cfec370a91171",
+    "comando": "python -m src.capas --escuela co-nicolas-esguerra"
   }
 }

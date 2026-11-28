@@ -2,6 +2,8 @@
 
 import csv
 import json
+import re
+from pathlib import Path
 
 import pytest
 
@@ -142,4 +144,12 @@ def test_rechaza_escenas_fuera_del_filtro(tmp_path, fecha, nubosidad):
     ruta = tmp_path / "escenas.csv"
     ruta.write_text(f"id,fecha,hora_utc,nubosidad\nuna,{fecha},16:00:00,{nubosidad}\n", encoding="utf-8")
     with pytest.raises(ValueError, match="fecha o nubosidad fuera del filtro"):
-        capas.estadisticas_escenas(ruta, -6)
+        capas.estadisticas_escenas(ruta, -6, 20)
+
+
+def test_umbral_de_nubes_coincide_con_recortes_js():
+    texto = (Path(capas.__file__).resolve().parent.parent / "gee" / "recortes.js").read_text(
+        encoding="utf-8")
+    umbrales = {slug: int(nubes) for slug, nubes
+                in re.findall(r"'([\w-]+)':\s*\{[^}]*?nubes:\s*(\d+)", texto)}
+    assert umbrales == capas.NUBES_ESCENA
