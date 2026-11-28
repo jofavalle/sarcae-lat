@@ -1,0 +1,26 @@
+{
+  "escuela": "sv-88118",
+  "fuente": {
+    "nombre": "NASADEM_HGT",
+    "version": "001",
+    "url": "https://www.earthdata.nasa.gov/data/catalog/lpcloud-nasadem-hgt-001"
+  },
+  "licencia": {
+    "spdx": "CC0-1.0",
+    "url": "https://www.earthdata.nasa.gov/engage/open-data-services-software-policies/data-use-guidance"
+  },
+  "atribucion": "NASA JPL. NASADEM Merged DEM Global 1 arc second V001. 2020, distributed by NASA EOSDIS Land Processes Distributed Active Archive Center, https://doi.org/10.5067/MEaSUREs/NASADEM/NASADEM_HGT.001",
+  "fecha_descarga": "2026-11-28",
+  "generado": {
+    "utc": "2026-11-28T16:10:42+00:00",
+    "commit": "f94034475673693b6e8e7db53eb91b02a32ec762",
+    "comando": "python -m src.recortes --escribir recortes/sv-88118/nasadem --fuente NASADEM_HGT --version 001 --url-fuente https://www.earthdata.nasa.gov/data/catalog/lpcloud-nasadem-hgt-001 --licencia CC0-1.0 --url-licencia https://www.earthdata.nasa.gov/engage/open-data-services-software-policies/data-use-guidance --atribucion 'NASA JPL. NASADEM Merged DEM Global 1 arc second V001. 2020, distributed by NASA EOSDIS Land Processes Distributed Active Archive Center, https://doi.org/10.5067/MEaSUREs/NASADEM/NASADEM_HGT.001' --fecha-descarga 2026-11-28"
+  },
+  "archivos": [
+    {
+      "nombre": "elevacion.csv",
+      "bytes": 510425,
+      "sha256": "0a6e6e9b8e5425f8857a56e83267000fb057a68d0cccc6e74f41ae25b1fbe9df"
+    }
+  ]
+}

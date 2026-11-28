@@ -5,6 +5,7 @@ llegaría al clon de nadie. El DEM fabricado es lineal en latitud y longitud, as
 remuestreo bilineal lo recupera exacto, y la única pérdida es la de terrarium (1/256 m).
 """
 
+import json
 import zipfile
 import zlib
 
@@ -169,3 +170,141 @@ def test_los_vacios_se_cuentan():
 def test_celda_del_granulo():
     assert relieve.cell_corner("n13w090.hgt") == (13, -90)
     assert relieve.cell_corner("NASADEM_HGT_s05e120") == (-5, 120)
+
+
+# El granulo, el recorte y la unión (#60)
+
+@pytest.mark.parametrize("lat, lon, expected", [
+    (13.97567, -89.34056, "NASADEM_HGT_n13w090"),   # norte y oeste: la 88118
+    (35.68, 139.69, "NASADEM_HGT_n35e139"),         # norte y este
+    (-33.45, -70.66, "NASADEM_HGT_s34w071"),        # sur y oeste
+    (-0.5, 0.5, "NASADEM_HGT_s01e000"),             # sur y este, junto al cero
+    (4.63279, -74.122, "NASADEM_HGT_n04w075"),      # las réplicas
+    (10.67002, -71.62749, "NASADEM_HGT_n10w072"),
+])
+def test_el_nombre_del_granulo_sale_de_las_coordenadas(lat, lon, expected):
+    assert relieve.granule_name(lat, lon) == expected
+
+
+def test_un_recorte_que_cruza_un_borde_pide_los_dos_granulos():
+    dentro = relieve.crop_cells(relieve.crop_bounds(13.5, -89.5, 4.0))
+    assert relieve.granules_for(dentro) == ["NASADEM_HGT_n13w090"]
+    borde = relieve.crop_cells(relieve.crop_bounds(13.5, -89.001, 4.0))
+    assert relieve.granules_for(borde) == ["NASADEM_HGT_n13w089", "NASADEM_HGT_n13w090"]
+    esquina = relieve.crop_cells(relieve.crop_bounds(13.999, -89.001, 4.0))
+    assert len(relieve.granules_for(esquina)) == 4
+
+
+def plano(top, left, cells=360, side=361):
+    """Un granulo pequeño de enteros con una pendiente que sigue a través de los bordes."""
+    rows, cols = np.mgrid[0:side, 0:side]
+    i, j = round(top * cells) - rows, round(left * cells) + cols
+    return relieve.Grid((3 * i - 2 * j - 20000).astype("int16"), top, left, 1.0 / cells)
+
+
+def test_la_union_de_dos_granulos():
+    oeste, este = plano(14.0, -90.0), plano(14.0, -89.0)
+    # El recorte cruza el meridiano 89 °O.
+    window = {"sur": 13 * 360 + 100, "norte": 13 * 360 + 140,
+              "oeste": -89 * 360 - 30, "este": -89 * 360 + 30}
+    grid = relieve.mosaic([oeste, este], window, cells=360)
+    rows, cols = np.mgrid[0:41, 0:61]
+    i, j = window["norte"] - rows, window["oeste"] + cols
+    assert np.array_equal(grid.values, (3 * i - 2 * j - 20000).astype("int16"))
+    assert relieve.grid_window(grid, cells=360) == window
+    with pytest.raises(ValueError, match="otro granulo"):
+        relieve.mosaic([oeste], window, cells=360)
+
+
+def test_la_cuantizacion():
+    heights = np.random.default_rng(60).uniform(-50.0, 3000.0, size=(256, 256))
+    quantized = relieve.quantize(heights, 0.25)
+    assert np.abs(quantized - heights).max() <= 0.125 + 1e-9
+    rgb = relieve.terrarium_encode(quantized)
+    assert set(np.unique(rgb[..., 2]).tolist()) <= {0, 64, 128, 192}
+    assert np.array_equal(relieve.terrarium_decode(rgb), quantized)
+    # Sin precisión, las alturas pasan como están.
+    assert relieve.quantize(heights, None) is heights
+
+
+def test_el_csv_del_recorte_ida_y_vuelta():
+    grid = relieve.mosaic([plano(14.0, -90.0, cells=3600, side=40)],
+                          {"sur": 13 * 3600 + 3575, "norte": 14 * 3600,
+                           "oeste": -90 * 3600, "este": -90 * 3600 + 30})
+    text = relieve.crop_to_csv(grid)
+    assert text.splitlines()[0] == "lat,lon,altura_m"
+    assert text.splitlines()[1] == f"14.0000000,-90.0000000,{grid.values[0, 0]}"
+    back = relieve.grid_from_csv(text)
+    assert np.array_equal(back.values, grid.values)
+    assert (back.top, back.left, back.step) == (grid.top, grid.left, grid.step)
+    with pytest.raises(ValueError, match="rectangular"):
+        relieve.grid_from_csv("\n".join(text.splitlines()[:-1]))
+
+
+def escuela_fabricada(tmp_path):
+    """Un data/raw, un escuelas.json y un recortes/ en tmp_path, con un granulo fabricado."""
+    raw = tmp_path / "raw"
+    raw.mkdir()
+    rows, cols = np.mgrid[0:relieve.HGT_SIDE, 0:relieve.HGT_SIDE]
+    values = (400 + rows // 7 + (cols // 5) % 90).astype(">i2")
+    with zipfile.ZipFile(raw / "NASADEM_HGT_n13w090.zip", "w") as archive:
+        archive.writestr("n13w090.hgt", values.tobytes())
+    (raw / "registro.json").write_text('{"descargado_utc": "2026-11-28T10:00:00+00:00"}',
+                                       encoding="utf-8")
+    escuelas = tmp_path / "escuelas.json"
+    escuelas.write_text('{"escuelas": [{"slug": "sv-prueba", "lat": 13.50013, "lon": -89.49987}]}',
+                        encoding="utf-8")
+    return {"escuelas": escuelas, "raw": raw, "recortes": tmp_path / "recortes"}, values
+
+
+def test_desde_el_zip_y_desde_el_recorte_salen_los_mismos_bytes(tmp_path, capsys):
+    rutas, values = escuela_fabricada(tmp_path)
+    zooms = [12, 13, 14]
+    a, b = tmp_path / "desde-zip", tmp_path / "desde-recorte"
+    assert relieve.generate_school("sv-prueba", 4.0, zooms, 0.25, (0, 1000), False, a,
+                                   "prueba", **rutas) == 0
+    # Sin el zip: el recorte basta.
+    (rutas["raw"] / "NASADEM_HGT_n13w090.zip").rename(tmp_path / "apartado.zip")
+    assert relieve.generate_school("sv-prueba", 4.0, zooms, 0.25, (0, 1000), True, b,
+                                   "prueba", **rutas) == 0
+    teselas = sorted(p.relative_to(a).as_posix() for p in a.rglob("*.png"))
+    assert teselas and teselas == sorted(p.relative_to(b).as_posix() for p in b.rglob("*.png"))
+    for nombre in teselas:
+        assert (a / nombre).read_bytes() == (b / nombre).read_bytes(), nombre
+
+    # El recorte: enteros del .hgt, con su manifiesto, y un nodo es el mismo píxel.
+    carpeta = rutas["recortes"] / "sv-prueba" / "nasadem"
+    filas = (carpeta / "elevacion.csv").read_text(encoding="utf-8").splitlines()
+    lat, lon, altura = filas[1].split(",")
+    row = round((14.0 - float(lat)) * 3600)
+    col = round((float(lon) + 90.0) * 3600)
+    assert int(altura) == values[row, col]
+    manifiesto = json.loads((carpeta / "manifiesto.json").read_text(encoding="utf-8"))
+    assert manifiesto["licencia"]["spdx"] == "CC0-1.0"
+    assert manifiesto["fecha_descarga"] == "2026-11-28"
+    assert [f["nombre"] for f in manifiesto["archivos"]] == ["elevacion.csv"]
+
+    datos = json.loads((a / "relieve.json").read_text(encoding="utf-8"))
+    assert datos["escuela"] == "sv-prueba" and datos["granulos"] == ["n13w090"]
+    assert (datos["minzoom"], datos["maxzoom"], datos["precision_m"]) == (12, 14, 0.25)
+    oeste, sur, este, norte = datos["bounds"]
+    assert oeste < -89.49987 < este and sur < 13.50013 < norte
+    assert datos["altura_esperada_m"] == [0, 1000]
+    # La altura de la escuela, bilineal a mano con los cuatro nodos que la rodean.
+    r, c = (14.0 - 13.50013) * 3600, (-89.49987 + 90.0) * 3600
+    r0, c0 = int(r), int(c)
+    fr, fc = r - r0, c - c0
+    v = values.astype(float)
+    mano = ((v[r0, c0] * (1 - fc) + v[r0, c0 + 1] * fc) * (1 - fr)
+            + (v[r0 + 1, c0] * (1 - fc) + v[r0 + 1, c0 + 1] * fc) * fr)
+    assert abs(datos["altitud_escuela_m"] - mano) <= 0.05 + 1e-9
+
+
+def test_la_salida_con_archivos_no_se_mezcla(tmp_path):
+    rutas, _ = escuela_fabricada(tmp_path)
+    out = tmp_path / "salida"
+    out.mkdir()
+    (out / "vieja.png").write_bytes(b"")
+    with pytest.raises(SystemExit, match="ya tiene archivos"):
+        relieve.generate_school("sv-prueba", 4.0, [14], 0.25, (0, 1000), False, out,
+                                "prueba", **rutas)
