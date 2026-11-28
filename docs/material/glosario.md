@@ -25,6 +25,6 @@ alfabético.
 - **protección civil**: la autoridad pública de cada país que organiza la prevención y la atención de emergencias. Ante una emergencia, se sigue lo que ella indique.
 - **reanálisis**: una reconstrucción del tiempo de cada hora del pasado, que combina un programa de computadora con mediciones de estaciones meteorológicas, barcos, globos y satélites. No es una medición directa.
 - **relieve**: la forma del terreno, con sus subidas, bajadas y llanos. En la maqueta digital sale del modelo de elevación.
-- **temperatura de superficie**: lo caliente que está un techo, una calle o un suelo, medido desde un satélite. Al sol puede ser mucho más alta que la temperatura del aire.
+- **temperatura de superficie**: lo calientes que están techos, calles y suelos, medido por satélite en cuadros de 100 m. Al sol puede ser mucho más alta que la del aire.
 - **temperatura del aire**: la que marca un termómetro a la sombra, a unos 2 m del suelo. Es la que da ERA5; el calor que se siente depende además de la humedad.
 - **volumen**: la forma exterior de un edificio vista como un bloque, con su contorno, su altura y su techo, sin nada de lo que hay dentro.
