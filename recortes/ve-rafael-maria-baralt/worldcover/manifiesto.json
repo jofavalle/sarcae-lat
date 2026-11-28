@@ -1,0 +1,31 @@
+{
+  "escuela": "ve-rafael-maria-baralt",
+  "fuente": {
+    "nombre": "ESA WorldCover",
+    "version": "v200 (2021)",
+    "url": "https://esa-worldcover.org/en/data-access"
+  },
+  "licencia": {
+    "spdx": "CC-BY-4.0",
+    "url": "https://creativecommons.org/licenses/by/4.0/"
+  },
+  "atribucion": "© ESA WorldCover project 2021 / Contains modified Copernicus Sentinel data (2021) processed by ESA WorldCover consortium. CC BY 4.0. Recortado y muestreado a 10 m en la cuadrícula UTM de la sede.",
+  "fecha_descarga": "2026-11-28",
+  "generado": {
+    "utc": "2026-11-28T16:40:32+00:00",
+    "commit": "f94034475673693b6e8e7db53eb91b02a32ec762",
+    "comando": "python -m src.recortes --escribir recortes/ve-rafael-maria-baralt/worldcover --fuente 'ESA WorldCover' --version 'v200 (2021)' --url-fuente https://esa-worldcover.org/en/data-access --licencia CC-BY-4.0 --url-licencia https://creativecommons.org/licenses/by/4.0/ --atribucion '© ESA WorldCover project 2021 / Contains modified Copernicus Sentinel data (2021) processed by ESA WorldCover consortium. CC BY 4.0. Recortado y muestreado a 10 m en la cuadrícula UTM de la sede.' --fecha-descarga 2026-11-28"
+  },
+  "archivos": [
+    {
+      "nombre": "celdas.csv",
+      "bytes": 615310,
+      "sha256": "6e98a39c5111dc4233155af69364252773a42e73354247ee7072d30dea6defb5"
+    },
+    {
+      "nombre": "esquinas.json",
+      "bytes": 225,
+      "sha256": "883608b84c9f6c35286661748f3f5cd8aeb992cdbc8627c3572aa67e019e6ff4"
+    }
+  ]
+}
