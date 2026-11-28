@@ -93,13 +93,15 @@ declarada, fuera de la primera entrega (#16).
 | ESA WorldCover | Cobertura del suelo: vegetación, construcción, agua | 10 m | CC BY 4.0 | |
 | Google Open Buildings v3 | Contornos de los edificios | | CC BY 4.0 u ODbL, a elección; se usa con CC BY 4.0 | Comprobadas la licencia y la cobertura: El Salvador, Colombia y Venezuela están en la lista de países del sitio |
 | Google Open Buildings 2.5D Temporal | Alturas de los edificios, 2016 a 2023 | error medio de 1,5 m | CC BY 4.0 u ODbL, a elección | Comprobadas la licencia y la cobertura de los tres países |
-| CHIRPS | Lluvia, para comparar con ERA5 | 0,05° | v2.0: dominio público; v3.0: CC BY 4.0, según el Climate Hazards Center | Comprobada en la fuente original. La v2.0 deja de producirse después de diciembre de 2026 |
-| Estaciones meteorológicas | Validación de ERA5 | puntual, horaria | NOAA GHCNh: CC0, según su ficha de metadatos en NCEI. MARN: por comprobar | Elegidas para las réplicas (#19): El Dorado, a 8,1 km del colegio de Bogotá, y La Chinita, a 16,5 km de la escuela de Maracaibo, las dos de NOAA GHCNh. (abierto) la de la escuela ancla: la candidata es Nueva Concepción, del MARN, a 17,5 km y a 320 m de altitud, pendiente del acceso a su serie diaria y de sus condiciones de reutilización |
+| CHIRPS | Lluvia, para comparar con ERA5 | 0,05° | CC BY 4.0, según el Climate Hazards Center | Elegida la v3.0. Cubre tierra entre 60° S y 60° N en todas las longitudes, desde 1981 hasta fechas recientes |
+| Estaciones meteorológicas | Validación de ERA5 | puntual, horaria | NOAA GHCNh (El Dorado y La Chinita): ficha del conjunto CC0. Pendiente confirmar que ambas series admiten redistribución sin restricciones (Resolución 40 de la OMM). MARN: por comprobar | Elegidas para las réplicas (#19): El Dorado, a 8,1 km del colegio de Bogotá, y La Chinita, a 16,5 km de la escuela de Maracaibo, las dos de NOAA GHCNh. (abierto) la de la escuela ancla: la candidata es Nueva Concepción, del MARN, a 17,5 km y a 320 m de altitud, pendiente del acceso a su serie diaria y de sus condiciones de reutilización |
 | Manual de Diseño Mi Nueva Escuela (MINEDUCYT, 2022) | Medidas de referencia de aulas y tipologías, y criterios de ventilación, sombra y aguas lluvias | | sin licencia declarada | Solo se usan sus medidas y criterios, citando el manual; no se copian sus figuras |
 
 Las licencias del cuadro se consultaron el 27 de noviembre de 2026 en el sitio de quien produce
-el dato. La de NOAA GHCNh se leyó para la #19; la orden #9 comprueba qué dice NCEI de los datos
-de otros países (Resolución 40 de la OMM) y la cita en el README, y la del MARN sigue por ver.
+el dato. La #9 documenta las condiciones de NOAA GHCNh en el README. Ante la falta de
+confirmación para El Dorado y La Chinita, el equipo decide en la #19 si valida solo donde se
+confirme una fuente compatible o si calcula la métrica sin versionar las series, si sus
+condiciones permiten ese uso. La licencia del MARN sigue por comprobar.
 Los enlaces están en el README, sección "Fuentes y licencias".
 
 **Volumen y frecuencia.** Los datos se descargan una sola vez, con la fecha y la versión
