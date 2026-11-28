@@ -57,7 +57,7 @@ La primera pantalla contesta tres preguntas:
 
 1. ¿Cuánto calor y cuánta lluvia extrema hay en el lugar de la escuela, y cómo han cambiado
    desde 1940?
-2. ¿En qué partes de la escuela y de su entorno se acumula más el calor, y por dónde podría
+2. ¿En qué partes del entorno de la escuela se acumula más el calor, y por dónde podría
    llegar el agua?
 3. ¿Qué se puede revisar o preparar en la escuela, y de qué conviene conversar?
 
@@ -219,7 +219,9 @@ el código; CC BY 4.0 para la documentación, el material y los modelos propios.
   una calificación de la escuela.
 - ERA5 describe la zona, no la escuela: su celda mide unos 28 km.
 - La temperatura de superficie de Landsat es la de techos y suelos a la hora en que pasa el
-  satélite, no la del aire.
+  satélite, no la del aire. Se mide en cuadros de 100 m: cada cuadro mezcla techos, patios,
+  calles y vegetación, así que compara zonas del entorno y no separa el techo del patio de una
+  misma escuela.
 - Las alturas de los edificios son estimaciones, con un error medio de 1,5 m.
 - Los criterios del Manual de Diseño Mi Nueva Escuela son salvadoreños. En Colombia y Venezuela
   se usan los mismos indicadores como referencia de comparación, y su ficha lo declara (#16).
